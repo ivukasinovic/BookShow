@@ -1,4 +1,4 @@
-package com.bookshow;
+package bookshow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
