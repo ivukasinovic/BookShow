@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class FunPageController {
 
@@ -15,9 +14,10 @@ public class FunPageController {
         this.funPageService = funPageService;
     }
 
-	@RequestMapping("/funpage")
-	public String hello() {
-		return  funPageService.hello();
-	}
+    @RequestMapping("/funpage")
+
+    public String hello() {
+        return funPageService.hello();
+    }
 
 }
