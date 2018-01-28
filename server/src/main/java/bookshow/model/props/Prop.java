@@ -1,7 +1,6 @@
 package bookshow.model.props;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
@@ -11,12 +10,12 @@ import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
  */
 @Entity
 @Inheritance(strategy = TABLE_PER_CLASS)
-public class Prop implements Serializable {
+public abstract class Prop {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false)
     private String title;
@@ -26,19 +25,17 @@ public class Prop implements Serializable {
 
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    private Date dateCreated;
 
-    @Enumerated(EnumType.STRING)
-    private PropType type;
 
     public Prop() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -59,18 +56,11 @@ public class Prop implements Serializable {
     }
 
     public Date getCreatedDate() {
-        return createdDate;
+        return dateCreated;
     }
 
     public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+        this.dateCreated = createdDate;
     }
 
-    public PropType getType() {
-        return type;
-    }
-
-    public void setType(PropType type) {
-        this.type = type;
-    }
 }

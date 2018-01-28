@@ -1,17 +1,18 @@
 package bookshow.model.props;
 
+import bookshow.model.Bid;
 import bookshow.model.users.AdminFan;
 import bookshow.model.users.RegisteredUser;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Ivan V. on 27-Jan-18
  */
 @Entity
-@DiscriminatorValue("USED")
 public class PropUsed extends Prop implements Serializable {
 
     @Column(name = "active_until", nullable = false)
@@ -22,7 +23,7 @@ public class PropUsed extends Prop implements Serializable {
     private UsedPropStatus status;
 
     //privremeno(Trebalo bi @OneToOne?)
-    @Column(name = "accepted_bid",nullable = false)
+    @Column(name = "accepted_bid", nullable = false)
     private boolean acceptedBid;
 
     @ManyToOne(optional = true, fetch = FetchType.EAGER)
@@ -30,6 +31,8 @@ public class PropUsed extends Prop implements Serializable {
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private RegisteredUser registeredUser;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "propUsed")
+    private Set<Bid> bids;
 
     public PropUsed() {
     }

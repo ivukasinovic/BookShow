@@ -1,0 +1,5 @@
+INSERT INTO user (type, city, email, name, number, password, surname, username) VALUES ('ADMINFAN', 'Novi Sad', 'adminfan@adminfan', 'Ivan', '0635569989', 'adminfan', 'Vukasinovic', 'adminfan');
+INSERT INTO user (type, city, email, name, number, password, surname, username) VALUES ('ADMINSYS', 'Novi Sad', 'adminsys@adminsys', 'Vladimir', '063429989', 'adminsys', 'Jovicic', 'adminsys');
+INSERT INTO user (type, city, email, name, number, password, surname, username) VALUES ('ADMINSHOW','Novi Sad', 'adminshow@adminshow', 'Marko', '0635565239', 'adminsys', 'Krajinovic', 'adminshow');
+INSERT INTO user (type, city, email, name, number, password, surname, username) VALUES ('REGISTERED','Beograd', 'dejan@dejan', 'Dejan', '0615565239', 'dejan', 'Stojkic', 'dejan');
+INSERT INTO user (type, city, email, name, number, password, surname, username) VALUES ('REGISTERED','Novi Sad', 'milan@milan', 'Milan', '0645565239', 'milan', 'Stankovic', 'milan');

@@ -10,5 +10,6 @@ import java.io.Serializable;
 @Entity
 @DiscriminatorValue("REGISTERED")
 public class RegisteredUser extends User implements Serializable {
-
+    public RegisteredUser() {
+    }
 }
