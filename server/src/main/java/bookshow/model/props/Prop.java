@@ -14,7 +14,7 @@ import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 public class Prop implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(nullable = false)
     private Integer id;
 

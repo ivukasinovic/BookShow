@@ -40,8 +40,6 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String number;
 
-    @Enumerated(EnumType.STRING)
-    private UserType type;
 
     public User() {
     }
@@ -54,7 +52,6 @@ public class User implements Serializable {
         this.email = email;
         this.city = city;
         this.number = number;
-        this.type = type;
     }
 
     public long getId() {
