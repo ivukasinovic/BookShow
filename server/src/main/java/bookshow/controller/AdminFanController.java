@@ -39,7 +39,7 @@ public class AdminFanController {
     }
 
     @RequestMapping(
-            value = "/updateAdminFan/{id}",
+            value = "/updateAdminFan",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
