@@ -1,11 +1,10 @@
 package bookshow.model.props;
 
+import bookshow.model.Show;
 import bookshow.model.users.AdminFan;
 import bookshow.model.users.RegisteredUser;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -23,6 +22,9 @@ public class PropNew extends Prop implements Serializable {
     @ManyToOne(optional = true)
     private RegisteredUser registeredUser;
 
+    @ManyToOne(optional = false)
+    private Show show;
+
     public PropNew() {
     }
 
@@ -34,5 +36,28 @@ public class PropNew extends Prop implements Serializable {
         this.price = price;
     }
 
+    public AdminFan getAdminFan() {
+        return adminFan;
+    }
+
+    public void setAdminFan(AdminFan adminFan) {
+        this.adminFan = adminFan;
+    }
+
+    public RegisteredUser getRegisteredUser() {
+        return registeredUser;
+    }
+
+    public void setRegisteredUser(RegisteredUser registeredUser) {
+        this.registeredUser = registeredUser;
+    }
+
+    public Show getShow() {
+        return show;
+    }
+
+    public void setShow(Show show) {
+        this.show = show;
+    }
 }
 

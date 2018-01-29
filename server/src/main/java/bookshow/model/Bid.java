@@ -1,7 +1,8 @@
 package bookshow.model;
 
 import bookshow.model.props.PropUsed;
-import bookshow.model.users.AdminFan;
+import bookshow.model.users.RegisteredUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,10 +27,12 @@ public class Bid implements Serializable {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
-    @ManyToOne(optional = false)
-    private AdminFan adminFan;
 
     @ManyToOne(optional = false)
+    private RegisteredUser registeredUser;
+
+    @ManyToOne(optional = false)
+    @JsonIgnore
     private PropUsed propUsed;
 
 
@@ -66,6 +69,22 @@ public class Bid implements Serializable {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public RegisteredUser getRegisteredUser() {
+        return registeredUser;
+    }
+
+    public void setRegisteredUser(RegisteredUser registeredUser) {
+        this.registeredUser = registeredUser;
+    }
+
+    public PropUsed getPropUsed() {
+        return propUsed;
+    }
+
+    public void setPropUsed(PropUsed propUsed) {
+        this.propUsed = propUsed;
     }
 
 }

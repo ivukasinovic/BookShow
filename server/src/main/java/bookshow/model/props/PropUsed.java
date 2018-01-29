@@ -19,17 +19,17 @@ public class PropUsed extends Prop implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date activeUntil;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private UsedPropStatus status;
 
     //privremeno(Trebalo bi @OneToOne?)
     @Column(name = "accepted_bid", nullable = false)
     private boolean acceptedBid;
 
-    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @ManyToOne(optional = true)
     private AdminFan adminFan;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private RegisteredUser registeredUser;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "propUsed")
     private Set<Bid> bids;
@@ -75,5 +75,13 @@ public class PropUsed extends Prop implements Serializable {
 
     public void setRegisteredUser(RegisteredUser registeredUser) {
         this.registeredUser = registeredUser;
+    }
+
+    public Set<Bid> getBids() {
+        return bids;
+    }
+
+    public void setBids(Set<Bid> bids) {
+        this.bids = bids;
     }
 }
