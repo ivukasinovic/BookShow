@@ -3,8 +3,11 @@ package bookshow.model.props;
 import bookshow.model.Show;
 import bookshow.model.users.AdminFan;
 import bookshow.model.users.RegisteredUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 /**
@@ -22,6 +25,7 @@ public class PropNew extends Prop implements Serializable {
     @ManyToOne(optional = true)
     private RegisteredUser registeredUser;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     private Show show;
 
