@@ -1,0 +1,10 @@
+<h1>Dobrodošli na fan zonu!</h1>
+<p>
+  funpage works!
+</p>
+<button (click)="getUsedProp(1)">Preuzmi prvi polovan</button>
+<button (click)="getNewProp(1)">Preuzmi prvi novi</button>
+<button (click)="getUsedProps()">Preuzmi sve polovne</button>
+<div *ngFor="let usedProp of usedProps | async">
+ {{ usedProp.title }}}
+</div>

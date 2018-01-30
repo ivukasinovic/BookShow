@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FanpageService} from '../fanpage-services/fanpage.service';
 
 @Component({
   selector: 'app-prop-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fanpageService: FanpageService) { }
 
   ngOnInit() {
   }
