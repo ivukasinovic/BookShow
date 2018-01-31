@@ -1,28 +1,31 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
-import {AppRoutingModule} from './/app-routing.module';
-import {FunpageComponent} from './fanpage/funpage.component';
-import {PropListComponent} from './fanpage/prop-list/prop-list.component';
-import {PropDetailComponent} from './fanpage/prop-detail/prop-detail.component';
+import {FanpageComponent} from './fanpage/fanpage.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FanpageService} from './fanpage/fanpage-services/fanpage.service';
+import {AppRoutingModule} from './app-routing.module';
+import { UsedPropListComponent } from './fanpage/used-prop-list/used-prop-list.component';
+import { NewPropListComponent } from './fanpage/new-prop-list/new-prop-list.component';
+import { NewPropDetailComponent } from './fanpage/new-prop-detail/new-prop-detail.component';
+import { UsedPropDetailComponent } from './fanpage/used-prop-detail/used-prop-detail.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FunpageComponent,
-    PropListComponent,
-    PropDetailComponent
+    FanpageComponent,
+    UsedPropListComponent,
+    NewPropListComponent,
+    NewPropDetailComponent,
+    UsedPropDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [FanpageService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

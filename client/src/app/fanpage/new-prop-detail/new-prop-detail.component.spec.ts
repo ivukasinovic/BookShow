@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FunpageComponent } from './funpage.component';
+import { NewPropDetailComponent } from './new-prop-detail.component';
 
-describe('FunpageComponent', () => {
-  let component: FunpageComponent;
-  let fixture: ComponentFixture<FunpageComponent>;
+describe('NewPropDetailComponent', () => {
+  let component: NewPropDetailComponent;
+  let fixture: ComponentFixture<NewPropDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FunpageComponent ]
+      declarations: [ NewPropDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FunpageComponent);
+    fixture = TestBed.createComponent(NewPropDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

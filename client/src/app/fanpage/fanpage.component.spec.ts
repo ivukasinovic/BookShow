@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PropListComponent } from './prop-list.component';
+import { FanpageComponent } from './fanpage.component';
 
-describe('PropListComponent', () => {
-  let component: PropListComponent;
-  let fixture: ComponentFixture<PropListComponent>;
+describe('FanpageComponent', () => {
+  let component: FanpageComponent;
+  let fixture: ComponentFixture<FanpageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PropListComponent ]
+      declarations: [ FanpageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PropListComponent);
+    fixture = TestBed.createComponent(FanpageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

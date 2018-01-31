@@ -1,26 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {FanpageService} from './fanpage-services/fanpage.service';
-import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import {UsedProp} from '../models/prop';
 import {NewProp} from '../models/prop';
-import {Response} from '@angular/http';
-import { map } from 'rxjs/operators';
 
 
 @Component({
   selector: 'app-funpage',
-  templateUrl: './funpage.component.html',
-  styleUrls: ['./funpage.component.css']
+  templateUrl: './fanpage.component.html',
+  styleUrls: ['./fanpage.component.css']
 })
-export class FunpageComponent implements OnInit {
+export class FanpageComponent implements OnInit {
   newProps: UsedProp[];
   usedProps: UsedProp[];
   newProp: NewProp;
   usedProp: UsedProp;
   id: number;
 
-  constructor(private fanPageService: FanpageService, private http: HttpClient) {
+  constructor( private http: HttpClient) {
 
   }
 
