@@ -1,6 +1,6 @@
 package bookshow.model;
 
-import bookshow.model.props.PropNew;
+import bookshow.model.props.NewProp;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -23,7 +23,7 @@ public class Show {
     private ShowType type;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "show")
-    private Set<PropNew> props;
+    private Set<NewProp> props;
 
     public Show(){
 
@@ -53,11 +53,11 @@ public class Show {
         this.type = type;
     }
 
-    public Set<PropNew> getProps() {
+    public Set<NewProp> getProps() {
         return props;
     }
 
-    public void setProps(Set<PropNew> props) {
+    public void setProps(Set<NewProp> props) {
         this.props = props;
     }
 }

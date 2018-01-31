@@ -3,6 +3,10 @@ package bookshow.model.props;
 import bookshow.model.Bid;
 import bookshow.model.users.AdminFan;
 import bookshow.model.users.RegisteredUser;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +17,7 @@ import java.util.Set;
  * Created by Ivan V. on 27-Jan-18
  */
 @Entity
-public class PropUsed extends Prop implements Serializable {
+public class UsedProp extends Prop implements Serializable {
 
     @Column(name = "active_until", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -26,15 +30,21 @@ public class PropUsed extends Prop implements Serializable {
     @Column(name = "accepted_bid", nullable = false)
     private boolean acceptedBid;
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(optional = true)
     private AdminFan adminFan;
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(optional = false)
     private RegisteredUser registeredUser;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "propUsed")
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usedProp")
     private Set<Bid> bids;
 
-    public PropUsed() {
+    public UsedProp() {
     }
 
     public Date getActiveUntil() {

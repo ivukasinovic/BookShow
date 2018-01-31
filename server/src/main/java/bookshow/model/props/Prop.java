@@ -23,6 +23,9 @@ public abstract class Prop {
     @Column
     private String description;
 
+    @Column(nullable = true)
+    private String image;
+
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
@@ -63,4 +66,19 @@ public abstract class Prop {
         this.dateCreated = createdDate;
     }
 
+    public String getUrl() {
+        return image;
+    }
+
+    public void setUrl(String url) {
+        this.image = url;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
 }

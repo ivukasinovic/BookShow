@@ -3,7 +3,10 @@ package bookshow.model.props;
 import bookshow.model.Show;
 import bookshow.model.users.AdminFan;
 import bookshow.model.users.RegisteredUser;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,22 +17,27 @@ import java.io.Serializable;
  * Created by Ivan V. on 28-Jan-18
  */
 @Entity
-public class PropNew extends Prop implements Serializable {
+public class NewProp extends Prop implements Serializable {
 
     @Column(nullable = false)
     private float price;
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(optional = false)
     private AdminFan adminFan;
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(optional = true)
     private RegisteredUser registeredUser;
 
-    @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(optional = false)
     private Show show;
 
-    public PropNew() {
+    public NewProp() {
     }
 
     public float getPrice() {

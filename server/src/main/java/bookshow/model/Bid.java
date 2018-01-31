@@ -1,8 +1,11 @@
 package bookshow.model;
 
-import bookshow.model.props.PropUsed;
+import bookshow.model.props.UsedProp;
 import bookshow.model.users.RegisteredUser;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -28,12 +31,14 @@ public class Bid implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(optional = false)
     private RegisteredUser registeredUser;
 
     @ManyToOne(optional = false)
     @JsonIgnore
-    private PropUsed propUsed;
+    private UsedProp usedProp;
 
 
     public Bid() {
@@ -79,12 +84,12 @@ public class Bid implements Serializable {
         this.registeredUser = registeredUser;
     }
 
-    public PropUsed getPropUsed() {
-        return propUsed;
+    public UsedProp getUsedProp() {
+        return usedProp;
     }
 
-    public void setPropUsed(PropUsed propUsed) {
-        this.propUsed = propUsed;
+    public void setUsedProp(UsedProp usedProp) {
+        this.usedProp = usedProp;
     }
 
 }
