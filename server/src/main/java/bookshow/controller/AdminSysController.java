@@ -1,5 +1,6 @@
 package bookshow.controller;
 
+import bookshow.model.users.AdminFan;
 import bookshow.model.users.AdminSys;
 import bookshow.service.AdminSysService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,14 @@ public class AdminSysController {
     public ResponseEntity<List<AdminSys>> getAdminSyss() {
         List<AdminSys> adminSyss = adminSysService.findAll();
         return new ResponseEntity<>(adminSyss, HttpStatus.OK);
+    }
+    @RequestMapping(
+            value = "/getAdminSys/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AdminSys> getAdminFans(@PathVariable("id") Long id) {
+        AdminSys adminSys = adminSysService.findOne(id);
+        return new ResponseEntity<>(adminSys, HttpStatus.OK);
     }
 
     @RequestMapping(

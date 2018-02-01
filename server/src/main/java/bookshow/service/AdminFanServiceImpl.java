@@ -17,7 +17,7 @@ public class AdminFanServiceImpl implements AdminFanService {
 
     @Override
     public AdminFan findOne(Long id) {
-        return null;
+        return adminFanRepository.findOne(id);
     }
 
     @Override

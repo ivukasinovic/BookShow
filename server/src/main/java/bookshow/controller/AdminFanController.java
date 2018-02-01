@@ -27,6 +27,14 @@ public class AdminFanController {
         List<AdminFan> adminFans = adminFanService.findAll();
         return new ResponseEntity<>(adminFans, HttpStatus.OK);
     }
+    @RequestMapping(
+            value = "/getAdminFan/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AdminFan> getAdminFan(@PathVariable("id") Long id) {
+        AdminFan adminFans = adminFanService.findOne(id);
+        return new ResponseEntity<>(adminFans, HttpStatus.OK);
+    }
 
     @RequestMapping(
             value = "/createAdminFan",
