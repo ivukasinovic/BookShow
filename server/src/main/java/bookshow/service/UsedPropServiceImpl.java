@@ -1,10 +1,12 @@
 package bookshow.service;
 
 import bookshow.model.props.UsedProp;
+import bookshow.model.props.UsedPropStatus;
 import bookshow.repository.UsedPropRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +26,17 @@ public class UsedPropServiceImpl implements UsedPropService {
     public UsedProp findOne(Long id) {
         return usedPropRepository.findOne(id);
     }
+
+    @Override
+    public List<UsedProp> findByFanAdminIsNotNull() {
+        return usedPropRepository.findByFanAdminIsNotNull();
+    }
+
+    @Override
+    public List<UsedProp> findByActiveUntilGreaterThanAndStatusEquals(Date date, UsedPropStatus usedPropStatus) {
+        return usedPropRepository.findByActiveUntilGreaterThanAndStatusEquals(date,usedPropStatus);
+    }
+
 
     @Override
     public UsedProp save(UsedProp usedProp) {

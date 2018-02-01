@@ -11,6 +11,8 @@ public interface NewPropService {
 
     List<NewProp> findAll();
 
+    List<NewProp> findByRegisteredUserIsNull();
+
     NewProp findOne(Long id);
 
     NewProp save(NewProp newProp);

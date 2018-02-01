@@ -1,3 +1,25 @@
-<p>
-  used-prop-list works!
-</p>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <div
+      href="#"
+      class="list-group-item clearfix"
+      *ngFor="let usedProp of usedProps">
+      <div class="pull-left">
+        <h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
+        <p class="list-group-item-text">{{ usedProp.description }}</p>
+      </div>
+      <span class="pull-right">
+        <button class="btn btn-warning">OSTAVI PONUDU</button>
+      </span>
+      <span class="pull-right">
+        <img
+          [src]="usedProp.image"
+          alt="{{ usedProp.name }}"
+          class="img-responsive"
+          style="height: 100px; width: 100px;">
+      </span>
+    </div>
+  </div>
+
+</div>

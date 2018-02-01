@@ -9,15 +9,19 @@ import {PropService} from '../prop.service';
 })
 export class NewPropListComponent implements OnInit {
 
+  result: any;
   newProps: NewProp[];
-  public props;
-  constructor(private newPropService: PropService) { }
+  constructor(private propService: PropService) { }
   ngOnInit() {
-    this.newPropService.getNewProps().subscribe(
+    this.propService.getNewProps().subscribe(
       (data: NewProp[]) => {this.newProps = data},
       err => console.error(err),
       () => console.log('Uspesno ucitani novi rekviziti')
     );
+  }
+  reservation(id: number) {
+    this.result = this.propService.reservation(id);
+    console.log('Ivan' + this.result);
   }
 
 }
