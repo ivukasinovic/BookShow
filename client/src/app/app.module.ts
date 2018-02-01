@@ -8,6 +8,7 @@ import { UsedPropListComponent } from './fanpage/used-prop-list/used-prop-list.c
 import { NewPropListComponent } from './fanpage/new-prop-list/new-prop-list.component';
 import { NewPropDetailComponent } from './fanpage/new-prop-detail/new-prop-detail.component';
 import { UsedPropDetailComponent } from './fanpage/used-prop-detail/used-prop-detail.component';
+import {PropService} from './fanpage/prop.service';
 
 
 
@@ -25,7 +26,7 @@ import { UsedPropDetailComponent } from './fanpage/used-prop-detail/used-prop-de
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [PropService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

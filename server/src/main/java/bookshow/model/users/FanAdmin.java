@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 @DiscriminatorValue("ADMINFAN")
-public class AdminFan extends User implements Serializable {
-    public AdminFan() {
+public class FanAdmin extends User implements Serializable {
+    public FanAdmin() {
     }
 }

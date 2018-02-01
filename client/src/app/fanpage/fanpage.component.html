@@ -1,9 +1,3 @@
-
-<!--
-<button (click)="getUsedProp(1)">Preuzmi prvi polovan</button>
-<button (click)="getNewProp(1)">Preuzmi prvi novi</button>
-<button class="btn btn-primary" (click)="getUsedProps()">Preuzmi sve polovne</button><br>
--->
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3"></div>
@@ -11,16 +5,21 @@
     <div class="nav nav-tabs">
       <li class="active"> <a href="/fanpage#newProps">Zvanična prodavnica</a></li>
       <li ><a href="/fanpage#usedProps" data-toggle="tab">Oglasi</a></li>
-      <li ><a href="#">Tuga</a></li>
+      <li><form class="form-search" method="get" id="s" action="/">
+        <div class="input-append">
+          <input type="text" class="input-medium search-query" name="s" placeholder="Pretraga..." value="">
+          <button type="submit" class="add-on">Pretraži<i class="icon-search"></i></button>
+        </div>
+      </form></li>
     </div>
 
   </div>
   <div class="row">
     <div class="col-md-3">
-      <div class="btn btn-primary">Novi Oglas </div>
+      <div class="btn btn-success">Novi Oglas </div>
       <div class="btn btn-primary">Aktivni Oglasi</div>
     </div>
-    <div class="col-md-4 tab-content">
+    <div class="col-md-8 tab-content">
       <div id="newProps" class="tab-pane active">
         <app-new-prop-list></app-new-prop-list>
       </div>

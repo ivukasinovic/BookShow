@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NewProp} from '../../models/prop';
+import {PropService} from '../prop.service';
 
 @Component({
   selector: 'app-new-prop-list',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewPropListComponent implements OnInit {
 
-  constructor() { }
-
+  newProps: NewProp[];
+  public props;
+  constructor(private newPropService: PropService) { }
   ngOnInit() {
+    this.newPropService.getNewProps().subscribe(
+      (data: NewProp[]) => {this.newProps = data},
+      err => console.error(err),
+      () => console.log('Uspesno ucitani novi rekviziti')
+    );
   }
 
 }

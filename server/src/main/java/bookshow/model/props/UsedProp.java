@@ -1,7 +1,7 @@
 package bookshow.model.props;
 
 import bookshow.model.Bid;
-import bookshow.model.users.AdminFan;
+import bookshow.model.users.FanAdmin;
 import bookshow.model.users.RegisteredUser;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
@@ -32,11 +32,13 @@ public class UsedProp extends Prop implements Serializable {
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(name="fan_admin_fk")
     @ManyToOne(optional = true)
-    private AdminFan adminFan;
+    private FanAdmin fanAdmin;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(name="registered_user_fk")
     @ManyToOne(optional = false)
     private RegisteredUser registeredUser;
 
@@ -71,12 +73,12 @@ public class UsedProp extends Prop implements Serializable {
         this.acceptedBid = acceptedBid;
     }
 
-    public AdminFan getAdminFan() {
-        return adminFan;
+    public FanAdmin getFanAdmin() {
+        return fanAdmin;
     }
 
-    public void setAdminFan(AdminFan adminFan) {
-        this.adminFan = adminFan;
+    public void setFanAdmin(FanAdmin fanAdmin) {
+        this.fanAdmin = fanAdmin;
     }
 
     public RegisteredUser getRegisteredUser() {

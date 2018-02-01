@@ -20,16 +20,24 @@ public class RegisteredUserController {
     private RegisteredUserService RegisteredUserService;
 
     @RequestMapping(
-            value = "/getRegisteredUsers",
+            value = "/registeredUser",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<RegisteredUser>> getRegisteredUsers() {
-        List<RegisteredUser> RegisteredUsers = RegisteredUserService.findAll();
-        return new ResponseEntity<>(RegisteredUsers, HttpStatus.OK);
+        List<RegisteredUser> registeredUsers = RegisteredUserService.findAll();
+        return new ResponseEntity<>(registeredUsers, HttpStatus.OK);
+    }
+    @RequestMapping(
+            value = "/registeredUser/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RegisteredUser> getRegisteredUser(@PathVariable("id") Long id) {
+        RegisteredUser registeredUsers = RegisteredUserService.findOne(id);
+        return new ResponseEntity<>(registeredUsers, HttpStatus.OK);
     }
 
     @RequestMapping(
-            value = "/createRegisteredUser",
+            value = "/registeredUser",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -39,7 +47,7 @@ public class RegisteredUserController {
     }
 
     @RequestMapping(
-            value = "/updateRegisteredUser",
+            value = "/registeredUser",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

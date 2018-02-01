@@ -1,5 +1,7 @@
 package bookshow.model.props;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,7 +15,10 @@ import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 public abstract class Prop {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    //@GeneratedValue(strategy = GenerationType.TABLE)
+    //resava problem prilikom unosa jer mysql ne generise sam nove id
+    @GenericGenerator(name="announcement",strategy = "increment")
+    @GeneratedValue(generator = "announcement")
     @Column(nullable = false)
     private Long id;
 
@@ -23,7 +28,7 @@ public abstract class Prop {
     @Column
     private String description;
 
-    @Column(nullable = true)
+    @Column
     private String image;
 
     @Column
@@ -58,19 +63,11 @@ public abstract class Prop {
         this.description = description;
     }
 
-    public Date getCreatedDate() {
-        return dateCreated;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.dateCreated = createdDate;
-    }
-
-    public String getUrl() {
+    public String getImage() {
         return image;
     }
 
-    public void setUrl(String url) {
+    public void setImage(String url) {
         this.image = url;
     }
 

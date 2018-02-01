@@ -1,3 +1,25 @@
-<p>
-  new-prop-list works!
-</p>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <a
+      href="#"
+      class="list-group-item clearfix"
+      *ngFor="let newProp of newProps">
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ newProp.title }}</h4>
+        <p class="list-group-item-text">{{ newProp.description }}</p>
+      </div>
+      <span class="pull-right">
+        <button class="btn btn-info">REZERVIŠI</button>
+      </span>
+      <span class="pull-right">
+        <img
+          [src]="newProp.image"
+          alt="{{ newProp.name }}"
+          class="img-responsive"
+          style="max-height: 50px;">
+      </span>
+    </a>
+  </div>
+
+</div>

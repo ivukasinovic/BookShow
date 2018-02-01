@@ -9,5 +9,5 @@ import java.io.Serializable;
  */
 @Entity
 @DiscriminatorValue("ADMINSYS")
-public class AdminSys extends User implements Serializable {
+public class SysAdmin extends User implements Serializable {
 }
