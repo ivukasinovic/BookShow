@@ -1,15 +1,15 @@
 package bookshow.model.props;
 
 import bookshow.model.Show;
-import bookshow.model.users.AdminFan;
+import bookshow.model.users.FanAdmin;
 import bookshow.model.users.RegisteredUser;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
@@ -24,16 +24,19 @@ public class NewProp extends Prop implements Serializable {
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(name="fan_admin_fk")
     @ManyToOne(optional = false)
-    private AdminFan adminFan;
+    private FanAdmin fanAdmin;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(name="registered_user_fk")
     @ManyToOne(optional = true)
     private RegisteredUser registeredUser;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(name="show_fk")
     @ManyToOne(optional = false)
     private Show show;
 
@@ -48,12 +51,12 @@ public class NewProp extends Prop implements Serializable {
         this.price = price;
     }
 
-    public AdminFan getAdminFan() {
-        return adminFan;
+    public FanAdmin getFanAdmin() {
+        return fanAdmin;
     }
 
-    public void setAdminFan(AdminFan adminFan) {
-        this.adminFan = adminFan;
+    public void setFanAdmin(FanAdmin fanAdmin) {
+        this.fanAdmin = fanAdmin;
     }
 
     public RegisteredUser getRegisteredUser() {

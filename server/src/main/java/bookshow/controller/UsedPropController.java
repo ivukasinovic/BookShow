@@ -47,6 +47,7 @@ public class UsedPropController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsedProp> createPropUsed(@RequestBody UsedProp usedProp) {
+        //ceka se logovanje(hardkod)
         usedProp.setStatus(UsedPropStatus.WAITING);
         usedProp.setRegisteredUser(registeredUserService.findOne(5L));
         usedProp.setDateCreated(new java.util.Date());

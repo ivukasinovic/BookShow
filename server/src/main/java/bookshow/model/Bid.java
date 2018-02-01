@@ -33,10 +33,12 @@ public class Bid implements Serializable {
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(name="registered_user_fk")
     @ManyToOne(optional = false)
     private RegisteredUser registeredUser;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name="used_prop_fk")
     @JsonIgnore
     private UsedProp usedProp;
 
