@@ -21,6 +21,11 @@ public class RegisteredUserServiceImpl implements RegisteredUserService {
     }
 
     @Override
+    public RegisteredUser findByUsername(String username) {
+        return registeredUserRepository.findByUsername(username);
+    }
+
+    @Override
     public List<RegisteredUser> findAll() {
         return registeredUserRepository.findAll();
     }

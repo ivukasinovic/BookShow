@@ -10,6 +10,8 @@ import java.util.List;
 public interface RegisteredUserService {
     RegisteredUser findOne(Long id);
 
+    RegisteredUser findByUsername(String username);
+
     List<RegisteredUser> findAll();
 
     RegisteredUser save(RegisteredUser regUser);

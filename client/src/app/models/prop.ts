@@ -23,3 +23,9 @@ export class NewProp {
   image: string;
   createdDate: string;
 }
+export class Bid {
+  id: number;
+  price: number;
+  registeredUser: string;
+  dateCreated: string;
+}

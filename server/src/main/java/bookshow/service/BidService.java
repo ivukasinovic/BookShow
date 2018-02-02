@@ -14,6 +14,8 @@ public interface BidService {
 
     List<Bid> findByUsedProp(UsedProp usedProp);
 
+    Bid findByRegisteredUserAndUsedProp(RegisteredUser registeredUser, UsedProp usedProp);
+
     Bid findOne(Long id);
 
     Bid save(Bid bid);

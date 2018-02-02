@@ -14,6 +14,7 @@ public interface BidRepository extends JpaRepository<Bid,Long> {
     List<Bid> findAll();
 
     List<Bid> findByUsedProp(UsedProp usedProp);
+    Bid findByRegisteredUserAndUsedProp(RegisteredUser registeredUser, UsedProp usedProp);
 
     Bid findOne(Long id);
 

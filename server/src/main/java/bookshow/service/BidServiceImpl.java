@@ -28,6 +28,11 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
+    public Bid findByRegisteredUserAndUsedProp(RegisteredUser registeredUser, UsedProp usedProp) {
+        return bidRepository.findByRegisteredUserAndUsedProp(registeredUser,usedProp);
+    }
+
+    @Override
     public Bid findOne(Long id) {
         return bidRepository.findOne(id);
     }

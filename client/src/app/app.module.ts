@@ -11,6 +11,8 @@ import { NewPropDetailComponent } from './fanpage/new-prop-detail/new-prop-detai
 import { UsedPropDetailComponent } from './fanpage/used-prop-detail/used-prop-detail.component';
 import {PropService} from './fanpage/prop.service';
 import { CreateAdComponent } from './fanpage/create-ad/create-ad.component';
+import { BidListComponent } from './fanpage/bid-list/bid-list.component';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -22,13 +24,15 @@ import { CreateAdComponent } from './fanpage/create-ad/create-ad.component';
     NewPropListComponent,
     NewPropDetailComponent,
     UsedPropDetailComponent,
-    CreateAdComponent
+    CreateAdComponent,
+    BidListComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [PropService],
   bootstrap: [AppComponent]

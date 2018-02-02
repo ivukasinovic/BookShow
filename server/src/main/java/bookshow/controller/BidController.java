@@ -60,12 +60,13 @@ public class BidController {
     public ResponseEntity<Bid> createBid(@RequestBody Bid bid,@PathVariable("id") Long id) {
         //ceka se logovanje(hardkod)
         RegisteredUser registeredUser = registeredUserService.findOne(6L);
-        Bid old = bidService.findByRegisteredUser(registeredUser);
+        UsedProp usedProp = usedPropService.findOne(id);
+        Bid old = bidService.findByRegisteredUserAndUsedProp(registeredUser,usedProp);
         if(old!=null)
             bid.setId(old.getId());
         bid.setDateCreated(new java.util.Date());
         bid.setRegisteredUser(registeredUser);
-        bid.setUsedProp(usedPropService.findOne(id));
+        bid.setUsedProp(usedProp);
         Bid savedBid = bidService.save(bid);
         return new ResponseEntity<>(savedBid, HttpStatus.CREATED);
     }
