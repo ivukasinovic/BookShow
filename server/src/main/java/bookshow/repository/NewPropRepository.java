@@ -11,6 +11,7 @@ import java.util.List;
 public interface NewPropRepository extends JpaRepository<NewProp,Long> {
     List<NewProp> findAll();
 
+    List<NewProp> findByRegisteredUserIsNull();
     NewProp findOne(Long id);
 
     NewProp save(NewProp newProp);

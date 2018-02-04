@@ -21,6 +21,11 @@ public class NewPropServiceImpl implements NewPropService {
     }
 
     @Override
+    public List<NewProp> findByRegisteredUserIsNull() {
+        return newPropRepository.findByRegisteredUserIsNull();
+    }
+
+    @Override
     public NewProp findOne(Long id) {
         return newPropRepository.findOne(id);
     }

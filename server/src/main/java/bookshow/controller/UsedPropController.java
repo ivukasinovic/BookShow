@@ -1,6 +1,5 @@
 package bookshow.controller;
 
-import bookshow.model.props.PropType;
 import bookshow.model.props.UsedProp;
 import bookshow.model.props.UsedPropStatus;
 import bookshow.service.RegisteredUserService;
@@ -11,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -25,15 +23,32 @@ public class UsedPropController {
     private RegisteredUserService registeredUserService;
 
     @RequestMapping(
-            value = "/getUsedProps",
+            value = "/usedPropsAll",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<UsedProp>> getUsedProps() {
+    public ResponseEntity<List<UsedProp>> getUsedPropsAll() {
         List<UsedProp> usedProps = usedPropService.findAll();
         return new ResponseEntity<>(usedProps, HttpStatus.OK);
     }
+
     @RequestMapping(
-            value = "/getUsedProp/{id}",
+            value = "/usedPropsCheck",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<UsedProp>> getUsedPropsCheck() {
+        List<UsedProp> usedProps = usedPropService.findByFanAdminIsNotNull();
+        return new ResponseEntity<>(usedProps, HttpStatus.OK);
+    }
+    @RequestMapping(
+            value = "/usedProps",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<UsedProp>> getUsedProps() {
+        List<UsedProp> usedProps = usedPropService.findByActiveUntilGreaterThanAndStatusEquals(new java.util.Date(),UsedPropStatus.APPROVED);
+        return new ResponseEntity<>(usedProps, HttpStatus.OK);
+    }
+    @RequestMapping(
+            value = "/usedProps/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsedProp> getUsedProp(@PathVariable("id") Long id) {
@@ -42,7 +57,7 @@ public class UsedPropController {
     }
 
     @RequestMapping(
-            value = "/createUsedProp",
+            value = "/usedProps",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,7 +71,7 @@ public class UsedPropController {
     }
 
     @RequestMapping(
-            value = "/updateUsedProp",
+            value = "/usedProps",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -66,7 +81,7 @@ public class UsedPropController {
     }
 
     @RequestMapping(
-            value = "/deleteUsedProps/{id}",
+            value = "/usedProps/{id}",
             method = RequestMethod.DELETE,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

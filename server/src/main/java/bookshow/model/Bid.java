@@ -31,15 +31,16 @@ public class Bid implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "username")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(name="registered_user_fk")
     @ManyToOne(optional = false)
     private RegisteredUser registeredUser;
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(optional = false)
     @JoinColumn(name="used_prop_fk")
-    @JsonIgnore
     private UsedProp usedProp;
 
 

@@ -1,34 +1,43 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3"></div>
-
-    <div class="nav nav-tabs">
-      <li class="active"> <a href="/fanpage#newProps">Zvanična prodavnica</a></li>
-      <li ><a href="/fanpage#usedProps" data-toggle="tab">Oglasi</a></li>
-      <li><form class="form-search" method="get" id="s" action="/">
-        <div class="input-append">
-          <input type="text" class="input-medium search-query" name="s" placeholder="Pretraga..." value="">
-          <button type="submit" class="add-on">Pretraži<i class="icon-search"></i></button>
-        </div>
-      </form></li>
-    </div>
-
-  </div>
-  <div class="row">
     <div class="col-md-3">
-      <div class="btn btn-success">Novi Oglas </div>
-      <div class="btn btn-primary">Aktivni Oglasi</div>
-    </div>
-    <div class="col-md-8 tab-content">
-      <div id="newProps" class="tab-pane active">
-        <app-new-prop-list></app-new-prop-list>
-      </div>
-      <div id="usedProps" class="tab-pane">
-        <app-used-prop-list></app-used-prop-list>
+        <!--<div class="btn btn-success">Novi Oglas </div>-->
+      <button type="button" class="btn btn-success" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseNewAdd" >Postavi Oglas</button>
+        <div class="btn btn-primary">Aktivni Oglasi</div><br><br><br>
+      <div id="collapsenpNewAdd" [ngbCollapse]="!isCollapsed">
+        <div class="card">
+        <app-create-ad></app-create-ad>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
+    <div class="col-md-9">
+      <ngb-tabset>
+        <ngb-tab>
+          <ng-template ngbTabTitle><b>Zvanična prodavnica</b></ng-template>
+          <ng-template ngbTabContent>
+            <app-new-prop-list></app-new-prop-list>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Oglasi</ng-template>
+          <ng-template ngbTabContent>
+            <app-used-prop-list></app-used-prop-list>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+
+
+
+    <!--<div class="nav nav-tabs">-->
+      <!--<li class="active"> <a href="/fanpage#newProps">Zvanična prodavnica</a></li>-->
+      <!--<li ><a href="/fanpage#usedProps" data-toggle="tab">Oglasi</a></li>-->
+      <!--<li><form class="form-search" method="get" id="s" action="/">-->
+        <!--<div class="input-append">-->
+          <!--<input type="text" class="input-medium search-query" name="s" placeholder="Pretraga..." value="">-->
+          <!--<button type="submit" class="add-on">Pretraži<i class="icon-search"></i></button>-->
+        <!--</div>-->
+      <!--</form></li>-->
+    <!--</div>-->
 
 
 
