@@ -1,9 +1,10 @@
-package bookshow.service;
+package bookshow.service.impl;
 
 import bookshow.model.Bid;
 import bookshow.model.props.UsedProp;
-import bookshow.model.users.RegisteredUser;
+import bookshow.model.users.User;
 import bookshow.repository.BidRepository;
+import bookshow.service.BidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,8 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
-    public Bid findByRegisteredUserAndUsedProp(RegisteredUser registeredUser, UsedProp usedProp) {
-        return bidRepository.findByRegisteredUserAndUsedProp(registeredUser,usedProp);
+    public Bid findByUserAndUsedProp(User user, UsedProp usedProp) {
+        return bidRepository.findByUserAndUsedProp(user, usedProp);
     }
 
     @Override
@@ -48,8 +49,8 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
-    public Bid findByRegisteredUser(RegisteredUser registeredUser) {
-        return bidRepository.findByRegisteredUser(registeredUser);
+    public Bid findByUser(User user) {
+        return bidRepository.findByUser(user);
     }
 
     @Override

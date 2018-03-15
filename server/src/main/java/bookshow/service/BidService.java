@@ -2,7 +2,7 @@ package bookshow.service;
 
 import bookshow.model.Bid;
 import bookshow.model.props.UsedProp;
-import bookshow.model.users.RegisteredUser;
+import bookshow.model.users.User;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface BidService {
 
     List<Bid> findByUsedProp(UsedProp usedProp);
 
-    Bid findByRegisteredUserAndUsedProp(RegisteredUser registeredUser, UsedProp usedProp);
+    Bid findByUserAndUsedProp(User user, UsedProp usedProp);
 
     Bid findOne(Long id);
 
@@ -22,7 +22,7 @@ public interface BidService {
 
     Bid findByPrice(Integer price);
 
-    Bid findByRegisteredUser(RegisteredUser registeredUser);
+    Bid findByUser(User user);
 
     void delete(Long id);
 }

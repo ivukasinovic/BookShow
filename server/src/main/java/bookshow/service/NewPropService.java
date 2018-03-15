@@ -11,7 +11,7 @@ public interface NewPropService {
 
     List<NewProp> findAll();
 
-    List<NewProp> findByRegisteredUserIsNull();
+    List<NewProp> findByUserIsNull();
 
     NewProp findOne(Long id);
 

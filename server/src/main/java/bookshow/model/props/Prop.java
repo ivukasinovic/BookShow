@@ -17,7 +17,7 @@ public abstract class Prop {
     @Id
     //@GeneratedValue(strategy = GenerationType.TABLE)
     //resava problem prilikom unosa jer mysql ne generise sam nove id
-    @GenericGenerator(name="announcement",strategy = "increment")
+    @GenericGenerator(name = "announcement", strategy = "increment")
     @GeneratedValue(generator = "announcement")
     @Column(nullable = false)
     private Long id;

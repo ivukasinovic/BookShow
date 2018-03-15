@@ -1,8 +1,9 @@
-package bookshow.service;
+package bookshow.service.impl;
 
 import bookshow.model.props.UsedProp;
 import bookshow.model.props.UsedPropStatus;
 import bookshow.repository.UsedPropRepository;
+import bookshow.service.UsedPropService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ public class UsedPropServiceImpl implements UsedPropService {
 
     @Override
     public List<UsedProp> findByActiveUntilGreaterThanAndStatusEquals(Date date, UsedPropStatus usedPropStatus) {
-        return usedPropRepository.findByActiveUntilGreaterThanAndStatusEquals(date,usedPropStatus);
+        return usedPropRepository.findByActiveUntilGreaterThanAndStatusEquals(date, usedPropStatus);
     }
 
 

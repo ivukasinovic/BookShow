@@ -2,10 +2,10 @@ package bookshow.controller;
 
 import bookshow.model.Bid;
 import bookshow.model.props.UsedProp;
-import bookshow.model.users.RegisteredUser;
+import bookshow.model.users.User;
 import bookshow.service.BidService;
-import bookshow.service.RegisteredUserService;
 import bookshow.service.UsedPropService;
+import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ public class BidController {
     @Autowired
     private BidService bidService;
     @Autowired
-    private RegisteredUserService registeredUserService;
+    private UserService userService;
     @Autowired
     private UsedPropService usedPropService;
 
@@ -34,6 +34,7 @@ public class BidController {
         List<Bid> bids = bidService.findAll();
         return new ResponseEntity<>(bids, HttpStatus.OK);
     }
+
     @RequestMapping(
             value = "/bids/{id}",
             method = RequestMethod.GET,
@@ -42,6 +43,7 @@ public class BidController {
         Bid bid = bidService.findOne(id);
         return new ResponseEntity<>(bid, HttpStatus.OK);
     }
+
     @RequestMapping(
             value = "/bids/usedProp/{id}",
             method = RequestMethod.GET,
@@ -57,15 +59,15 @@ public class BidController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Bid> createBid(@RequestBody Bid bid,@PathVariable("id") Long id) {
+    public ResponseEntity<Bid> createBid(@RequestBody Bid bid, @PathVariable("id") Long id) {
         //ceka se logovanje(hardkod)
-        RegisteredUser registeredUser = registeredUserService.findOne(6L);
+        User registeredUser = userService.findOne(6L);
         UsedProp usedProp = usedPropService.findOne(id);
-        Bid old = bidService.findByRegisteredUserAndUsedProp(registeredUser,usedProp);
-        if(old!=null)
+        Bid old = bidService.findByUserAndUsedProp(registeredUser, usedProp);
+        if (old != null)
             bid.setId(old.getId());
         bid.setDateCreated(new java.util.Date());
-        bid.setRegisteredUser(registeredUser);
+        bid.setUser(registeredUser);
         bid.setUsedProp(usedProp);
         Bid savedBid = bidService.save(bid);
         return new ResponseEntity<>(savedBid, HttpStatus.CREATED);

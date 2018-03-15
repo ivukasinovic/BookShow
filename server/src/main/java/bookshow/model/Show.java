@@ -22,10 +22,10 @@ public class Show {
     @Enumerated(EnumType.STRING)
     private ShowType type;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "show")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "show")
     private Set<NewProp> props;
 
-    public Show(){
+    public Show() {
 
     }
 

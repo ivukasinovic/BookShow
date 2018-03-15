@@ -1,10 +1,9 @@
 package bookshow.model;
 
 import bookshow.model.props.UsedProp;
-import bookshow.model.users.RegisteredUser;
+import bookshow.model.users.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -33,16 +32,15 @@ public class Bid implements Serializable {
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "username")
     @JsonIdentityReference(alwaysAsId = true)
-    @JoinColumn(name="registered_user_fk")
+    @JoinColumn(name = "user_fk")
     @ManyToOne(optional = false)
-    private RegisteredUser registeredUser;
+    private User user;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(optional = false)
-    @JoinColumn(name="used_prop_fk")
+    @JoinColumn(name = "used_prop_fk")
     private UsedProp usedProp;
-
 
     public Bid() {
     }
@@ -79,12 +77,12 @@ public class Bid implements Serializable {
         this.dateCreated = dateCreated;
     }
 
-    public RegisteredUser getRegisteredUser() {
-        return registeredUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setRegisteredUser(RegisteredUser registeredUser) {
-        this.registeredUser = registeredUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public UsedProp getUsedProp() {

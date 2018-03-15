@@ -1,7 +1,8 @@
-package bookshow.service;
+package bookshow.service.impl;
 
 import bookshow.model.Show;
 import bookshow.repository.ShowRepository;
+import bookshow.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

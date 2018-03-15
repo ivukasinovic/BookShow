@@ -1,18 +1,11 @@
 package bookshow.model.users;
 
 import javax.persistence.*;
-import java.io.Serializable;
-
-import static javax.persistence.DiscriminatorType.STRING;
-import static javax.persistence.InheritanceType.SINGLE_TABLE;
-
 /**
- * Created by Ivan V. on 27-Jan-18
+ * Created by Ivan V. on 28-Jan-18
  */
 @Entity
-@Inheritance(strategy = SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = STRING)
-public abstract class User implements Serializable {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,21 +33,11 @@ public abstract class User implements Serializable {
     @Column(nullable = false)
     private String number;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public User() {
-    }
-
-    public User(String username, String password, String name, String surname, String email, String city, String number, UserType type) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.city = city;
-        this.number = number;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -118,5 +101,11 @@ public abstract class User implements Serializable {
         this.number = number;
     }
 
+    public Role getRole() {
+        return role;
+    }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

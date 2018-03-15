@@ -1,8 +1,7 @@
 package bookshow.model.props;
 
 import bookshow.model.Show;
-import bookshow.model.users.FanAdmin;
-import bookshow.model.users.RegisteredUser;
+import bookshow.model.users.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -24,19 +23,19 @@ public class NewProp extends Prop implements Serializable {
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @JoinColumn(name="fan_admin_fk")
+    @JoinColumn(name = "fan_admin_fk")
     @ManyToOne(optional = false)
-    private FanAdmin fanAdmin;
+    private User fanAdmin;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @JoinColumn(name="registered_user_fk")
+    @JoinColumn(name = "user_fk")
     @ManyToOne(optional = true)
-    private RegisteredUser registeredUser;
+    private User user;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @JoinColumn(name="show_fk")
+    @JoinColumn(name = "show_fk")
     @ManyToOne(optional = false)
     private Show show;
 
@@ -51,20 +50,20 @@ public class NewProp extends Prop implements Serializable {
         this.price = price;
     }
 
-    public FanAdmin getFanAdmin() {
+    public User getFanAdmin() {
         return fanAdmin;
     }
 
-    public void setFanAdmin(FanAdmin fanAdmin) {
+    public void setFanAdmin(User fanAdmin) {
         this.fanAdmin = fanAdmin;
     }
 
-    public RegisteredUser getRegisteredUser() {
-        return registeredUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setRegisteredUser(RegisteredUser registeredUser) {
-        this.registeredUser = registeredUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Show getShow() {

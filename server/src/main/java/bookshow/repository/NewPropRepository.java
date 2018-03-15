@@ -8,16 +8,16 @@ import java.util.List;
 /**
  * Created by Ivan V. on 29-Jan-18
  */
-public interface NewPropRepository extends JpaRepository<NewProp,Long> {
+public interface NewPropRepository extends JpaRepository<NewProp, Long> {
     List<NewProp> findAll();
 
-    List<NewProp> findByRegisteredUserIsNull();
+    List<NewProp> findByUserIsNull();
+
     NewProp findOne(Long id);
 
     NewProp save(NewProp newProp);
 
     void delete(Long id);
-
 
 
 }

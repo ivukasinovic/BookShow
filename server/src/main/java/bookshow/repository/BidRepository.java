@@ -2,7 +2,7 @@ package bookshow.repository;
 
 import bookshow.model.Bid;
 import bookshow.model.props.UsedProp;
-import bookshow.model.users.RegisteredUser;
+import bookshow.model.users.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,11 +10,12 @@ import java.util.List;
 /**
  * Created by Ivan V. on 29-Jan-18
  */
-public interface BidRepository extends JpaRepository<Bid,Long> {
+public interface BidRepository extends JpaRepository<Bid, Long> {
     List<Bid> findAll();
 
     List<Bid> findByUsedProp(UsedProp usedProp);
-    Bid findByRegisteredUserAndUsedProp(RegisteredUser registeredUser, UsedProp usedProp);
+
+    Bid findByUserAndUsedProp(User user, UsedProp usedProp);
 
     Bid findOne(Long id);
 
@@ -22,8 +23,7 @@ public interface BidRepository extends JpaRepository<Bid,Long> {
 
     Bid findByPrice(Integer price);
 
-    Bid findByRegisteredUser(RegisteredUser registeredUser);
-
+    Bid findByUser(User user);
 
     void delete(Long id);
 

@@ -1,8 +1,7 @@
 package bookshow.model.props;
 
 import bookshow.model.Bid;
-import bookshow.model.users.FanAdmin;
-import bookshow.model.users.RegisteredUser;
+import bookshow.model.users.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,15 +31,15 @@ public class UsedProp extends Prop implements Serializable {
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @JoinColumn(name="fan_admin_fk")
+    @JoinColumn(name = "fan_admin_fk")
     @ManyToOne(optional = true)
-    private FanAdmin fanAdmin;
+    private User fanAdmin;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    @JoinColumn(name="registered_user_fk")
+    @JoinColumn(name = "user_fk")
     @ManyToOne(optional = false)
-    private RegisteredUser registeredUser;
+    private User user;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usedProp")
@@ -65,28 +64,13 @@ public class UsedProp extends Prop implements Serializable {
         this.status = status;
     }
 
-    public boolean isAcceptedBid() {
-        return acceptedBid;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setAcceptedBid(boolean acceptedBid) {
-        this.acceptedBid = acceptedBid;
-    }
-
-    public FanAdmin getFanAdmin() {
-        return fanAdmin;
-    }
-
-    public void setFanAdmin(FanAdmin fanAdmin) {
-        this.fanAdmin = fanAdmin;
-    }
-
-    public RegisteredUser getRegisteredUser() {
-        return registeredUser;
-    }
-
-    public void setRegisteredUser(RegisteredUser registeredUser) {
-        this.registeredUser = registeredUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Set<Bid> getBids() {
@@ -95,5 +79,21 @@ public class UsedProp extends Prop implements Serializable {
 
     public void setBids(Set<Bid> bids) {
         this.bids = bids;
+    }
+
+    public boolean isAcceptedBid() {
+        return acceptedBid;
+    }
+
+    public void setAcceptedBid(boolean acceptedBid) {
+        this.acceptedBid = acceptedBid;
+    }
+
+    public User getFanAdmin() {
+        return fanAdmin;
+    }
+
+    public void setFanAdmin(User fanAdmin) {
+        this.fanAdmin = fanAdmin;
     }
 }

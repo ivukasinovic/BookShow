@@ -2,8 +2,8 @@ package bookshow.controller;
 
 import bookshow.model.props.UsedProp;
 import bookshow.model.props.UsedPropStatus;
-import bookshow.service.RegisteredUserService;
 import bookshow.service.UsedPropService;
+import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +20,7 @@ public class UsedPropController {
     @Autowired
     private UsedPropService usedPropService;
     @Autowired
-    private RegisteredUserService registeredUserService;
+    private UserService userService;
 
     @RequestMapping(
             value = "/usedPropsAll",
@@ -39,14 +39,16 @@ public class UsedPropController {
         List<UsedProp> usedProps = usedPropService.findByFanAdminIsNotNull();
         return new ResponseEntity<>(usedProps, HttpStatus.OK);
     }
+
     @RequestMapping(
             value = "/usedProps",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UsedProp>> getUsedProps() {
-        List<UsedProp> usedProps = usedPropService.findByActiveUntilGreaterThanAndStatusEquals(new java.util.Date(),UsedPropStatus.APPROVED);
+        List<UsedProp> usedProps = usedPropService.findByActiveUntilGreaterThanAndStatusEquals(new java.util.Date(), UsedPropStatus.APPROVED);
         return new ResponseEntity<>(usedProps, HttpStatus.OK);
     }
+
     @RequestMapping(
             value = "/usedProps/{id}",
             method = RequestMethod.GET,
@@ -64,7 +66,7 @@ public class UsedPropController {
     public ResponseEntity<UsedProp> createPropUsed(@RequestBody UsedProp usedProp) {
         //ceka se logovanje(hardkod)
         usedProp.setStatus(UsedPropStatus.WAITING);
-        usedProp.setRegisteredUser(registeredUserService.findOne(5L));
+        usedProp.setUser(userService.findOne(5L));
         usedProp.setDateCreated(new java.util.Date());
         UsedProp savedUsedProp = usedPropService.save(usedProp);
         return new ResponseEntity<>(savedUsedProp, HttpStatus.CREATED);

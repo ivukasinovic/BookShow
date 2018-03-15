@@ -14,6 +14,7 @@ public interface UsedPropService {
     UsedProp findOne(Long id);
 
     List<UsedProp> findByFanAdminIsNotNull();
+
     List<UsedProp> findByActiveUntilGreaterThanAndStatusEquals(java.util.Date date, UsedPropStatus usedPropStatus);
 
     UsedProp save(UsedProp usedProp);

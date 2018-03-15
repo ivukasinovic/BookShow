@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Ivan V. on 01-Feb-18
  */
-public interface ShowRepository extends JpaRepository<Show,Long> {
+public interface ShowRepository extends JpaRepository<Show, Long> {
     List<Show> findAll();
 
     Show findOne(Long id);

@@ -2,11 +2,10 @@ package bookshow.controller;
 
 import bookshow.model.Show;
 import bookshow.model.props.NewProp;
-import bookshow.model.users.FanAdmin;
-import bookshow.service.FanAdminService;
+import bookshow.model.users.User;
 import bookshow.service.NewPropService;
-import bookshow.service.RegisteredUserService;
 import bookshow.service.ShowService;
+import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,9 +24,8 @@ public class NewPropController {
     @Autowired
     private ShowService showService;
     @Autowired
-    private FanAdminService fanAdminService;
-    @Autowired
-    private RegisteredUserService registeredUserService;
+    private UserService userService;
+
 
     @RequestMapping(
             value = "/newPropsAll",
@@ -37,39 +35,42 @@ public class NewPropController {
         List<NewProp> newProps = newPropService.findAll();
         return new ResponseEntity<>(newProps, HttpStatus.OK);
     }
+
     @RequestMapping(
             value = "/newProps",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<NewProp>> getNewProps() {
-        List<NewProp> newProps = newPropService.findByRegisteredUserIsNull();
+        List<NewProp> newProps = newPropService.findByUserIsNull();
         return new ResponseEntity<>(newProps, HttpStatus.OK);
     }
-    
+
     //id filma/predstave
     @RequestMapping(
             value = "/newProps/{id}",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<NewProp> createNewProp(@RequestBody NewProp newProp,@PathVariable("id") Long id) {
+    public ResponseEntity<NewProp> createNewProp(@RequestBody NewProp newProp, @PathVariable("id") Long id) {
         //ceka se logovanje(hardkod)
-        Show show =showService.findOne(id);
-        FanAdmin fanAdmin = fanAdminService.findOne(1L);
+        Show show = showService.findOne(id);
+        User User = userService.findOne(1L);
         newProp.setShow(show);
-        newProp.setFanAdmin(fanAdmin);
+        newProp.setFanAdmin(User);
         NewProp savedNewProp = newPropService.save(newProp);
         return new ResponseEntity<>(savedNewProp, HttpStatus.CREATED);
     }
+
     @RequestMapping(
             value = "/newProps/reservation/{id}",
             method = RequestMethod.GET)
-    public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id){
+    public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id) {
         NewProp newProp = newPropService.findOne(id);
-        newProp.setRegisteredUser(registeredUserService.findOne(5L));
+        newProp.setUser(userService.findOne(5L));
         newPropService.save(newProp);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @RequestMapping(
             value = "/newProps",
             method = RequestMethod.PUT,
