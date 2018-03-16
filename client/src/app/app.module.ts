@@ -16,6 +16,7 @@ import {FormsModule} from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {TokenInterceptor} from './token-interceptor';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -29,7 +30,8 @@ import {TokenInterceptor} from './token-interceptor';
     UsedPropDetailComponent,
     CreateAdComponent,
     BidListComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

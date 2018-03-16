@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -59,9 +60,8 @@ public class BidController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Bid> createBid(@RequestBody Bid bid, @PathVariable("id") Long id) {
-        //ceka se logovanje(hardkod)
-        User registeredUser = userService.findOne(6L);
+    public ResponseEntity<Bid> createBid(Principal principal, @RequestBody Bid bid, @PathVariable("id") Long id) {
+        User registeredUser = userService.findByUsername(principal.getName());
         UsedProp usedProp = usedPropService.findOne(id);
         Bid old = bidService.findByUserAndUsedProp(registeredUser, usedProp);
         if (old != null)

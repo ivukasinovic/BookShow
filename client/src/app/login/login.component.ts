@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
             this.token = data.token;
             localStorage.setItem('currentUser', JSON.stringify({username: this.model.username, token: this.token}));
             this.router.navigate(['/']);
+            window.location.reload();
           }
         },
         error => {

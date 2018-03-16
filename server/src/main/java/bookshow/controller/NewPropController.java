@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -51,10 +52,9 @@ public class NewPropController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<NewProp> createNewProp(@RequestBody NewProp newProp, @PathVariable("id") Long id) {
-        //ceka se logovanje(hardkod)
+    public ResponseEntity<NewProp> createNewProp(Principal principal, @RequestBody NewProp newProp, @PathVariable("id") Long id) {
         Show show = showService.findOne(id);
-        User User = userService.findOne(1L);
+        User User = userService.findByUsername(principal.getName());
         newProp.setShow(show);
         newProp.setFanAdmin(User);
         NewProp savedNewProp = newPropService.save(newProp);

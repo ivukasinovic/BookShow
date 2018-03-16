@@ -11,8 +11,12 @@ export class AuthenticationService {
   login(username: string, password: string ) {
     return this.http.post('api/login', {username: username, password: password});
   }
-  getToken(): string {
+  getToken(): String{
     const user = JSON.parse(localStorage.getItem('currentUser'));
     return user.token;
+  }
+  logout() {
+    localStorage.removeItem('currentUser');
+
   }
 }

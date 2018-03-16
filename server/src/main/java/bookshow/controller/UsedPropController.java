@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -63,10 +64,9 @@ public class UsedPropController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsedProp> createPropUsed(@RequestBody UsedProp usedProp) {
-        //ceka se logovanje(hardkod)
+    public ResponseEntity<UsedProp> createPropUsed(Principal principal,@RequestBody UsedProp usedProp) {
         usedProp.setStatus(UsedPropStatus.WAITING);
-        usedProp.setUser(userService.findOne(5L));
+        usedProp.setUser(userService.findByUsername(principal.getName()));
         usedProp.setDateCreated(new java.util.Date());
         UsedProp savedUsedProp = usedPropService.save(usedProp);
         return new ResponseEntity<>(savedUsedProp, HttpStatus.CREATED);
