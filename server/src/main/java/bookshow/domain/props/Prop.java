@@ -1,4 +1,4 @@
-package bookshow.model.props;
+package bookshow.domain.props;
 
 import org.hibernate.annotations.GenericGenerator;
 

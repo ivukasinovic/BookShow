@@ -1,6 +1,6 @@
 package bookshow.service.impl;
 
-import bookshow.model.users.User;
+import bookshow.domain.users.User;
 import bookshow.repository.UserRepository;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

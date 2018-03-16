@@ -26,6 +26,9 @@ export class NewProp {
 export class Bid {
   id: number;
   price: number;
-  registeredUser: string;
+  user: string;
   dateCreated: string;
+}
+export class AuthReq {
+  token: string;
 }

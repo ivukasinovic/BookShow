@@ -1,6 +1,6 @@
 package bookshow.repository;
 
-import bookshow.model.props.NewProp;
+import bookshow.domain.props.NewProp;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

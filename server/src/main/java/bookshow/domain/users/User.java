@@ -1,6 +1,8 @@
-package bookshow.model.users;
+package bookshow.domain.users;
 
 import javax.persistence.*;
+import java.util.Date;
+
 /**
  * Created by Ivan V. on 28-Jan-18
  */
@@ -16,7 +18,7 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    private String password;
+    private String passwordHash;
 
     @Column(nullable = false)
     private String name;
@@ -37,6 +39,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(nullable = true)
+    private Date lastPasswordReset;
+
     public Long getId() {
         return id;
     }
@@ -53,12 +58,12 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public String getName() {
@@ -108,4 +113,13 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public Date getLastPasswordReset() {
+        return lastPasswordReset;
+    }
+
+    public void setLastPasswordReset(Date lastPasswordReset) {
+        this.lastPasswordReset = lastPasswordReset;
+    }
+
 }

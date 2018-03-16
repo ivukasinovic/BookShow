@@ -1,8 +1,8 @@
 package bookshow.controller;
 
-import bookshow.model.Bid;
-import bookshow.model.props.UsedProp;
-import bookshow.model.users.User;
+import bookshow.domain.Bid;
+import bookshow.domain.props.UsedProp;
+import bookshow.domain.users.User;
 import bookshow.service.BidService;
 import bookshow.service.UsedPropService;
 import bookshow.service.UserService;

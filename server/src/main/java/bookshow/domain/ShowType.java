@@ -1,4 +1,4 @@
-package bookshow.model;
+package bookshow.domain;
 
 /**
  * Created by Ivan V. on 28-Jan-18

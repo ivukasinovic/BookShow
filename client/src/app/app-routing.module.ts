@@ -3,12 +3,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {FanpageComponent} from './fanpage/fanpage.component';
 import {UsedPropDetailComponent} from './fanpage/used-prop-detail/used-prop-detail.component';
 import {NewPropDetailComponent} from './fanpage/new-prop-detail/new-prop-detail.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   // fun page routes
   {path: 'fanpage/usedProp/:id', component: UsedPropDetailComponent },
   {path: 'fanpage/newProp/:id', component: NewPropDetailComponent },
-  {path: 'fanpage', component: FanpageComponent}
+  {path: 'fanpage', component: FanpageComponent},
+  {path: 'login', component: LoginComponent}
 
 ];
 

@@ -1,6 +1,6 @@
 package bookshow.service;
 
-import bookshow.model.Show;
+import bookshow.domain.Show;
 
 import java.util.List;
 

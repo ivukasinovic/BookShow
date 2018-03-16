@@ -1,9 +1,11 @@
-INSERT INTO user (role, city, email, name, number, password, surname, username) VALUES ('ADMINFAN', 'Novi Sad', 'adminfan@adminfan', 'Ivan', '0635569989', 'adminfan', 'Vukasinovic', 'adminfan');
-INSERT INTO user (role, city, email, name, number, password, surname, username) VALUES ('ADMINFAN', 'Beograd', 'adminfan2@adminfan2', 'Jovan', '0641569989', 'adminfan2', 'Jovic', 'adminfan2');
-INSERT INTO user (role, city, email, name, number, password, surname, username) VALUES ('ADMINSYS', 'Novi Sad', 'adminsys@adminsys', 'Vladimir', '063429989', 'adminsys', 'Jovicic', 'adminsys');
-INSERT INTO user (role, city, email, name, number, password, surname, username) VALUES ('ADMINSHOW','Novi Sad', 'adminshow@adminshow', 'Marko', '0635565239', 'adminsys', 'Krajinovic', 'adminshow');
-INSERT INTO user (role, city, email, name, number, password, surname, username) VALUES ('USER','Beograd', 'dejan@dejan', 'Dejan', '0615565239', 'dejan', 'Stojkic', 'dejan');
-INSERT INTO user (role, city, email, name, number, password, surname, username) VALUES ('USER','Novi Sad', 'milan@milan', 'Milan', '0645565239', 'milan', 'Stankovic', 'milan');
+-- password == username
+INSERT INTO user (role, city, email, name, number, password_hash, surname, username) VALUES ('ADMINFAN', 'Novi Sad', 'adminfan@adminfan', 'Ivan', '0635569989', '$2a$10$2z.t0mwY4P0/k7cHSQwMzu5Cj9usMkPLEN7ZHXbzNT7U4CEQk5vP2', 'Vukasinovic', 'adminfan');
+INSERT INTO user (role, city, email, name, number, password_hash, surname, username) VALUES ('ADMINFAN', 'Beograd', 'adminfan2@adminfan2', 'Jovan', '0641569989', '$2a$10$ujoKDHyPmfaI.fQp1hCUo.hOY69jcjhPKiIRZbBnJhCY59aOohCIm', 'Jovic', 'adminfan2');
+INSERT INTO user (role, city, email, name, number, password_hash, surname, username) VALUES ('ADMINSYS', 'Novi Sad', 'adminsys@adminsys', 'Vladimir', '063429989', '$2a$10$RO7l/vTjVfhh12dl5ax40uni/DuHzB/53kVxov/F6bM6hKzoIAxlC', 'Jovicic', 'adminsys');
+INSERT INTO user (role, city, email, name, number, password_hash, surname, username) VALUES ('ADMINSHOW','Novi Sad', 'adminshow@adminshow', 'Marko', '0635565239', '$2a$10$CW3M.a.ikZbsvDVkwcTQfOKmluBCFM6oUjglbAWQIXYRplm0d/XIC', 'Krajinovic', 'adminshow');
+INSERT INTO user (role, city, email, name, number, password_hash, surname, username) VALUES ('USER','Beograd', 'dejan@dejan', 'Dejan', '0615565239', '$2a$10$RiHre9rM0U19KWXUukNyWeNITpwVwPV98WyGpbHm4YqwGPpLE.VWy', 'Stojkic', 'dejan');
+INSERT INTO user (role, city, email, name, number, password_hash, surname, username) VALUES ('USER','Novi Sad', 'milan@milan', 'Milan', '0645565239', '$2a$10$fbc8Mb9ec0Ig1M5D0R8zT.xMgF0E1r6li04ynzi/CKY3eev/vezH2', 'Stankovic', 'milan');
+INSERT INTO user (role, city, email, name, number, password_hash, surname, username) VALUES ('USER','Novi Grad', 'grad@milan', 'Grad', '0644565239', '$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi', 'Stankovic', 'admin');
 
 INSERT INTO show_ct (id, name, type) VALUES (1, 'Arena Cineplex', 'CINEMA');
 INSERT INTO show_ct (id, name, type) VALUES (2, 'Narodno pozoriste', 'THEATRE');

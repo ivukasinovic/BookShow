@@ -1,8 +1,8 @@
 package bookshow.controller;
 
-import bookshow.model.Show;
-import bookshow.model.props.NewProp;
-import bookshow.model.users.User;
+import bookshow.domain.Show;
+import bookshow.domain.props.NewProp;
+import bookshow.domain.users.User;
 import bookshow.service.NewPropService;
 import bookshow.service.ShowService;
 import bookshow.service.UserService;

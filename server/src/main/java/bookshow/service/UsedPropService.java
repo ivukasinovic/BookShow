@@ -1,7 +1,7 @@
 package bookshow.service;
 
-import bookshow.model.props.UsedProp;
-import bookshow.model.props.UsedPropStatus;
+import bookshow.domain.props.UsedProp;
+import bookshow.domain.props.UsedPropStatus;
 
 import java.util.List;
 

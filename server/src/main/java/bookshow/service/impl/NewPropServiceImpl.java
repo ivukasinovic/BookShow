@@ -1,6 +1,6 @@
 package bookshow.service.impl;
 
-import bookshow.model.props.NewProp;
+import bookshow.domain.props.NewProp;
 import bookshow.repository.NewPropRepository;
 import bookshow.service.NewPropService;
 import org.springframework.beans.factory.annotation.Autowired;

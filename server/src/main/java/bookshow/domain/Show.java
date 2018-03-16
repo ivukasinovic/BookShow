@@ -1,6 +1,6 @@
-package bookshow.model;
+package bookshow.domain;
 
-import bookshow.model.props.NewProp;
+import bookshow.domain.props.NewProp;
 
 import javax.persistence.*;
 import java.util.Set;

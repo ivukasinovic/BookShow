@@ -13,6 +13,9 @@ import {PropService} from './fanpage/prop.service';
 import { CreateAdComponent } from './fanpage/create-ad/create-ad.component';
 import { BidListComponent } from './fanpage/bid-list/bid-list.component';
 import {FormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {TokenInterceptor} from './token-interceptor';
 
 
 
@@ -25,7 +28,8 @@ import {FormsModule} from '@angular/forms';
     NewPropDetailComponent,
     UsedPropDetailComponent,
     CreateAdComponent,
-    BidListComponent
+    BidListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,11 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [PropService],
+  providers: [PropService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

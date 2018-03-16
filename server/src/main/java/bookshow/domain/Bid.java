@@ -1,7 +1,7 @@
-package bookshow.model;
+package bookshow.domain;
 
-import bookshow.model.props.UsedProp;
-import bookshow.model.users.User;
+import bookshow.domain.props.UsedProp;
+import bookshow.domain.users.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

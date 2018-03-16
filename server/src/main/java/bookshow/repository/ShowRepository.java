@@ -1,6 +1,6 @@
 package bookshow.repository;
 
-import bookshow.model.Show;
+import bookshow.domain.Show;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

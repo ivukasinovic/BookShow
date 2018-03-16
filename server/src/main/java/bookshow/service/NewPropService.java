@@ -1,6 +1,6 @@
 package bookshow.service;
 
-import bookshow.model.props.NewProp;
+import bookshow.domain.props.NewProp;
 
 import java.util.List;
 

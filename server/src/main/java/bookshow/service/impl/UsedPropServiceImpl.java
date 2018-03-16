@@ -1,7 +1,7 @@
 package bookshow.service.impl;
 
-import bookshow.model.props.UsedProp;
-import bookshow.model.props.UsedPropStatus;
+import bookshow.domain.props.UsedProp;
+import bookshow.domain.props.UsedPropStatus;
 import bookshow.repository.UsedPropRepository;
 import bookshow.service.UsedPropService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package bookshow.service;
 
-import bookshow.model.users.User;
+import bookshow.domain.users.User;
 
 import java.util.List;
 
