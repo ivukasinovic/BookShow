@@ -1,4 +1,5 @@
 package bookshow.domain.users;
+
 /**
  * Created by Ivan V. on 28-Jan-18
  */

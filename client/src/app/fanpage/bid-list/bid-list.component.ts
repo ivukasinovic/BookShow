@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Bid} from '../../models/prop';
+import {Bid} from '../models/prop';
 import {PropService} from '../prop.service';
 
 @Component({
@@ -10,7 +10,9 @@ import {PropService} from '../prop.service';
 export class BidListComponent implements OnInit {
 
   @Input() bids: Bid[];
-  constructor(private propService: PropService) { }
+
+  constructor(private propService: PropService) {
+  }
 
   ngOnInit() {
   }

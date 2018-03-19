@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit} from '@angular/core';
 
 const now = new Date();
 
@@ -10,11 +9,12 @@ const now = new Date();
 })
 export class CreateAdComponent implements OnInit {
   model;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
-
 
 
 }

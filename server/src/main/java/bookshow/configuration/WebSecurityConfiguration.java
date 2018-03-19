@@ -24,64 +24,64 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  private EntryPointUnauthorizedHandler unauthorizedHandler;
+    @Autowired
+    private EntryPointUnauthorizedHandler unauthorizedHandler;
 
-  @Autowired
-  private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-  @Autowired
-  private SecurityService securityService;
+    @Autowired
+    private SecurityService securityService;
 
-  @Autowired
-  public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-    authenticationManagerBuilder
-      .userDetailsService(this.userDetailsService)
-        .passwordEncoder(passwordEncoder());
-  }
+    @Autowired
+    public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder
+                .userDetailsService(this.userDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-  @Bean
-  @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception {
-    return super.authenticationManagerBean();
-  }
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
-  @Bean
-  public AuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-    AuthenticationTokenFilter authenticationTokenFilter = new AuthenticationTokenFilter();
-    authenticationTokenFilter.setAuthenticationManager(authenticationManagerBean());
-    return authenticationTokenFilter;
-  }
+    @Bean
+    public AuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+        AuthenticationTokenFilter authenticationTokenFilter = new AuthenticationTokenFilter();
+        authenticationTokenFilter.setAuthenticationManager(authenticationManagerBean());
+        return authenticationTokenFilter;
+    }
 
-  @Bean
-  public SecurityService securityService() {
-    return this.securityService;
-  }
+    @Bean
+    public SecurityService securityService() {
+        return this.securityService;
+    }
 
-  @Override
-  protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity
-      .csrf()
-        .disable()
-      .exceptionHandling()
-        .authenticationEntryPoint(this.unauthorizedHandler)
-        .and()
-      .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-      .authorizeRequests()
-        .antMatchers(HttpMethod.OPTIONS, "api/**").permitAll()
-        .antMatchers("/login").permitAll()
-        .anyRequest().fullyAuthenticated();
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .csrf()
+                .disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(this.unauthorizedHandler)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS, "api/**").permitAll()
+                .antMatchers("/login").permitAll()
+                .anyRequest().fullyAuthenticated();
 
-    // Custom JWT based authentication
-    httpSecurity
-      .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-  }
+        // Custom JWT based authentication
+        httpSecurity
+                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+    }
 
 }

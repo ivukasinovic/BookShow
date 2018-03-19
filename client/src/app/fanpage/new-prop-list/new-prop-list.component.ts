@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {NewProp} from '../../models/prop';
+import {Component, OnInit} from '@angular/core';
+import {NewProp} from '../models/prop';
 import {PropService} from '../prop.service';
 
 @Component({
@@ -11,14 +11,20 @@ export class NewPropListComponent implements OnInit {
 
   result: any;
   newProps: NewProp[];
-  constructor(private propService: PropService) { }
+
+  constructor(private propService: PropService) {
+  }
+
   ngOnInit() {
     this.propService.getNewProps().subscribe(
-      (data: NewProp[]) => {this.newProps = data},
+      (data: NewProp[]) => {
+        this.newProps = data;
+      },
       err => console.error(err),
       () => console.log('Uspesno ucitani novi rekviziti')
     );
   }
+
   reservation(id: number) {
     this.result = this.propService.reservation(id);
     console.log('Ivan' + this.result);

@@ -1,39 +1,39 @@
 <hr>
-  <div class="col-md-9">
-    <div
-      href="#"
-      class="list-group-item clearfix"
-      *ngFor="let usedProp of usedProps">
-      <div class="pull-left">
-        <h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
-        <p class="list-group-item-text">{{ usedProp.description }}</p>
-      </div>
-      <span class="pull-right">
+<div class="col-md-9">
+  <div
+    href="#"
+    class="list-group-item clearfix"
+    *ngFor="let usedProp of usedProps">
+    <div class="pull-left">
+      <h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
+      <p class="list-group-item-text">{{ usedProp.description }}</p>
+    </div>
+    <span class="pull-right">
          <button type="button" class="btn btn-warning" (click)="getBidColl(usedProp.id)"
                  [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Ostavi Ponudu</button>
         <button class="btn btn-default" (click)="getBids(usedProp.id)">Sve Ponude</button>
       </span>
-      <span class="pull-right">
+    <span class="pull-right">
         <img
           [src]="usedProp.image"
           alt="{{ usedProp.name }}"
           class="img-responsive"
           style="height: 100px; width: 100px;">
       </span>
-    </div>
   </div>
-  <div class="col-md-3">
-    <div id="collapseExample" [ngbCollapse]="!isCollapsed">
-      <div class="card">
-        <div class="card-body">
-          <label>Upisite iznos ponude</label>
-          <input type="text" class="form-control" id="bid" [(ngModel)]="price">
-          <button class="btn btn-primary" (click)="createBid()">Potvrdi</button>
-        </div>
+</div>
+<div class="col-md-3">
+  <div id="collapseExample" [ngbCollapse]="!isCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <label>Upisite iznos ponude</label>
+        <input type="text" class="form-control" id="bid" [(ngModel)]="price">
+        <button class="btn btn-primary" (click)="createBid()">Potvrdi</button>
       </div>
-      <br>
     </div>
-    <app-bid-list [bids]="bids"></app-bid-list>
+    <br>
   </div>
+  <app-bid-list [bids]="bids"></app-bid-list>
+</div>
 
 

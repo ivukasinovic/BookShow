@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from '../authentication.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../auth.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -13,10 +13,12 @@ export class LoginComponent implements OnInit {
   model: any = {};
   error = '';
   loading = false;
+
   constructor(private router: Router, private authenticationService: AuthenticationService) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
   }
+
   ngOnInit() {
   }
 
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
         }
       );
   }
+
   logout(): void {
     // clear token remove user from local storage to log user out
     this.token = null;

@@ -64,7 +64,7 @@ public class UsedPropController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsedProp> createPropUsed(Principal principal,@RequestBody UsedProp usedProp) {
+    public ResponseEntity<UsedProp> createPropUsed(Principal principal, @RequestBody UsedProp usedProp) {
         usedProp.setStatus(UsedPropStatus.WAITING);
         usedProp.setUser(userService.findByUsername(principal.getName()));
         usedProp.setDateCreated(new java.util.Date());

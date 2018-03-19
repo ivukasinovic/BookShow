@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {logger} from 'codelyzer/util/logger';
-import {AuthenticationService} from '../authentication.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../auth.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,15 +10,19 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   logged = false;
-  constructor(private router: Router, private authenticationService: AuthenticationService) { }
+
+  constructor(private router: Router, private authenticationService: AuthenticationService) {
+  }
 
   ngOnInit() {
-    if (localStorage.getItem('currentUser')) {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user) {
       this.logged = true;
-    }else {
+    } else {
       this.logged = false;
     }
   }
+
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);

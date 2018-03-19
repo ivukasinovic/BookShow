@@ -3,21 +3,23 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppComponent} from './app.component';
 import {FanpageComponent} from './fanpage/fanpage.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
-import { UsedPropListComponent } from './fanpage/used-prop-list/used-prop-list.component';
-import { NewPropListComponent } from './fanpage/new-prop-list/new-prop-list.component';
-import { NewPropDetailComponent } from './fanpage/new-prop-detail/new-prop-detail.component';
-import { UsedPropDetailComponent } from './fanpage/used-prop-detail/used-prop-detail.component';
+import {UsedPropListComponent} from './fanpage/used-prop-list/used-prop-list.component';
+import {NewPropListComponent} from './fanpage/new-prop-list/new-prop-list.component';
+import {NewPropDetailComponent} from './fanpage/new-prop-detail/new-prop-detail.component';
+import {UsedPropDetailComponent} from './fanpage/used-prop-detail/used-prop-detail.component';
 import {PropService} from './fanpage/prop.service';
-import { CreateAdComponent } from './fanpage/create-ad/create-ad.component';
-import { BidListComponent } from './fanpage/bid-list/bid-list.component';
+import {CreateAdComponent} from './fanpage/create-ad/create-ad.component';
+import {BidListComponent} from './fanpage/bid-list/bid-list.component';
 import {FormsModule} from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {LoginComponent} from './login/login.component';
 import {TokenInterceptor} from './token-interceptor';
-import { NavbarComponent } from './navbar/navbar.component';
-
+import {NavbarComponent} from './navbar/navbar.component';
+import {AuthGuardService} from './auth-guard.service';
+import {AuthenticationService} from './auth.service';
+import {AdminFanProfileComponent} from './fanpage/admin-fan-profile/admin-fan-profile.component';
+import {RoleGuardService} from './role-guard.service';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     CreateAdComponent,
     BidListComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdminFanProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -40,11 +43,16 @@ import { NavbarComponent } from './navbar/navbar.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [PropService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true
-  }],
+  providers: [
+    PropService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    AuthGuardService,
+    AuthenticationService,
+    RoleGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

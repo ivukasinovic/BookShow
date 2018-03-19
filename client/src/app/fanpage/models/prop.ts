@@ -11,6 +11,7 @@ export class UsedProp {
   image: string;
   createdDate: string;
 }
+
 export class NewProp {
   id: number;
   title: string;
@@ -23,12 +24,14 @@ export class NewProp {
   image: string;
   createdDate: string;
 }
+
 export class Bid {
   id: number;
   price: number;
   user: string;
   dateCreated: string;
 }
+
 export class AuthReq {
   token: string;
 }

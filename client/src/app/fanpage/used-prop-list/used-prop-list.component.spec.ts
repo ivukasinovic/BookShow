@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UsedPropListComponent } from './used-prop-list.component';
+import {UsedPropListComponent} from './used-prop-list.component';
 
 describe('UsedPropListComponent', () => {
   let component: UsedPropListComponent;
@@ -8,9 +8,9 @@ describe('UsedPropListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsedPropListComponent ]
+      declarations: [UsedPropListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -15,13 +15,15 @@
         <li><a routerLink="">Profil</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><button (click)="logout()" class="btn btn-link">Odjava</button></li>
+        <li>
+          <button (click)="logout()" class="btn btn-link">Odjava</button>
+        </li>
       </ul>
     </div>
 
 
     <ul *ngIf="logged == false" class="nav navbar-nav navbar-right">
-      <li><a routerLink="/login">Prijava</a> </li>
+      <li><a routerLink="/login">Prijava</a></li>
     </ul>
   </div>
 </nav>

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NewPropListComponent } from './new-prop-list.component';
+import {NewPropListComponent} from './new-prop-list.component';
 
 describe('NewPropListComponent', () => {
   let component: NewPropListComponent;
@@ -8,9 +8,9 @@ describe('NewPropListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewPropListComponent ]
+      declarations: [NewPropListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
