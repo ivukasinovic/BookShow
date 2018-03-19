@@ -17,7 +17,7 @@ import {LoginComponent} from './login/login.component';
 import {TokenInterceptor} from './token-interceptor';
 import {NavbarComponent} from './navbar/navbar.component';
 import {AuthGuardService} from './auth-guard.service';
-import {AuthenticationService} from './auth.service';
+import {AuthService} from './auth.service';
 import {AdminFanProfileComponent} from './fanpage/admin-fan-profile/admin-fan-profile.component';
 import {RoleGuardService} from './role-guard.service';
 
@@ -50,7 +50,7 @@ import {RoleGuardService} from './role-guard.service';
       multi: true
     },
     AuthGuardService,
-    AuthenticationService,
+    AuthService,
     RoleGuardService
   ],
   bootstrap: [AppComponent]

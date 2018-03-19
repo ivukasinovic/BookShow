@@ -1,22 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from '../auth.service';
+import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  providers: [AuthenticationService]
+  providers: [AuthService]
 })
 export class NavbarComponent implements OnInit {
   logged = false;
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) {
+  constructor(private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    if (user) {
+    if (this.authService.isAuthenticated()) {
       this.logged = true;
     } else {
       this.logged = false;
@@ -24,7 +23,8 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.authenticationService.logout();
+    this.authService.logout();
+    this.logged = false;
     this.router.navigate(['/login']);
     window.location.reload();
   }

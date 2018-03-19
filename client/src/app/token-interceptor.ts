@@ -9,9 +9,9 @@ export class TokenInterceptor implements HttpInterceptor {
 
     if (request.url !== 'api/login') {
       console.log(request.url);
-      const user = JSON.parse(localStorage.getItem('currentUser'));
-      if (user) {
-        request = request.clone({headers: request.headers.set('Auth-Token', user.token)});
+      const token = localStorage.getItem('token');
+      if (token) {
+        request = request.clone({headers: request.headers.set('Auth-Token', token)});
       }
 
     }
