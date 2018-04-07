@@ -1,0 +1,17 @@
+
+<table>
+  <tr>
+      <th>Ime</th>
+      <th>Adresa</th>
+      <th>Opis</th>
+      <th>Prosecna ocena</th>
+  </tr>
+
+    <tr *ngFor="let show of shows">
+      <td>{{show.name}}</td>
+      <td>{{show.address}}</td>
+      <td>{{show.description}}</td>
+      <td>{{show.rating}}</td>
+    </tr>
+
+</table>

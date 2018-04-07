@@ -7,6 +7,8 @@ import {LoginComponent} from './login/login.component';
 import {AuthGuardService} from './auth-guard.service';
 import {AdminFanProfileComponent} from './fanpage/admin-fan-profile/admin-fan-profile.component';
 import {RoleGuardService} from './role-guard.service';
+import { ShowsTheatreComponent } from './shows/shows-theatre/shows-theatre.component';
+import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.component';
 
 const routes: Routes = [
   // ivan
@@ -26,9 +28,11 @@ const routes: Routes = [
     data: {
       expectedRole: 'ADMINFAN'
     }
-  }
+  },
   // vlada
   // marko
+  {path: 'shows-theatre', component: ShowsTheatreComponent},
+  {path: 'shows-cinema', component: ShowsCinemaComponent}
 
 ];
 
