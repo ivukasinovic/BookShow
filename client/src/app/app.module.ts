@@ -20,6 +20,8 @@ import {AuthGuardService} from './auth-guard.service';
 import {AuthService} from './auth.service';
 import {AdminFanProfileComponent} from './fanpage/admin-fan-profile/admin-fan-profile.component';
 import {RoleGuardService} from './role-guard.service';
+import { ShowsTheatreComponent } from './shows/shows-theatre/shows-theatre.component';
+import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import {RoleGuardService} from './role-guard.service';
     BidListComponent,
     LoginComponent,
     NavbarComponent,
-    AdminFanProfileComponent
+    AdminFanProfileComponent,
+    ShowsTheatreComponent,
+    ShowsCinemaComponent
   ],
   imports: [
     BrowserModule,
