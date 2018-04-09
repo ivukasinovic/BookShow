@@ -35,3 +35,11 @@ export class Bid {
 export class AuthReq {
   token: string;
 }
+
+export class Show {
+  id: number;
+  name: string;
+  ShowType: string;
+  adress: string;
+  rating: number;
+}

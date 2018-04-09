@@ -1,6 +1,7 @@
 package bookshow.repository;
 
 import bookshow.domain.Show;
+import bookshow.domain.ShowType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
  */
 public interface ShowRepository extends JpaRepository<Show, Long> {
     List<Show> findAll();
+
+    List<Show> findByType(ShowType type);
 
     Show findOne(Long id);
 

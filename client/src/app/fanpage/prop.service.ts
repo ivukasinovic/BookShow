@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {UsedProp} from './models/prop';
+import {NewProp, UsedProp} from './models/prop';
 
 @Injectable()
 export class PropService {
@@ -47,5 +47,12 @@ export class PropService {
   acceptBid(usedPropId: number, bidId: number) {
 
     return this.http.get('api/used-props/' + usedPropId + '/accept-bid/' + bidId, {observe: 'response'});
+  }
+  getShows() {
+    return this.http.get('api/allShows?type=all');
+  }
+  createNewProp(newProp: NewProp, showId: number) {
+    console.log('Uzeo' + showId);
+    return this.http.post('api/new-props/' + showId, newProp, {observe: 'response'});
   }
 }
