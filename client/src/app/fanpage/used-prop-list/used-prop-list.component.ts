@@ -19,6 +19,10 @@ export class UsedPropListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getUsedProps();
+  }
+
+  getUsedProps() {
     this.propService.getUsedProps().subscribe(
       (data: UsedProp[]) => {
         this.usedProps = data;

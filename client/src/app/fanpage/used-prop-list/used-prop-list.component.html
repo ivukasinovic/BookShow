@@ -5,7 +5,8 @@
     class="list-group-item clearfix"
     *ngFor="let usedProp of usedProps">
     <div class="pull-left">
-      <h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
+      <a href="/used-prop-detail/{{usedProp.id}}"><h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
+      </a>
       <p class="list-group-item-text">{{ usedProp.description }}</p>
     </div>
     <span class="pull-right">

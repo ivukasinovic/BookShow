@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import * as decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,9 @@ export class LoginComponent implements OnInit {
           if (data) {
             this.token = data.token;
             localStorage.setItem('token', this.token);
+            const tokenPayload = decode(this.token);
+            localStorage.setItem('role', tokenPayload.role);
+            localStorage.setItem('username', tokenPayload.username);
             this.router.navigate(['/']);
             window.location.reload();
           }

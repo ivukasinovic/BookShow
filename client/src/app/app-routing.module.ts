@@ -9,13 +9,18 @@ import {AdminFanProfileComponent} from './fanpage/admin-fan-profile/admin-fan-pr
 import {RoleGuardService} from './role-guard.service';
 import { ShowsTheatreComponent } from './shows/shows-theatre/shows-theatre.component';
 import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.component';
+import {MyAdsComponent} from './fanpage/my-ads/my-ads.component';
+import {BidListComponent} from './fanpage/bid-list/bid-list.component';
+import {NewPropsConfigComponent} from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
+import {UsedPropsConfigComponent} from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
 
 const routes: Routes = [
   // ivan
   {path: 'login', component: LoginComponent},
   // fun page routes
-  {path: 'fanpage/usedProp/:id', component: UsedPropDetailComponent},
-  {path: 'fanpage/newProp/:id', component: NewPropDetailComponent},
+  {path: 'fanpage/used-prop/:id', component: UsedPropDetailComponent},
+  {path: 'fanpage/used-prop/:id/bids', component: BidListComponent},
+  {path: 'fanpage/new-prop/:id', component: NewPropDetailComponent},
   {
     path: 'fanpage',
     component: FanpageComponent,
@@ -29,6 +34,11 @@ const routes: Routes = [
       expectedRole: 'ADMINFAN'
     }
   },
+  {path: 'fanpage/my-ads', component: MyAdsComponent},
+  {path: 'adminfan/new-props-config', component: NewPropsConfigComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
+  {path: 'adminfan/used-props-config', component: UsedPropsConfigComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
   // vlada
   // marko
   {path: 'shows-theatre', component: ShowsTheatreComponent},
