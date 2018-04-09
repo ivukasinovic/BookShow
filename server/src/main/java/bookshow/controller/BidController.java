@@ -19,6 +19,7 @@ import java.util.List;
  * Created by Ivan V. on 29-Jan-18
  */
 @RestController
+@RequestMapping(value = "/bids")
 public class BidController {
     @Autowired
     private BidService bidService;
@@ -28,7 +29,6 @@ public class BidController {
     private UsedPropService usedPropService;
 
     @RequestMapping(
-            value = "/bids",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Bid>> getBids() {
@@ -37,7 +37,7 @@ public class BidController {
     }
 
     @RequestMapping(
-            value = "/bids/{id}",
+            value = "/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Bid> getBid(@PathVariable("id") Long id) {
@@ -46,7 +46,7 @@ public class BidController {
     }
 
     @RequestMapping(
-            value = "/bids/usedProp/{id}",
+            value = "/used-prop/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Bid>> getBidByUsedProp(@PathVariable("id") Long id) {
@@ -56,7 +56,7 @@ public class BidController {
     }
 
     @RequestMapping(
-            value = "/bids/{id}",
+            value = "/{id}",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -74,7 +74,6 @@ public class BidController {
     }
 
     @RequestMapping(
-            value = "/bids",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -84,7 +83,7 @@ public class BidController {
     }
 
     @RequestMapping(
-            value = "/bids/{id}",
+            value = "/{id}",
             method = RequestMethod.DELETE,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

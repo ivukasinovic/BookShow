@@ -12,6 +12,7 @@
     <td>{{bid.dateCreated | date}}</td>
     <td>{{bid.user}}</td>
     <th>{{bid.price}}</th>
+    <button class="btn btn-primary" *ngIf="creatorUsedProp" (click)="acceptBid(bid.id)">Prihvati ponudu</button>
   </tr>
   </tbody>
 </table>

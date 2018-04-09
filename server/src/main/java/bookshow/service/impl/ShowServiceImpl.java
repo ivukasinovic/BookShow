@@ -1,6 +1,7 @@
 package bookshow.service.impl;
 
 import bookshow.domain.Show;
+import bookshow.domain.ShowType;
 import bookshow.repository.ShowRepository;
 import bookshow.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,15 @@ public class ShowServiceImpl implements ShowService {
     }
 
     @Override
+    public List<Show> findByType(ShowType type) {
+        return showRepository.findByType(type);
+    }
+
+    @Override
     public Show findOne(Long id) {
         return showRepository.findOne(id);
     }
+
 
     @Override
     public Show save(Show show) {

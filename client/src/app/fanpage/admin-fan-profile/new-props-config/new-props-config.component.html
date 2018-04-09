@@ -1,0 +1,31 @@
+<div class="col-md-2">
+  <h4>Meni</h4>
+  <a routerLink="/adminfan/new-props-config" class="btn btn-info btn-sm">Tematski rekviziti</a><br>
+  <a routerLink="/adminfan/used-props-config" class="btn btn-default btn-sm">Oglasi</a><br>
+  <a routerLink="" class="btn btn-default btn-sm">Promena licnih podataka</a><br>
+  <a routerLink="" class="btn btn-default btn-sm">Promena lozinke</a>
+</div>
+<div class="col-md-7">
+  <h2 style="display: inline;">Tematski rekviziti </h2>
+  <a routerLink="../new-prop" class="btn btn-success pull-right">Postavi novi rekvizit</a>
+  <hr>
+  <div
+    class="list-group-item clearfix"
+    *ngFor="let newProp of newProps">
+    <div class="pull-left">
+      <a href="/new-prop-detail/{{newProp.id}}"><h4 class="list-group-item-heading"><b>{{ newProp.title }}</b></h4></a>
+      <p class="list-group-item-text">{{ newProp.description }}</p>
+    </div>
+    <span class="pull-right">
+        <button class="btn btn-primary">Izmeni</button>
+        <button class="btn btn-danger">Obrisi</button>
+      </span>
+    <span class="pull-right">
+        <img
+          [src]="newProp.image"
+          alt="{{ newProp.name }}"
+          class="img-responsive"
+          style="height: 100px; width: 100px;">
+      </span>
+  </div>
+</div>

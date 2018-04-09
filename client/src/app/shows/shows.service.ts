@@ -6,7 +6,7 @@ export class ShowsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTheatreShows(){
+  getAllTheatreShows() {
     return this.http.get("api/allShows?type=theatre");
   }
 

@@ -2,6 +2,7 @@ package bookshow.repository;
 
 import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
+import bookshow.domain.users.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public interface UsedPropRepository extends JpaRepository<UsedProp, Long> {
     List<UsedProp> findByFanAdminIsNotNull();
 
     List<UsedProp> findByActiveUntilGreaterThanAndStatusEquals(java.util.Date date, UsedPropStatus usedPropStatus);
+
+    List<UsedProp> findByUser(User user);
 
     UsedProp findOne(Long id);
 

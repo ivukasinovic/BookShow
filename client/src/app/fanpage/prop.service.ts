@@ -1,34 +1,28 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Bid} from './models/prop';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {NewProp, UsedProp} from './models/prop';
 
 @Injectable()
 export class PropService {
 
-  result: any;
-  bidd: Bid;
 
   constructor(private http: HttpClient) {
   }
 
   getNewProps() {
-    return this.http.get('/api/newProps');
+    return this.http.get('/api/new-props');
   }
 
   getUsedProps() {
-    return this.http.get('/api/usedProps');
+    return this.http.get('/api/used-props');
   }
 
   reservation(id: number) {
-    this.http.get('/api/newProps/reservation/' + id, {observe: 'response'})
-      .subscribe(response => {
-        this.result = response.statusText;
-      });
-    return this.result;
+    return this.http.get('/api/new-props/reserve/' + id, {observe: 'response'});
   }
 
   getBids(usedPropId: number) {
-    return this.http.get('/api/bids/usedProp/' + usedPropId);
+    return this.http.get('/api/bids/used-prop/' + usedPropId);
   }
 
   createBid(usedPropId: number, price: number) {
@@ -36,5 +30,29 @@ export class PropService {
       price: price
     };
     return this.http.post('/api/bids/' + usedPropId, bid).subscribe();
+  }
+
+  createUsedProp(usedProp: UsedProp) {
+    return this.http.post('/api/used-props', usedProp, {observe: 'response'});
+  }
+
+  getMyAds() {
+    return this.http.get('api/used-props/user');
+  }
+
+  deleteUsedProp(id: number) {
+    return this.http.delete('api/used-props/' + id, {observe: 'response'});
+  }
+
+  acceptBid(usedPropId: number, bidId: number) {
+
+    return this.http.get('api/used-props/' + usedPropId + '/accept-bid/' + bidId, {observe: 'response'});
+  }
+  getShows() {
+    return this.http.get('api/allShows?type=all');
+  }
+  createNewProp(newProp: NewProp, showId: number) {
+    console.log('Uzeo' + showId);
+    return this.http.post('api/new-props/' + showId, newProp, {observe: 'response'});
   }
 }

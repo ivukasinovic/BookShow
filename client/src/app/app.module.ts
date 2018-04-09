@@ -22,6 +22,11 @@ import {AdminFanProfileComponent} from './fanpage/admin-fan-profile/admin-fan-pr
 import {RoleGuardService} from './role-guard.service';
 import { ShowsTheatreComponent } from './shows/shows-theatre/shows-theatre.component';
 import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.component';
+import {MyAdsComponent} from './fanpage/my-ads/my-ads.component';
+import {SharedService} from './fanpage/shared.service';
+import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
+import { UsedPropsConfigComponent } from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
+import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
 
 
 @NgModule({
@@ -38,7 +43,11 @@ import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.componen
     NavbarComponent,
     AdminFanProfileComponent,
     ShowsTheatreComponent,
-    ShowsCinemaComponent
+    ShowsCinemaComponent,
+    MyAdsComponent,
+    NewPropsConfigComponent,
+    UsedPropsConfigComponent,
+    CreateNewPropComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +64,8 @@ import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.componen
     },
     AuthGuardService,
     AuthService,
-    RoleGuardService
+    RoleGuardService,
+    SharedService
   ],
   bootstrap: [AppComponent]
 })

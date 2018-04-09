@@ -1,21 +1,23 @@
 <form>
   <div class="form-group">
     <label>Naslov</label>
-    <input type="text" class="form-control" id="title" placeholder="unesite naslov oglasa">
+    <input [(ngModel)]="usedProp.title" type="text" class="form-control" name="title"
+           placeholder="Unesite naslov oglasa">
   </div>
   <div class="form-group">
     <label>Opis</label>
-    <textarea class="form-control" rows="4" id="description" placeholder="unesite opis oglasa"></textarea>
+    <textarea [(ngModel)]="usedProp.description" class="form-control" rows="4" name="description"
+              placeholder="Unesite opis oglasa"></textarea>
     <label>Slika</label>
-    <input type="text" class="form-control" id="image" placeholder="unesite adresu slike (opciono)">
+    <input [(ngModel)]="usedProp.image" type="text" class="form-control" name="image"
+           placeholder="Unesite adresu slike (opciono)">
     <label>Datum i vreme</label>
-    <input type="text" class="form-control" id="datetime" value="20180129023240"
-           placeholder="unesite adresu slike (opciono)">
+    <input [(ngModel)]="usedProp.activeUntil" type="text" class="form-control" name="datetime" value="20180129023240"
+           placeholder="Unesite datum kraja licitacije">
   </div>
   <div class="form-check">
-    <button class="btn btn-warning">Kreiraj oglas</button>
+    <button class="btn btn-warning" (click)="create()">Kreiraj oglas</button>
   </div>
-
 </form>
 
 

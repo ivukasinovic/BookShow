@@ -73,5 +73,6 @@ public class NewProp extends Prop implements Serializable {
     public void setShow(Show show) {
         this.show = show;
     }
+
 }
 

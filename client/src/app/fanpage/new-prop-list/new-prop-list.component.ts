@@ -9,7 +9,7 @@ import {PropService} from '../prop.service';
 })
 export class NewPropListComponent implements OnInit {
 
-  result: any;
+  resp: any;
   newProps: NewProp[];
 
   constructor(private propService: PropService) {
@@ -26,8 +26,17 @@ export class NewPropListComponent implements OnInit {
   }
 
   reservation(id: number) {
-    this.result = this.propService.reservation(id);
-    console.log('Ivan' + this.result);
+    this.propService.reservation(id)
+      .subscribe(resp => {
+        if (resp.status) {
+          alert('Uspesno ste rezervisali rekvizit!');
+          window.location.reload();
+        }
+        else {
+          alert('Nije uspela rezervacija');
+        }
+        console.log('Ivan' + resp.status);
+      });
   }
 
 }
