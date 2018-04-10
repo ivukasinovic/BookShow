@@ -42,8 +42,19 @@ public class User implements Serializable {
 
     @Column(nullable = true)
     private Date lastPasswordReset;
+    
+    @Column(nullable = false)
+    private boolean activated;
 
-    public Long getId() {
+    public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
+
+	public Long getId() {
         return id;
     }
 

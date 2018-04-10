@@ -27,6 +27,9 @@ import {SharedService} from './fanpage/shared.service';
 import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
 import { UsedPropsConfigComponent } from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
 import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
+import { RegistracijaComponent } from './registracija/registracija.component';
+import {RegService} from './reg.service';
+import { ProfilComponent } from './profil/profil.component';
 
 
 @NgModule({
@@ -47,7 +50,9 @@ import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-p
     MyAdsComponent,
     NewPropsConfigComponent,
     UsedPropsConfigComponent,
-    CreateNewPropComponent
+    CreateNewPropComponent,
+    RegistracijaComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,7 @@ import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-p
     },
     AuthGuardService,
     AuthService,
+    RegService, 
     RoleGuardService,
     SharedService
   ],
