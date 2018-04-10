@@ -24,6 +24,11 @@ import { ShowsTheatreComponent } from './shows/shows-theatre/shows-theatre.compo
 import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.component';
 import { CinemaRepertoireComponent } from './shows/shows-cinema/cinema-repertoire/cinema-repertoire.component';
 import { NewMovieComponent } from './shows/shows-cinema/cinema-repertoire/new-movie/new-movie.component';
+import {MyAdsComponent} from './fanpage/my-ads/my-ads.component';
+import {SharedService} from './fanpage/shared.service';
+import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
+import { UsedPropsConfigComponent } from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
+import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
 
 
 @NgModule({
@@ -43,6 +48,10 @@ import { NewMovieComponent } from './shows/shows-cinema/cinema-repertoire/new-mo
     ShowsCinemaComponent,
     CinemaRepertoireComponent,
     NewMovieComponent
+    MyAdsComponent,
+    NewPropsConfigComponent,
+    UsedPropsConfigComponent,
+    CreateNewPropComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +68,8 @@ import { NewMovieComponent } from './shows/shows-cinema/cinema-repertoire/new-mo
     },
     AuthGuardService,
     AuthService,
-    RoleGuardService
+    RoleGuardService,
+    SharedService
   ],
   bootstrap: [AppComponent]
 })

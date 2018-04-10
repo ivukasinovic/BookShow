@@ -20,4 +20,8 @@ public interface UsedPropService {
     UsedProp save(UsedProp usedProp);
 
     void delete(Long id);
+
+    List<UsedProp> findByUsername(String username);
+
+    UsedProp createUsedProp(String username, UsedProp usedProp);
 }

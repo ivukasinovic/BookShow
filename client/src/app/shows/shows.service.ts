@@ -8,6 +8,7 @@ export class ShowsService {
 
   getAllTheatreShows(){
     return this.http.get("api/all-shows?type=theatre");
+
   }
 
   getAllCinemaShows(){

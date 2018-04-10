@@ -5,7 +5,7 @@
     <button type="button" class="btn btn-success" (click)="isCollapsed = !isCollapsed"
             [attr.aria-expanded]="!isCollapsed" aria-controls="collapseNewAdd">Postavi Oglas
     </button>
-    <div class="btn btn-primary">Aktivni Oglasi</div>
+    <div class="btn btn-primary" (click)="getMyAds()">Aktivni Oglasi</div>
     <br><br><br>
     <div id="collapsenpNewAdd" [ngbCollapse]="!isCollapsed">
       <div class="card">
@@ -29,19 +29,6 @@
       </ngb-tab>
     </ngb-tabset>
   </div>
-
-
-  <!--<div class="nav nav-tabs">-->
-  <!--<li class="active"> <a href="/fanpage#newProps">Zvanična prodavnica</a></li>-->
-  <!--<li ><a href="/fanpage#usedProps" data-toggle="tab">Oglasi</a></li>-->
-  <!--<li><form class="form-search" method="get" id="s" action="/">-->
-  <!--<div class="input-append">-->
-  <!--<input type="text" class="input-medium search-query" name="s" placeholder="Pretraga..." value="">-->
-  <!--<button type="submit" class="add-on">Pretraži<i class="icon-search"></i></button>-->
-  <!--</div>-->
-  <!--</form></li>-->
-  <!--</div>-->
-
 
   <div *ngFor="let usedProp of usedProps | async">
     {{ usedProp.title }}}

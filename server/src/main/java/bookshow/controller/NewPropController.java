@@ -3,6 +3,7 @@ package bookshow.controller;
 import bookshow.domain.Show;
 import bookshow.domain.props.NewProp;
 import bookshow.domain.users.User;
+import bookshow.security.TokenUtils;
 import bookshow.service.NewPropService;
 import bookshow.service.ShowService;
 import bookshow.service.UserService;
@@ -18,6 +19,7 @@ import java.util.List;
 /**
  * Created by Ivan V. on 29-Jan-18
  */
+@RequestMapping(value="/new-props")
 @RestController
 public class NewPropController {
     @Autowired
@@ -26,10 +28,12 @@ public class NewPropController {
     private ShowService showService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private TokenUtils tokenUtils;
 
 
     @RequestMapping(
-            value = "/newPropsAll",
+            value = "/All",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<NewProp>> getNewPropsAll() {
@@ -37,8 +41,8 @@ public class NewPropController {
         return new ResponseEntity<>(newProps, HttpStatus.OK);
     }
 
+    //vraca one koji nisu rezervisani
     @RequestMapping(
-            value = "/newProps",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<NewProp>> getNewProps() {
@@ -48,7 +52,7 @@ public class NewPropController {
 
     //id filma/predstave
     @RequestMapping(
-            value = "/newProps/{id}",
+            value = "/{id}",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -62,17 +66,17 @@ public class NewPropController {
     }
 
     @RequestMapping(
-            value = "/newProps/reservation/{id}",
+            value = "/reserve/{id}",
             method = RequestMethod.GET)
-    public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id) {
+    public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id,Principal principal) {
         NewProp newProp = newPropService.findOne(id);
-        newProp.setUser(userService.findOne(5L));
+        String username = principal.getName();
+        newProp.setUser(userService.findByUsername(username));
         newPropService.save(newProp);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(newProp,HttpStatus.CREATED);
     }
 
     @RequestMapping(
-            value = "/newProps",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -87,7 +91,7 @@ public class NewPropController {
     }
 
     @RequestMapping(
-            value = "/newProps/{id}",
+            value = "/{id}",
             method = RequestMethod.DELETE,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

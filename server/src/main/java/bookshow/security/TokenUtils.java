@@ -24,6 +24,7 @@ public class TokenUtils {
     private final String AUDIENCE_WEB = "web";
     private final String AUDIENCE_MOBILE = "mobile";
     private final String AUDIENCE_TABLET = "tablet";
+    public static final String TOKEN_NAME = "Auth-Token";
 
     @Value("${token.secret}")
     private String secret;

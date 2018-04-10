@@ -13,8 +13,7 @@
     <div *ngIf="logged == true">
       <ul class="nav navbar-nav navbar-right">
         <li><a routerLink="">Profil</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="role === 'ADMINFAN'"><a routerLink="/adminfan">Admin Fan Profil</a></li>
         <li>
           <button (click)="logout()" class="btn btn-link">Odjava</button>
         </li>

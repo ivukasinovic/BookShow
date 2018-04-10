@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by Ivan V. on 27-Jan-18
@@ -26,8 +26,8 @@ public class UsedProp extends Prop implements Serializable {
     private UsedPropStatus status;
 
     //privremeno(Trebalo bi @OneToOne?)
-    @Column(name = "accepted_bid", nullable = false)
-    private boolean acceptedBid;
+    @Column(name="accepted_bid_fk")
+    private Long acceptedBid;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
@@ -42,8 +42,8 @@ public class UsedProp extends Prop implements Serializable {
     private User user;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usedProp")
-    private Set<Bid> bids;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usedProp", cascade = CascadeType.REMOVE)
+    private List<Bid> bids;
 
     public UsedProp() {
     }
@@ -73,19 +73,19 @@ public class UsedProp extends Prop implements Serializable {
         this.user = user;
     }
 
-    public Set<Bid> getBids() {
+    public List<Bid> getBids() {
         return bids;
     }
 
-    public void setBids(Set<Bid> bids) {
+    public void setBids(List<Bid> bids) {
         this.bids = bids;
     }
 
-    public boolean isAcceptedBid() {
+    public Long getAcceptedBid() {
         return acceptedBid;
     }
 
-    public void setAcceptedBid(boolean acceptedBid) {
+    public void setAcceptedBid(Long acceptedBid) {
         this.acceptedBid = acceptedBid;
     }
 

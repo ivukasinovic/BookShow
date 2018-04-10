@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
 import * as decode from 'jwt-decode';
 import {AuthService} from './auth.service';
-
+// Omogucava da samo odredjene role mogu da pristupe odredjenoj komponenti, dodat u route expectedRole
 @Injectable()
 export class RoleGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {

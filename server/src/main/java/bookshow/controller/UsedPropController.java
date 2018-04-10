@@ -1,9 +1,10 @@
 package bookshow.controller;
 
+import bookshow.domain.Bid;
 import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
+import bookshow.service.BidService;
 import bookshow.service.UsedPropService;
-import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,14 +18,15 @@ import java.util.List;
  * Created by Ivan V. on 29-Jan-18
  */
 @RestController
+@RequestMapping(value = "/used-props")
 public class UsedPropController {
     @Autowired
     private UsedPropService usedPropService;
     @Autowired
-    private UserService userService;
+    private BidService bidService;
 
     @RequestMapping(
-            value = "/usedPropsAll",
+            value = "/all",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UsedProp>> getUsedPropsAll() {
@@ -32,17 +34,17 @@ public class UsedPropController {
         return new ResponseEntity<>(usedProps, HttpStatus.OK);
     }
 
+    //all validated by admin
     @RequestMapping(
-            value = "/usedPropsCheck",
+            value = "/check",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UsedProp>> getUsedPropsCheck() {
         List<UsedProp> usedProps = usedPropService.findByFanAdminIsNotNull();
         return new ResponseEntity<>(usedProps, HttpStatus.OK);
     }
-
+    //all not expired and approved
     @RequestMapping(
-            value = "/usedProps",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UsedProp>> getUsedProps() {
@@ -51,29 +53,42 @@ public class UsedPropController {
     }
 
     @RequestMapping(
-            value = "/usedProps/{id}",
+            value = "/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsedProp> getUsedProp(@PathVariable("id") Long id) {
         UsedProp usedProp = usedPropService.findOne(id);
         return new ResponseEntity<>(usedProp, HttpStatus.OK);
     }
-
+    //used props by user
     @RequestMapping(
-            value = "/usedProps",
+            value = "/user",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<UsedProp>> getUsedPropsByUser(Principal principal){
+        List<UsedProp> usedProps = usedPropService.findByUsername(principal.getName());
+        return new ResponseEntity<>(usedProps,HttpStatus.OK);
+    }
+    @RequestMapping(
+            value = "/{usedPropId}/accept-bid/{acceptedBidId}",
+            method = RequestMethod.GET)
+    public ResponseEntity<Bid> acceptBid(@PathVariable Long usedPropId, @PathVariable Long acceptedBidId){
+        UsedProp usedProp = usedPropService.findOne(usedPropId);
+        Bid bid = bidService.findOne(acceptedBidId);
+        usedProp.setAcceptedBid(bid.getId());
+        usedPropService.save(usedProp);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @RequestMapping(
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsedProp> createPropUsed(Principal principal, @RequestBody UsedProp usedProp) {
-        usedProp.setStatus(UsedPropStatus.WAITING);
-        usedProp.setUser(userService.findByUsername(principal.getName()));
-        usedProp.setDateCreated(new java.util.Date());
-        UsedProp savedUsedProp = usedPropService.save(usedProp);
-        return new ResponseEntity<>(savedUsedProp, HttpStatus.CREATED);
+        usedProp = usedPropService.createUsedProp(principal.getName(),usedProp);
+        return new ResponseEntity<>(usedProp, HttpStatus.CREATED);
     }
 
     @RequestMapping(
-            value = "/usedProps",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -83,10 +98,8 @@ public class UsedPropController {
     }
 
     @RequestMapping(
-            value = "/usedProps/{id}",
-            method = RequestMethod.DELETE,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+            value = "/{id}",
+            method = RequestMethod.DELETE)
     public ResponseEntity<UsedProp> deletePropUsed(@PathVariable("id") Long id) {
         usedPropService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

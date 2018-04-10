@@ -10,11 +10,14 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   logged = false;
+  role: string;
 
   constructor(private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.role = localStorage.getItem('role');
+    console.log('Rola je' + this.role);
     if (this.authService.isAuthenticated()) {
       this.logged = true;
     } else {
