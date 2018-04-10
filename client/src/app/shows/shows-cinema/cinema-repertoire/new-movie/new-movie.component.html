@@ -1,0 +1,43 @@
+<p>
+  new-movie works! {{id}}
+</p>
+
+<div align = "center">
+  <h2>Dodavanje filma na repertoar</h2>
+
+  <form name="form">
+    <table>
+      <tr>
+        <td><label>Naziv filma: </label> </td>
+        <td><input type="text" name="name" [(ngModel)]="model.name"/> </td>
+      </tr>
+      <tr>
+        <td><label>Zanr: </label> </td>
+        <td><input type="text" name="genre" [(ngModel)]="model.genre"/></td>
+      </tr>
+      <tr>
+        <td><label>Glumci: </label> </td>
+        <td><input type="text" name="actors" [(ngModel)]="model.actors"/></td>
+      </tr>
+      <tr>
+        <td><label>Reditelj: </label> </td>
+        <td><input type="text" name="director" [(ngModel)]="model.director"/> </td>
+      </tr>
+      <tr>
+        <td><label>Trajanje: </label> </td>
+        <td><input type="text" name="duration" [(ngModel)]="model.duration"/> </td>
+      </tr>
+      <tr>
+        <td><label>Opis: </label> </td>
+        <td><textarea type="text" name="description" [(ngModel)]="model.description">  </textarea></td>
+      </tr>
+      <tr>
+        <td><label>Cena: </label> </td>
+        <td><input type="text" name="price" [(ngModel)]="model.price"/> </td>
+     </tr>   
+
+     <tr> <td colspan = "2"><button (click)="sendData()"> Kreiraj novi film </button></td></tr>
+
+    </table>
+  </form>
+</div>

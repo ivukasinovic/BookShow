@@ -77,7 +77,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "api/**").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/allShows").permitAll()
+                .antMatchers("/all-shows").permitAll()
+                .antMatchers("/getShowById/{id}").permitAll()
+                .antMatchers("/new-play-film").permitAll()
+                .antMatchers("/get-show-repertoire/{id}").permitAll()
                 .anyRequest().fullyAuthenticated();
 
         // Custom JWT based authentication

@@ -1,0 +1,28 @@
+
+<div align="center" >
+  <a routerLink="new-movie">Novi film</a>
+  <div *ngIf="repertoire!=null">
+   <table>
+      <tr>
+          <th>Ime</th>
+          <th>Glumci</th>
+          <th>Zanr</th>
+          <th>Reziser</th>
+          <th>Trajanje</th>
+          <th>Prosecna ocena</th>
+          <th>Cena karte</th>
+      </tr>
+    
+        <tr *ngFor="let playmovie of repertoire">
+          <td>{{playmovie.name}}</td>
+          <td>{{playmovie.actors}}</td>
+          <td>{{playmovie.genre}}</td>
+          <td>{{playmovie.director}}</td>
+          <td>{{playmovie.duration}}</td>
+          <td>{{playmovie.averageScore}}</td>
+          <td>{{playmovie.price}}</td>
+        </tr>
+    
+    </table>
+  </div>
+</div>
