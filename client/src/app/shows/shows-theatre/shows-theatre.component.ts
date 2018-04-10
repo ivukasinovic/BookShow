@@ -4,7 +4,7 @@ import { ShowsService } from '../shows.service';
 @Component({
   selector: 'app-shows-theatre',
   templateUrl: './shows-theatre.component.html',
-  styleUrls: ['./shows-theatre.component.css'],
+  styleUrls: ['../shows.css'],
   providers: [ShowsService]
 })
 export class ShowsTheatreComponent implements OnInit {

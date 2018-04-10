@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token', this.token);
             const tokenPayload = decode(this.token);
             localStorage.setItem('role', tokenPayload.role);
-            localStorage.setItem('username', tokenPayload.username);
+            localStorage.setItem('username', tokenPayload.sub);
             this.router.navigate(['/']);
             window.location.reload();
           }

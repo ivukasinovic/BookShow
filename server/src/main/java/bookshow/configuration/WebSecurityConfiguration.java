@@ -79,7 +79,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/all-shows").permitAll()
                 .antMatchers("/getShowById/{id}").permitAll()
-                .antMatchers("/new-play-film").permitAll()
                 .antMatchers("/get-show-repertoire/{id}").permitAll()
                 .anyRequest().fullyAuthenticated();
 

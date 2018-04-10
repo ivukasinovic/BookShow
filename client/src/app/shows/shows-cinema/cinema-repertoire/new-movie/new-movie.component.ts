@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-new-movie',
   templateUrl: './new-movie.component.html',
-  styleUrls: ['./new-movie.component.css'],
+  styleUrls: ['./../../../shows.css'],
   providers: [PlayMovieService, ShowsService]
 })
 export class NewMovieComponent implements OnInit {
@@ -24,8 +24,11 @@ export class NewMovieComponent implements OnInit {
   }
 
   sendData(){
-    this.playMovieService.createNewPlayMovie(this.model).subscribe(data => this.model = data);
-    this.router.navigate(['/shows-cinema/', this.id]);
+    this.playMovieService.createNewPlayMovie(this.model).subscribe(data => {
+      this.model = null
+      this.router.navigate(['/shows-cinema/', this.id]);
+    });
+    
   }
 
 }
