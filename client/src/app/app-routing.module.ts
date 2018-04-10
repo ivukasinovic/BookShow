@@ -16,6 +16,8 @@ import {BidListComponent} from './fanpage/bid-list/bid-list.component';
 import {NewPropsConfigComponent} from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
 import {UsedPropsConfigComponent} from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
 import {CreateNewPropComponent} from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
+import {PersonalEditComponent} from './fanpage/admin-fan-profile/personal-edit/personal-edit.component';
+import {ChangePasswordComponent} from './fanpage/admin-fan-profile/change-password/change-password.component';
 
 const routes: Routes = [
   // ivan
@@ -42,7 +44,13 @@ const routes: Routes = [
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
   {path: 'adminfan/new-prop', component: CreateNewPropComponent,
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
+  {path: 'adminfan/edit-new-prop/:id', component: CreateNewPropComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
   {path: 'adminfan/used-props-config', component: UsedPropsConfigComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
+  {path: 'adminfan/personal-edit', component: PersonalEditComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
+  {path: 'adminfan/change-password', component: ChangePasswordComponent,
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
   // vlada
   // marko

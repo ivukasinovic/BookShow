@@ -29,6 +29,9 @@ import {SharedService} from './fanpage/shared.service';
 import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
 import { UsedPropsConfigComponent } from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
 import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
+import { EditNewPropComponent } from './fanpage/admin-fan-profile/edit-new-prop/edit-new-prop.component';
+import { PersonalEditComponent } from './fanpage/admin-fan-profile/personal-edit/personal-edit.component';
+import { ChangePasswordComponent } from './fanpage/admin-fan-profile/change-password/change-password.component';
 
 
 @NgModule({
@@ -47,11 +50,14 @@ import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-p
     ShowsTheatreComponent,
     ShowsCinemaComponent,
     CinemaRepertoireComponent,
-    NewMovieComponent
+    NewMovieComponent,
     MyAdsComponent,
     NewPropsConfigComponent,
     UsedPropsConfigComponent,
-    CreateNewPropComponent
+    CreateNewPropComponent,
+    EditNewPropComponent,
+    PersonalEditComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

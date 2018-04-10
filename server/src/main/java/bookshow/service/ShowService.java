@@ -13,6 +13,8 @@ public interface ShowService {
 
     List<Show> findByType(ShowType type);
 
+    Show findByName(String name);
+
     Show findOne(Long id);
 
     Show save(Show show);
