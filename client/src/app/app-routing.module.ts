@@ -18,6 +18,7 @@ import {UsedPropsConfigComponent} from './fanpage/admin-fan-profile/used-props-c
 import {CreateNewPropComponent} from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
 import {PersonalEditComponent} from './fanpage/admin-fan-profile/personal-edit/personal-edit.component';
 import {ChangePasswordComponent} from './fanpage/admin-fan-profile/change-password/change-password.component';
+import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-movie/edit-movie.component';
 
 const routes: Routes = [
   // ivan
@@ -57,7 +58,10 @@ const routes: Routes = [
   {path: 'shows-theatre', component: ShowsTheatreComponent},
   {path: 'shows-cinema', component: ShowsCinemaComponent},
   {path: 'shows-cinema/:id', component: CinemaRepertoireComponent},
-  {path: 'shows-cinema/:id/new-movie', component: NewMovieComponent}
+  {path: 'shows-cinema/:id/new-movie', component: NewMovieComponent,
+  canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
+  {path: 'shows-cinema/:id/edit-movie/:movieId', component: EditMovieComponent,
+  canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
 
 ];
 

@@ -10,8 +10,20 @@ export class PlayMovieService {
     return this.http.post("api/new-play-film", data);
   }
 
+  updatePlayMovie(data){
+    return this.http.put("api/update-play-film", data);
+  }
+
   getShowsRepertoire(id){
     return this.http.get("api/get-show-repertoire/"+id);
+  }
+
+  getPlayMovieById(id){
+    return this.http.get("api/get-play-film/"+ id);
+  }
+
+  removePlayMovie(id){
+    return this.http.delete("api/delete-play-film/"+id);
   }
 
 }

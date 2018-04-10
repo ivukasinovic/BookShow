@@ -32,6 +32,7 @@ import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-p
 import { EditNewPropComponent } from './fanpage/admin-fan-profile/edit-new-prop/edit-new-prop.component';
 import { PersonalEditComponent } from './fanpage/admin-fan-profile/personal-edit/personal-edit.component';
 import { ChangePasswordComponent } from './fanpage/admin-fan-profile/change-password/change-password.component';
+import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-movie/edit-movie.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ChangePasswordComponent } from './fanpage/admin-fan-profile/change-pass
     CreateNewPropComponent,
     EditNewPropComponent,
     PersonalEditComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    EditMovieComponent
   ],
   imports: [
     BrowserModule,
