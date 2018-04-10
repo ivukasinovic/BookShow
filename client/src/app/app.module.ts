@@ -22,6 +22,8 @@ import {AdminFanProfileComponent} from './fanpage/admin-fan-profile/admin-fan-pr
 import {RoleGuardService} from './role-guard.service';
 import { ShowsTheatreComponent } from './shows/shows-theatre/shows-theatre.component';
 import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.component';
+import { CinemaRepertoireComponent } from './shows/shows-cinema/cinema-repertoire/cinema-repertoire.component';
+import { NewMovieComponent } from './shows/shows-cinema/cinema-repertoire/new-movie/new-movie.component';
 import {MyAdsComponent} from './fanpage/my-ads/my-ads.component';
 import {SharedService} from './fanpage/shared.service';
 import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
@@ -44,6 +46,8 @@ import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-p
     AdminFanProfileComponent,
     ShowsTheatreComponent,
     ShowsCinemaComponent,
+    CinemaRepertoireComponent,
+    NewMovieComponent
     MyAdsComponent,
     NewPropsConfigComponent,
     UsedPropsConfigComponent,

@@ -31,8 +31,9 @@ public class Show {
     @Column
     private double rating;
 
+    /*
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "show")
-    private Set<NewProp> props;
+    private Set<NewProp> props;*/
 
     public Show() {
 
@@ -61,14 +62,14 @@ public class Show {
     public void setType(ShowType type) {
         this.type = type;
     }
-
+/*
     public Set<NewProp> getProps() {
         return props;
     }
 
     public void setProps(Set<NewProp> props) {
         this.props = props;
-    }
+    }*/
 
 	public String getAddress() {
 		return address;
@@ -93,6 +94,8 @@ public class Show {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
+	
+	
     
     
 }
