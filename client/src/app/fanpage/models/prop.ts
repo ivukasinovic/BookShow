@@ -18,8 +18,8 @@ export class NewProp {
   description: string;
   dateCreated: string;
   price: number;
-  adminFan: number;
-  registeredUser: number;
+  fanAdmin: string;
+  user: string;
   show: number;
   image: string;
   createdDate: string;
@@ -42,4 +42,14 @@ export class Show {
   ShowType: string;
   adress: string;
   rating: number;
+}
+
+export class User {
+  id: number;
+  username: string;
+  name: string;
+  surname: string;
+  email: string;
+  city: string;
+  number: string;
 }

@@ -1,6 +1,4 @@
 <div class="col-md-6 col-md-offset-3">
-  <h2 *ngIf="newPropId">Izmena rekvizita</h2>
-  <h2 *ngIf="!newPropId">Dodavanje rekvizita</h2>
   <form>
     <div class="form-group">
       <label>Naziv</label>
@@ -25,9 +23,7 @@
              placeholder="Unesite cenu rekvizita">
     </div>
     <div class="form-check">
-      <button *ngIf="!newPropId" class="btn btn-warning" (click)="createProp()">Dodaj Rekvizit</button>
-      <button *ngIf="newPropId" class="btn btn-warning" (click)="editProp()">Izmeni Rekvizit</button>
+      <button class="btn btn-warning" (click)="createProp()">Dodaj Rekvizit</button>
     </div>
   </form>
 </div>
-

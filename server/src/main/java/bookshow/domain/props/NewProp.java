@@ -21,19 +21,19 @@ public class NewProp extends Prop implements Serializable {
     @Column(nullable = false)
     private float price;
 
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "username")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(name = "fan_admin_fk")
     @ManyToOne(optional = false)
     private User fanAdmin;
 
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "username")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(name = "user_fk")
     @ManyToOne(optional = true)
     private User user;
 
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(name = "show_fk")
     @ManyToOne(optional = false)

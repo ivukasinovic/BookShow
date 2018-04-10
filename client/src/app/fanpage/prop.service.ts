@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {NewProp, UsedProp} from './models/prop';
+import {HttpClient} from '@angular/common/http';
+import {NewProp, UsedProp, User} from './models/prop';
 
 @Injectable()
 export class PropService {
@@ -11,6 +11,29 @@ export class PropService {
 
   getNewProps() {
     return this.http.get('/api/new-props');
+  }
+
+  getNewPropsAll() {
+    return this.http.get('/api/new-props/all');
+  }
+
+  getNewProp(newPropId: number) {
+    return this.http.get('/api/new-props/' + newPropId);
+  }
+
+  editNewProp(newProp: NewProp, showId: number) {
+    newProp.fanAdmin = null;
+    newProp.show = null;
+    return this.http.put('api/new-props/' + showId, newProp);
+  }
+
+  createNewProp(newProp: NewProp, showId: number) {
+    console.log('Uzeo' + showId);
+    return this.http.post('api/new-props/' + showId, newProp, {observe: 'response'});
+  }
+
+  deleteNewProp(newPropId: number) {
+    return this.http.delete('api/new-props/' + newPropId, {observe: 'response'});
   }
 
   getUsedProps() {
@@ -48,11 +71,22 @@ export class PropService {
 
     return this.http.get('api/used-props/' + usedPropId + '/accept-bid/' + bidId, {observe: 'response'});
   }
+
   getShows() {
-    return this.http.get('api/allShows?type=all');
+    return this.http.get('api/all-shows?type=all');
   }
-  createNewProp(newProp: NewProp, showId: number) {
-    console.log('Uzeo' + showId);
-    return this.http.post('api/new-props/' + showId, newProp, {observe: 'response'});
+
+  getUser() {
+    const username = localStorage.getItem('username');
+    return this.http.get('api/users/by-username?username=' + username);
   }
+
+  editUser(user: User) {
+    return this.http.put('api/users', user, {observe: 'response'});
+  }
+
+  changePassword(oldPw: string, newPw: string) {
+    return this.http.get('api/users/change-password?oldPw=' + oldPw + '&newPw=' + newPw, {observe: 'response'});
+  }
+
 }

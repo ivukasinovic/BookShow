@@ -14,6 +14,8 @@ public interface ShowRepository extends JpaRepository<Show, Long> {
 
     List<Show> findByType(ShowType type);
 
+    Show findByName(String name);
+
     Show findOne(Long id);
 
     Show save(Show show);

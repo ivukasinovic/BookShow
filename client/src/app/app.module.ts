@@ -29,6 +29,9 @@ import {SharedService} from './fanpage/shared.service';
 import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
 import { UsedPropsConfigComponent } from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
 import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
+import { EditNewPropComponent } from './fanpage/admin-fan-profile/edit-new-prop/edit-new-prop.component';
+import { PersonalEditComponent } from './fanpage/admin-fan-profile/personal-edit/personal-edit.component';
+import { ChangePasswordComponent } from './fanpage/admin-fan-profile/change-password/change-password.component';
 import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-movie/edit-movie.component';
 
 
@@ -53,6 +56,9 @@ import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-
     NewPropsConfigComponent,
     UsedPropsConfigComponent,
     CreateNewPropComponent,
+    EditNewPropComponent,
+    PersonalEditComponent,
+    ChangePasswordComponent,
     EditMovieComponent
   ],
   imports: [
