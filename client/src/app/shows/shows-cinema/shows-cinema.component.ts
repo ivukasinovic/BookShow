@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-shows-cinema',
   templateUrl: './shows-cinema.component.html',
-  styleUrls: ['./shows-cinema.component.css'],
+  styleUrls: ['../shows.css'],
   providers: [ShowsService]
 })
 export class ShowsCinemaComponent implements OnInit {
