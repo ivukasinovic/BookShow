@@ -29,6 +29,15 @@ import {SharedService} from './fanpage/shared.service';
 import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
 import { UsedPropsConfigComponent } from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
 import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
+import { RegistracijaComponent } from './registracija/registracija.component';
+import {RegService} from './reg.service';
+import { ProfilComponent } from './profil/profil.component';
+import { NameChangeComponent } from './profil/name-change/name-change.component';
+import { SurnameChangeComponent } from './profil/surname-change/surname-change.component';
+import { EmailChangeComponent } from './profil/email-change/email-change.component';
+import { CityChangeComponent } from './profil/city-change/city-change.component';
+import { NumberChangeComponent } from './profil/number-change/number-change.component';
+import { PasswordChangeComponent } from './profil/password-change/password-change.component';
 import { EditNewPropComponent } from './fanpage/admin-fan-profile/edit-new-prop/edit-new-prop.component';
 import { PersonalEditComponent } from './fanpage/admin-fan-profile/personal-edit/personal-edit.component';
 import { ChangePasswordComponent } from './fanpage/admin-fan-profile/change-password/change-password.component';
@@ -60,13 +69,21 @@ import {AdminSysService} from './admin-sys/admin-sys.service';
     NewPropsConfigComponent,
     UsedPropsConfigComponent,
     CreateNewPropComponent,
+    RegistracijaComponent,
+    ProfilComponent,
+    NameChangeComponent,
+    SurnameChangeComponent,
+    EmailChangeComponent,
+    CityChangeComponent,
+    NumberChangeComponent,
+    PasswordChangeComponent
     EditNewPropComponent,
     PersonalEditComponent,
     ChangePasswordComponent,
     EditMovieComponent,
     AdminSysComponent,
     RegisterShowComponent,
-    RegisterAdminComponent,
+    RegisterAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +100,7 @@ import {AdminSysService} from './admin-sys/admin-sys.service';
     },
     AuthGuardService,
     AuthService,
+    RegService, 
     RoleGuardService,
     SharedService,
     AdminSysService

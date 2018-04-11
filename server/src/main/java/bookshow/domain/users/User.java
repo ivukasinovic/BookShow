@@ -2,6 +2,7 @@ package bookshow.domain.users;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -42,8 +43,11 @@ public class User implements Serializable {
 
     @Column(nullable = true)
     private Date lastPasswordReset;
-
-    //broj poslatih requestova(sluzi za rejting korisnika)
+    
+    @Column(nullable = false)
+    private boolean activated;
+  
+   //broj poslatih requestova(sluzi za rejting korisnika)
     @Column(nullable = false)
     private Long points;
 
@@ -51,6 +55,17 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private RatingType type;
 
+    
+    private ArrayList<String> friendList;
+
+    public boolean isActivated() {
+		  return activated;
+	  }
+
+    public void setActivated(boolean activated) {
+      this.activated = activated;
+    }
+   
     public Long getId() {
         return id;
     }
@@ -129,6 +144,14 @@ public class User implements Serializable {
 
     public void setLastPasswordReset(Date lastPasswordReset) {
         this.lastPasswordReset = lastPasswordReset;
+    }
+
+    public ArrayList<String> getFriendList() {
+      return friendList;
+    }
+
+    public void setFriendList(ArrayList<String> friendList) {
+      this.friendList = friendList;
     }
 
     public Long getPoints() {
