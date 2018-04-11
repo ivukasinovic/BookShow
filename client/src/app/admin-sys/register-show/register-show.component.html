@@ -1,0 +1,34 @@
+<div class="col-md-2">
+  <h4>Meni</h4>
+  <a routerLink="/adminsys/register-show" class="btn btn-info btn-sm">Registracija Bioskopa/Pozorišta</a><br>
+  <a routerLink="/adminsys/register-admin" class="btn btn-default btn-sm">Registracija administratora</a><br>
+  <a routerLink="/adminfan/personal-edit" class="btn btn-default btn-sm">Promena licnih podataka</a><br>
+  <a routerLink="/adminfan/change-password" class="btn btn-default btn-sm">Promena lozinke</a>
+</div>
+<div class="col-md-7">
+  <h3>Registracija <b>Pozorišta/Bioskopa</b></h3>
+  <br>
+  <form>
+    <div class="form-group">
+      <label>Naziv</label>
+      <input [(ngModel)]="show.name" type="text" class="form-control" name="name"
+             placeholder="Unesite naziv">
+      <br>
+      <label>Tip</label>
+      <select name="typeSelect" class="custom-select" [(ngModel)]="show.type" >
+        <option value="CINEMA">Bioskop</option>
+        <option value="THEATRE">Pozorište</option>
+      </select>
+      <br>
+      <label>Adresa</label>
+      <input [(ngModel)]="show.address" type="text" class="form-control" name="address"
+             placeholder="Unesite adresu">
+      <label>Opis</label>
+      <textarea [(ngModel)]="show.description" class="form-control" rows="4" name="description"
+                placeholder="Unesite opis"></textarea>
+    </div>
+    <div class="form-check">
+      <button class="btn btn-warning" (click)="registerShow()">Registruj</button>
+    </div>
+  </form>
+</div>

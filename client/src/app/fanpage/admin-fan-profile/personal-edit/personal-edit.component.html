@@ -1,0 +1,32 @@
+<div class="col-md-2">
+  <h4>Meni</h4>
+  <a routerLink="/adminfan/new-props-config" class="btn btn-default btn-sm">Tematski rekviziti</a><br>
+  <a routerLink="/adminfan/used-props-config" class="btn btn-default btn-sm">Oglasi</a><br>
+  <a routerLink="/adminfan/personal-edit" class="btn btn-info btn-sm">Promena licnih podataka</a><br>
+  <a routerLink="/adminfan/change-password" class="btn btn-default btn-sm">Promena lozinke</a>
+</div>
+<div class="col-md-7">
+  <form>
+    <div class="form-group">
+      <label>Ime</label>
+      <input [(ngModel)]="user.name" type="text" class="form-control" name="name"
+             placeholder="Unesite ime">
+      <label>Prezime</label>
+      <label>Prezime</label>
+      <input [(ngModel)]="user.surname" type="text" class="form-control" name="surname"
+             placeholder="Unesite prezime">
+      <label>Email</label>
+      <input [(ngModel)]="user.email" type="text" class="form-control" name="email"
+             placeholder="Unesite email">
+      <label>Grad</label>
+      <input [(ngModel)]="user.city" type="text" class="form-control" name="city"
+             placeholder="Unesite grad">
+      <label>Broj</label>
+      <input [(ngModel)]="user.number" type="text" class="form-control" name="number"
+             placeholder="Unesite broj">
+    </div>
+    <div class="form-check">
+      <button class="btn btn-warning" (click)="editUser()">Izmeni</button>
+    </div>
+  </form>
+</div>

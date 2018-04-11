@@ -1,0 +1,29 @@
+<div class="col-md-6 col-md-offset-3">
+  <form>
+    <div class="form-group">
+      <label>Naziv</label>
+      <input [(ngModel)]="newProp.title" type="text" class="form-control" name="title"
+             placeholder="Unesite naziv rekvizita">
+    </div>
+    <div class="form-group">
+      <label>Opis</label>
+      <textarea [(ngModel)]="newProp.description" class="form-control" rows="4" name="description"
+                placeholder="Unesite opis rekvizita"></textarea>
+      <label>Pozoriste/Bioskop</label>
+      <select name="showSelect" class="custom-select" [(ngModel)]="selectedShowId">
+        <option *ngFor="let show of shows" [value]="show.id">{{show.name}}
+        </option>
+      </select>
+      <br>
+      <label>Slika</label>
+      <input [(ngModel)]="newProp.image" type="text" class="form-control" name="image"
+             placeholder="Unesite adresu slike (opciono)">
+      <label>Datum i vreme</label>
+      <input [(ngModel)]="newProp.price" type="text" class="form-control" name="price" value="20180129023240"
+             placeholder="Unesite cenu rekvizita">
+    </div>
+    <div class="form-check">
+      <button class="btn btn-warning" (click)="createProp()">Dodaj Rekvizit</button>
+    </div>
+  </form>
+</div>

@@ -18,8 +18,8 @@ export class NewProp {
   description: string;
   dateCreated: string;
   price: number;
-  adminFan: number;
-  registeredUser: number;
+  fanAdmin: string;
+  user: string;
   show: number;
   image: string;
   createdDate: string;
@@ -39,7 +39,21 @@ export class AuthReq {
 export class Show {
   id: number;
   name: string;
-  ShowType: string;
-  adress: string;
+  type: string;
+  address: string;
+  description: string;
   rating: number;
+}
+
+export class User {
+  id: number;
+  username: string;
+  name: string;
+  surname: string;
+  email: string;
+  city: string;
+  number: string;
+  role: string;
+  loggednum: number;
+  type: string;
 }

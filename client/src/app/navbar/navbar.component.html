@@ -14,6 +14,7 @@
       <ul *ngIf="logged == true" class="nav navbar-nav navbar-right">
         <li><a routerLink="/profil">Profil</a></li>
         <li *ngIf="role === 'ADMINFAN'"><a routerLink="/adminfan">Admin Fan Profil</a></li>
+        <li *ngIf="role === 'ADMINSYS'"><a routerLink="/adminsys">Admin Sys Profil</a></li>
         <li>
           <button (click)="logout()" class="btn btn-link">Odjava</button>
         </li>

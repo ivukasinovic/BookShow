@@ -1,0 +1,44 @@
+
+<div align = "center">
+  <h2>Izmena filma sa repertoara</h2>
+
+  <form name="form" (ngSubmit)="sendData()">
+    <table>
+      <tr>
+        <td><label>Naziv filma: </label> </td>
+        <td><input type="text" name="name" [(ngModel)]="movieModel.name"/> </td>
+      </tr>
+      <tr>
+        <td><label>Zanr: </label> </td>
+        <td><input type="text" name="genre" [(ngModel)]="movieModel.genre"/></td>
+      </tr>
+      <tr>
+        <td><label>Glumci: </label> </td>
+        <td><input type="text" name="actors" [(ngModel)]="movieModel.actors"/></td>
+      </tr>
+      <tr>
+        <td><label>Reditelj: </label> </td>
+        <td><input type="text" name="director" [(ngModel)]="movieModel.director"/> </td>
+      </tr>
+      <tr>
+        <td><label>Datum: </label> </td>
+        <td><input type="date" name="date" [(ngModel)]="movieModel.date"/> </td>
+      </tr>
+      <tr>
+        <td><label>Trajanje: </label> </td>
+        <td><input type="text" name="duration" [(ngModel)]="movieModel.duration"/> </td>
+      </tr>
+      <tr>
+        <td><label>Opis: </label> </td>
+        <td><textarea type="text" name="description" [(ngModel)]="movieModel.description">  </textarea></td>
+      </tr>
+      <tr>
+        <td><label>Cena: </label> </td>
+        <td><input type="text" name="price" [(ngModel)]="movieModel.price"/> </td>
+     </tr>   
+
+     <tr> <td colspan = "2"><input type = "submit" value = " Izmeni film "/></td></tr>
+
+    </table>
+  </form>
+</div>

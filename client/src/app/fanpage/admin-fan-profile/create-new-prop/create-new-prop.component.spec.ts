@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateNewPropComponent } from './create-new-prop.component';
+import {CreateNewPropComponent} from './create-new-prop.component';
 
 describe('CreateNewPropComponent', () => {
   let component: CreateNewPropComponent;
@@ -8,9 +8,9 @@ describe('CreateNewPropComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateNewPropComponent ]
+      declarations: [CreateNewPropComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

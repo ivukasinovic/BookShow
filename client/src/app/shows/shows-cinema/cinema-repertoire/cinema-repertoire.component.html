@@ -1,0 +1,36 @@
+
+<div align="center" >
+  <div *ngIf ="role == 'ADMINSHOW'">
+    <a routerLink="new-movie">Novi film</a>
+  </div>
+  <div>
+   <table>
+      <tr>
+          <th>Ime</th>
+          <th>Glumci</th>
+          <th>Zanr</th>
+          <th>Reziser</th>
+          <th>Pocetak</th>
+          <th>Trajanje</th>
+          <th>Prosecna ocena</th>
+          <th>Cena karte</th>
+          <th *ngIf ="role == 'ADMINSHOW'">Izmena</th>
+          <th *ngIf ="role == 'ADMINSHOW'">Brisanje</th>
+      </tr>
+    
+        <tr *ngFor="let playmovie of repertoire">
+          <td>{{playmovie.name}}</td>
+          <td>{{playmovie.actors}}</td>
+          <td>{{playmovie.genre}}</td>
+          <td>{{playmovie.director}}</td>
+          <td>{{playmovie.date}}</td>
+          <td>{{playmovie.duration}}</td>
+          <td>{{playmovie.averageScore}}</td>
+          <td>{{playmovie.price}}</td>
+          <td *ngIf ="role == 'ADMINSHOW'"><button (click)="edit(playmovie.id)"> Izmeni </button></td>
+          <td *ngIf ="role == 'ADMINSHOW'"><button (click)="remove(playmovie.id, playmovie)"> Obrisi </button></td>
+        </tr>
+    
+    </table>
+  </div>
+</div>

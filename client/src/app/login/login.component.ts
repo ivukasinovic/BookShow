@@ -34,8 +34,9 @@ export class LoginComponent implements OnInit {
             const tokenPayload = decode(this.token);
             localStorage.setItem('role', tokenPayload.role);
             localStorage.setItem('username', tokenPayload.sub);
-            this.router.navigate(['/']);
             window.location.reload();
+            this.router.navigate(['/']);
+
           }
         },
         error => {

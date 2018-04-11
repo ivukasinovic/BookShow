@@ -33,7 +33,7 @@ public class NewPropController {
 
 
     @RequestMapping(
-            value = "/All",
+            value = "/all",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<NewProp>> getNewPropsAll() {
@@ -48,6 +48,14 @@ public class NewPropController {
     public ResponseEntity<List<NewProp>> getNewProps() {
         List<NewProp> newProps = newPropService.findByUserIsNull();
         return new ResponseEntity<>(newProps, HttpStatus.OK);
+    }
+    @RequestMapping(
+            value = "/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<NewProp> getNewProp(@PathVariable Long id){
+        NewProp newProp = newPropService.findOne(id);
+        return new ResponseEntity<>(newProp, HttpStatus.OK);
     }
 
     //id filma/predstave
@@ -71,17 +79,22 @@ public class NewPropController {
     public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id,Principal principal) {
         NewProp newProp = newPropService.findOne(id);
         String username = principal.getName();
-        newProp.setUser(userService.findByUsername(username));
+        User user = userService.findByUsername(username);
+        user.setPoints(user.getPoints()+1L);
+        newProp.setUser(user);
         newPropService.save(newProp);
         return new ResponseEntity<>(newProp,HttpStatus.CREATED);
     }
 
     @RequestMapping(
+            value = "/{id}",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<NewProp> updateNewProp(@RequestBody NewProp newProp) {
+    public ResponseEntity<NewProp> updateNewProp(@RequestBody NewProp newProp, @PathVariable Long id) {
+        Show show = showService.findOne(id);
         NewProp old = newPropService.findOne(newProp.getId());
+        old.setShow(show);
         old.setTitle(newProp.getTitle());
         old.setDescription(newProp.getDescription());
         old.setImage(newProp.getImage());
@@ -92,9 +105,7 @@ public class NewPropController {
 
     @RequestMapping(
             value = "/{id}",
-            method = RequestMethod.DELETE,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+            method = RequestMethod.DELETE)
     public ResponseEntity<NewProp> deleteNewProp(@PathVariable("id") Long id) {
         newPropService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

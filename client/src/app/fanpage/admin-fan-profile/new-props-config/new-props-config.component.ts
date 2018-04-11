@@ -14,16 +14,27 @@ export class NewPropsConfigComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getNewProps();
+    this.getNewPropsAll();
   }
 
-  getNewProps() {
-    this.propService.getNewProps()
+  getNewPropsAll() {
+    this.propService.getNewPropsAll()
       .subscribe((data: NewProp[]) => {
           this.newProps = data;
         },
         err => {
           alert('Nije uspelo ucitavanje tematskih rekvizita');
+        });
+  }
+
+  deleteNewProp(newPropId: number) {
+    this.propService.deleteNewProp(newPropId)
+      .subscribe(response => {
+          alert('Uspesno obrisan rekvizit');
+          window.location.reload();
+        },
+        err => {
+          alert('Nije uspelo brisanje rekvizita');
         });
   }
 

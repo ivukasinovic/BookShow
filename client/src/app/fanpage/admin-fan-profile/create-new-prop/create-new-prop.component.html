@@ -1,5 +1,6 @@
-
 <div class="col-md-6 col-md-offset-3">
+  <h2 *ngIf="newPropId">Izmena rekvizita</h2>
+  <h2 *ngIf="!newPropId">Dodavanje rekvizita</h2>
   <form>
     <div class="form-group">
       <label>Naziv</label>
@@ -11,7 +12,7 @@
       <textarea [(ngModel)]="newProp.description" class="form-control" rows="4" name="description"
                 placeholder="Unesite opis rekvizita"></textarea>
       <label>Pozoriste/Bioskop</label>
-      <select  name="showSelect" class="custom-select" [(ngModel)]="selectedShowId">
+      <select name="showSelect" class="custom-select" [(ngModel)]="selectedShowId">
         <option *ngFor="let show of shows" [value]="show.id">{{show.name}}
         </option>
       </select>
@@ -24,7 +25,8 @@
              placeholder="Unesite cenu rekvizita">
     </div>
     <div class="form-check">
-      <button class="btn btn-warning" (click)="createProp()">Dodaj Rekvizit</button>
+      <button *ngIf="!newPropId" class="btn btn-warning" (click)="createProp()">Dodaj Rekvizit</button>
+      <button *ngIf="newPropId" class="btn btn-warning" (click)="editProp()">Izmeni Rekvizit</button>
     </div>
   </form>
 </div>

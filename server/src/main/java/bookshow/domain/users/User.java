@@ -46,18 +46,27 @@ public class User implements Serializable {
     
     @Column(nullable = false)
     private boolean activated;
+  
+   //broj poslatih requestova(sluzi za rejting korisnika)
+    @Column(nullable = false)
+    private Long points;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private RatingType type;
+
     
     private ArrayList<String> friendList;
 
     public boolean isActivated() {
-		return activated;
-	}
+		  return activated;
+	  }
 
-	public void setActivated(boolean activated) {
-		this.activated = activated;
-	}
-
-	public Long getId() {
+    public void setActivated(boolean activated) {
+      this.activated = activated;
+    }
+   
+    public Long getId() {
         return id;
     }
 
@@ -137,12 +146,27 @@ public class User implements Serializable {
         this.lastPasswordReset = lastPasswordReset;
     }
 
-	public ArrayList<String> getFriendList() {
-		return friendList;
-	}
+    public ArrayList<String> getFriendList() {
+      return friendList;
+    }
 
-	public void setFriendList(ArrayList<String> friendList) {
-		this.friendList = friendList;
-	}
+    public void setFriendList(ArrayList<String> friendList) {
+      this.friendList = friendList;
+    }
 
+    public Long getPoints() {
+        return points;
+    }
+
+    public void setPoints(Long points) {
+        this.points = points;
+    }
+
+    public RatingType getType() {
+        return type;
+    }
+
+    public void setType(RatingType type) {
+        this.type = type;
+    }
 }

@@ -22,6 +22,8 @@ import {AdminFanProfileComponent} from './fanpage/admin-fan-profile/admin-fan-pr
 import {RoleGuardService} from './role-guard.service';
 import { ShowsTheatreComponent } from './shows/shows-theatre/shows-theatre.component';
 import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.component';
+import { CinemaRepertoireComponent } from './shows/shows-cinema/cinema-repertoire/cinema-repertoire.component';
+import { NewMovieComponent } from './shows/shows-cinema/cinema-repertoire/new-movie/new-movie.component';
 import {MyAdsComponent} from './fanpage/my-ads/my-ads.component';
 import {SharedService} from './fanpage/shared.service';
 import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-config/new-props-config.component';
@@ -36,6 +38,14 @@ import { EmailChangeComponent } from './profil/email-change/email-change.compone
 import { CityChangeComponent } from './profil/city-change/city-change.component';
 import { NumberChangeComponent } from './profil/number-change/number-change.component';
 import { PasswordChangeComponent } from './profil/password-change/password-change.component';
+import { EditNewPropComponent } from './fanpage/admin-fan-profile/edit-new-prop/edit-new-prop.component';
+import { PersonalEditComponent } from './fanpage/admin-fan-profile/personal-edit/personal-edit.component';
+import { ChangePasswordComponent } from './fanpage/admin-fan-profile/change-password/change-password.component';
+import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-movie/edit-movie.component';
+import { AdminSysComponent } from './admin-sys/admin-sys.component';
+import { RegisterShowComponent } from './admin-sys/register-show/register-show.component';
+import { RegisterAdminComponent } from './admin-sys/register-admin/register-admin.component';
+import {AdminSysService} from './admin-sys/admin-sys.service';
 
 
 @NgModule({
@@ -53,6 +63,8 @@ import { PasswordChangeComponent } from './profil/password-change/password-chang
     AdminFanProfileComponent,
     ShowsTheatreComponent,
     ShowsCinemaComponent,
+    CinemaRepertoireComponent,
+    NewMovieComponent,
     MyAdsComponent,
     NewPropsConfigComponent,
     UsedPropsConfigComponent,
@@ -65,6 +77,13 @@ import { PasswordChangeComponent } from './profil/password-change/password-chang
     CityChangeComponent,
     NumberChangeComponent,
     PasswordChangeComponent
+    EditNewPropComponent,
+    PersonalEditComponent,
+    ChangePasswordComponent,
+    EditMovieComponent,
+    AdminSysComponent,
+    RegisterShowComponent,
+    RegisterAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +102,8 @@ import { PasswordChangeComponent } from './profil/password-change/password-chang
     AuthService,
     RegService, 
     RoleGuardService,
-    SharedService
+    SharedService,
+    AdminSysService
   ],
   bootstrap: [AppComponent]
 })
