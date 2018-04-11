@@ -16,6 +16,12 @@ import {NewPropsConfigComponent} from './fanpage/admin-fan-profile/new-props-con
 import {UsedPropsConfigComponent} from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
 import {CreateNewPropComponent} from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
 import {ProfilComponent}  from './profil/profil.component';
+import { NameChangeComponent } from './profil/name-change/name-change.component';
+import { SurnameChangeComponent } from './profil/surname-change/surname-change.component';
+import { EmailChangeComponent } from './profil/email-change/email-change.component';
+import { CityChangeComponent } from './profil/city-change/city-change.component';
+import { NumberChangeComponent } from './profil/number-change/number-change.component';
+import { PasswordChangeComponent } from './profil/password-change/password-change.component';
 
 const routes: Routes = [
   // ivan
@@ -23,6 +29,12 @@ const routes: Routes = [
   //jovas
   {path: 'registracija', component: RegistracijaComponent},
   {path: 'profil', component: ProfilComponent},
+  {path: 'password-change', component: PasswordChangeComponent},
+  {path: 'name-change', component: NameChangeComponent},
+  {path: 'surname-change', component: SurnameChangeComponent},
+  {path: 'email-change', component: EmailChangeComponent},
+  {path: 'city-change', component: CityChangeComponent},
+  {path: 'number-change', component: NumberChangeComponent},
   // fun page routes
   {path: 'fanpage/used-prop/:id', component: UsedPropDetailComponent},
   {path: 'fanpage/used-prop/:id/bids', component: BidListComponent},

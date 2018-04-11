@@ -78,7 +78,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "api/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/accountActivation/{username}").permitAll()
+                .antMatchers("/changePassword").permitAll()
+                .antMatchers("/changeCity/{username}/{newCity}").permitAll()
+                .antMatchers("/changeName/{username}/{newName}").permitAll()
+                .antMatchers("/changeNumber/{username}/{newNumber}").permitAll()
+                .antMatchers("/changeSurname/{username}/{newSurname}").permitAll()
+                .antMatchers("/changeUsername/{username}/{newUsername}").permitAll()
+                .antMatchers("/changeEmail/{username}/{newEmail}").permitAll()
                 .antMatchers("/registration").permitAll()
+                .antMatchers("/getProfileInfo/{username}").permitAll()
                 .antMatchers("/allShows").permitAll()
                 .anyRequest().fullyAuthenticated();
 

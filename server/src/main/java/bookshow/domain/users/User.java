@@ -2,6 +2,7 @@ package bookshow.domain.users;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -45,6 +46,8 @@ public class User implements Serializable {
     
     @Column(nullable = false)
     private boolean activated;
+    
+    private ArrayList<String> friendList;
 
     public boolean isActivated() {
 		return activated;
@@ -133,5 +136,13 @@ public class User implements Serializable {
     public void setLastPasswordReset(Date lastPasswordReset) {
         this.lastPasswordReset = lastPasswordReset;
     }
+
+	public ArrayList<String> getFriendList() {
+		return friendList;
+	}
+
+	public void setFriendList(ArrayList<String> friendList) {
+		this.friendList = friendList;
+	}
 
 }

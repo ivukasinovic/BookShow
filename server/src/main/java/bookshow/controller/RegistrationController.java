@@ -1,9 +1,9 @@
 package bookshow.controller;
 
-import java.util.List;
+
+import java.util.ArrayList;
 
 import javax.mail.internet.MimeMessage;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import bookshow.domain.users.Role;
 import bookshow.domain.users.User;
 import bookshow.service.UserService;
@@ -50,6 +49,7 @@ public class RegistrationController {
 		newUser = user;
 		newUser.setActivated(false);
 		newUser.setRole(Role.USER);
+		newUser.setFriendList(new ArrayList<String>());
 		newUser.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPasswordHash()));	
 		sendMail(newUser.getUsername(),newUser.getEmail());
 		UserService.save(newUser);

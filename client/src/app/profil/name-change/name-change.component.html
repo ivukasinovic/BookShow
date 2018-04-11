@@ -1,0 +1,21 @@
+
+<div align = "center">
+  <h1>Promena broja</h1>
+</div>
+<br>
+<form name="nameChangeForm" #f="ngForm"  novalidate>
+<div align = "center"  style="padding-top: 25px;">
+  <table>
+    <tr>
+      <td align = "top"><h3>Unesi novo ime &nbsp;&nbsp; </h3></td>    
+      <td align><input type="text" class="form-control" name="newName"
+         [(ngModel)]="model.newName" #newName="ngModel" required/></td> 
+     </tr>
+     <tr >
+       <td align = "center" colspan="2">
+         <button class="btn btn-primary" (click)="changeName()" [disabled] = "!newName.valid">
+           Izmeni</button></td>
+     </tr>
+</table>
+</div>
+</form>

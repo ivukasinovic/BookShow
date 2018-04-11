@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-profil',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilComponent implements OnInit {
 
-  constructor() { }
+  username : String = localStorage.getItem('username')
+  korisnik : any = {}
+  
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    return this.http.get('api/getProfileInfo/'+this.username).subscribe(
+      (data:any) => {
+        this.korisnik = data;
+      }
+    )
   }
-
 }

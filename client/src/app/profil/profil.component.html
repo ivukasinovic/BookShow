@@ -1,3 +1,51 @@
-<p>
-  profil works!
-</p>
+<div align = 'center'>
+  <h2>Profil korisnika {{korisnik.username}}</h2>
+</div>
+
+<div style="float:left; width:70%;padding-left:20px;">
+  <table>
+  <tr>
+    <td><h3>Korisnicko ime : {{korisnik.username}} </h3></td>
+  </tr>
+
+  <tr>
+    <td><h3>Ime : {{korisnik.name}} </h3></td>
+    <td><a routerLink="/name-change"> [izmeni] </a></td>
+  </tr>
+
+  <tr>
+    <td><h3>Prezime : {{korisnik.surname}} </h3></td>
+    <td><a routerLink="/surname-change"> [izmeni] </a></td>
+  </tr>
+
+  <tr>
+    <td><h3>Email adresa : {{korisnik.email}} </h3></td>
+    <td><a routerLink="/email-change"> [izmeni] </a></td>
+  </tr>
+
+  <tr>
+      <td><h3>Grad : {{korisnik.city}} </h3></td>
+      <td><a routerLink="/city-change"> [izmeni] </a></td>
+    </tr>
+  
+    <tr>
+      <td><h3>Broj telefona : {{korisnik.number}} </h3></td>
+      <td><a routerLink="/number-change"> [izmeni] </a></td>
+    </tr>
+  </table>
+</div>
+
+<div style="float:left; width:30%;">
+  <ul *ngIf = "korisnik.friendList.length == 0">
+    <li>Prazna lista</li>
+    <li>Prazna lista</li>
+    <li>Prazna lista</li>
+    <li>Prazna lista</li>
+    <li>Prazna lista</li>
+  </ul>
+
+  <div>
+      <a routerLink="/password-change"> Izmeni lozinku </a>
+  </div>
+
+</div> 

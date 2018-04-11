@@ -1,0 +1,21 @@
+
+<div align = "center">
+  <h1>Promena grada</h1>
+</div>
+<br>
+<form name="cityChangeForm" #f="ngForm"  novalidate>
+<div align = "center"  style="padding-top: 25px;">
+  <table>
+    <tr>
+      <td align = "top"><h3>Unesi novi grad &nbsp;&nbsp; </h3></td>    
+      <td align><input type="text" class="form-control" name="newCity"
+         [(ngModel)]="model.newCity" #newCity="ngModel" required/></td> 
+     </tr>
+     <tr >
+       <td align = "center" colspan="2">
+         <button class="btn btn-primary" (click)="changeCity()" [disabled] = "!newCity.valid">
+           Izmeni</button></td>
+     </tr>
+</table>
+</div>
+</form>
