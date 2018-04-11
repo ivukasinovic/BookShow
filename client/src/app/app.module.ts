@@ -77,7 +77,7 @@ import {AdminSysService} from './admin-sys/admin-sys.service';
     EmailChangeComponent,
     CityChangeComponent,
     NumberChangeComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
     EditNewPropComponent,
     PersonalEditComponent,
     ChangePasswordComponent,
@@ -102,7 +102,7 @@ import {AdminSysService} from './admin-sys/admin-sys.service';
     },
     AuthGuardService,
     AuthService,
-    RegService, 
+    RegService,
     RoleGuardService,
     SharedService,
     AdminSysService
