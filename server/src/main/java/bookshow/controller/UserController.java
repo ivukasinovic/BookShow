@@ -1,5 +1,6 @@
 package bookshow.controller;
 
+import bookshow.domain.users.RatingType;
 import bookshow.domain.users.User;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +55,10 @@ public class UserController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createAdminFan(@RequestBody User User) {
-        User savedUser = UserService.save(User);
+    public ResponseEntity<User> createAdminFan(@RequestBody User user) {
+        user.setPoints(0L);
+        user.setType(RatingType.DEFAULT);
+        User savedUser = UserService.save(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
     @RequestMapping(

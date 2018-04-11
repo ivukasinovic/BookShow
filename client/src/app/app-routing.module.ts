@@ -19,6 +19,9 @@ import {CreateNewPropComponent} from './fanpage/admin-fan-profile/create-new-pro
 import {PersonalEditComponent} from './fanpage/admin-fan-profile/personal-edit/personal-edit.component';
 import {ChangePasswordComponent} from './fanpage/admin-fan-profile/change-password/change-password.component';
 import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-movie/edit-movie.component';
+import {AdminSysComponent} from './admin-sys/admin-sys.component';
+import {RegisterShowComponent} from './admin-sys/register-show/register-show.component';
+import {RegisterAdminComponent} from './admin-sys/register-admin/register-admin.component';
 
 const routes: Routes = [
   // ivan
@@ -53,6 +56,12 @@ const routes: Routes = [
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
   {path: 'adminfan/change-password', component: ChangePasswordComponent,
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
+  {path: 'adminsys', component: AdminSysComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSYS'}},
+  {path: 'adminsys/register-show', component: RegisterShowComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSYS'}},
+  {path: 'adminsys/register-admin', component: RegisterAdminComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSYS'}},
   // vlada
   // marko
   {path: 'shows-theatre', component: ShowsTheatreComponent},

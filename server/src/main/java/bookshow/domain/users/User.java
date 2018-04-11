@@ -43,6 +43,14 @@ public class User implements Serializable {
     @Column(nullable = true)
     private Date lastPasswordReset;
 
+    //broj poslatih requestova(sluzi za rejting korisnika)
+    @Column(nullable = false)
+    private Long points;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private RatingType type;
+
     public Long getId() {
         return id;
     }
@@ -123,4 +131,19 @@ public class User implements Serializable {
         this.lastPasswordReset = lastPasswordReset;
     }
 
+    public Long getPoints() {
+        return points;
+    }
+
+    public void setPoints(Long points) {
+        this.points = points;
+    }
+
+    public RatingType getType() {
+        return type;
+    }
+
+    public void setType(RatingType type) {
+        this.type = type;
+    }
 }

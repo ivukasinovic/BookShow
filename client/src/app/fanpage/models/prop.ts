@@ -39,8 +39,9 @@ export class AuthReq {
 export class Show {
   id: number;
   name: string;
-  ShowType: string;
-  adress: string;
+  type: string;
+  address: string;
+  description: string;
   rating: number;
 }
 
@@ -52,4 +53,7 @@ export class User {
   email: string;
   city: string;
   number: string;
+  role: string;
+  loggednum: number;
+  type: string;
 }
