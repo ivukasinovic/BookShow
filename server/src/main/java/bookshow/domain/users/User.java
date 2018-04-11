@@ -43,7 +43,9 @@ public class User implements Serializable {
 
     @Column(nullable = true)
     private Date lastPasswordReset;
-    
+   
+    @Column
+    private boolean firstTimeLogged;
     @Column(nullable = false)
     private boolean activated;
   
@@ -54,8 +56,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RatingType type;
-
-    
+  
     private ArrayList<String> friendList;
 
     public boolean isActivated() {
@@ -145,6 +146,14 @@ public class User implements Serializable {
     public void setLastPasswordReset(Date lastPasswordReset) {
         this.lastPasswordReset = lastPasswordReset;
     }
+
+	public boolean isFirstTimeLogged() {
+		return firstTimeLogged;
+	}
+
+	public void setFirstTimeLogged(boolean firstTimeLogged) {
+		this.firstTimeLogged = firstTimeLogged;
+	}
 
     public ArrayList<String> getFriendList() {
       return friendList;

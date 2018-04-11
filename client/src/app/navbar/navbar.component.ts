@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,9 @@ import {Router} from '@angular/router';
 export class NavbarComponent implements OnInit {
   logged = false;
   role: string;
+  closeResult: string;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService, private modalService: NgbModal) {
   }
 
   ngOnInit() {

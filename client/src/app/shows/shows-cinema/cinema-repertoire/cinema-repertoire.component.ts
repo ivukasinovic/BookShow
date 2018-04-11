@@ -1,20 +1,24 @@
 import { PlayMovieService } from './../../play-movie.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-cinema-repertoire',
   templateUrl: './cinema-repertoire.component.html',
   styleUrls: ['./../../shows.css'],
-  providers: [PlayMovieService]
+  providers: [PlayMovieService, NgbRatingConfig]
 })
 export class CinemaRepertoireComponent implements OnInit {
   private id;
   private repertoire=[];
   private role;
 
-  constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, private router: Router, config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly = true;
+   }
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
