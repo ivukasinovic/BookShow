@@ -1,3 +1,4 @@
+import { ReservationComponent } from './reservations/reservation/reservation.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {FanpageComponent} from './fanpage/fanpage.component';
@@ -62,6 +63,8 @@ const routes: Routes = [
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
   {path: 'shows-cinema/:id/edit-movie/:movieId', component: EditMovieComponent,
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
+  {path: 'reservation', component: ReservationComponent},
+  
 
 ];
 

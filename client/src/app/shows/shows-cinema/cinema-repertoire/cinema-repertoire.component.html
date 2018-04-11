@@ -25,7 +25,7 @@
           <td>{{playmovie.director}}</td>
           <td>{{playmovie.date}}</td>
           <td>{{playmovie.duration}}</td>
-          <td>{{playmovie.averageScore}}</td>
+          <td><ngb-rating [rate]="playmovie.averageScore"></ngb-rating></td>
           <td>{{playmovie.price}}</td>
           <td *ngIf ="role == 'ADMINSHOW'"><button (click)="edit(playmovie.id)"> Izmeni </button></td>
           <td *ngIf ="role == 'ADMINSHOW'"><button (click)="remove(playmovie.id, playmovie)"> Obrisi </button></td>
@@ -34,3 +34,4 @@
     </table>
   </div>
 </div>
+

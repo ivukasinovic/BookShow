@@ -33,6 +33,7 @@ import { EditNewPropComponent } from './fanpage/admin-fan-profile/edit-new-prop/
 import { PersonalEditComponent } from './fanpage/admin-fan-profile/personal-edit/personal-edit.component';
 import { ChangePasswordComponent } from './fanpage/admin-fan-profile/change-password/change-password.component';
 import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-movie/edit-movie.component';
+import { ReservationComponent } from './reservations/reservation/reservation.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-
     EditNewPropComponent,
     PersonalEditComponent,
     ChangePasswordComponent,
-    EditMovieComponent
+    EditMovieComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
