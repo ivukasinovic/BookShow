@@ -79,7 +79,9 @@ public class NewPropController {
     public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id,Principal principal) {
         NewProp newProp = newPropService.findOne(id);
         String username = principal.getName();
-        newProp.setUser(userService.findByUsername(username));
+        User user = userService.findByUsername(username);
+        user.setPoints(user.getPoints()+1L);
+        newProp.setUser(user);
         newPropService.save(newProp);
         return new ResponseEntity<>(newProp,HttpStatus.CREATED);
     }

@@ -1,9 +1,5 @@
 package bookshow.domain;
-
-import bookshow.domain.props.NewProp;
-
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by Ivan V. on 29-Jan-18
