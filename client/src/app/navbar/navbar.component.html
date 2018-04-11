@@ -10,19 +10,21 @@
       <li *ngIf="logged == true"><a routerLink="/fanpage">Fan Zona</a></li>
       <li *ngIf="logged == true"><a routerLink="/reservation">Rezervacije</a></li>
     </ul>
-    <div *ngIf="logged == true">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="">Profil</a></li>
+   
+      <ul *ngIf="logged == true" class="nav navbar-nav navbar-right">
+        <li><a routerLink="/profil">Profil</a></li>
         <li *ngIf="role === 'ADMINFAN'"><a routerLink="/adminfan">Admin Fan Profil</a></li>
+        <li *ngIf="role === 'ADMINSYS'"><a routerLink="/adminsys">Admin Sys Profil</a></li>
         <li>
           <button (click)="logout()" class="btn btn-link">Odjava</button>
         </li>
       </ul>
-    </div>
+    
 
 
     <ul *ngIf="logged == false" class="nav navbar-nav navbar-right">
       <li><a routerLink="/login">Prijava</a></li>
+      <li><a routerLink="/registracija">Registracija</a></li>
     </ul>
   </div>
 </nav>

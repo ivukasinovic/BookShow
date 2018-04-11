@@ -1,5 +1,6 @@
 package bookshow.security;
 
+import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +24,8 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
 
     @Autowired
     private TokenUtils tokenUtils;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -33,7 +36,6 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String authToken = httpRequest.getHeader(this.tokenHeader);
         String username = this.tokenUtils.getUsernameFromToken(authToken);
-
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
             if (this.tokenUtils.validateToken(authToken, userDetails)) {

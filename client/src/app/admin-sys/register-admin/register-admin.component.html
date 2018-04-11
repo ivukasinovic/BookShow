@@ -1,0 +1,46 @@
+<div class="col-md-2">
+  <h4>Meni</h4>
+  <a routerLink="/adminsys/register-show" class="btn btn-default btn-sm">Registracija Bioskopa/Pozorišta</a><br>
+  <a routerLink="/adminsys/register-admin" class="btn btn-info btn-sm">Registracija administratora</a><br>
+  <a routerLink="/adminfan/personal-edit" class="btn btn-default btn-sm">Promena licnih podataka</a><br>
+  <a routerLink="/adminfan/change-password" class="btn btn-default btn-sm">Promena lozinke</a>
+</div>
+<div class="col-md-7">
+  <h3>Registracija <b>Administratora</b></h3>
+  <br>
+  <form>
+    <div class="form-group">
+      <label>Korisničko ime</label>
+      <input [(ngModel)]="user.username" type="text" class="form-control" name="username"
+             placeholder="Unesite korisničko ime">
+      <label>Ime</label>
+      <input [(ngModel)]="user.name" type="text" class="form-control" name="name"
+             placeholder="Unesite ime">
+      <label>Prezime</label>
+      <input [(ngModel)]="user.surname" type="text" class="form-control" name="surname"
+             placeholder="Unesite prezime">
+      <label>Email</label>
+      <input [(ngModel)]="user.email" type="text" class="form-control" name="email"
+             placeholder="Unesite email">
+      <label>Grad</label>
+      <input [(ngModel)]="user.city" type="text" class="form-control" name="city"
+             placeholder="Unesite grad">
+      <label>Broj telefona</label>
+      <input [(ngModel)]="user.number" type="text" class="form-control" name="number"
+             placeholder="Unesite broj telefona">
+      <br>
+      <label>Tip</label>
+      <select name="typeSelect" class="custom-select" [(ngModel)]="user.role" >
+        <option value="ADMINSHOW">Administrator Pozorišta/Bioskopa</option>
+        <option value="ADMINFAN">Administrator Fanzone</option>
+        <option *ngIf="username =='adminsys'" value="ADMINSYS">Administrator Sistema</option>
+      </select>
+      {{user.username}}
+      <br>
+
+    </div>
+    <div class="form-check">
+      <button class="btn btn-warning" (click)="registerAdmin()">Registruj</button>
+    </div>
+  </form>
+</div>

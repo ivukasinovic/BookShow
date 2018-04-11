@@ -73,7 +73,7 @@ export class PropService {
   }
 
   getShows() {
-    return this.http.get('api/all-shows?type=all');
+    return this.http.get('api/shows?type=all');
   }
 
   getUser() {
