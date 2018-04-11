@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="col-md-3">
-    <!--<div class="btn btn-success">Novi Oglas </div>-->
     <button *ngIf="role=='ADMINFAN'" type="button" class="btn btn-info">Postavi rekvizit</button>
     <button type="button" class="btn btn-success" (click)="isCollapsed = !isCollapsed"
             [attr.aria-expanded]="!isCollapsed" aria-controls="collapseNewAdd">Postavi Oglas
     </button>
     <div class="btn btn-primary" (click)="getMyAds()">Aktivni Oglasi</div>
+    <div class="btn btn-primary" >Rezervisani Rekviziti</div>
     <br><br><br>
     <div id="collapsenpNewAdd" [ngbCollapse]="!isCollapsed">
       <div class="card">

@@ -3,8 +3,10 @@ package bookshow.controller;
 import bookshow.domain.Bid;
 import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
+import bookshow.domain.users.User;
 import bookshow.service.BidService;
 import bookshow.service.UsedPropService;
+import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +26,8 @@ public class UsedPropController {
     private UsedPropService usedPropService;
     @Autowired
     private BidService bidService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(
             value = "/all",
@@ -43,12 +47,21 @@ public class UsedPropController {
         List<UsedProp> usedProps = usedPropService.findByFanAdminIsNotNull();
         return new ResponseEntity<>(usedProps, HttpStatus.OK);
     }
-    //all not expired and approved
+    //all not expired and approved, and not finished
     @RequestMapping(
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UsedProp>> getUsedProps() {
-        List<UsedProp> usedProps = usedPropService.findByActiveUntilGreaterThanAndStatusEquals(new java.util.Date(), UsedPropStatus.APPROVED);
+        List<UsedProp> usedProps = usedPropService.findByActiveUntilGreaterThanAndStatusEqualsAndAcceptedBidNull(new java.util.Date(), UsedPropStatus.APPROVED);
+        return new ResponseEntity<>(usedProps, HttpStatus.OK);
+    }
+    //all exept finished
+    @RequestMapping(
+            value = "/not-finished",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<UsedProp>> getExceptFinished(){
+        List<UsedProp> usedProps = usedPropService.findByActiveUntilGreaterThanAndAcceptedBidNullAndStatusNot(new java.util.Date(), UsedPropStatus.DECLINED);
         return new ResponseEntity<>(usedProps, HttpStatus.OK);
     }
 
@@ -68,6 +81,23 @@ public class UsedPropController {
     public ResponseEntity<List<UsedProp>> getUsedPropsByUser(Principal principal){
         List<UsedProp> usedProps = usedPropService.findByUsername(principal.getName());
         return new ResponseEntity<>(usedProps,HttpStatus.OK);
+    }
+    @RequestMapping(
+            value = "/accept-decline/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UsedProp> getRefuseAccept(@PathVariable Long id, @RequestParam("type") String type, Principal principal){
+        HttpStatus status;
+        UsedProp usedProp = usedPropService.findOne(id);
+        if(usedProp == null){
+            status = HttpStatus.NOT_FOUND;
+        }
+        else{
+            User adminFan  = userService.findByUsername(principal.getName());
+            usedProp = usedPropService.approveDecline(usedProp, type, adminFan);
+            status = HttpStatus.OK;
+        }
+        return new ResponseEntity<>(usedProp, status);
     }
     @RequestMapping(
             value = "/{usedPropId}/accept-bid/{acceptedBidId}",

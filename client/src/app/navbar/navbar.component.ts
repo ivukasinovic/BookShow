@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-navbar',
@@ -12,14 +11,14 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class NavbarComponent implements OnInit {
   logged = false;
   role: string;
-  closeResult: string;
+  username: string;
 
-  constructor(private router: Router, private authService: AuthService, private modalService: NgbModal) {
+  constructor(private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
-    console.log('Rola je' + this.role);
+    this.username = localStorage.getItem('username');
     if (this.authService.isAuthenticated()) {
       this.logged = true;
     } else {

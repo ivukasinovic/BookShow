@@ -40,6 +40,10 @@ export class PropService {
     return this.http.get('/api/used-props');
   }
 
+  getUsedPropsNotFinished() {
+    return this.http.get('/api/used-props/not-finished');
+  }
+
   reservation(id: number) {
     return this.http.get('/api/new-props/reserve/' + id, {observe: 'response'});
   }
@@ -87,6 +91,18 @@ export class PropService {
 
   changePassword(oldPw: string, newPw: string) {
     return this.http.get('api/users/change-password?oldPw=' + oldPw + '&newPw=' + newPw, {observe: 'response'});
+  }
+
+  accept(usedPropId: number) {
+    return this.http.get('api/used-props/accept-decline/' + usedPropId + '?type=approve');
+  }
+
+  decline(usedPropId: number) {
+    return this.http.get('api/used-props/accept-decline/' + usedPropId + '?type=decline');
+  }
+
+  delete(usedPropId: number) {
+    return this.http.delete('api/used-props/' + usedPropId);
   }
 
 }

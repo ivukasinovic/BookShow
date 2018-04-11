@@ -15,7 +15,9 @@ public interface UsedPropRepository extends JpaRepository<UsedProp, Long> {
 
     List<UsedProp> findByFanAdminIsNotNull();
 
-    List<UsedProp> findByActiveUntilGreaterThanAndStatusEquals(java.util.Date date, UsedPropStatus usedPropStatus);
+    List<UsedProp> findByActiveUntilGreaterThanAndStatusEqualsAndAcceptedBidNull(java.util.Date date, UsedPropStatus usedPropStatus);
+
+    List<UsedProp> findByActiveUntilGreaterThanAndAcceptedBidNullAndStatusNot(java.util.Date date, UsedPropStatus usedPropStatus);
 
     List<UsedProp> findByUser(User user);
 

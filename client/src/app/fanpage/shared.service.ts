@@ -5,6 +5,7 @@ import {Bid} from './models/prop';
 export class SharedService {
   bids: Bid[];
   creatorUsedProp: boolean;
+  biddingFinished: boolean;
 
   constructor() {
   }

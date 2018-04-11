@@ -9,7 +9,7 @@ export class UsedProp {
   adminFan: number;
   registeredUser: number;
   image: string;
-  createdDate: string;
+  user: string;
 }
 
 export class NewProp {

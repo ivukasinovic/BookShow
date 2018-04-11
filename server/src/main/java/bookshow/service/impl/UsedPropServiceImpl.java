@@ -40,9 +40,15 @@ public class UsedPropServiceImpl implements UsedPropService {
     }
 
     @Override
-    public List<UsedProp> findByActiveUntilGreaterThanAndStatusEquals(Date date, UsedPropStatus usedPropStatus) {
-        return usedPropRepository.findByActiveUntilGreaterThanAndStatusEquals(date, usedPropStatus);
+    public List<UsedProp> findByActiveUntilGreaterThanAndStatusEqualsAndAcceptedBidNull(Date date, UsedPropStatus usedPropStatus) {
+        return usedPropRepository.findByActiveUntilGreaterThanAndStatusEqualsAndAcceptedBidNull(date, usedPropStatus);
     }
+
+    @Override
+    public List<UsedProp> findByActiveUntilGreaterThanAndAcceptedBidNullAndStatusNot(Date date, UsedPropStatus usedPropStatus) {
+        return usedPropRepository.findByActiveUntilGreaterThanAndAcceptedBidNullAndStatusNot(date, usedPropStatus);
+    }
+
 
     @Override
     public UsedProp save(UsedProp usedProp) {
@@ -68,4 +74,17 @@ public class UsedPropServiceImpl implements UsedPropService {
         usedProp.setBids(new ArrayList<Bid>());
         return save(usedProp);
     }
+
+    @Override
+    public UsedProp approveDecline(UsedProp usedProp, String type, User adminFan) {
+        if(type.equals("approve")){
+            usedProp.setStatus(UsedPropStatus.APPROVED);
+        }else if (type.equals("decline")) {
+            usedProp.setStatus(UsedPropStatus.DECLINED);
+        }
+        usedProp.setFanAdmin(adminFan);
+        UsedProp savedUsedProp = save(usedProp);
+        return savedUsedProp;
+    }
+
 }

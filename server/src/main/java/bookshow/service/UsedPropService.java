@@ -2,6 +2,7 @@ package bookshow.service;
 
 import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
+import bookshow.domain.users.User;
 
 import java.util.List;
 
@@ -15,7 +16,9 @@ public interface UsedPropService {
 
     List<UsedProp> findByFanAdminIsNotNull();
 
-    List<UsedProp> findByActiveUntilGreaterThanAndStatusEquals(java.util.Date date, UsedPropStatus usedPropStatus);
+    List<UsedProp> findByActiveUntilGreaterThanAndStatusEqualsAndAcceptedBidNull(java.util.Date date, UsedPropStatus usedPropStatus);
+
+    List<UsedProp> findByActiveUntilGreaterThanAndAcceptedBidNullAndStatusNot(java.util.Date date, UsedPropStatus usedPropStatus);
 
     UsedProp save(UsedProp usedProp);
 
@@ -24,4 +27,6 @@ public interface UsedPropService {
     List<UsedProp> findByUsername(String username);
 
     UsedProp createUsedProp(String username, UsedProp usedProp);
+
+    UsedProp approveDecline(UsedProp usedProp, String type, User adminFan);
 }

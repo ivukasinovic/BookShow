@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { AdminSysService } from './admin-sys.service';
+import {AdminSysService} from './admin-sys.service';
 
 describe('AdminSysService', () => {
   beforeEach(() => {

@@ -1,18 +1,24 @@
-<table class="table">
-  <thead>
-  <b><i>Ponude Korisnika</i></b>
-  <tr>
-    <th scope="col">Datum</th>
-    <th scope="col">Korisnik</th>
-    <th scope="col">Cena</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let bid of bids">
-    <td>{{bid.dateCreated | date}}</td>
-    <td>{{bid.user}}</td>
-    <th>{{bid.price}}</th>
-    <button class="btn btn-primary" *ngIf="creatorUsedProp" (click)="acceptBid(bid.id)">Prihvati ponudu</button>
-  </tr>
-  </tbody>
-</table>
+<div class="col-md-4 col-md-offset-4">
+  <h3 *ngIf="biddingFinished">Licitacija za ovaj oglas je zavrsena!</h3>
+  <table class="table">
+    <thead>
+    <b><i>Ponude Korisnika</i></b>
+    <tr>
+      <th scope="col">Datum</th>
+      <th scope="col">Korisnik</th>
+      <th scope="col">Cena</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let bid of bids">
+      <td>{{bid.dateCreated | date}}</td>
+      <td>{{bid.user}}</td>
+      <th>{{bid.price}}</th>
+      <button class="btn btn-primary btn-sm" *ngIf="creatorUsedProp && !biddingFinished" (click)="acceptBid(bid.id)">Prihvati ponudu
+      </button>
+    </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-info" (click)="back()">Nazad</button>
+</div>
+

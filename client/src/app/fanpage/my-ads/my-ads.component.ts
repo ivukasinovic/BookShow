@@ -37,7 +37,12 @@ export class MyAdsComponent implements OnInit {
       });
   }
 
-  getBids(usedPropId: number) {
+  getBids(usedPropId: number, usedPropBid: number) {
+    if (usedPropBid) {
+      this.sharedService.biddingFinished = true;
+    }else {
+      this.sharedService.biddingFinished = false;
+    }
     this.propService.getBids(usedPropId).subscribe(
       (data: Bid[]) => {
         if (data.length === 0) {

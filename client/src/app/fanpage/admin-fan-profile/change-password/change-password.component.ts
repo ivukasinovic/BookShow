@@ -25,13 +25,13 @@ export class ChangePasswordComponent implements OnInit {
     }
     this.propService.changePassword(this.oldPw, this.newPw1)
       .subscribe(response => {
-        if (response.status === 200) {
-          alert('Uspesno promenjena lozinka');
-          this.router.navigate(['/adminfan']);
-        }
-      },
+          if (response.status === 200) {
+            alert('Uspesno promenjena lozinka');
+            this.router.navigate(['/adminfan']);
+          }
+        },
         err => {
-        alert('Nije uspela promena lozinke, proverite polja');
+          alert('Nije uspela promena lozinke, proverite polja');
         });
   }
 

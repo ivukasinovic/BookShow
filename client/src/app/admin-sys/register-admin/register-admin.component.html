@@ -28,7 +28,7 @@
              placeholder="Unesite broj telefona">
       <br>
       <label>Tip</label>
-      <select name="typeSelect" class="custom-select" [(ngModel)]="user.role" >
+      <select name="typeSelect" class="custom-select" [(ngModel)]="user.role">
         <option value="ADMINSHOW">Administrator Pozorišta/Bioskopa</option>
         <option value="ADMINFAN">Administrator Fanzone</option>
         <option *ngIf="username =='adminsys'" value="ADMINSYS">Administrator Sistema</option>

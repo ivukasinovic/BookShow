@@ -14,12 +14,16 @@ export class UsedPropListComponent implements OnInit {
   bids: Bid[];
   selectedProp: number;
   price: number;
+  currentUser: string;
+  all: boolean;
 
   constructor(private propService: PropService) {
   }
 
   ngOnInit() {
+    this.all = false;
     this.getUsedProps();
+    this.currentUser = localStorage.getItem('username');
   }
 
   getUsedProps() {
@@ -33,6 +37,7 @@ export class UsedPropListComponent implements OnInit {
   }
 
   getBids(usedPropId: number) {
+    this.all = true;
     this.propService.getBids(usedPropId).subscribe(
       (data: Bid[]) => {
         this.bids = data;
@@ -53,6 +58,19 @@ export class UsedPropListComponent implements OnInit {
     this.propService.createBid(this.selectedProp, this.price);
     this.isCollapsed = !this.isCollapsed;
     this.getBids(this.selectedProp);
+  }
+
+  delete(usedPropId: number) {
+    this.propService.deleteUsedProp(usedPropId)
+      .subscribe(response => {
+          if (response.status === 204) {
+            alert('Uspesno obrisan oglas');
+            window.location.reload();
+          }
+        },
+        error1 => {
+          alert('Nije uspelo brisanje oglasa');
+        });
   }
 
 }

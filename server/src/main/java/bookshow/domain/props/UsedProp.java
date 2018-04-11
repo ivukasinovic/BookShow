@@ -35,7 +35,7 @@ public class UsedProp extends Prop implements Serializable {
     @ManyToOne(optional = true)
     private User fanAdmin;
 
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "username")
     @JsonIdentityReference(alwaysAsId = true)
     @JoinColumn(name = "user_fk")
     @ManyToOne(optional = false)

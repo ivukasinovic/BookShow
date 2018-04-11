@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UsedProp} from '../models/prop';
 import {PropService} from '../prop.service';
 
-const now = new Date();
-
 @Component({
   selector: 'app-create-ad',
   templateUrl: './create-ad.component.html',
@@ -14,6 +12,7 @@ export class CreateAdComponent implements OnInit {
 
   constructor(private propService: PropService) {
     this.usedProp = new UsedProp();
+
   }
 
   ngOnInit() {
@@ -24,7 +23,8 @@ export class CreateAdComponent implements OnInit {
       .subscribe(
         resp => {
           if ((resp.status === 201) || (resp.status === 200)) {
-            alert('Uspesno ste postavili oglas, ceka se potvrta administratora fan zone.');
+            alert('Uspesno ste postavili oglas, ceka se potvrda administratora fan zone.');
+            window.location.reload();
           }
         },
         err => {

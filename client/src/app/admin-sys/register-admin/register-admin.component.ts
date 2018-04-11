@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../fanpage/models/prop';
 import {AdminSysService} from '../admin-sys.service';
 
@@ -10,6 +10,7 @@ import {AdminSysService} from '../admin-sys.service';
 export class RegisterAdminComponent implements OnInit {
   user: User;
   username: string;
+
   constructor(private adminSysService: AdminSysService) {
     this.user = new User();
   }
@@ -17,13 +18,14 @@ export class RegisterAdminComponent implements OnInit {
   ngOnInit() {
     this.username = localStorage.getItem('username');
   }
+
   registerAdmin() {
     this.adminSysService.registerAdmin(this.user)
       .subscribe((data: User) => {
-        alert('Uspesno registrovan administrator!');
-      },
+          alert('Uspesno registrovan administrator!');
+        },
         error1 => {
-        alert('Nije uspela registracija administratora');
+          alert('Nije uspela registracija administratora');
         });
   }
 
