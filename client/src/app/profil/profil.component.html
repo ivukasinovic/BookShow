@@ -1,5 +1,5 @@
 <div align = 'center'>
-  <h2>Profil korisnika {{korisnik.username}}</h2>
+  <h2>Profil korisnika <b>{{korisnik.username}} </b> </h2>
 </div>
 
 <div style="float:left; width:70%;padding-left:20px;">
@@ -32,6 +32,12 @@
       <td><h3>Broj telefona : {{korisnik.number}} </h3></td>
       <td><a routerLink="/number-change"> [izmeni] </a></td>
     </tr>
+
+    <tr>
+      <td colspan = "2" align = "center">
+        <a routerLink="/password-change"> <h3>Izmeni lozinku</h3> </a>
+      </td>
+    </tr>
   </table>
 </div>
 
@@ -43,9 +49,5 @@
     <li>Prazna lista</li>
     <li>Prazna lista</li>
   </ul>
-
-  <div>
-      <a routerLink="/password-change"> Izmeni lozinku </a>
-  </div>
-
 </div> 
+

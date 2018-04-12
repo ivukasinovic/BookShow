@@ -3,6 +3,13 @@ package bookshow.model;
 public class ChangingPasswordDTO {
 	private String username;
 	private String newPassword;
+	private String oldPassword;
+	public String getOldPassword() {
+		return oldPassword;
+	}
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -18,10 +25,11 @@ public class ChangingPasswordDTO {
 	
 	public ChangingPasswordDTO(){}
 	
-	public ChangingPasswordDTO(String username, String newPassword) {
+	public ChangingPasswordDTO(String username, String newPassword, String oldPassword) {
 		super();
 		this.username = username;
 		this.newPassword = newPassword;
+		this.oldPassword = oldPassword;
 	}
 	
 	

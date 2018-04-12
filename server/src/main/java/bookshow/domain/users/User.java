@@ -58,8 +58,18 @@ public class User implements Serializable {
     private RatingType type;
   
     private ArrayList<String> friendList;
+    
+    private ArrayList<String> istorijaPoseta;
 
-    public boolean isActivated() {
+    public ArrayList<String> getIstorijaPoseta() {
+		return istorijaPoseta;
+	}
+
+	public void setIstorijaPoseta(ArrayList<String> istorijaPoseta) {
+		this.istorijaPoseta = istorijaPoseta;
+	}
+
+	public boolean isActivated() {
 		  return activated;
 	  }
 

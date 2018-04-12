@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">BookShow</a>
+      <a class="navbar-brand" routerLink="/home-page">BookShow</a>
     </div>
     <ul class="nav navbar-nav">
       <!--<li class="active"><a href="#">Home</a></li>-->
@@ -9,6 +9,7 @@
       <li><a role="button" (click)="navigateTheatre()">Pozorista</a></li>
       <li *ngIf="logged == true"><a routerLink="/fanpage">Fan Zona</a></li>
       <li *ngIf="logged == true"><a routerLink="/reservation">Rezervacije</a></li>
+      <li *ngIf="logged == true"><a routerLink="/friends">Prijatelji</a></li>
     </ul>
       <ul *ngIf="logged == true" class="nav navbar-nav navbar-right">
         <li><a routerLink="/profil">Profil</a></li>

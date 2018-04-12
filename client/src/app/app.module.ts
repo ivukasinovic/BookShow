@@ -46,6 +46,11 @@ import { AdminSysComponent } from './admin-sys/admin-sys.component';
 import { RegisterShowComponent } from './admin-sys/register-show/register-show.component';
 import { RegisterAdminComponent } from './admin-sys/register-admin/register-admin.component';
 import {AdminSysService} from './admin-sys/admin-sys.service';
+import { ProfileOtherUserComponent } from './profile-other-user/profile-other-user.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { FriendsComponent } from './friends/friends.component';
+import { SearchUsersComponent } from './friends/search-users/search-users.component';
+import{ FriendsService} from './friends/friends.service';
 
 
 @NgModule({
@@ -83,7 +88,11 @@ import {AdminSysService} from './admin-sys/admin-sys.service';
     ReservationComponent,
     AdminSysComponent,
     RegisterShowComponent,
-    RegisterAdminComponent
+    RegisterAdminComponent,
+    ProfileOtherUserComponent,
+    HomePageComponent,
+    FriendsComponent,
+    SearchUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +110,7 @@ import {AdminSysService} from './admin-sys/admin-sys.service';
     AuthGuardService,
     AuthService,
     RegService,
+    FriendsService,
     RoleGuardService,
     SharedService,
     AdminSysService

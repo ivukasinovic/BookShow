@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import bookshow.domain.users.RatingType;
 import bookshow.domain.users.Role;
 import bookshow.domain.users.User;
 import bookshow.service.UserService;
@@ -50,7 +52,10 @@ public class RegistrationController {
 		newUser.setActivated(false);
 		newUser.setRole(Role.USER);
 		newUser.setFriendList(new ArrayList<String>());
+		newUser.setIstorijaPoseta(new ArrayList<String>());
 		newUser.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPasswordHash()));	
+		newUser.setPoints((long) 0);
+		newUser.setType(RatingType.DEFAULT);
 		sendMail(newUser.getUsername(),newUser.getEmail());
 		UserService.save(newUser);
 
