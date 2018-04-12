@@ -46,6 +46,7 @@ import { AdminSysComponent } from './admin-sys/admin-sys.component';
 import { RegisterShowComponent } from './admin-sys/register-show/register-show.component';
 import { RegisterAdminComponent } from './admin-sys/register-admin/register-admin.component';
 import {AdminSysService} from './admin-sys/admin-sys.service';
+import { AgmCoreModule } from '@agm/core'
 
 
 @NgModule({
@@ -90,7 +91,10 @@ import {AdminSysService} from './admin-sys/admin-sys.service';
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAKeYzU27mrRwMoOB9lGpI9kprtBu1chBA'
+    })
   ],
   providers: [
     PropService, {

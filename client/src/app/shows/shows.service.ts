@@ -13,4 +13,8 @@ export class ShowsService {
   getShowById(id) {
     return this.http.get('/api/shows/' + id);
   }
+
+  getLocation(term: string) {
+    return this.http.get('http://maps.google.com/maps/api/geocode/json?address=' + term + 'CA&sensor=false');
+ }
 }
