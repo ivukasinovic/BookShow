@@ -1,6 +1,7 @@
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { ShowsService } from '../shows.service';
-import {Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,15 +12,20 @@ import {Router} from '@angular/router';
 })
 export class ShowsCinemaComponent implements OnInit {
   private shows = [];
+  private type;
 
-  constructor(private showsService: ShowsService, private router: Router) { }
+  constructor(private showsService: ShowsService, private router: Router, config: NgbRatingConfig, private route: ActivatedRoute) {
+    config.max = 5;
+    config.readonly = true;
+   }
 
   ngOnInit() {
-    this.showsService.getAllCinemaShows().subscribe((data: any) => this.shows = data); 
+    this.route.params.subscribe(params => this.type = params['type']);
+    this.showsService.getAllShowsByType(this.type).subscribe((data: any) => this.shows = data); 
   }
 
   showRepertoire(id){
-    this.router.navigate(['/shows-cinema/', id]);
+    this.router.navigate([this.router.url + '/' + id]);
   }
 
 }

@@ -1,18 +1,18 @@
 <table>
-  <tr>
-      <th>Ime</th>
-      <th>Adresa</th>
-      <th>Opis</th>
-      <th>Prosecna ocena</th>
-      <th>Repertoar</th>
-  </tr>
-
-    <tr *ngFor="let show of shows">
-      <td>{{show.name}}</td>
-      <td>{{show.address}}</td>
-      <td>{{show.description}}</td>
-      <td>{{show.rating}}</td>
-      <td><button (click)="showRepertoire(show.id)"> Pregledaj </button></td>
+    <tr>
+        <th>Ime</th>
+        <th>Adresa</th>
+        <th>Opis</th>
+        <th>Prosecna ocena</th>
+        <th>Repertoar</th>
     </tr>
-
-</table>
+  
+      <tr *ngFor="let show of shows">
+        <td>{{show.name}}</td>
+        <td>{{show.address}}</td>
+        <td>{{show.description}}</td>
+        <td><ngb-rating [rate]="show.rating"></ngb-rating></td>
+        <td><button (click)="showRepertoire(show.id)"> Pregledaj </button></td>
+      </tr>
+  
+  </table>

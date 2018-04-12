@@ -6,16 +6,11 @@ export class ShowsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTheatreShows() {
-    return this.http.get('api/shows?type=theatre');
-
-  }
-
-  getAllCinemaShows(){
-    return this.http.get('api/shows?type=cinema');
+  getAllShowsByType(type){
+    return this.http.get('api/shows?type='+type);
   }
 
   getShowById(id) {
-    return this.http.get('/api/shows' + id);
+    return this.http.get('/api/shows/' + id);
   }
 }
