@@ -87,8 +87,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/changeEmail/{username}/{newEmail}").permitAll()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/getProfileInfo/{username}").permitAll()
-                .antMatchers("/all-shows").permitAll()
-                .antMatchers("/getShowById/{id}").permitAll()
+                .antMatchers("/shows").permitAll()
+                .antMatchers("/shows/{id}").permitAll()
                 .antMatchers("/get-show-repertoire/{id}").permitAll()
                 .anyRequest().fullyAuthenticated();
 

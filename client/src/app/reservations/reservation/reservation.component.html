@@ -1,3 +1,14 @@
-<p>
-  reservation works!
-</p>
+
+<div align="center">
+  <label>Naziv: </label>
+  <select [(ngModel)] = "selectedShowId" (ngModelChange)="showSelected($event)">
+    <option  *ngFor ="let show of shows" value="{{show.id}}">{{show.name}}</option>
+  </select>
+
+  <div *ngIf = "show!=null">
+    <label>Projekcija/predstava: </label>
+    <select [(ngModel)] = "selectedPlayMovieId" (ngModelChange)="playMovieSelected($event)">
+      <option  *ngFor ="let playMovie of repertoire" value="{{playMovie.id}}">{{playMovie.name}}</option>
+    </select>
+  </div>
+</div>

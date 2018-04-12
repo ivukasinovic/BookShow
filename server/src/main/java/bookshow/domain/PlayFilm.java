@@ -44,7 +44,7 @@ public class PlayFilm {
 	private String duration;
 	
 	@Column
-	private String imageAddress;
+	private String imageUrl;
 	
 	@Column
 	private double averageScore;
@@ -91,12 +91,12 @@ public class PlayFilm {
 		this.director = director;
 	}
 
-	public String getImageAddress() {
-		return imageAddress;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setImageAddress(String imageAddress) {
-		this.imageAddress = imageAddress;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public double getAverageScore() {

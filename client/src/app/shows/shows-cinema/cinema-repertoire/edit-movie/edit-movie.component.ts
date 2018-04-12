@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditMovieComponent implements OnInit {
 
+  private type;
   private movieId;
   private showId;
   private movieModel: any = {};
@@ -18,13 +19,14 @@ export class EditMovieComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => this.movieId = params['movieId']);
     this.route.params.subscribe(params => this.showId = params['id']);
+    this.route.params.subscribe(params => this.type = params['type']);
     this.playMovieService.getPlayMovieById(this.movieId).subscribe((data: any) => this.movieModel = data);
   }
 
   sendData(){
     this.movieModel.id = this.movieId;
     this.playMovieService.updatePlayMovie(this.movieModel).subscribe(data => {
-      this.router.navigate(['/shows-cinema/', this.showId]);
+      this.router.navigate(['/shows/' + this.type + '/' +  this.showId]);
     });
   }
 

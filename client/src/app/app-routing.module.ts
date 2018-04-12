@@ -9,7 +9,6 @@ import {RegistracijaComponent}  from './registracija/registracija.component';
 import {AuthGuardService} from './auth-guard.service';
 import {AdminFanProfileComponent} from './fanpage/admin-fan-profile/admin-fan-profile.component';
 import {RoleGuardService} from './role-guard.service';
-import { ShowsTheatreComponent } from './shows/shows-theatre/shows-theatre.component';
 import { ShowsCinemaComponent } from './shows/shows-cinema/shows-cinema.component';
 import { CinemaRepertoireComponent } from './shows/shows-cinema/cinema-repertoire/cinema-repertoire.component';
 import { NewMovieComponent } from './shows/shows-cinema/cinema-repertoire/new-movie/new-movie.component';
@@ -82,12 +81,11 @@ const routes: Routes = [
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSYS'}},
   // vlada
   // marko
-  {path: 'shows-theatre', component: ShowsTheatreComponent},
-  {path: 'shows-cinema', component: ShowsCinemaComponent},
-  {path: 'shows-cinema/:id', component: CinemaRepertoireComponent},
-  {path: 'shows-cinema/:id/new-movie', component: NewMovieComponent,
+  {path: 'shows/:type', component: ShowsCinemaComponent},
+  {path: 'shows/:type/:id', component: CinemaRepertoireComponent},
+  {path: 'shows/:type/:id/new-movie', component: NewMovieComponent,
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
-  {path: 'shows-cinema/:id/edit-movie/:movieId', component: EditMovieComponent,
+  {path: 'shows/:type/:id/edit-movie/:movieId', component: EditMovieComponent,
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
   {path: 'reservation', component: ReservationComponent},
   

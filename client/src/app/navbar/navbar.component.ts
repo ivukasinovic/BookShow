@@ -34,4 +34,14 @@ export class NavbarComponent implements OnInit {
     window.location.reload();
   }
 
+  navigateTheatre(){
+    this.router.navigateByUrl('/login', {skipLocationChange: true}).then(()=>
+    this.router.navigate(['shows/theatre']));
+  }
+
+  navigateCinema(){
+    this.router.navigateByUrl('/login', {skipLocationChange: true}).then(()=>
+    this.router.navigate(['shows/cinema']));
+  }
+
 }
