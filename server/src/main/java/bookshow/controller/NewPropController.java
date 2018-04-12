@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -64,7 +66,11 @@ public class NewPropController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<NewProp> createNewProp(Principal principal, @RequestBody NewProp newProp, @PathVariable("id") Long id) {
+    public ResponseEntity<?> createNewProp(Principal principal, @Validated @RequestBody NewProp newProp, @PathVariable("id") Long id, Errors errors) {
+
+        if(errors.hasErrors()){
+            return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+        }
         Show show = showService.findOne(id);
         User User = userService.findByUsername(principal.getName());
         newProp.setShow(show);

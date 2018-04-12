@@ -40,12 +40,12 @@ export class CreateNewPropComponent implements OnInit {
   createProp() {
     this.propService.createNewProp(this.newProp, this.selectedShowId)
       .subscribe(response => {
-        if (response.status === 201) {
           alert('Uspesno kreiran rekvizit!');
-        } else {
-          alert('Doslo je do greske');
-        }
-      });
+          this.router.navigate(['adminfan/new-props-config']);
+      },
+        error1 => {
+        alert('Doslo je do greske, proverite sva polja!');
+        });
   }
 
   getNewProp() {
