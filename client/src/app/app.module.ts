@@ -46,7 +46,12 @@ import { AdminSysComponent } from './admin-sys/admin-sys.component';
 import { RegisterShowComponent } from './admin-sys/register-show/register-show.component';
 import { RegisterAdminComponent } from './admin-sys/register-admin/register-admin.component';
 import {AdminSysService} from './admin-sys/admin-sys.service';
-import { AgmCoreModule } from '@agm/core'
+import { ProfileOtherUserComponent } from './profile-other-user/profile-other-user.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { FriendsComponent } from './friends/friends.component';
+import { SearchUsersComponent } from './friends/search-users/search-users.component';
+import{ FriendsService} from './friends/friends.service';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -84,7 +89,11 @@ import { AgmCoreModule } from '@agm/core'
     ReservationComponent,
     AdminSysComponent,
     RegisterShowComponent,
-    RegisterAdminComponent
+    RegisterAdminComponent,
+    ProfileOtherUserComponent,
+    HomePageComponent,
+    FriendsComponent,
+    SearchUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -105,6 +114,7 @@ import { AgmCoreModule } from '@agm/core'
     AuthGuardService,
     AuthService,
     RegService,
+    FriendsService,
     RoleGuardService,
     SharedService,
     AdminSysService

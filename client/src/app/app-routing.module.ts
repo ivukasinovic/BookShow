@@ -30,12 +30,17 @@ import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-
 import {AdminSysComponent} from './admin-sys/admin-sys.component';
 import {RegisterShowComponent} from './admin-sys/register-show/register-show.component';
 import {RegisterAdminComponent} from './admin-sys/register-admin/register-admin.component';
+import {HomePageComponent} from './home-page/home-page.component';
+import {FriendsComponent} from './friends/friends.component';
+import {SearchUsersComponent} from './friends/search-users/search-users.component';
 
 const routes: Routes = [
   // ivan
   {path: 'login', component: LoginComponent},
   //jovas
   {path: 'registracija', component: RegistracijaComponent},
+  {path: 'search-users', component: SearchUsersComponent},
+  {path: 'friends', component: FriendsComponent},
   {path: 'profil', component: ProfilComponent},
   {path: 'password-change', component: PasswordChangeComponent},
   {path: 'name-change', component: NameChangeComponent},
@@ -43,6 +48,7 @@ const routes: Routes = [
   {path: 'email-change', component: EmailChangeComponent},
   {path: 'city-change', component: CityChangeComponent},
   {path: 'number-change', component: NumberChangeComponent},
+  {path: 'home-page', component: HomePageComponent},
   // fun page routes
   {path: 'fanpage/used-prop/:id', component: UsedPropDetailComponent},
   {path: 'fanpage/used-prop/:id/bids', component: BidListComponent},

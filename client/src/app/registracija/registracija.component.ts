@@ -21,8 +21,8 @@ export class RegistracijaComponent implements OnInit {
   constructor(private router: Router, private registrationService: RegService) { }
 
   ngOnInit() {
-    console.log("usao je u registraciju")
-    console.log( this.router.url);
+   /* console.log("usao je u registraciju")
+    console.log( this.router.url);*/
   }
 
  registration(username : string, password : string ,passwordRepeat : string, name : string,

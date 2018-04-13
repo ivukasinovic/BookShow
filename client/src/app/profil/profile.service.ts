@@ -7,6 +7,7 @@ import { NumberChangeComponent } from './number-change/number-change.component';
 import { PasswordChangeComponent } from './password-change/password-change.component';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import { Response } from '@angular/http';
 
 @Injectable()
 export class ProfileService {
@@ -85,17 +86,12 @@ export class ProfileService {
     }
   }
 
-  changePassword(newPassword : String) {
-    alert(newPassword + " " + localStorage.getItem('username'))
+  changePassword(newPassword : String, oldPassword : String) {
     return this.http.post("/api/changePassword",
-    {newPassword : newPassword ,username : localStorage.getItem('username')}).subscribe(
-      (data)=>{
-        this.router.navigate(['/profil']);
-       alert("Lozinka je uspesno promenjena");
-      }
-    ),error=>{
-      alert("Error");
-    }
+    {newPassword : newPassword ,username : 
+      localStorage.getItem('username'),oldPassword:oldPassword}, {observe: 'response'})
+    
+    
   }
 
 
