@@ -51,6 +51,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { FriendsComponent } from './friends/friends.component';
 import { SearchUsersComponent } from './friends/search-users/search-users.component';
 import{ FriendsService} from './friends/friends.service';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -99,7 +100,10 @@ import{ FriendsService} from './friends/friends.service';
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAKeYzU27mrRwMoOB9lGpI9kprtBu1chBA'
+    })
   ],
   providers: [
     PropService, {

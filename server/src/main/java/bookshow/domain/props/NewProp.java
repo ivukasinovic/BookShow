@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import java.io.Serializable;
 
 /**
@@ -18,8 +20,10 @@ import java.io.Serializable;
 @Entity
 public class NewProp extends Prop implements Serializable {
 
+    @DecimalMax(value="1000000", inclusive=false)
+    @DecimalMin(value ="1")
     @Column(nullable = false)
-    private float price;
+    private double price;
 
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "username")
     @JsonIdentityReference(alwaysAsId = true)
@@ -42,11 +46,11 @@ public class NewProp extends Prop implements Serializable {
     public NewProp() {
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

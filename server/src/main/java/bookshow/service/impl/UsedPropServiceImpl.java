@@ -5,10 +5,13 @@ import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
 import bookshow.domain.users.User;
 import bookshow.repository.UsedPropRepository;
+import bookshow.service.BidService;
 import bookshow.service.UsedPropService;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +26,8 @@ public class UsedPropServiceImpl implements UsedPropService {
     private UsedPropRepository usedPropRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private BidService bidService;
 
     @Override
     public List<UsedProp> findAll() {
@@ -75,8 +80,10 @@ public class UsedPropServiceImpl implements UsedPropService {
         return save(usedProp);
     }
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     @Override
-    public UsedProp approveDecline(UsedProp usedProp, String type, User adminFan) {
+    public UsedProp approveDecline(Long usedPropId, String type, User adminFan) throws Exception {
+        UsedProp usedProp = usedPropRepository.findOne(usedPropId);
         if(type.equals("approve")){
             usedProp.setStatus(UsedPropStatus.APPROVED);
         }else if (type.equals("decline")) {
@@ -85,6 +92,19 @@ public class UsedPropServiceImpl implements UsedPropService {
         usedProp.setFanAdmin(adminFan);
         UsedProp savedUsedProp = save(usedProp);
         return savedUsedProp;
+    }
+
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    @Override
+    public boolean acceptBid(Long usedPropId, Long acceptedBidId) {
+        UsedProp usedProp = findOne(usedPropId);
+        Bid bid = bidService.findOne(acceptedBidId);
+        usedProp.setAcceptedBid(bid.getId());
+        usedProp = save(usedProp);
+        if(usedProp == null){
+            return false;
+        }
+        return  true;
     }
 
 }

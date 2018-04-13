@@ -4,15 +4,16 @@ import bookshow.domain.Bid;
 import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
 import bookshow.domain.users.User;
-import bookshow.service.BidService;
 import bookshow.service.UsedPropService;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -24,8 +25,6 @@ import java.util.List;
 public class UsedPropController {
     @Autowired
     private UsedPropService usedPropService;
-    @Autowired
-    private BidService bidService;
     @Autowired
     private UserService userService;
 
@@ -87,33 +86,36 @@ public class UsedPropController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsedProp> getRefuseAccept(@PathVariable Long id, @RequestParam("type") String type, Principal principal){
-        HttpStatus status;
-        UsedProp usedProp = usedPropService.findOne(id);
-        if(usedProp == null){
-            status = HttpStatus.NOT_FOUND;
+
+        User adminFan  = userService.findByUsername(principal.getName());
+        UsedProp usedProp = null;
+        try {
+            usedProp = usedPropService.approveDecline(id, type, adminFan);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        else{
-            User adminFan  = userService.findByUsername(principal.getName());
-            usedProp = usedPropService.approveDecline(usedProp, type, adminFan);
-            status = HttpStatus.OK;
-        }
-        return new ResponseEntity<>(usedProp, status);
+        return new ResponseEntity<>(usedProp, HttpStatus.OK);
+
     }
     @RequestMapping(
             value = "/{usedPropId}/accept-bid/{acceptedBidId}",
             method = RequestMethod.GET)
     public ResponseEntity<Bid> acceptBid(@PathVariable Long usedPropId, @PathVariable Long acceptedBidId){
-        UsedProp usedProp = usedPropService.findOne(usedPropId);
-        Bid bid = bidService.findOne(acceptedBidId);
-        usedProp.setAcceptedBid(bid.getId());
-        usedPropService.save(usedProp);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+       boolean success = usedPropService.acceptBid(usedPropId,acceptedBidId);
+       if(success){
+           return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+       }
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
     }
     @RequestMapping(
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UsedProp> createPropUsed(Principal principal, @RequestBody UsedProp usedProp) {
+    public ResponseEntity<?> createPropUsed(Principal principal, @Valid @RequestBody UsedProp usedProp, Errors errors) {
+        if(errors.hasErrors()){
+            return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
+        }
         usedProp = usedPropService.createUsedProp(principal.getName(),usedProp);
         return new ResponseEntity<>(usedProp, HttpStatus.CREATED);
     }
