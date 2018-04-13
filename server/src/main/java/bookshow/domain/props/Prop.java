@@ -1,8 +1,10 @@
 package bookshow.domain.props;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
@@ -22,9 +24,13 @@ public abstract class Prop {
     @Column(nullable = false)
     private Long id;
 
+    @NotEmpty
+    @Size(min=3, max=30)
     @Column(nullable = false)
     private String title;
 
+    @Size(min=3, max=120)
+    @NotEmpty
     @Column
     private String description;
 

@@ -20,9 +20,8 @@
       <label>Slika</label>
       <input [(ngModel)]="newProp.image" type="text" class="form-control" name="image"
              placeholder="Unesite adresu slike (opciono)">
-      <label>Datum i vreme</label>
-      <input [(ngModel)]="newProp.price" type="text" class="form-control" name="price" value="20180129023240"
-             placeholder="Unesite cenu rekvizita">
+      <label>Cena</label>
+      <input [(ngModel)]="newProp.price" type="text" class="form-control" name="price" placeholder="Unesite cenu rekvizita">
     </div>
     <div class="form-check">
       <button *ngIf="!newPropId" class="btn btn-warning" (click)="createProp()">Dodaj Rekvizit</button>
