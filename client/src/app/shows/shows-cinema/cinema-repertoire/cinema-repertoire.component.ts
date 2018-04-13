@@ -3,25 +3,27 @@ import { PlayMovieService } from './../../play-movie.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-import {HttpClient} from '@angular/common/http';
+import { GoogleService } from '../../google.service';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-cinema-repertoire',
   templateUrl: './cinema-repertoire.component.html',
   styleUrls: ['./../../shows.css'],
-  providers: [PlayMovieService, NgbRatingConfig, ShowsService]
+  providers: [PlayMovieService, NgbRatingConfig, ShowsService, GoogleService]
 })
 export class CinemaRepertoireComponent implements OnInit {
   private id;
   private repertoire=[];
   private role;
   private show;
-  lat: number = 44.787197;
-  lng: number = 20.457273;
+  private lat;
+  private lng;
+  private zoom = 17;
 
   constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, 
             private router: Router, config: NgbRatingConfig, private showsService: ShowsService,
-          private http : HttpClient) {
+            private googleService: GoogleService, private mapsAPILoader: MapsAPILoader) {
     config.max = 5;
     config.readonly = true;
    }
@@ -30,11 +32,18 @@ export class CinemaRepertoireComponent implements OnInit {
     this.role = localStorage.getItem('role');
     this.route.params.subscribe(params => this.id = params['id']);
     this.showsService.getShowById(this.id).subscribe(data => 
-      {this.show = data
-        return this.http.get('/api/addToHistory/'+'/'+localStorage.getItem('username')+ '/'+ this.show.name).
-        subscribe()
+      {
+        this.show = data;
+        this.mapsAPILoader.load().then(() => { 
+          this.googleService.getGeoLocation(this.show.address).subscribe(data => {
+              this.lat = data.lat();
+              this.lng = data.lng();
+          });
+        });
       });
     this.playMovieService.getShowsRepertoire(this.id).subscribe((data: any) => this.repertoire = data);
+
+    
     
   }
 
