@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClient} from '@angular/common/http';
 
-
 @Component({
   selector: 'app-cinema-repertoire',
   templateUrl: './cinema-repertoire.component.html',
@@ -17,6 +16,8 @@ export class CinemaRepertoireComponent implements OnInit {
   private repertoire=[];
   private role;
   private show;
+  lat: number = 44.787197;
+  lng: number = 20.457273;
 
   constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, 
             private router: Router, config: NgbRatingConfig, private showsService: ShowsService,
@@ -42,10 +43,8 @@ export class CinemaRepertoireComponent implements OnInit {
   }
 
   remove(idMovie, objectForRemoval){
-
     var i = this.repertoire.indexOf(objectForRemoval);
     this.repertoire.splice(i, 1);
-
     this.playMovieService.removePlayMovie(idMovie).subscribe(data => null);
   }
 

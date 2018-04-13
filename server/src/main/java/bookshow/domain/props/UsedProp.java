@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 @Entity
 public class UsedProp extends Prop implements Serializable {
 
+    @NotNull
     @Column(name = "active_until", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date activeUntil;
