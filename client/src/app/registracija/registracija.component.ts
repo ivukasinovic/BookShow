@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RegService} from '../reg.service';
+import {RegService} from '../registracija/reg.service';
 import {Router} from '@angular/router';
 
 @Component({

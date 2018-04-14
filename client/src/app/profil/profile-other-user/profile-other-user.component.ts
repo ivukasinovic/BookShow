@@ -23,7 +23,7 @@ export class ProfileOtherUserComponent implements OnInit {
              private friendsservice : FriendsService,
              private router : Router) { }
 
-  ngOnInit() {  
+  ngOnInit() {   
     this.friends=false;
     this.route.params.subscribe
     (params => this.username = params['username']);

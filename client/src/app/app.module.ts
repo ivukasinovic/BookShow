@@ -29,7 +29,7 @@ import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-c
 import { UsedPropsConfigComponent } from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
 import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
-import {RegService} from './reg.service';
+import {RegService} from './registracija/reg.service';
 import { ProfilComponent } from './profil/profil.component';
 import { NameChangeComponent } from './profil/name-change/name-change.component';
 import { SurnameChangeComponent } from './profil/surname-change/surname-change.component';
