@@ -5,9 +5,13 @@
 <div *ngIf="logged == true" align = "center">
  <h2> Dobrodosli <i><b>{{username}}!</b></i> </h2>
 
+</div> 
+
+<div *ngIf = "istorija.length === 0"  align = "center">
+<h3>Istorija poseta je prazna</h3>
 </div>
 
-<div *ngIf = "korisnik.istorijaPoseta.length > 0"  align = "center">
+<div *ngIf = "istorija.length > 0"  align = "center">
   <br><br>
  <table border="1">
    <tr align = "center" >
@@ -15,12 +19,13 @@
        Istorija poseta
      </th>
    </tr>
-   <tr *ngFor = "let poseta of korisnik.istorijaPoseta" align = "center">
+   <tr *ngFor = "let poseta of istorija" align = "center">
      <td>
-     {{poseta}}
+        <a routerLink="/shows/{{poseta.type}}/{{poseta.id}}">{{poseta.name}}</a>
+      
      </td>
      <td>
-        <a [routerLink]="" (click)="removeFromHistoy(poseta)">[x]</a>
+        <a [routerLink]="" (click)="removeFromHistoy(poseta.id)">[x] </a>
      </td>
    </tr>
 

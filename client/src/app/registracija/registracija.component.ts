@@ -15,7 +15,7 @@ export class RegistracijaComponent implements OnInit {
   errorUsername = false;
   isteSifre : String = "*Sifre se poklapaju"
   errorSifre = false;
-
+ 
   
   
   constructor(private router: Router, private registrationService: RegService) { }

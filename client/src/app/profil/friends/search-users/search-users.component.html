@@ -21,6 +21,17 @@
 </div>
 
 <button class="btn btn-primary" (click)="search()"
-[disabled] = "!username.valid && !name.valid && !surname.valid">Trazi</button>
+[disabled] = "!username.valid || !name.valid || !surname.valid">Trazi</button>
 </form>
+<br><br>
+<div *ngIf = "rezultatiPretrage.length > 0" align = "center">
+      <div><h3>Rezultati pretrage : </h3></div>
+      <div *ngFor = "let user of rezultatiPretrage">
+      <a [routerLink]="" (click)="viewProfile(user)"><font style="font-size: 20px;">{{user}}</font></a>
+      </div>
 </div>
+
+
+</div>
+
+

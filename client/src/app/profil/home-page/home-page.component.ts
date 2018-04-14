@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../auth.service';
-import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {AuthService} from '../../auth.service'
+import {HomePageService} from './home-page.service'
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
-  providers: [AuthService]
+  providers: [AuthService,HomePageService]
 })
 export class HomePageComponent implements OnInit {
   logged = false;
   role: string;
   username: string;
   korisnik : any = {}
-  constructor(private router: Router, private authService: AuthService,private http: HttpClient) { }
+  istorija : any = {}
+  constructor(private authService: AuthService,
+    private homepageService : HomePageService) { }
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
@@ -25,21 +26,20 @@ export class HomePageComponent implements OnInit {
       this.logged = false;
     }
 
+
     if(this.logged === true){
-      return this.http.get('api/getProfileInfo/'+this.username).subscribe(
+      this.homepageService.getHistory().subscribe(
         (data:any) => {
-          this.korisnik = data;
-        }
-      )
-    }
+          this.istorija = data;      
+    }) 
   }
 
-  removeFromHistoy(name){
-    return this.http.get('api/removeFromHistory/'+this.username+'/'+name).subscribe(
-      (data:any) => {
-        this.korisnik = data;
-      }
-    )
-  }
+}
+removeFromHistoy(poseta){
+  this.homepageService.removeFromHistoy(poseta).subscribe(
+    (data:any) => {
+      this.istorija = data;
+    })
+}
 
 }

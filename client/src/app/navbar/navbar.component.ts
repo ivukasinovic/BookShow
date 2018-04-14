@@ -1,19 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
+import { FriendsService } from '../profil/friends/friends.service'
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  providers: [AuthService]
+  providers: [AuthService,FriendsService]
 })
 export class NavbarComponent implements OnInit {
   logged = false;
   role: string;
   username: string;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService, private friendsservice : FriendsService) {
   }
 
   ngOnInit() {
@@ -24,6 +25,7 @@ export class NavbarComponent implements OnInit {
     } else {
       this.logged = false;
     }
+
   }
 
   logout() {

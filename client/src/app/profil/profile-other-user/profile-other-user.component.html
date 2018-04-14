@@ -1,0 +1,69 @@
+<div align = 'center'>
+    <h2>Profil korisnika <b>{{korisnik.username}} </b> </h2>
+  </div>
+
+  <div *ngIf = "!friends && !padding && !requested" align = "center" style="padding-left:20px;">
+    <font style="color:purple;font-size:20px">
+      Vi i korisnik {{korisnik.username}} niste prijatelji.<br>  Mozete poslati
+      zahtev za prijateljstvo tako sto kliknete 
+      <b><a [routerLink]="" (click)="sendFriendRequest(korisnik.username)">ovde</a></b>.
+    </font>
+  </div>
+  
+
+  <div *ngIf = "!friends && padding" align = "center" style="padding-left:20px;">
+    <font style="color:purple;font-size:20px">
+      Poslali ste zahtev korisniku {{korisnik.username}} <br>
+      Zahtev jos nije prihvacen.
+    </font>
+  </div>
+
+  <div *ngIf = "!friends && requested" align = "center" style="padding-left:20px;">
+    <font style="color:purple;font-size:20px">
+      Korisnik vam je poslao zahtev. <br>Mozete ga ili
+      <b><a [routerLink]="" (click)="confirmRequest(korisnik.username)">prihvatiti</a></b>
+        ili 
+        <b><a [routerLink]="" (click)="declineRequest(korisnik.username)">odbiti</a></b>
+    </font>
+  </div>
+
+  <div *ngIf = "friends" align = "center">
+  <font style="color:purple;font-size:20px">
+     Vi i {{korisnik.username}} ste prijatelji! <br>
+     Mozete ga ukloniti iz prijatelja klikom 
+     <b><a [routerLink]="" (click)="removeFriend(korisnik.username)"> ovde.</a></b>
+    </font>
+  </div>
+  
+  <div style="padding-left:20px;">
+    <table>
+    <tr>
+      <td><h3>Korisnicko ime :<b> {{korisnik.username}}</b> </h3></td>
+    </tr>
+  
+    <tr>
+      <td><h3>Ime : <b>{{korisnik.name}} </b></h3></td>
+    </tr>
+  
+    <tr>
+      <td><h3>Prezime :<b>{{korisnik.surname}}</b> </h3></td>
+    </tr>
+  
+    <tr>
+      <td><h3>Email adresa : <b>{{korisnik.email}} </b></h3></td>
+    </tr>
+  
+    <tr>
+        <td><h3>Grad :<b> {{korisnik.city}}</b> </h3></td>
+      </tr>
+    
+      <tr>
+        <td><h3>Broj telefona :<b> {{korisnik.number}}</b> </h3></td>
+      </tr>
+    </table>
+  </div>
+  
+  
+  
+  
+  

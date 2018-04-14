@@ -1,0 +1,18 @@
+<div align = "center">
+    <h2>Ovde su prikazani profili kojima ste poslali zahtev a koji jos nisu
+      niiti prihvatili niti odbili.
+    </h2>
+  </div>
+  
+  <div *ngIf = "pending.length === 0" align = "center">
+    <h3 style="color: red;">Nemate nikoga na cekanju</h3>
+  </div>
+  
+  <div *ngIf = "pending.length > 0" align = "center">
+      <div *ngFor = "let pend of pending">
+       <font class = "fontUsers"> 
+         - <a routerLink="/profile-other-user/{{pend.username}}">{{pend.username}} </a>
+        </font> &nbsp;&nbsp;&nbsp;
+        <button class = "decline" (click)="cancelRequest(pend.username)">Ukloni zahtev</button>
+      </div>
+    </div>

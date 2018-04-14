@@ -4,6 +4,7 @@ import { ShowsService } from '../shows.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-shows-cinema',
   templateUrl: './shows-cinema.component.html',
@@ -14,7 +15,9 @@ export class ShowsCinemaComponent implements OnInit {
   private shows = [];
   private type;
 
-  constructor(private showsService: ShowsService, private router: Router, config: NgbRatingConfig, private route: ActivatedRoute) {
+  constructor(private showsService: ShowsService, 
+    private router: Router, config: NgbRatingConfig, 
+    private route: ActivatedRoute) {
     config.max = 5;
     config.readonly = true;
    }

@@ -9,9 +9,40 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import { Response } from '@angular/http';
 
+
 @Injectable()
 export class ProfileService {
   constructor(private http : HttpClient, private router : Router) { }
+
+  sendFriendRequest(korisnik){
+    alert(localStorage.getItem('username') + " salje zahtev korisniku " + korisnik);
+    return this.http.get('api/sendRequest/'+localStorage.getItem('username')+'/'+korisnik)
+  }
+
+  confirmRequest(korisnik) {
+    return this.http.get('api/confirmRequest/'+localStorage.getItem('username')+'/'+korisnik)
+  }
+
+  checkFriendship(korisnik){
+    //alert(korisnik);
+    return this.http.get('api/checkFriendship/'+localStorage.getItem('username')+'/'+korisnik)
+  }
+
+  checkPadding(korisnik){
+    return this.http.get('api/checkPadding/'+localStorage.getItem('username')+'/'+korisnik)
+  }
+
+  checkRequested(korisnik){
+    return this.http.get('api/checkRequested/'+localStorage.getItem('username')+'/'+korisnik)
+  }
+
+  getProfileInfo(){
+    return this.http.get('api/getProfileInfo/'+localStorage.getItem('username'))
+  }
+
+  getProfileInfoOther(username : String){
+    return this.http.get('api/getProfileInfo/'+username)
+  }
 
   changeUsername(newUsername : String){
     return this.http.get('/api/changeUsername/'+localStorage.getItem('username')+'/'+newUsername).

@@ -1,18 +1,13 @@
-.trS:nth-child(odd) {
+tr:nth-child(odd) {
     background: #CCC;
     font-size: 25px;
     
 }
-.trS:nth-child(even) {
+tr:nth-child(even) {
     background: #FFF;
     font-size: 25px;
 }
 
-.tableS{
+table{
     padding-top: 20px;
-}
-
-.decline{
-    background-color: red;
-    color: white;
 }

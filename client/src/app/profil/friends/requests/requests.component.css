@@ -1,0 +1,13 @@
+.accept{
+    background-color: forestgreen;
+    color: white;
+}
+
+.decline{
+    background-color: red;
+    color: white;
+}
+
+.fontUsers{
+    font-size: 35px;
+}

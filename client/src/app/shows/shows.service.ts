@@ -13,4 +13,8 @@ export class ShowsService {
   getShowById(id) {
     return this.http.get('/api/shows/' + id);
   }
+
+  addToHistory(id){
+    return this.http.get('/api/addToHistory/'+localStorage.getItem('username')+ '/'+ id).subscribe();
+  }
 }

@@ -1,0 +1,34 @@
+
+<div align = "center">
+  <h1>Lista prijatelja</h1>
+</div>
+
+<div *ngIf = "prijatelji.length === 0"  align = "center">
+  <h3>
+    <font style="color: red">
+      Trenutno nemate prijatelja :(
+    </font>
+  </h3>
+</div>
+
+<div *ngIf = "prijatelji.length > 0"  align = "center">
+    <br>
+    <table>
+      <tr *ngFor = "let prijatelj of prijatelji">
+        <td>
+            <a routerLink="/profile-other-user/{{prijatelj.username}}">{{prijatelj.username}}</a>
+        </td>
+        <td>
+            <a [routerLink]="" (click)="removeFriend(prijatelj.username)">[x] </a>
+        </td>
+      </tr>
+    </table>
+    <br>
+  </div>
+
+
+<div align = "center">
+    <a routerLink="/search-users">
+      <button class="btn btn-primary" align = "center">Trazi ljude</button>
+    </a>
+</div>
