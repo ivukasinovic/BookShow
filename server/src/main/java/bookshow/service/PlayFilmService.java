@@ -2,7 +2,7 @@ package bookshow.service;
 
 import java.util.List;
 
-import bookshow.domain.PlayFilm;
+import bookshow.domain.movie.PlayFilm;
 
 public interface PlayFilmService {
 	List<PlayFilm> findAll();

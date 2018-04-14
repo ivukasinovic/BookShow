@@ -1,16 +1,9 @@
-package bookshow.domain;
+package bookshow.domain.movie;
 
-import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+
+import bookshow.domain.Show;
 
 
 @Entity
@@ -27,18 +20,11 @@ public class PlayFilm {
 	@Column
 	private String actors;
 	
-    @ManyToOne(optional = false)
-    private Show show;
-	
 	@Column
 	private String genre;
 	
 	@Column
 	private String director;
-	
-	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
-	private Date date;
 	
 	@Column
 	private String duration;
@@ -54,6 +40,9 @@ public class PlayFilm {
 	
 	@Column
 	private double price;
+	
+	@ManyToOne(optional = false)
+	private Show show;
 	
 	public PlayFilm(){
 	}
@@ -131,25 +120,6 @@ public class PlayFilm {
 		this.genre = genre;
 	}
 
-	public Show getShow() {
-		return show;
-	}
-
-	public void setShow(Show show) {
-		this.show = show;
-	}
-
-
-	public Date getDate() {
-		return date;
-	}
-
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-
 	public String getDuration() {
 		return duration;
 	}
@@ -158,6 +128,17 @@ public class PlayFilm {
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
+
+
+	public Show getShow() {
+		return show;
+	}
+
+
+	public void setShow(Show show) {
+		this.show = show;
+	}
+
 	
 	
 	

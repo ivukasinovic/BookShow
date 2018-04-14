@@ -32,44 +32,60 @@
         <ngb-tab>
             <ng-template ngbTabTitle><b>Repertoar</b></ng-template>
             <ng-template ngbTabContent>
-                <div align="center" >
-                    <div *ngIf ="role == 'ADMINSHOW'">
-                      <a routerLink="new-movie">Novi film/predstava</a>
-                    </div>
-                    <div>
-                     <table>
-                        <tr>
-                            <th>Ime</th>
-                            <th>Glumci</th>
-                            <th>Zanr</th>
-                            <th>Reziser</th>
-                            <th>Pocetak</th>
-                            <th>Trajanje</th>
-                            <th>Prosecna ocena</th>
-                            <th>Cena karte</th>
-                            <th>Slika</th>
-                            <th *ngIf ="role == 'ADMINSHOW'">Izmena</th>
-                            <th *ngIf ="role == 'ADMINSHOW'">Brisanje</th>
-                        </tr>
-                      
-                          <tr *ngFor="let playmovie of repertoire">
-                            <td>{{playmovie.name}}</td>
-                            <td>{{playmovie.actors}}</td>
-                            <td>{{playmovie.genre}}</td>
-                            <td>{{playmovie.director}}</td>
-                            <td>{{playmovie.date}}</td>
-                            <td>{{playmovie.duration}}</td>
-                            <td><ngb-rating [rate]="playmovie.averageScore"></ngb-rating></td>
-                            <td>{{playmovie.price}}</td>
-                            <td><img [src] ="playmovie.imageUrl" height="50" width="50"></td>
-                            <td *ngIf ="role == 'ADMINSHOW'"><button (click)="edit(playmovie.id)"> Izmeni </button></td>
-                            <td *ngIf ="role == 'ADMINSHOW'"><button (click)="remove(playmovie.id, playmovie)"> Obrisi </button></td>
-                          </tr>
-                      
-                      </table>
-                    </div>
-                  </div>
-                  
+                <hr/>
+                <label>Datum: </label>
+                <input type="date" name="date" [(ngModel)]="date" (input)="myFunc($event)"/> 
+                <hr/>
+
+                <div *ngIf ="!disableNewRepertoire; then newrepertoire else newprojections"></div>
+                <ng-template #newrepertoire> 
+                    <a role="button" (click)="createRepertoire()"> Kreiraj repertoar</a>
+                </ng-template>
+                <ng-template #newprojections>
+                    <a routerLink="new-projection">Nova projekcija</a>
+                </ng-template>
+
+                <div>
+                    <a routerLink="new-movie">Novi film/predstava</a>
+                </div>
+
+                <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                    <ngb-panel title="Fimovi">
+                        <ng-template ngbPanelContent>
+                                <div>
+                                        <table>
+                                           <tr>
+                                               <th>Ime</th>
+                                               <th>Glumci</th>
+                                               <th>Zanr</th>
+                                               <th>Reziser</th>
+                                               <th>Trajanje</th>
+                                               <th>Prosecna ocena</th>
+                                               <th>Cena karte</th>
+                                               <th>Slika</th>
+                                               <th *ngIf ="role == 'ADMINSHOW'">Izmena</th>
+                                               <th *ngIf ="role == 'ADMINSHOW'">Brisanje</th>
+                                           </tr>
+                                         
+                                             <tr *ngFor="let playmovie of showsplaymovies">
+                                               <td>{{playmovie.name}}</td>
+                                               <td>{{playmovie.actors}}</td>
+                                               <td>{{playmovie.genre}}</td>
+                                               <td>{{playmovie.director}}</td>
+                                               <td>{{playmovie.duration}}</td>
+                                               <td><ngb-rating [rate]="playmovie.averageScore"></ngb-rating></td>
+                                               <td>{{playmovie.price}}</td>
+                                               <td><img [src] ="playmovie.imageUrl" height="50" width="50"></td>
+                                               <td *ngIf ="role == 'ADMINSHOW'"><button (click)="edit(playmovie.id)"> Izmeni </button></td>
+                                               <td *ngIf ="role == 'ADMINSHOW'"><button (click)="remove(playmovie.id, playmovie)"> Obrisi </button></td>
+                                             </tr>
+                                         
+                                         </table>
+                                       </div>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+
             </ng-template>
         </ngb-tab>
         <ngb-tab>

@@ -1,4 +1,5 @@
-package bookshow.controller;
+package bookshow.controller.film;
+
 
 
 import java.util.List;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import bookshow.domain.PlayFilm;
+import bookshow.domain.movie.PlayFilm;
 import bookshow.service.PlayFilmService;
 
 @RestController
@@ -49,9 +50,9 @@ public class PlayFilmController {
 		
 		return new ResponseEntity<>(saved, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(
-			value = "/get-show-repertoire/{id}", 
+			value = "/get-playfilms-by-show/{id}", 
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<PlayFilm>> getShowsRepertoire(@PathVariable String id){

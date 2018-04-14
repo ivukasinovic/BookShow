@@ -14,7 +14,10 @@ export class ShowsService {
     return this.http.get('/api/shows/' + id);
   }
 
-  getLocation(term: string) {
-    return this.http.get('http://maps.google.com/maps/api/geocode/json?address=' + term + 'CA&sensor=false');
- }
+  getAuditoriums(showId){
+    return this.http.get('api/auditorium/get-by-show/'+showId);
+  }
+  getAuditorium(id){
+    return this.http.get('api/auditorium/' + id);
+  }
 }

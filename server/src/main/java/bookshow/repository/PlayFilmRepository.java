@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import bookshow.domain.PlayFilm;
+import bookshow.domain.movie.PlayFilm;
 
 public interface PlayFilmRepository  extends JpaRepository<PlayFilm, Long>{
 
