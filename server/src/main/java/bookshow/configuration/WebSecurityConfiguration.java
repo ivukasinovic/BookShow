@@ -92,7 +92,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/getProfileInfo/{username}").permitAll()
                 .antMatchers("/shows").permitAll()
                 .antMatchers("/shows/{id}").permitAll()
-                .antMatchers("/get-show-repertoire/{id}").permitAll()
+                .antMatchers("/repertoire/get").permitAll()
                 .anyRequest().fullyAuthenticated();
 
         // Custom JWT based authentication

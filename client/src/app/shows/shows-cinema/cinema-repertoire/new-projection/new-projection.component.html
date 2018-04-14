@@ -1,0 +1,36 @@
+<p>
+  new-projection works!
+</p>
+
+
+<div align = "center">
+    <h2>Nova projekcija</h2>
+  
+    <form name="form" (ngSubmit)="sendData()">
+      <table>
+        <tr>
+          <td><label> Vreme projekcije: </label> </td>
+          <td><input type="text" name="time" [(ngModel)]="time"/> </td>
+        </tr>
+        <tr>
+          <td><label> Sala: </label> </td>
+          <td>
+              <select [(ngModel)] = "selectedAuditoriumId" name="combobox2">
+                  <option  *ngFor ="let auditorium of auditoriums" value="{{auditorium.number}}">{{auditorium.number}}</option>
+                </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label> Film: </label> </td>
+          <td>
+            <select [(ngModel)] = "selectedPlayMovieId" name="combobox1">
+              <option  *ngFor ="let playMovie of playMovies" value="{{playMovie.id}}">{{playMovie.name}}</option>
+            </select>
+          </td>
+        </tr>
+  
+       <tr> <td colspan = "2"><input type = "submit" value = " Kreiraj novi film "/></td></tr>
+  
+      </table>
+    </form>
+  </div>

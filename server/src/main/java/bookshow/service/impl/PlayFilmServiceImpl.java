@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bookshow.domain.PlayFilm;
+import bookshow.domain.movie.PlayFilm;
 import bookshow.repository.PlayFilmRepository;
 import bookshow.service.PlayFilmService;
 

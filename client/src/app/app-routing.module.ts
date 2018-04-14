@@ -1,3 +1,4 @@
+import { NewProjectionComponent } from './shows/shows-cinema/cinema-repertoire/new-projection/new-projection.component';
 import { ReservationComponent } from './reservations/reservation/reservation.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
@@ -94,7 +95,8 @@ const routes: Routes = [
   {path: 'shows/:type/:id/edit-movie/:movieId', component: EditMovieComponent,
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
   {path: 'reservation', component: ReservationComponent},
-  
+  {path: 'shows/:type/:id/new-projection', component: NewProjectionComponent,
+  canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}}
 
 ];
 

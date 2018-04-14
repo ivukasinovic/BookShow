@@ -52,6 +52,7 @@ import { FriendsComponent } from './friends/friends.component';
 import { SearchUsersComponent } from './friends/search-users/search-users.component';
 import{ FriendsService} from './friends/friends.service';
 import { AgmCoreModule } from '@agm/core';
+import { NewProjectionComponent } from './shows/shows-cinema/cinema-repertoire/new-projection/new-projection.component';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { AgmCoreModule } from '@agm/core';
     ProfileOtherUserComponent,
     HomePageComponent,
     FriendsComponent,
-    SearchUsersComponent
+    SearchUsersComponent,
+    NewProjectionComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,6 @@ import { ShowsService } from './../../shows.service';
 import { PlayMovieService } from './../../play-movie.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { GoogleService } from '../../google.service';
 import { MapsAPILoader } from '@agm/core';
 
@@ -10,22 +9,22 @@ import { MapsAPILoader } from '@agm/core';
   selector: 'app-cinema-repertoire',
   templateUrl: './cinema-repertoire.component.html',
   styleUrls: ['./../../shows.css'],
-  providers: [PlayMovieService, NgbRatingConfig, ShowsService, GoogleService]
+  providers: [PlayMovieService, ShowsService, GoogleService]
 })
 export class CinemaRepertoireComponent implements OnInit {
   private id;
-  private repertoire=[];
+  private showsplaymovies=[];
   private role;
   private show;
   private lat;
   private lng;
   private zoom = 17;
+  private date;
+  private disableNewRepertoire;
 
   constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, 
-            private router: Router, config: NgbRatingConfig, private showsService: ShowsService,
+            private router: Router, private showsService: ShowsService,
             private googleService: GoogleService, private mapsAPILoader: MapsAPILoader) {
-    config.max = 5;
-    config.readonly = true;
    }
 
   ngOnInit() {
@@ -41,10 +40,7 @@ export class CinemaRepertoireComponent implements OnInit {
           });
         });
       });
-    this.playMovieService.getShowsRepertoire(this.id).subscribe((data: any) => this.repertoire = data);
-
-    
-    
+    this.playMovieService.getShowsPlayMovies(this.id).subscribe((data: any) => this.showsplaymovies = data); 
   }
 
   edit(idMovie){
@@ -52,9 +48,29 @@ export class CinemaRepertoireComponent implements OnInit {
   }
 
   remove(idMovie, objectForRemoval){
-    var i = this.repertoire.indexOf(objectForRemoval);
-    this.repertoire.splice(i, 1);
+    var i = this.showsplaymovies.indexOf(objectForRemoval);
+    this.showsplaymovies.splice(i, 1);
     this.playMovieService.removePlayMovie(idMovie).subscribe(data => null);
   }
 
+  createRepertoire(){
+    if(this.date === undefined){
+      alert("Selektujte datum");
+      return;
+    }
+    this.playMovieService.saveRepertoire(this.show, this.date).subscribe(data => null);
+    this.disableNewRepertoire = true;
+  }
+
+  myFunc($event){
+    this.disableNewRepertoire = false;
+    this.playMovieService.getRepertoire(this.show, this.date).subscribe(data => 
+    {
+      if(data){
+        this.disableNewRepertoire = true;
+        //alert(data);     
+      }
+    },
+    err => null);
+  }
 }

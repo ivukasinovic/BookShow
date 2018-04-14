@@ -15,6 +15,10 @@ INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Fontana'
 INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Krstarica', 'THEATRE', 'Trg Republike 1, 11000 Beograd', 'opis', 0);
 INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodno pozoriste', 'THEATRE', 'Francuska 3, 11000 Beograd', 'opis', 0);
 
+INSERT INTO playfilm_ct (name, actors, genre, director, duration, image_url, description, average_score, price, show_id) VALUES('The Departed', 'Leonadrdo DiCaprio, Matt Damon, Jack Nicholson', 'Crime, Drama', 'Martin Scorsese', '2:31', 'https://images-na.ssl-images-amazon.com/images/I/91yxj4w7jFL._RI_SX200_.jpg', 'An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.', 0, 5, 2);
+
+INSERT INTO auditorium (number, show_id) VALUES (1, 2);
+
 INSERT INTO new_prop (id, date_created, description, title, price, fan_admin_fk,show_fk,image) VALUES (4, '2018-01-29 00:55:56', 'Veoma glasna sirena', 'Sirena', 500, 1, 1,'https://www.hartsport.com.au/images/ProductImages/500/9-740.jpg');
 INSERT INTO new_prop (id, date_created, description, title, price, fan_admin_fk,show_fk,image) VALUES (2, '2018-01-24 03:55:56', 'Vise rekvizita po izboru', 'Sesir,naocare', 150, 1,1,'https://img1.etsystatic.com/000/0/6335667/il_fullxfull.301526529.jpg');
 
