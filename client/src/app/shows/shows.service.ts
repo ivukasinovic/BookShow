@@ -17,6 +17,12 @@ export class ShowsService {
 
   addToHistory(id){
     return this.http.get('/api/addToHistory/'+localStorage.getItem('username')+ '/'+ id).subscribe();
+  }
 
+  getAuditoriums(showId){
+    return this.http.get('api/auditorium/get-by-show/'+showId);
+  }
+  getAuditorium(id){
+    return this.http.get('api/auditorium/' + id);
   }
 }

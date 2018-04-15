@@ -285,4 +285,5 @@ public class FriendsController {
 		
 		return new ResponseEntity<>(retVal,HttpStatus.OK);
 	}
+}
 

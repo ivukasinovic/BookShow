@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleService } from '../../google.service';
 import { MapsAPILoader } from '@agm/core';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -37,7 +38,9 @@ export class CinemaRepertoireComponent implements OnInit {
 
       {
         this.show = data;
-       this.showsService.addToHistory(this.id);
+        if(localStorage.getItem('username') !== null){
+         this.showsService.addToHistory(this.id);
+        }
         this.mapsAPILoader.load().then(() => { 
           this.googleService.getGeoLocation(this.show.address).subscribe(data => {
               this.lat = data.lat();

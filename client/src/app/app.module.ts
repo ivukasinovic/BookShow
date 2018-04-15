@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {AgmCoreModule} from '@agm/core'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppComponent} from './app.component';
 import {FanpageComponent} from './fanpage/fanpage.component';
@@ -46,7 +47,7 @@ import { AdminSysComponent } from './admin-sys/admin-sys.component';
 import { RegisterShowComponent } from './admin-sys/register-show/register-show.component';
 import { RegisterAdminComponent } from './admin-sys/register-admin/register-admin.component';
 import {AdminSysService} from './admin-sys/admin-sys.service';
-
+import { NewProjectionComponent } from './shows/shows-cinema/cinema-repertoire/new-projection/new-projection.component';
 import { ProfileOtherUserComponent } from './profil/profile-other-user/profile-other-user.component';
 import { HomePageComponent } from './profil/home-page/home-page.component';
 import { FriendsComponent } from './profil/friends/friends.component';

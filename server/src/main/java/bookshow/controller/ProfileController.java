@@ -8,21 +8,20 @@ import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-
 import bookshow.domain.Show;
 import bookshow.domain.users.User;
 import bookshow.model.ArrayListDatabaseHandler;
 import bookshow.model.ChangingPasswordDTO;
 import bookshow.service.ShowService;
 import bookshow.service.UserService;
-import io.jsonwebtoken.lang.Collections;
+
 
 @RestController
 public class ProfileController {
@@ -117,7 +116,7 @@ public class ProfileController {
 		}
 	}
 	
-
+	@PreAuthorize("hasAuthority('USER')")
 	@RequestMapping(value = "/addToHistory/{username}/{showId}", method = RequestMethod.GET)
 	public ResponseEntity<User> addToHistory(@PathVariable("username") String username,
 										@PathVariable("showId") String showId){
@@ -134,14 +133,11 @@ public class ProfileController {
 		}
 		u.setIstorijaPoseta(handler.ArrayListToString(lista));
 			
-
-		}
-
-		
 		UserService.save(u);
 		return new ResponseEntity<>(UserService.findByUsername(username),HttpStatus.OK);
-		
-	}
+		}
+	
+	
 	
 	@RequestMapping(value = "/removeFromHistory/{username}/{showId}", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<Show>> removeFromHistory(@PathVariable("username") String username,
@@ -177,6 +173,7 @@ public class ProfileController {
 		return new ResponseEntity<>(retVal,HttpStatus.OK);	
 	}
 	
+
 	@RequestMapping(value = "/getFriends/{username}", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<User>> getFriends(@PathVariable("username") String username){
 		User u = UserService.findByUsername(username);
