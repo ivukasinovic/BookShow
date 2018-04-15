@@ -280,9 +280,9 @@ public class FriendsController {
 		ArrayList<User> retVal = new ArrayList<User>();
 		for(String s : listaPrvog){
 			retVal.add(UserService.findByUsername(s));
+
 		}
 		
 		return new ResponseEntity<>(retVal,HttpStatus.OK);
 	}
-	
-}
+

@@ -28,5 +28,7 @@ public interface UsedPropService {
 
     UsedProp createUsedProp(String username, UsedProp usedProp);
 
-    UsedProp approveDecline(UsedProp usedProp, String type, User adminFan);
+    UsedProp approveDecline(Long usedProp, String type, User adminFan) throws Exception;
+
+    boolean acceptBid(Long usedPropId, Long acceptedBidId);
 }

@@ -7,13 +7,17 @@ INSERT INTO user (friend_requests,pending_requests,friend_list,istorija_poseta,r
 INSERT INTO user (friend_requests,pending_requests,friend_list,istorija_poseta,role, city, email, name, number, password_hash, surname, username, points,type, first_time_logged, activated) VALUES ('','','','','USER','Novi Sad', 'milan@milan', 'Milan', '0645565239', '$2a$10$fbc8Mb9ec0Ig1M5D0R8zT.xMgF0E1r6li04ynzi/CKY3eev/vezH2', 'Stankovic', 'milan',45,'DEFAULT', true, true);
 INSERT INTO user (friend_requests,pending_requests,friend_list,istorija_poseta,role, city, email, name, number, password_hash, surname, username, points,type, first_time_logged, activated) VALUES ('','','','','ADMINSYS','Novi Grad', 'grad@milan', 'Grad', '0644565239', '$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi', 'Stankovic', 'admin',567,'DEFAULT', true, true);
 
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Arena Cineplex', 'CINEMA', 'Bulevar Mihajla Pupina 3, Novi Sad', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodno pozoriste', 'THEATRE', 'Pozorisni trg 1, Novi Sad', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodni bioskop', 'CINEMA', 'Kralja Petra I, Sombor', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Sinestar', 'CINEMA', 'Sentandrejski put 11, Novi Sad', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Fontana', 'CINEMA', 'Pariske komune 13, Beograd', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Krstarica', 'THEATRE', 'Trg Republike 1, Beograd', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodno pozoriste', 'THEATRE', 'Francuska 3, Beograd, Beograd', 'opis', 0);
+INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Arena Cineplex', 'CINEMA', 'Bulevar Mihajla Pupina 3, 21000 Novi Sad', 'opis', 0);
+INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodno pozoriste', 'THEATRE', 'Pozorisni trg 1, 21000 Novi Sad', 'opis', 0);
+INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodni bioskop', 'CINEMA', 'Kralja Petra I, 25000 Sombor', 'opis', 0);
+INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Sinestar', 'CINEMA', 'Sentandrejski put 11, 21000 Novi Sad', 'opis', 0);
+INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Fontana', 'CINEMA', 'Pariske komune 13, 11000 Beograd', 'opis', 0);
+INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Krstarica', 'THEATRE', 'Trg Republike 1, 11000 Beograd', 'opis', 0);
+INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodno pozoriste', 'THEATRE', 'Francuska 3, 11000 Beograd', 'opis', 0);
+
+INSERT INTO playfilm_ct (name, actors, genre, director, duration, image_url, description, average_score, price, show_id) VALUES('The Departed', 'Leonadrdo DiCaprio, Matt Damon, Jack Nicholson', 'Crime, Drama', 'Martin Scorsese', '2:31', 'https://images-na.ssl-images-amazon.com/images/I/91yxj4w7jFL._RI_SX200_.jpg', 'An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.', 0, 5, 2);
+
+INSERT INTO auditorium (number, show_id) VALUES (1, 2);
 
 INSERT INTO new_prop (id, date_created, description, title, price, fan_admin_fk,show_fk,image) VALUES (4, '2018-01-29 00:55:56', 'Veoma glasna sirena', 'Sirena', 500, 1, 1,'https://www.hartsport.com.au/images/ProductImages/500/9-740.jpg');
 INSERT INTO new_prop (id, date_created, description, title, price, fan_admin_fk,show_fk,image) VALUES (2, '2018-01-24 03:55:56', 'Vise rekvizita po izboru', 'Sesir,naocare', 150, 1,1,'https://img1.etsystatic.com/000/0/6335667/il_fullxfull.301526529.jpg');

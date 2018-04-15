@@ -56,6 +56,7 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private RatingType type;
   
+
     @Column
     private String friendList;
     
@@ -91,6 +92,7 @@ public class User implements Serializable {
 	public void setPendingRequests(String pendingRequests) {
 		this.pendingRequests = pendingRequests;
 	}
+
 
 	public boolean isActivated() {
 		  return activated;

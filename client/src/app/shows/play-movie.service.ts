@@ -14,8 +14,8 @@ export class PlayMovieService {
     return this.http.put("api/update-play-film", data);
   }
 
-  getShowsRepertoire(id){
-    return this.http.get("api/get-show-repertoire/"+id);
+  getShowsPlayMovies(id){
+    return this.http.get("api/get-playfilms-by-show/"+id);
   }
 
   getPlayMovieById(id){
@@ -24,6 +24,22 @@ export class PlayMovieService {
 
   removePlayMovie(id){
     return this.http.delete("api/delete-play-film/"+id);
+  }
+
+  getRepertoire(show, date){
+    var dateShow: any = {};
+    dateShow.show = show;
+    dateShow.date = date;
+    return this.http.post("api/repertoire/get", dateShow);
+  }
+
+  saveRepertoire(show, date){
+    var repertoire: any = {};
+    var dateShow: any = {};
+    dateShow.show = show;
+    dateShow.date = date;
+    repertoire.dateShow = dateShow;
+    return this.http.post("api/repertoire/save", repertoire);
   }
 
 }

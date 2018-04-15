@@ -1,3 +1,4 @@
+import { NewProjectionComponent } from './shows/shows-cinema/cinema-repertoire/new-projection/new-projection.component';
 import { ReservationComponent } from './reservations/reservation/reservation.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
@@ -37,6 +38,7 @@ import { ProfileOtherUserComponent } from './profil/profile-other-user/profile-o
 import { RequestsComponent } from './profil/friends/requests/requests.component';
 import { PendingComponent } from './profil/friends/pending/pending.component';
 
+
 const routes: Routes = [
   // ivan
   {path: 'login', component: LoginComponent},
@@ -44,9 +46,11 @@ const routes: Routes = [
 
   {path: 'registracija', component: RegistracijaComponent},
   {path: 'search-users', component: SearchUsersComponent},
+
   {path: 'requests', component: RequestsComponent},
   {path: 'pending', component: PendingComponent},
   {path: 'profile-other-user/:username', component: ProfileOtherUserComponent},
+
   {path: 'friends', component: FriendsComponent},
   {path: 'profil', component: ProfilComponent},
   {path: 'password-change', component: PasswordChangeComponent},
@@ -101,7 +105,8 @@ const routes: Routes = [
   {path: 'shows/:type/:id/edit-movie/:movieId', component: EditMovieComponent,
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
   {path: 'reservation', component: ReservationComponent},
-  
+  {path: 'shows/:type/:id/new-projection', component: NewProjectionComponent,
+  canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}}
 
 ];
 

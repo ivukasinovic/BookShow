@@ -4,6 +4,7 @@ package bookshow.controller;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import bookshow.model.ArrayListDatabaseHandler;
 import bookshow.model.ChangingPasswordDTO;
 import bookshow.service.ShowService;
 import bookshow.service.UserService;
+import io.jsonwebtoken.lang.Collections;
 
 @RestController
 public class ProfileController {
@@ -115,6 +117,7 @@ public class ProfileController {
 		}
 	}
 	
+
 	@RequestMapping(value = "/addToHistory/{username}/{showId}", method = RequestMethod.GET)
 	public ResponseEntity<User> addToHistory(@PathVariable("username") String username,
 										@PathVariable("showId") String showId){
@@ -131,17 +134,9 @@ public class ProfileController {
 		}
 		u.setIstorijaPoseta(handler.ArrayListToString(lista));
 			
-		/*
-		if(u.getIstorijaPoseta().contains(showName)) {
-			u.getIstorijaPoseta().remove(showName);
-			u.getIstorijaPoseta().add(0,showName);
-			
-		}else {
-			u.getIstorijaPoseta().add(0,showName);
-		}		
-		for(String s : u.getIstorijaPoseta()){
-			System.out.println(s);
-		}*/
+
+		}
+
 		
 		UserService.save(u);
 		return new ResponseEntity<>(UserService.findByUsername(username),HttpStatus.OK);
@@ -196,8 +191,4 @@ public class ProfileController {
 		}
 		return new ResponseEntity<>(retVal,HttpStatus.OK);
 	}
-	
-	
-
-
 }

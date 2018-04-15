@@ -46,6 +46,7 @@ import { AdminSysComponent } from './admin-sys/admin-sys.component';
 import { RegisterShowComponent } from './admin-sys/register-show/register-show.component';
 import { RegisterAdminComponent } from './admin-sys/register-admin/register-admin.component';
 import {AdminSysService} from './admin-sys/admin-sys.service';
+
 import { ProfileOtherUserComponent } from './profil/profile-other-user/profile-other-user.component';
 import { HomePageComponent } from './profil/home-page/home-page.component';
 import { FriendsComponent } from './profil/friends/friends.component';
@@ -53,6 +54,7 @@ import { SearchUsersComponent } from './profil/friends/search-users/search-users
 import{ FriendsService} from './profil/friends/friends.service';
 import { RequestsComponent } from './profil/friends/requests/requests.component';
 import { PendingComponent } from './profil/friends/pending/pending.component';
+
 
 
 
@@ -96,8 +98,12 @@ import { PendingComponent } from './profil/friends/pending/pending.component';
     HomePageComponent,
     FriendsComponent,
     SearchUsersComponent,
+
     RequestsComponent,
     PendingComponent,
+
+
+    NewProjectionComponent
 
   ],
   imports: [
@@ -105,7 +111,10 @@ import { PendingComponent } from './profil/friends/pending/pending.component';
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAKeYzU27mrRwMoOB9lGpI9kprtBu1chBA'
+    })
   ],
   providers: [
     PropService, {

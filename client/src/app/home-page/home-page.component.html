@@ -1,0 +1,28 @@
+<div *ngIf="logged == false" align = "center">
+  <h2>Dobrodosli!</h2><br><h2><i>Kako bise mogli videti naprednije funkcije sajta ulogujte se ili se registrujte</i></h2>
+</div>
+
+<div *ngIf="logged == true" align = "center">
+ <h2> Dobrodosli <i><b>{{username}}!</b></i> </h2>
+
+</div>
+
+<div *ngIf = "korisnik.istorijaPoseta.length > 0"  align = "center">
+  <br><br>
+ <table border="1">
+   <tr align = "center" >
+     <th colspan = "2" align = "center">
+       Istorija poseta
+     </th>
+   </tr>
+   <tr *ngFor = "let poseta of korisnik.istorijaPoseta" align = "center">
+     <td>
+     {{poseta}}
+     </td>
+     <td>
+        <a [routerLink]="" (click)="removeFromHistoy(poseta)">[x]</a>
+     </td>
+   </tr>
+
+ </table>
+ </div>

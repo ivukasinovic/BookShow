@@ -9,7 +9,6 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import { Response } from '@angular/http';
 
-
 @Injectable()
 export class ProfileService {
   constructor(private http : HttpClient, private router : Router) { }
