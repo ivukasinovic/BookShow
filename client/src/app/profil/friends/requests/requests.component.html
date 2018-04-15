@@ -1,0 +1,17 @@
+<div align = "center">
+  <h2>Zahtevi za prijateljstvo</h2>
+</div>
+
+<div *ngIf = "zahtevi.length === 0" align = "center">
+  <h3 style="color: red;">Trenutno nemate zahteva za prijateljstvo :(</h3>
+</div>
+
+<div *ngIf = "zahtevi.length > 0" align = "center">
+    <div *ngFor = "let zahtev of zahtevi">
+     <font class = "fontUsers"> 
+        <a routerLink="/profile-other-user/{{zahtev.username}}">{{zahtev.username}} </a>
+      </font> &nbsp;&nbsp;
+      <button class ="accept" (click)="acceptRequest(zahtev.username)">Prihvati</button>
+      <button class ="decline" (click)="declineRequest(zahtev.username)">Odbij</button>
+    </div>
+  </div>

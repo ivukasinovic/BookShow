@@ -31,16 +31,26 @@ import { EditMovieComponent } from './shows/shows-cinema/cinema-repertoire/edit-
 import {AdminSysComponent} from './admin-sys/admin-sys.component';
 import {RegisterShowComponent} from './admin-sys/register-show/register-show.component';
 import {RegisterAdminComponent} from './admin-sys/register-admin/register-admin.component';
-import {HomePageComponent} from './home-page/home-page.component';
-import {FriendsComponent} from './friends/friends.component';
-import {SearchUsersComponent} from './friends/search-users/search-users.component';
+import {HomePageComponent} from './profil/home-page/home-page.component';
+import {FriendsComponent} from './profil/friends/friends.component';
+import {SearchUsersComponent} from './profil/friends/search-users/search-users.component';
+import { ProfileOtherUserComponent } from './profil/profile-other-user/profile-other-user.component';
+import { RequestsComponent } from './profil/friends/requests/requests.component';
+import { PendingComponent } from './profil/friends/pending/pending.component';
+
 
 const routes: Routes = [
   // ivan
   {path: 'login', component: LoginComponent},
   //jovas
+
   {path: 'registracija', component: RegistracijaComponent},
   {path: 'search-users', component: SearchUsersComponent},
+
+  {path: 'requests', component: RequestsComponent},
+  {path: 'pending', component: PendingComponent},
+  {path: 'profile-other-user/:username', component: ProfileOtherUserComponent},
+
   {path: 'friends', component: FriendsComponent},
   {path: 'profil', component: ProfilComponent},
   {path: 'password-change', component: PasswordChangeComponent},

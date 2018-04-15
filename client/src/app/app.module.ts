@@ -29,7 +29,7 @@ import { NewPropsConfigComponent } from './fanpage/admin-fan-profile/new-props-c
 import { UsedPropsConfigComponent } from './fanpage/admin-fan-profile/used-props-config/used-props-config.component';
 import { CreateNewPropComponent } from './fanpage/admin-fan-profile/create-new-prop/create-new-prop.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
-import {RegService} from './reg.service';
+import {RegService} from './registracija/reg.service';
 import { ProfilComponent } from './profil/profil.component';
 import { NameChangeComponent } from './profil/name-change/name-change.component';
 import { SurnameChangeComponent } from './profil/surname-change/surname-change.component';
@@ -46,13 +46,16 @@ import { AdminSysComponent } from './admin-sys/admin-sys.component';
 import { RegisterShowComponent } from './admin-sys/register-show/register-show.component';
 import { RegisterAdminComponent } from './admin-sys/register-admin/register-admin.component';
 import {AdminSysService} from './admin-sys/admin-sys.service';
-import { ProfileOtherUserComponent } from './profile-other-user/profile-other-user.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { FriendsComponent } from './friends/friends.component';
-import { SearchUsersComponent } from './friends/search-users/search-users.component';
-import{ FriendsService} from './friends/friends.service';
-import { AgmCoreModule } from '@agm/core';
-import { NewProjectionComponent } from './shows/shows-cinema/cinema-repertoire/new-projection/new-projection.component';
+
+import { ProfileOtherUserComponent } from './profil/profile-other-user/profile-other-user.component';
+import { HomePageComponent } from './profil/home-page/home-page.component';
+import { FriendsComponent } from './profil/friends/friends.component';
+import { SearchUsersComponent } from './profil/friends/search-users/search-users.component';
+import{ FriendsService} from './profil/friends/friends.service';
+import { RequestsComponent } from './profil/friends/requests/requests.component';
+import { PendingComponent } from './profil/friends/pending/pending.component';
+
+
 
 
 @NgModule({
@@ -95,7 +98,13 @@ import { NewProjectionComponent } from './shows/shows-cinema/cinema-repertoire/n
     HomePageComponent,
     FriendsComponent,
     SearchUsersComponent,
+
+    RequestsComponent,
+    PendingComponent,
+
+
     NewProjectionComponent
+
   ],
   imports: [
     BrowserModule,

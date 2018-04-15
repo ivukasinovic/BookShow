@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleService } from '../../google.service';
 import { MapsAPILoader } from '@agm/core';
 
+
 @Component({
   selector: 'app-cinema-repertoire',
   templateUrl: './cinema-repertoire.component.html',
@@ -23,16 +24,20 @@ export class CinemaRepertoireComponent implements OnInit {
   private disableNewRepertoire;
 
   constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, 
-            private router: Router, private showsService: ShowsService,
-            private googleService: GoogleService, private mapsAPILoader: MapsAPILoader) {
+              private router: Router, private showsService: ShowsService,config: NgbRatingConfig,
+              private googleService: GoogleService, private mapsAPILoader: MapsAPILoader) {
+    config.max = 5;
+    config.readonly = true;
    }
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
     this.route.params.subscribe(params => this.id = params['id']);
     this.showsService.getShowById(this.id).subscribe(data => 
+
       {
         this.show = data;
+       this.showsService.addToHistory(this.id);
         this.mapsAPILoader.load().then(() => { 
           this.googleService.getGeoLocation(this.show.address).subscribe(data => {
               this.lat = data.lat();
@@ -41,6 +46,7 @@ export class CinemaRepertoireComponent implements OnInit {
         });
       });
     this.playMovieService.getShowsPlayMovies(this.id).subscribe((data: any) => this.showsplaymovies = data); 
+
   }
 
   edit(idMovie){

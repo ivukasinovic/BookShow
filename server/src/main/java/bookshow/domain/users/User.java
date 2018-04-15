@@ -2,7 +2,6 @@ package bookshow.domain.users;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -57,17 +56,43 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private RatingType type;
   
-    private ArrayList<String> friendList;
+
+    @Column
+    private String friendList;
     
-    private ArrayList<String> istorijaPoseta;
+    @Column
+    private String istorijaPoseta;
+    
+    /**
+     * Zahtevi koji su mu drugi korisnici poslali
+     * a koje jos nije prihvatio / odbio
+     */
+    @Column
+    private String friendRequests;
+    
+    /**
+     * Zahtevi koji je korisnik poslao drugim korisnicima
+     * a koji jos nisu prihvaceni / odbijeni
+     */
+    @Column
+    private String pendingRequests;
 
-    public ArrayList<String> getIstorijaPoseta() {
-		return istorijaPoseta;
+	public String getFriendRequests() {
+		return friendRequests;
 	}
 
-	public void setIstorijaPoseta(ArrayList<String> istorijaPoseta) {
-		this.istorijaPoseta = istorijaPoseta;
+	public void setFriendRequests(String friendRequests) {
+		this.friendRequests = friendRequests;
 	}
+
+	public String getPendingRequests() {
+		return pendingRequests;
+	}
+
+	public void setPendingRequests(String pendingRequests) {
+		this.pendingRequests = pendingRequests;
+	}
+
 
 	public boolean isActivated() {
 		  return activated;
@@ -165,13 +190,7 @@ public class User implements Serializable {
 		this.firstTimeLogged = firstTimeLogged;
 	}
 
-    public ArrayList<String> getFriendList() {
-      return friendList;
-    }
 
-    public void setFriendList(ArrayList<String> friendList) {
-      this.friendList = friendList;
-    }
 
     public Long getPoints() {
         return points;
@@ -188,4 +207,20 @@ public class User implements Serializable {
     public void setType(RatingType type) {
         this.type = type;
     }
+
+	public String getFriendList() {
+		return friendList;
+	}
+
+	public void setFriendList(String friendList) {
+		this.friendList = friendList;
+	}
+
+	public String getIstorijaPoseta() {
+		return istorijaPoseta;
+	}
+
+	public void setIstorijaPoseta(String istorijaPoseta) {
+		this.istorijaPoseta = istorijaPoseta;
+	}
 }

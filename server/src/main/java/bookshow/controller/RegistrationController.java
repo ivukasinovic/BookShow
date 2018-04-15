@@ -1,7 +1,6 @@
 package bookshow.controller;
 
 
-import java.util.ArrayList;
 
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +50,12 @@ public class RegistrationController {
 		newUser = user;
 		newUser.setActivated(false);
 		newUser.setRole(Role.USER);
-		newUser.setFriendList(new ArrayList<String>());
-		newUser.setIstorijaPoseta(new ArrayList<String>());
+
+		newUser.setFriendList("");
+		newUser.setIstorijaPoseta("");
+		newUser.setFriendRequests("");
+		newUser.setPendingRequests("");
+
 		newUser.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPasswordHash()));	
 		newUser.setPoints((long) 0);
 		newUser.setType(RatingType.DEFAULT);

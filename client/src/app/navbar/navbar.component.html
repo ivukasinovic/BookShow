@@ -9,7 +9,19 @@
       <li><a role="button" (click)="navigateTheatre()">Pozorista</a></li>
       <li *ngIf="logged == true"><a routerLink="/fanpage">Fan Zona</a></li>
       <li *ngIf="logged == true"><a routerLink="/reservation">Rezervacije</a></li>
-      <li *ngIf="logged == true"><a routerLink="/friends">Prijatelji</a></li>
+
+
+      
+      <li *ngIf="logged == true" class="dropdown"><button class="dropbtn">Prijatelji</button>
+        <div class="dropdown-content">
+            <a routerLink="/friends">Lista prijatelja</a>
+            <a routerLink="/requests">Zahtevi</a>
+            <a routerLink="/pending">Zahtevi na cekanju</a>
+            <a routerLink="/search-users">Pretraga</a>
+          </div>
+      </li>
+
+
     </ul>
       <ul *ngIf="logged == true" class="nav navbar-nav navbar-right">
         <li><a routerLink="/profil">Profil</a></li>

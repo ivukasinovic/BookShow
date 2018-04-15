@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RegService} from '../reg.service';
+import {RegService} from '../registracija/reg.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class RegistracijaComponent implements OnInit {
   errorUsername = false;
   isteSifre : String = "*Sifre se poklapaju"
   errorSifre = false;
-
+ 
   
   
   constructor(private router: Router, private registrationService: RegService) { }

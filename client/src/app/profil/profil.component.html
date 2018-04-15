@@ -2,7 +2,7 @@
   <h2>Profil korisnika <b>{{korisnik.username}} </b> </h2>
 </div>
 
-<div style="float:left; width:70%;padding-left:20px;">
+<div style="padding-left:20px;">
   <table>
   <tr>
     <td><h3>Korisnicko ime : {{korisnik.username}} </h3></td>
@@ -41,13 +41,29 @@
   </table>
 </div>
 
-<div style="float:left; width:30%;">
-  <ul *ngIf = "korisnik.friendList.length == 0">
-    <li>Prazna lista</li>
-    <li>Prazna lista</li>
-    <li>Prazna lista</li>
-    <li>Prazna lista</li>
-    <li>Prazna lista</li>
-  </ul>
-</div> 
+
+<div *ngIf = "prijatelji.length === 0" align = "center" >
+  <h3>
+    <font style="color: red">
+      Trenutno nemate prijatelja :(
+    </font>
+  </h3>
+  </div>
+
+      <div *ngIf = "prijatelji.length > 0"  align = "center">
+          <br>
+          <h3>Lista prijatelja</h3>
+          <table class = "tableS">
+            <tr *ngFor = "let prijatelj of prijatelji" class = "trS">
+              <td>
+                  <a routerLink="/profile-other-user/{{prijatelj.username}}">{{prijatelj.username}}</a>
+              </td>
+              <td>
+                  <button class = "decline" (click)="removeFromFriends(prijatelj.username)">Ukloni iz prijatelja</button>
+              </td>
+            </tr>
+          </table>
+          <br>
+        </div>
+      
 
