@@ -2,6 +2,8 @@ package bookshow.controller;
 
 
 
+import java.util.ArrayList;
+
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,12 +33,6 @@ public class RegistrationController {
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<User> registerUser(@RequestBody User user){
-		
-		/*List<User> users = UserService.findAll();
-		for(User u : users){
-			System.out.println("------> " + u.getUsername() + " " + Boolean.toString(u.isActivated()));
-		}*/
-		
 		User newUser = UserService.findByUsername(user.getUsername());
 		User mailUser = UserService.findByEmail(user.getEmail());
 		
@@ -50,12 +46,7 @@ public class RegistrationController {
 		newUser = user;
 		newUser.setActivated(false);
 		newUser.setRole(Role.USER);
-
-		newUser.setFriendList("");
 		newUser.setIstorijaPoseta("");
-		newUser.setFriendRequests("");
-		newUser.setPendingRequests("");
-
 		newUser.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPasswordHash()));	
 		newUser.setPoints((long) 0);
 		newUser.setType(RatingType.DEFAULT);
