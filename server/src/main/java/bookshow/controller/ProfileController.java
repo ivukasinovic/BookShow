@@ -3,7 +3,7 @@ package bookshow.controller;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import bookshow.domain.Show;
+import bookshow.domain.users.Friendship;
 import bookshow.domain.users.User;
 import bookshow.model.ArrayListDatabaseHandler;
 import bookshow.model.ChangingPasswordDTO;
+import bookshow.service.FriendshipService;
 import bookshow.service.ShowService;
 import bookshow.service.UserService;
 
@@ -32,6 +34,9 @@ public class ProfileController {
 	
 	@Autowired
 	private ShowService ShowService;
+	
+	@Autowired
+	private FriendshipService FriendshipService;
 	
 	@RequestMapping(value = "/getProfileInfo/{username}", method = RequestMethod.GET)
 	public ResponseEntity<User> getLoggedUserData(@PathVariable("username") String username) {
@@ -175,15 +180,17 @@ public class ProfileController {
 
 	@RequestMapping(value = "/getFriends/{username}", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<User>> getFriends(@PathVariable("username") String username){
-		User u = UserService.findByUsername(username);
-		ArrayList<String> lista = new ArrayList<String>();
-		handler = new ArrayListDatabaseHandler();
-		lista = handler.StringToArrayList(u.getFriendList());
-		
 		ArrayList<User> retVal = new ArrayList<User>();
 		
-		for(String s : lista) {
-			retVal.add(UserService.findByUsername(s));
+		List<Friendship> friendships = FriendshipService.findAll();
+		
+		for(Friendship f : friendships) {
+			if(f.getPrijatelj1().equals(username)) {
+				retVal.add(UserService.findByUsername(f.getPrijatelj2()));
+			}
+			if(f.getPrijatelj2().equals(username)) {
+				retVal.add(UserService.findByUsername(f.getPrijatelj1()));
+			}
 		}
 		return new ResponseEntity<>(retVal,HttpStatus.OK);
 	}

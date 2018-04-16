@@ -33,7 +33,7 @@ export class ProfilComponent implements OnInit {
   }
 
   removeFromFriends(username){
-    this.friendsService.removeFriend(username).subscribe(
+    this.profileSerivce.removeFriend(username).subscribe(
       data => {
         this.prijatelji = data;
       }

@@ -15,7 +15,10 @@ export class FriendsService {
    //alert(usernamePart + " " + namePart + " " + surnamePart);
     return this.http.get('api/searchPeople/'+usernamePart+'/'+namePart+'/'+surnamePart);
   }
-
+  
+  confirmRequest(korisnik) {
+    return this.http.get('api/confirmRequest/'+localStorage.getItem('username')+'/'+korisnik)
+  }
 
   removeFriend(username) {
     return this.http.get('api/removeFriend/'+localStorage.getItem('username') + '/' + username);

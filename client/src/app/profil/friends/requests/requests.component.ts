@@ -22,7 +22,7 @@ export class RequestsComponent implements OnInit {
   }
 
   acceptRequest(username){
-    this.profileService.confirmRequest(username).subscribe(
+    this.friendsService.confirmRequest(username).subscribe(
       data => {
         this.zahtevi = data;
       }

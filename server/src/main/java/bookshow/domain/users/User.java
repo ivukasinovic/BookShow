@@ -3,6 +3,7 @@ package bookshow.domain.users;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Ivan V. on 28-Jan-18
@@ -55,44 +56,9 @@ public class User implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RatingType type;
-  
-
-    @Column
-    private String friendList;
-    
+   
     @Column
     private String istorijaPoseta;
-    
-    /**
-     * Zahtevi koji su mu drugi korisnici poslali
-     * a koje jos nije prihvatio / odbio
-     */
-    @Column
-    private String friendRequests;
-    
-    /**
-     * Zahtevi koji je korisnik poslao drugim korisnicima
-     * a koji jos nisu prihvaceni / odbijeni
-     */
-    @Column
-    private String pendingRequests;
-
-	public String getFriendRequests() {
-		return friendRequests;
-	}
-
-	public void setFriendRequests(String friendRequests) {
-		this.friendRequests = friendRequests;
-	}
-
-	public String getPendingRequests() {
-		return pendingRequests;
-	}
-
-	public void setPendingRequests(String pendingRequests) {
-		this.pendingRequests = pendingRequests;
-	}
-
 
 	public boolean isActivated() {
 		  return activated;
@@ -208,14 +174,6 @@ public class User implements Serializable {
         this.type = type;
     }
 
-	public String getFriendList() {
-		return friendList;
-	}
-
-	public void setFriendList(String friendList) {
-		this.friendList = friendList;
-	}
-
 	public String getIstorijaPoseta() {
 		return istorijaPoseta;
 	}
@@ -223,4 +181,6 @@ public class User implements Serializable {
 	public void setIstorijaPoseta(String istorijaPoseta) {
 		this.istorijaPoseta = istorijaPoseta;
 	}
+
+
 }
