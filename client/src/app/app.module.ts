@@ -56,6 +56,8 @@ import{ FriendsService} from './profil/friends/friends.service';
 import { RequestsComponent } from './profil/friends/requests/requests.component';
 import { PendingComponent } from './profil/friends/pending/pending.component';
 import { BuisnessReportComponent } from './shows/shows-cinema/cinema-repertoire/buisness-report/buisness-report.component';
+import { ReservedPropsListComponent } from './fanpage/reserved-props-list/reserved-props-list.component';
+import { SetRatingComponent } from './admin-sys/set-rating/set-rating.component';
 
 
 
@@ -108,7 +110,13 @@ import { BuisnessReportComponent } from './shows/shows-cinema/cinema-repertoire/
     NewProjectionComponent,
 
 
-    BuisnessReportComponent
+    BuisnessReportComponent,
+
+
+    ReservedPropsListComponent,
+
+
+    SetRatingComponent
 
 
 

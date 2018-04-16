@@ -58,7 +58,7 @@ public class BidController {
             @ApiResponse(code = 500, message = "Failure") })
     public ResponseEntity<List<Bid>> getBidByUsedProp(@PathVariable("id") Long id) {
         UsedProp usedProp = usedPropService.findOne(id);
-        List<Bid> bids = bidService.findByUsedProp(usedProp);
+        List<Bid> bids = bidService.findByUsedPropOrderByPriceDesc(usedProp);
         return new ResponseEntity<>(bids, HttpStatus.OK);
     }
 

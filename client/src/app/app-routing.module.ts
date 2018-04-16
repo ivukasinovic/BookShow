@@ -38,46 +38,21 @@ import {SearchUsersComponent} from './profil/friends/search-users/search-users.c
 import { ProfileOtherUserComponent } from './profil/profile-other-user/profile-other-user.component';
 import { RequestsComponent } from './profil/friends/requests/requests.component';
 import { PendingComponent } from './profil/friends/pending/pending.component';
+import {ReservedPropsListComponent} from './fanpage/reserved-props-list/reserved-props-list.component';
+import {SetRatingComponent} from './admin-sys/set-rating/set-rating.component';
 
 
 const routes: Routes = [
   // ivan
   {path: 'login', component: LoginComponent},
-  //jovas
-
-  {path: 'registracija', component: RegistracijaComponent},
-  {path: 'search-users', component: SearchUsersComponent},
-
-  {path: 'requests', component: RequestsComponent},
-  {path: 'pending', component: PendingComponent},
-  {path: 'profile-other-user/:username', component: ProfileOtherUserComponent},
-
-  {path: 'friends', component: FriendsComponent},
-  {path: 'profil', component: ProfilComponent},
-  {path: 'password-change', component: PasswordChangeComponent},
-  {path: 'name-change', component: NameChangeComponent},
-  {path: 'surname-change', component: SurnameChangeComponent},
-  {path: 'email-change', component: EmailChangeComponent},
-  {path: 'city-change', component: CityChangeComponent},
-  {path: 'number-change', component: NumberChangeComponent},
-  {path: 'home-page', component: HomePageComponent},
-  // fun page routes
   {path: 'fanpage/used-prop/:id', component: UsedPropDetailComponent},
   {path: 'fanpage/used-prop/:id/bids', component: BidListComponent},
   {path: 'fanpage/new-prop/:id', component: NewPropDetailComponent},
-  {
-    path: 'fanpage',
-    component: FanpageComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'adminfan',
-    component: AdminFanProfileComponent,
-    canActivate: [RoleGuardService],
-    data: {
-      expectedRole: 'ADMINFAN'
-    }
-  },
+  {path: 'fanpage/my-reserved-props', component: ReservedPropsListComponent},
+  {path: 'fanpage', component: FanpageComponent,
+    canActivate: [AuthGuardService], data: {expectedRole: 'ADMINFAN'}},
+  {path: 'adminfan', component: AdminFanProfileComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
   {path: 'fanpage/my-ads', component: MyAdsComponent},
   {path: 'adminfan/new-props-config', component: NewPropsConfigComponent,
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINFAN'}},
@@ -97,7 +72,23 @@ const routes: Routes = [
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSYS'}},
   {path: 'adminsys/register-admin', component: RegisterAdminComponent,
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSYS'}},
-  // vlada
+  {path: 'adminsys/set-rating', component: SetRatingComponent,
+    canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSYS'}},
+  // jovas
+  {path: 'registracija', component: RegistracijaComponent},
+  {path: 'search-users', component: SearchUsersComponent},
+  {path: 'requests', component: RequestsComponent},
+  {path: 'pending', component: PendingComponent},
+  {path: 'profile-other-user/:username', component: ProfileOtherUserComponent},
+  {path: 'friends', component: FriendsComponent},
+  {path: 'profil', component: ProfilComponent},
+  {path: 'password-change', component: PasswordChangeComponent},
+  {path: 'name-change', component: NameChangeComponent},
+  {path: 'surname-change', component: SurnameChangeComponent},
+  {path: 'email-change', component: EmailChangeComponent},
+  {path: 'city-change', component: CityChangeComponent},
+  {path: 'number-change', component: NumberChangeComponent},
+  {path: 'home-page', component: HomePageComponent},
   // marko
   {path: 'shows/:type', component: ShowsCinemaComponent},
   {path: 'shows/:type/:id', component: CinemaRepertoireComponent},

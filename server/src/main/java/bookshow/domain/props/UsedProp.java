@@ -27,7 +27,6 @@ public class UsedProp extends Prop implements Serializable {
     @Enumerated(EnumType.STRING)
     private UsedPropStatus status;
 
-    //privremeno(Trebalo bi @OneToOne?)
     @Column(name="accepted_bid_fk")
     private Long acceptedBid;
 

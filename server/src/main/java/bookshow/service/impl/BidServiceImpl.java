@@ -24,6 +24,11 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
+    public List<Bid> findByUsedPropOrderByPriceDesc(UsedProp usedProp) {
+        return bidRepository.findByUsedPropOrderByPriceDesc(usedProp);
+    }
+
+    @Override
     public List<Bid> findByUsedProp(UsedProp usedProp) {
         return bidRepository.findByUsedProp(usedProp);
     }

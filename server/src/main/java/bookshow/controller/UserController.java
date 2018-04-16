@@ -1,7 +1,9 @@
 package bookshow.controller;
 
+import bookshow.domain.users.Rating;
 import bookshow.domain.users.RatingType;
 import bookshow.domain.users.User;
+import bookshow.service.RatingService;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService UserService;
+    @Autowired
+    private RatingService ratingService;
 
     @PreAuthorize("hasAuthority('ADMINSYS')")
     @RequestMapping(
@@ -48,6 +52,19 @@ public class UserController {
         User user = UserService.findByUsername(username);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAuthority('ADMINSYS')")
+    @RequestMapping(
+            value = "/users/set-rating",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Rating> setRating(@RequestBody Rating rating){
+        rating.setDate(new java.util.Date());
+        Rating savedRating = ratingService.save(rating);
+        return new ResponseEntity<>(savedRating, HttpStatus.CREATED);
+    }
+
 
 
     @RequestMapping(
