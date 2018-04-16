@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bookshow.domain.movie.Projection;
+import bookshow.domain.movie.Repertoire;
 import bookshow.repository.ProjectionRepository;
 import bookshow.service.ProjectionService;
 
@@ -37,6 +38,12 @@ public class ProjectionServiceImpl implements ProjectionService{
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		projectionRepository.delete(id);
+	}
+
+	@Override
+	public List<Projection> findByRepertoire(Repertoire repertoire) {
+		// TODO Auto-generated method stub
+		return projectionRepository.findByRepertoire(repertoire);
 	}
 
 }

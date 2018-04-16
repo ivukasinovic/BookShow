@@ -1,13 +1,15 @@
-package bookshow.domain.movie;
+package bookshow.domain;
 
 import javax.persistence.*;
-
-import bookshow.domain.Show;
 
 @Entity
 public class Auditorium {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+	
+	@Column(nullable = false)
     private int number;
 	
 	@ManyToOne(optional = false)
@@ -32,6 +34,15 @@ public class Auditorium {
 	public void setShow(Show show) {
 		this.show = show;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	
 	
 }

@@ -1,3 +1,4 @@
+import { ProjectionService } from './../../projection.service';
 import { ShowsService } from './../../shows.service';
 import { PlayMovieService } from './../../play-movie.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,17 +6,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleService } from '../../google.service';
 import { MapsAPILoader } from '@agm/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { TicketService } from '../../ticket.service';
 
 
 @Component({
   selector: 'app-cinema-repertoire',
   templateUrl: './cinema-repertoire.component.html',
   styleUrls: ['./../../shows.css'],
-  providers: [PlayMovieService, ShowsService, GoogleService]
+  providers: [PlayMovieService, ShowsService, GoogleService, ProjectionService, TicketService]
 })
 export class CinemaRepertoireComponent implements OnInit {
   private id;
-  private showsplaymovies=[];
+  private showsplaymovies;
   private role;
   private show;
   private lat;
@@ -23,19 +25,26 @@ export class CinemaRepertoireComponent implements OnInit {
   private zoom = 17;
   private date;
   private disableNewRepertoire;
+  private projections;
+  private repertoire;
+  private tickets;
 
   constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, 
               private router: Router, private showsService: ShowsService,config: NgbRatingConfig,
-              private googleService: GoogleService, private mapsAPILoader: MapsAPILoader) {
+              private googleService: GoogleService, private mapsAPILoader: MapsAPILoader,
+              private projectionService: ProjectionService, private ticketService: TicketService) {
     config.max = 5;
     config.readonly = true;
    }
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
-    this.route.params.subscribe(params => this.id = params['id']);
+    this.route.params.subscribe(params =>
+      {
+        this.id = params['id']
+        this.ticketService.getTicketsOnSale(this.id).subscribe(data => this.tickets = data);
+      });
     this.showsService.getShowById(this.id).subscribe(data => 
-
       {
         this.show = data;
         if(localStorage.getItem('username') !== null){
@@ -48,18 +57,22 @@ export class CinemaRepertoireComponent implements OnInit {
           });
         });
       });
-    this.playMovieService.getShowsPlayMovies(this.id).subscribe((data: any) => this.showsplaymovies = data); 
-
+    this.playMovieService.getShowsPlayMovies(this.id).subscribe(data => this.showsplaymovies = data); 
+    
   }
 
   edit(idMovie){
     this.router.navigate([this.router.url + '/edit-movie/', idMovie]);
   }
-
+/*
   remove(idMovie, objectForRemoval){
     var i = this.showsplaymovies.indexOf(objectForRemoval);
     this.showsplaymovies.splice(i, 1);
     this.playMovieService.removePlayMovie(idMovie).subscribe(data => null);
+  }*/
+
+  navigateToNewProjection(){
+    this.router.navigate([this.router.url + '/new-projection/' + this.date]);
   }
 
   createRepertoire(){
@@ -71,15 +84,23 @@ export class CinemaRepertoireComponent implements OnInit {
     this.disableNewRepertoire = true;
   }
 
-  myFunc($event){
+  dateChanged($event){
+    this.projections = null;
     this.disableNewRepertoire = false;
     this.playMovieService.getRepertoire(this.show, this.date).subscribe(data => 
     {
       if(data){
         this.disableNewRepertoire = true;
-        //alert(data);     
+        this.repertoire = data;
+        this.projectionService.getByRepertoire(this.repertoire).subscribe(projections => {
+          this.projections = projections;
+        })   
       }
     },
     err => null);
+  }
+
+  reserveTicket(ticketId){
+    alert(ticketId);
   }
 }

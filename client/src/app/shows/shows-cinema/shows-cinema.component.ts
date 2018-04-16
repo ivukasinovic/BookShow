@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   providers: [ShowsService]
 })
 export class ShowsCinemaComponent implements OnInit {
-  private shows = [];
+  private shows;
   private type;
 
   constructor(private showsService: ShowsService, 
@@ -24,7 +24,7 @@ export class ShowsCinemaComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => this.type = params['type']);
-    this.showsService.getAllShowsByType(this.type).subscribe((data: any) => this.shows = data); 
+    this.showsService.getAllShowsByType(this.type).subscribe(data => this.shows = data); 
   }
 
   showRepertoire(id){

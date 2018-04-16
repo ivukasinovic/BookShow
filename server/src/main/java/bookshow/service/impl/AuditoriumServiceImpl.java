@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bookshow.domain.movie.Auditorium;
+import bookshow.domain.Auditorium;
 import bookshow.repository.AuditoriumRepository;
 import bookshow.service.AuditoriumService;
 
@@ -22,7 +22,7 @@ public class AuditoriumServiceImpl implements AuditoriumService{
 	}
 
 	@Override
-	public Auditorium findOne(Integer id) {
+	public Auditorium findOne(Long id) {
 		// TODO Auto-generated method stub
 		return auditoriumRepository.findOne(id);
 	}
@@ -34,10 +34,16 @@ public class AuditoriumServiceImpl implements AuditoriumService{
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		auditoriumRepository.delete(id);
 		
+	}
+
+	@Override
+	public List<Auditorium> findByShowId(Long showId) {
+		// TODO Auto-generated method stub
+		return auditoriumRepository.findByShowId(showId);
 	}
 
 }
