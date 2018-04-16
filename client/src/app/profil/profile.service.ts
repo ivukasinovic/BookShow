@@ -22,6 +22,10 @@ export class ProfileService {
     return this.http.get('api/confirmRequest/'+localStorage.getItem('username')+'/'+korisnik)
   }
 
+  removeFriend(username) {
+    return this.http.get('api/removeFriend/'+localStorage.getItem('username') + '/' + username);
+  }
+
   checkFriendship(korisnik){
     //alert(korisnik);
     return this.http.get('api/checkFriendship/'+localStorage.getItem('username')+'/'+korisnik)

@@ -9,9 +9,9 @@
 <div *ngIf = "zahtevi.length > 0" align = "center">
     <div *ngFor = "let zahtev of zahtevi">
      <font class = "fontUsers"> 
-        <a routerLink="/profile-other-user/{{zahtev.username}}">{{zahtev.username}} </a>
+        <a routerLink="/profile-other-user/{{zahtev.poslao}}">{{zahtev.poslao}} </a>
       </font> &nbsp;&nbsp;
-      <button class ="accept" (click)="acceptRequest(zahtev.username)">Prihvati</button>
-      <button class ="decline" (click)="declineRequest(zahtev.username)">Odbij</button>
+      <button class ="accept" (click)="acceptRequest(zahtev.poslao)">Prihvati</button>
+      <button class ="decline" (click)="declineRequest(zahtev.poslao)">Odbij</button>
     </div>
   </div>
