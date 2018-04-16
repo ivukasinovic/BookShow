@@ -6,6 +6,9 @@ import bookshow.domain.users.User;
 import bookshow.service.BidService;
 import bookshow.service.UsedPropService;
 import bookshow.service.UserService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -49,6 +52,10 @@ public class BidController {
             value = "/used-prop/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Get bids of usedprop.", notes = "Fetch all bids of used prop with passed id ", httpMethod = "GET", produces = "application/json")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Bid.class),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 500, message = "Failure") })
     public ResponseEntity<List<Bid>> getBidByUsedProp(@PathVariable("id") Long id) {
         UsedProp usedProp = usedPropService.findOne(id);
         List<Bid> bids = bidService.findByUsedProp(usedProp);

@@ -27,12 +27,12 @@ public class NewPropServiceT {
     ShowService showService;
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         assertEquals(2, newPropService.findAll().size());
     }
 
     @Test
-    public void testFindOne(){
+    public void testFindOne() {
         NewProp newProp = newPropService.findOne(NP_ID);
         assertThat(newProp).isNotNull();
 
@@ -44,7 +44,7 @@ public class NewPropServiceT {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         NewProp newProp = new NewProp();
         newProp.setTitle("Test prop");
         newProp.setDescription("Description of new prop");
@@ -60,10 +60,11 @@ public class NewPropServiceT {
 
         assertThat(savedNewProp).isNotNull();
         assertThat(loadedNewProp).isNotNull();
-        assertEquals(loadedNewProp.getId(),savedNewProp.getId());
+        assertEquals(loadedNewProp.getId(), savedNewProp.getId());
     }
+
     @Test
-    public void testDelete(){
+    public void testDelete() {
         NewProp newProp = new NewProp();
         newProp.setTitle("Test prop");
         newProp.setDescription("Description of new prop");

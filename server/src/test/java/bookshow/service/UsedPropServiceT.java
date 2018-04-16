@@ -28,7 +28,7 @@ public class UsedPropServiceT {
     UserService userService;
 
     @Test
-    public void testCreateUsedProp(){
+    public void testCreateUsedProp() {
         String username = "milan";
         UsedProp usedProp = new UsedProp();
         usedProp.setTitle("test titleUP");
@@ -36,13 +36,13 @@ public class UsedPropServiceT {
         usedProp.setImage("image.image.image");
         Date date = new Date(2019, 6, 20, 4, 0);
         usedProp.setActiveUntil(date);
-        usedPropService.createUsedProp(username,usedProp);
+        usedPropService.createUsedProp(username, usedProp);
 
         UsedProp newUsedProp = usedPropService.findOne(5L);
         assertThat(newUsedProp).isNotNull();
-        assertEquals(newUsedProp.getTitle(),usedProp.getTitle());
-        assertEquals(newUsedProp.getDescription(),usedProp.getDescription());
-        assertEquals(newUsedProp.getImage(),usedProp.getImage());
+        assertEquals(newUsedProp.getTitle(), usedProp.getTitle());
+        assertEquals(newUsedProp.getDescription(), usedProp.getDescription());
+        assertEquals(newUsedProp.getImage(), usedProp.getImage());
 
     }
 
@@ -54,16 +54,16 @@ public class UsedPropServiceT {
         usedPropService.acceptBid(usedPropId, acceptedBidId);
         UsedProp acceptedUsedProp = usedPropService.findOne(2L);
 
-        assertEquals(acceptedUsedProp.getAcceptedBid(),acceptedBidId);
+        assertEquals(acceptedUsedProp.getAcceptedBid(), acceptedBidId);
     }
 
     @Test
-    public void approveDecline(){
+    public void approveDecline() {
         Long usedPropId = 1L;
-        String type="approve";
+        String type = "approve";
         User adminFan = userService.findOne(1L);
         try {
-            usedPropService.approveDecline(usedPropId,type,adminFan);
+            usedPropService.approveDecline(usedPropId, type, adminFan);
         } catch (Exception e) {
             e.printStackTrace();
         }
