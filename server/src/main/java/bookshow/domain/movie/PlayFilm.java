@@ -38,9 +38,6 @@ public class PlayFilm {
 	@Column
 	private String description;
 	
-	@Column
-	private double price;
-	
 	@ManyToOne(optional = false)
 	private Show show;
 	
@@ -102,14 +99,6 @@ public class PlayFilm {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
 	}
 
 	public String getGenre() {

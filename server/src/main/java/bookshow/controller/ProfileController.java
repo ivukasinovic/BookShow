@@ -116,7 +116,6 @@ public class ProfileController {
 		}
 	}
 	
-	@PreAuthorize("hasAuthority('USER')")
 	@RequestMapping(value = "/addToHistory/{username}/{showId}", method = RequestMethod.GET)
 	public ResponseEntity<User> addToHistory(@PathVariable("username") String username,
 										@PathVariable("showId") String showId){

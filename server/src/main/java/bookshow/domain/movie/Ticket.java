@@ -1,10 +1,14 @@
 package bookshow.domain.movie;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import bookshow.domain.Seat;
 
 @Entity
 public class Ticket {
@@ -12,8 +16,15 @@ public class Ticket {
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private Long id;
 	 
-	 @ManyToOne
-	 private PlayFilm playfilm;
+	 @ManyToOne(optional = false)
+	 private Projection projection;
+	 
+	 //inicijalno je 0
+	 @Column(nullable = false)
+	 private double discount;
+	 
+	 @OneToOne(optional = false)
+	 private Seat seat;
 	 
 	 public Ticket(){
 		 
@@ -27,15 +38,30 @@ public class Ticket {
 		this.id = id;
 	}
 
-	public PlayFilm getPlayfilm() {
-		return playfilm;
+	public Projection getProjection() {
+		return projection;
 	}
 
-	public void setPlayfilm(PlayFilm playfilm) {
-		this.playfilm = playfilm;
+	public void setProjection(Projection projection) {
+		this.projection = projection;
+	}
+
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public Seat getSeat() {
+		return seat;
+	}
+
+	public void setSeat(Seat seat) {
+		this.seat = seat;
 	}
 	 
-	 
-
+	
 	 
 }

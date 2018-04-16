@@ -11,31 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import bookshow.domain.movie.Auditorium;
-import bookshow.domain.movie.PlayFilm;
-import bookshow.service.AuditoriumService;
+import bookshow.domain.movie.Ticket;
+import bookshow.service.TicketService;
 
 @RestController
-@RequestMapping(value = "/auditorium")
-public class AuditoriumController {
-
+@RequestMapping(value = "ticket")
+public class TicketController {
 	@Autowired
-	private AuditoriumService auditoriumService;
+	TicketService ticketService;
 	
 	@RequestMapping(
-			value = "/get-by-show/{id}", 
+			value = "/get", 
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Auditorium>> getShowsRepertoire(@PathVariable String id){
-		Long longId = new Long(Integer.parseInt(id));
-		return new ResponseEntity<>(auditoriumService.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<Ticket>> getTickets(){
+		return new ResponseEntity<>(ticketService.findAll(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(
-			value = "/{id}", 
+			value = "/get-discounts/{showId}", 
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Auditorium> getAuditorium(@PathVariable String id){
-		return new ResponseEntity<>(auditoriumService.findOne(Integer.parseInt(id)), HttpStatus.OK);
+	public ResponseEntity<List<Ticket>> getTicketsOnDiscount(@PathVariable String showId){
+		Long longId = new Long(Integer.parseInt(showId));
+		return new ResponseEntity<>(ticketService.findBySeatAuditoriumShowIdAndDiscountGreaterThan(longId, 0), HttpStatus.OK);
 	}
 }

@@ -55,6 +55,7 @@ import { SearchUsersComponent } from './profil/friends/search-users/search-users
 import{ FriendsService} from './profil/friends/friends.service';
 import { RequestsComponent } from './profil/friends/requests/requests.component';
 import { PendingComponent } from './profil/friends/pending/pending.component';
+import { BuisnessReportComponent } from './shows/shows-cinema/cinema-repertoire/buisness-report/buisness-report.component';
 
 
 
@@ -104,7 +105,12 @@ import { PendingComponent } from './profil/friends/pending/pending.component';
     PendingComponent,
 
 
-    NewProjectionComponent
+    NewProjectionComponent,
+
+
+    BuisnessReportComponent
+
+
 
   ],
   imports: [

@@ -1,0 +1,14 @@
+
+<div align = "center">
+<h2> {{show.name}} </h2>
+<br/>
+<h3> Prosecna ocena ambijenta: {{show.rating}} </h3>
+
+<div *ngFor = "let playmovie of playmovies">
+  <h3>
+    Prosecna ocena filma {{playmovie.name}}: {{playmovie.averageScore}}
+  </h3>
+
+</div>
+
+</div>
