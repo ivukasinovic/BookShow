@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {NewProp, UsedProp, User} from './models/prop';
+import {NewProp, Rating, UsedProp, User} from './models/prop';
 
 @Injectable()
 export class PropService {
@@ -35,6 +35,9 @@ export class PropService {
   deleteNewProp(newPropId: number) {
     return this.http.delete('api/new-props/' + newPropId, {observe: 'response'});
   }
+  getMyReservedProps() {
+    return this.http.get('api/new-props/my-reservations');
+  }
 
   getUsedProps() {
     return this.http.get('/api/used-props');
@@ -46,6 +49,9 @@ export class PropService {
 
   reservation(id: number) {
     return this.http.get('/api/new-props/reserve/' + id, {observe: 'response'});
+  }
+  deleteReservation(id: number) {
+    return this.http.delete('api/new-props/reservation/' + id, {observe: 'response'});
   }
 
   getBids(usedPropId: number) {
@@ -103,6 +109,12 @@ export class PropService {
 
   delete(usedPropId: number) {
     return this.http.delete('api/used-props/' + usedPropId);
+  }
+  getCurrentRating() {
+    return this.http.get('api/rating/get-current');
+  }
+  changeRating(rating: Rating) {
+    return this.http.post('api/rating', rating);
   }
 
 }

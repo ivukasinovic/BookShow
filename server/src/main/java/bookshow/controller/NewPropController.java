@@ -2,8 +2,8 @@ package bookshow.controller;
 
 import bookshow.domain.Show;
 import bookshow.domain.props.NewProp;
+import bookshow.domain.users.Role;
 import bookshow.domain.users.User;
-import bookshow.security.TokenUtils;
 import bookshow.service.NewPropService;
 import bookshow.service.ShowService;
 import bookshow.service.UserService;
@@ -30,8 +30,6 @@ public class NewPropController {
     private ShowService showService;
     @Autowired
     private UserService userService;
-    @Autowired
-    private TokenUtils tokenUtils;
 
 
     @RequestMapping(
@@ -58,6 +56,15 @@ public class NewPropController {
     public ResponseEntity<NewProp> getNewProp(@PathVariable Long id){
         NewProp newProp = newPropService.findOne(id);
         return new ResponseEntity<>(newProp, HttpStatus.OK);
+    }
+    @RequestMapping(
+            value = "/my-reservations",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<NewProp>>getMyReservations(Principal principal){
+        User user = userService.findByUsername(principal.getName());
+        List<NewProp> myReservedProps = newPropService.findByUser(user);
+        return new ResponseEntity<>(myReservedProps, HttpStatus.OK);
     }
 
     //id filma/predstave
@@ -116,5 +123,19 @@ public class NewPropController {
         newPropService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @RequestMapping(
+            value = "/reservation/{id}",
+            method = RequestMethod.DELETE)
+    public ResponseEntity<NewProp> deleteReservation(Principal principal, @PathVariable("id") Long id) {
+        NewProp newProp = newPropService.findOne(id);
+        User user = userService.findByUsername(principal.getName());
+        if((newProp.getUser() != user) && (newProp.getUser().getRole() != Role.ADMINFAN)){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        newProp.setUser(null);
+        newPropService.save(newProp);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 
 }

@@ -105,7 +105,8 @@
                            <td>{{projection.price}}</td>
                            <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "editProjection(projection.id)"> Izmeni </button></td>
                            <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "removeProjection(projection.id, projection)"> Obrisi </button></td>
-                         </tr>
+                           <td> <button>Rezervisi</button></td>
+                        </tr>
                      
                      </table>
                    </div>

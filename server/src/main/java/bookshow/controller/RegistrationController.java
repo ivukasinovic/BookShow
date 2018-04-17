@@ -46,7 +46,7 @@ public class RegistrationController {
 		newUser = user;
 		newUser.setActivated(false);
 		newUser.setRole(Role.USER);
-		newUser.setIstorijaPoseta("");
+		//newUser.setIstorijaPoseta("");
 		newUser.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPasswordHash()));	
 		newUser.setPoints((long) 0);
 		newUser.setType(RatingType.DEFAULT);
