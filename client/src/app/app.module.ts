@@ -109,7 +109,7 @@ import { EditProjectionComponent } from './shows/shows-cinema/cinema-repertoire/
     NewProjectionComponent,
     BuisnessReportComponent,
     ReservedPropsListComponent,
-    SetRatingComponent
+    SetRatingComponent,
     EditShowComponent,
     EditProjectionComponent
   ],

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Created by Ivan V. on 29-Jan-18
  */
-@RequestMapping(value="/new-props")
+@RequestMapping(value = "/new-props")
 @RestController
 public class NewPropController {
     @Autowired
@@ -31,7 +32,7 @@ public class NewPropController {
     @Autowired
     private UserService userService;
 
-
+    @PreAuthorize("hasAuthority('ADMINFAN')")
     @RequestMapping(
             value = "/all",
             method = RequestMethod.GET,
@@ -49,25 +50,28 @@ public class NewPropController {
         List<NewProp> newProps = newPropService.findByUserIsNull();
         return new ResponseEntity<>(newProps, HttpStatus.OK);
     }
+
     @RequestMapping(
             value = "/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<NewProp> getNewProp(@PathVariable Long id){
+    public ResponseEntity<NewProp> getNewProp(@PathVariable Long id) {
         NewProp newProp = newPropService.findOne(id);
         return new ResponseEntity<>(newProp, HttpStatus.OK);
     }
+
     @RequestMapping(
             value = "/my-reservations",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<NewProp>>getMyReservations(Principal principal){
+    public ResponseEntity<List<NewProp>> getMyReservations(Principal principal) {
         User user = userService.findByUsername(principal.getName());
         List<NewProp> myReservedProps = newPropService.findByUser(user);
         return new ResponseEntity<>(myReservedProps, HttpStatus.OK);
     }
 
     //id filma/predstave
+    @PreAuthorize("hasAuthority('ADMINFAN')")
     @RequestMapping(
             value = "/{id}",
             method = RequestMethod.POST,
@@ -75,7 +79,7 @@ public class NewPropController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createNewProp(Principal principal, @Validated @RequestBody NewProp newProp, @PathVariable("id") Long id, Errors errors) {
 
-        if(errors.hasErrors()){
+        if (errors.hasErrors()) {
             return new ResponseEntity<String>(errors.getAllErrors().toString(), HttpStatus.BAD_REQUEST);
         }
         Show show = showService.findOne(id);
@@ -89,14 +93,17 @@ public class NewPropController {
     @RequestMapping(
             value = "/reserve/{id}",
             method = RequestMethod.GET)
-    public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id,Principal principal) {
+    public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id, Principal principal) {
         NewProp newProp = newPropService.findOne(id);
+        if (newProp.getUser() != null) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         String username = principal.getName();
         User user = userService.findByUsername(username);
-        user.setPoints(user.getPoints()+1L);
+        user.setPoints(user.getPoints() + 1L);
         newProp.setUser(user);
         newPropService.save(newProp);
-        return new ResponseEntity<>(newProp,HttpStatus.CREATED);
+        return new ResponseEntity<>(newProp, HttpStatus.CREATED);
     }
 
     @RequestMapping(
@@ -116,20 +123,26 @@ public class NewPropController {
         return new ResponseEntity<>(updatedNewProp, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAuthority('ADMINFAN')")
     @RequestMapping(
             value = "/{id}",
             method = RequestMethod.DELETE)
     public ResponseEntity<NewProp> deleteNewProp(@PathVariable("id") Long id) {
-        newPropService.delete(id);
+        try {
+            newPropService.delete(id);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
     @RequestMapping(
             value = "/reservation/{id}",
             method = RequestMethod.DELETE)
     public ResponseEntity<NewProp> deleteReservation(Principal principal, @PathVariable("id") Long id) {
         NewProp newProp = newPropService.findOne(id);
         User user = userService.findByUsername(principal.getName());
-        if((newProp.getUser() != user) && (newProp.getUser().getRole() != Role.ADMINFAN)){
+        if ((newProp.getUser() != user) && (newProp.getUser().getRole() != Role.ADMINFAN)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         newProp.setUser(null);

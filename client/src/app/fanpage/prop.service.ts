@@ -100,11 +100,11 @@ export class PropService {
   }
 
   accept(usedPropId: number) {
-    return this.http.get('api/used-props/accept-decline/' + usedPropId + '?type=approve');
+    return this.http.get('api/used-props/approve-decline/' + usedPropId + '?type=approve');
   }
 
   decline(usedPropId: number) {
-    return this.http.get('api/used-props/accept-decline/' + usedPropId + '?type=decline');
+    return this.http.get('api/used-props/approve-decline/' + usedPropId + '?type=decline');
   }
 
   delete(usedPropId: number) {
