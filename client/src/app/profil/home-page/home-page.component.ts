@@ -29,9 +29,8 @@ export class HomePageComponent implements OnInit {
 
     if(this.logged === true){
       this.homepageService.getHistory().subscribe(
-        (data:any) => {
-          this.istorija = data;      
-    }) 
+        data => this.istorija = data    
+    ) 
   }
 
 }

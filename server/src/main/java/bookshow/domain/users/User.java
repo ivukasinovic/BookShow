@@ -1,9 +1,13 @@
 package bookshow.domain.users;
 
 import javax.persistence.*;
+
+import bookshow.domain.Show;
+
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Ivan V. on 28-Jan-18
@@ -57,9 +61,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RatingType type;
-   
-    @Column
-    private String istorijaPoseta;
+
 
 	public boolean isActivated() {
 		  return activated;
@@ -172,14 +174,5 @@ public class User implements Serializable {
     public void setType(RatingType type) {
         this.type = type;
     }
-
-	public String getIstorijaPoseta() {
-		return istorijaPoseta;
-	}
-
-	public void setIstorijaPoseta(String istorijaPoseta) {
-		this.istorijaPoseta = istorijaPoseta;
-	}
-
 
 }

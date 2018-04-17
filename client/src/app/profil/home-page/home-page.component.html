@@ -14,16 +14,16 @@
 <div *ngIf = "istorija.length > 0"  align = "center">
   <br><br>
  <table border="1">
-   <tr align = "center" >
-     <th colspan = "2" align = "center">
+   <tr>
+     <th colspan = "3">
        Istorija poseta
      </th>
    </tr>
    <tr *ngFor = "let poseta of istorija" align = "center">
      <td>
-        <a routerLink="/shows/{{poseta.type}}/{{poseta.id}}">{{poseta.name}}</a>
-      
+      <a routerLink="/shows/{{poseta.showType}}/{{poseta.showId}}">{{poseta.showName}}</a>
      </td>
+     <td>{{poseta.date}}</td>
      <td>
         <a [routerLink]="" (click)="removeFromHistoy(poseta.id)">[x] </a>
      </td>
