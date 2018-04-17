@@ -1,6 +1,8 @@
 package bookshow.domain.users;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -15,11 +17,14 @@ public class Rating {
     private Long id;
 
     private Date date;
-
+    @NotNull
+    @Min(value = 0L, message = "Vrednost mora biti pozitivna")
     private Long bronze;
-
+    @NotNull
+    @Min(value = 0L, message = "Vrednost mora biti pozitivna")
     private Long silver;
-
+    @NotNull
+    @Min(value = 0L, message = "Vrednost mora biti pozitivna")
     private Long gold;
 
     public Rating() {

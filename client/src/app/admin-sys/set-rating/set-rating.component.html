@@ -4,3 +4,27 @@
   <a routerLink="/adminsys/register-admin" class="btn btn-default btn-sm">Registracija administratora</a><br>
   <a routerLink="/adminsys/set-rating" class="btn btn-info btn-sm">Postavka skale za korisnike</a><br>
 </div>
+
+<div class="col-md-4">
+
+ <h3>Trenutno stanje skale</h3>
+  <p>Bronzani korisnik:{{ rating.bronze }}</p>
+  <p>Srebrni korisnik: {{ rating.silver }}</p>
+  <p>Zlatni korisnik: {{ rating.gold }}</p>
+</div>
+<div class="col-md-4">
+  <h3>Promena skale</h3>
+  <div class="col-md-6">
+  <label>Bronzani</label>
+  <input [(ngModel)]="newRating.bronze" type="text" class="form-control" name="bronze"
+         data-toggle="tooltip" data-placement="bottom" title="Unesite vrednost za bronzanog korisnika">
+  <label>Srebrni</label>
+  <input [(ngModel)]="newRating.silver" type="text" class="form-control" name="silver"
+         data-toggle="tooltip" data-placement="bottom" title="Unesite vrednost za srebrnog korisnika">
+  <label>Zlatni</label>
+  <input [(ngModel)]="newRating.gold" type="text" class="form-control" name="gold"
+         data-toggle="tooltip" data-placement="bottom" title="Unesite vrednost za zlatnog korisnika">
+    <br>
+  <button class="btn btn-primary" (click)="changeRating()">Promeni skalu</button>
+  </div>
+</div>

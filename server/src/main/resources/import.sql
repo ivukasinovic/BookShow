@@ -46,3 +46,5 @@ INSERT INTO used_prop (id, date_created, description, title, active_until, statu
 
 INSERT INTO bid (accepted, date_created, price, used_prop_fk, user_fk) VALUES (0, '2018-01-29 03:25:24', 250, 2, 5);
 INSERT INTO bid (accepted, date_created, price, used_prop_fk, user_fk) VALUES (1, '2018-02-01 17:25:24', 260, 2, 6);
+
+INSERT INTO rating (date, bronze, silver, gold) VALUES ('2018-04-17 09:14:47', 100, 200, 400);

@@ -8,4 +8,6 @@ import bookshow.domain.users.Rating;
 public interface RatingService {
 
     Rating save(Rating rating);
+
+    Rating getCurrentRating();
 }

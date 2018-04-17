@@ -18,4 +18,10 @@ public class RatingServiceImpl implements RatingService {
     public Rating save(Rating rating) {
         return ratingRepository.save(rating);
     }
+
+    @Override
+    public Rating getCurrentRating() {
+        Rating rating = ratingRepository.findTopByOrderByDateDesc();
+        return rating;
+    }
 }

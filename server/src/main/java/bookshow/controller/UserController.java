@@ -53,19 +53,6 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ADMINSYS')")
-    @RequestMapping(
-            value = "/users/set-rating",
-            method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Rating> setRating(@RequestBody Rating rating){
-        rating.setDate(new java.util.Date());
-        Rating savedRating = ratingService.save(rating);
-        return new ResponseEntity<>(savedRating, HttpStatus.CREATED);
-    }
-
-
 
     @RequestMapping(
             value = "/users",
