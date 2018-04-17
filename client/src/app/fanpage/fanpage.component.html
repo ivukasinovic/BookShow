@@ -5,7 +5,7 @@
             [attr.aria-expanded]="!isCollapsed" aria-controls="collapseNewAdd">Postavi Oglas
     </button>
     <div class="btn btn-primary" (click)="getMyAds()">Aktivni Oglasi</div>
-    <div class="btn btn-primary" >Rezervisani Rekviziti</div>
+    <div class="btn btn-primary" (click)="getMyReservedProps()" >Rezervisani Rekviziti</div>
     <br><br><br>
     <div id="collapsenpNewAdd" [ngbCollapse]="!isCollapsed">
       <div class="card">

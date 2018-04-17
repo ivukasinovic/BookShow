@@ -12,6 +12,8 @@ import java.util.List;
 public interface BidService {
     List<Bid> findAll();
 
+    List<Bid> findByUsedPropOrderByPriceDesc(UsedProp usedProp);
+
     List<Bid> findByUsedProp(UsedProp usedProp);
 
     Bid findByUserAndUsedProp(User user, UsedProp usedProp);

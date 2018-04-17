@@ -17,6 +17,9 @@ export class FanpageComponent implements OnInit {
   getMyAds() {
     this.router.navigate(['fanpage/my-ads']);
   }
+  getMyReservedProps(){
+    this.router.navigate(['fanpage/my-reserved-props']);
+  }
 
 }
 

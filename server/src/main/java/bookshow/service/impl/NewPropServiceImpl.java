@@ -1,6 +1,7 @@
 package bookshow.service.impl;
 
 import bookshow.domain.props.NewProp;
+import bookshow.domain.users.User;
 import bookshow.repository.NewPropRepository;
 import bookshow.service.NewPropService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class NewPropServiceImpl implements NewPropService {
     @Override
     public List<NewProp> findByUserIsNull() {
         return newPropRepository.findByUserIsNull();
+    }
+
+    @Override
+    public List<NewProp> findByUser(User user) {
+        return newPropRepository.findByUser(user);
     }
 
     @Override
