@@ -1,7 +1,7 @@
 -- password == username
 
 INSERT INTO user (istorija_poseta,role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('','ADMINFAN', 'Novi Sad', 'adminfan@adminfan', 'Ivan', '0635569989', '$2a$10$2z.t0mwY4P0/k7cHSQwMzu5Cj9usMkPLEN7ZHXbzNT7U4CEQk5vP2', 'Vukasinovic', 'adminfan',245,'DEFAULT', false ,true);
-INSERT INTO user (istorija_poseta,role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('''ADMINFAN', 'Beograd', 'adminfan2@adminfan2','Jovan', '0641569989', '$2a$10$ujoKDHyPmfaI.fQp1hCUo.hOY69jcjhPKiIRZbBnJhCY59aOohCIm', 'Jovic', 'adminfan2',100,'DEFAULT', false, true);
+INSERT INTO user (istorija_poseta,role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('','ADMINFAN', 'Beograd', 'adminfan2@adminfan2','Jovan', '0641569989', '$2a$10$ujoKDHyPmfaI.fQp1hCUo.hOY69jcjhPKiIRZbBnJhCY59aOohCIm', 'Jovic', 'adminfan2',100,'DEFAULT', false, true);
 INSERT INTO user (istorija_poseta,role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('','ADMINSYS', 'Novi Sad', 'adminsys@adminsys', 'Vladimir', '063429989', '$2a$10$RO7l/vTjVfhh12dl5ax40uni/DuHzB/53kVxov/F6bM6hKzoIAxlC', 'Jovicic', 'adminsys',314,'DEFAULT', false, true);
 INSERT INTO user (istorija_poseta,role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('','ADMINSHOW','Novi Sad', 'adminshow@adminshow', 'Marko', '0635565239', '$2a$10$CW3M.a.ikZbsvDVkwcTQfOKmluBCFM6oUjglbAWQIXYRplm0d/XIC', 'Krajinovic', 'adminshow',2,'DEFAULT', false, true);
 INSERT INTO user (istorija_poseta,role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('','USER','Beograd', 'dejan@dejan', 'Dejan', '0615565239', '$2a$10$RiHre9rM0U19KWXUukNyWeNITpwVwPV98WyGpbHm4YqwGPpLE.VWy', 'Stojkic', 'dejan',22,'DEFAULT', false, true);
@@ -21,12 +21,12 @@ INSERT INTO playfilm_ct (name, actors, genre, director, duration, image_url, des
 INSERT INTO auditorium (number, show_id) VALUES (1, 1);
 INSERT INTO auditorium (number, show_id) VALUES (2, 1);
 
-INSERT INTO seat (number, auditorium_id) VALUES (1, 1);
-INSERT INTO seat (number, auditorium_id) VALUES (2, 1);
-INSERT INTO seat (number, auditorium_id) VALUES (3, 1);
-INSERT INTO seat (number, auditorium_id) VALUES (1, 2);
-INSERT INTO seat (number, auditorium_id) VALUES (2, 2);
-INSERT INTO seat (number, auditorium_id) VALUES (3, 2);
+INSERT INTO seat (number, auditorium_id, segment) VALUES (1, 1, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (2, 1, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (3, 1, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (1, 2, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (2, 2, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (3, 2, 'NORMAL');
 
 
 INSERT INTO repertoire (date, show_id) VALUES ('2018-04-01', 1);

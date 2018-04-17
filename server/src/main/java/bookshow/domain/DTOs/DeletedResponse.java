@@ -1,4 +1,4 @@
-package bookshow.controller.film;
+package bookshow.domain.DTOs;
 
 public class DeletedResponse {
 

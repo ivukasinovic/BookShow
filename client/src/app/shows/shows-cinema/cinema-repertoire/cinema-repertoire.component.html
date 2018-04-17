@@ -133,7 +133,7 @@
                            <td> {{ticket.discount}}  </td>
                            <td> {{ticket.projection.repertoire.dateShow.date}} </td>
                            <td> {{ticket.projection.time}} </td>
-                           <td><button (click)="reserveTicket(ticket)"> Rezervisi </button></td>
+                           <td><button (click)="reserveTicket(ticket.id, ticket)"> Rezervisi </button></td>
                          </tr>
                      
                      </table>

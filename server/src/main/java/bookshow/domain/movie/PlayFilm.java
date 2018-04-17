@@ -1,6 +1,8 @@
 package bookshow.domain.movie;
 
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import bookshow.domain.Show;
@@ -8,7 +10,12 @@ import bookshow.domain.Show;
 
 @Entity
 @Table(name = "playfilm_ct")
-public class PlayFilm {
+public class PlayFilm implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

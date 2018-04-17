@@ -1,5 +1,7 @@
 package bookshow.domain.movie;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +11,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import bookshow.domain.Seat;
-import bookshow.domain.users.User;
 
 @Entity
-public class Ticket {
+public class Ticket implements Serializable{
+	
+	
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private Long id;
@@ -27,8 +35,8 @@ public class Ticket {
 	 @OneToOne(optional = false)
 	 private Seat seat;
 	 
-	 @ManyToOne
-	 private User user;
+	 @OneToOne
+	 private Purchase purchased;
 	 
 	 public Ticket(){
 		 
@@ -66,13 +74,14 @@ public class Ticket {
 		this.seat = seat;
 	}
 
-	public User getUser() {
-		return user;
+	public Purchase getPurchased() {
+		return purchased;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setPurchased(Purchase purchased) {
+		this.purchased = purchased;
 	}
+
 	 
 	
 	 

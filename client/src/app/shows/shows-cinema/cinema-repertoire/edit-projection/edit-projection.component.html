@@ -1,3 +1,35 @@
-<p>
-  edit-projection works!
-</p>
+
+<div align = "center">
+    <h2>Izmena projekcija</h2>
+  
+    <form name="form" (ngSubmit)="sendData()">
+      <table>
+        <tr>
+          <td><label> Vreme projekcije: </label> </td>
+          <td><input type="text" name="time" [(ngModel)]="projection.time"/> </td>
+        </tr>
+        <tr>
+          <td><label> Sala: </label> </td>
+          <td>
+              <select [(ngModel)] = "auditoriumId" name="combobox2">
+                  <option  *ngFor ="let a of auditoriums" value="{{a.id}}">{{a.number}}</option>
+                </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label> Film: </label> </td>
+          <td>
+            <select [(ngModel)] = "playMovieId" name="combobox1">
+              <option  *ngFor ="let playMovie of playMovies" value="{{playMovie.id}}">{{playMovie.name}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label> Cena: </label> </td>
+          <td><input type="text" name="price" [(ngModel)]="projection.price"/> </td>
+        </tr>
+       <tr> <td colspan = "2"><input type = "submit" value = " Izmeni "/></td></tr>
+  
+      </table>
+    </form>
+  </div>

@@ -1,10 +1,7 @@
 package bookshow.domain.movie;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.*;
-
-import bookshow.domain.Show;
 
 @Entity
 public class Repertoire implements Serializable{
