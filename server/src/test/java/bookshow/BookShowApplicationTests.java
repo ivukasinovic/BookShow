@@ -1,4 +1,4 @@
-package com.bookshow;
+package bookshow;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
