@@ -1,14 +1,16 @@
 package bookshow.controller;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,18 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import bookshow.domain.Show;
+
 import bookshow.domain.users.Friendship;
 import bookshow.domain.users.User;
-import bookshow.model.ArrayListDatabaseHandler;
+import bookshow.domain.users.Visit;
 import bookshow.model.ChangingPasswordDTO;
 import bookshow.service.FriendshipService;
+import bookshow.service.VisitService;
 import bookshow.service.ShowService;
 import bookshow.service.UserService;
 
 
 @RestController
 public class ProfileController {
-	private ArrayListDatabaseHandler handler;
 	
 	@Autowired
 	 private UserService UserService;
@@ -37,6 +40,9 @@ public class ProfileController {
 	
 	@Autowired
 	private FriendshipService FriendshipService;
+	
+	@Autowired
+	private VisitService VisitService;
 	
 	@RequestMapping(value = "/getProfileInfo/{username}", method = RequestMethod.GET)
 	public ResponseEntity<User> getLoggedUserData(@PathVariable("username") String username) {
@@ -124,55 +130,32 @@ public class ProfileController {
 	@RequestMapping(value = "/addToHistory/{username}/{showId}", method = RequestMethod.GET)
 	public ResponseEntity<User> addToHistory(@PathVariable("username") String username,
 										@PathVariable("showId") String showId){
-		User u = UserService.findByUsername(username);
-		ArrayList<String> lista = new ArrayList<String>();
-		handler = new ArrayListDatabaseHandler();
-		lista = handler.StringToArrayList(u.getIstorijaPoseta());
-	
-		if(lista.contains(showId)) {
-			lista.remove(showId);
-			lista.add(0,showId);
-		}else {
-			lista.add(0,showId);
-		}
-		u.setIstorijaPoseta(handler.ArrayListToString(lista));
-			
-		UserService.save(u);
+		Show show = ShowService.findOne(Long.parseLong(showId));
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		System.out.println(show.getType().toString() + " " + showId);
+		VisitService.save(new Visit(username,showId,show.getType().toString(),
+				show.getName(),dateFormat.format(date)));
 		return new ResponseEntity<>(UserService.findByUsername(username),HttpStatus.OK);
 		}
 	
-	
-	
-	@RequestMapping(value = "/removeFromHistory/{username}/{showId}", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Show>> removeFromHistory(@PathVariable("username") String username,
-			@PathVariable("showId") String showId){
-		User u = UserService.findByUsername(username);
-		handler = new ArrayListDatabaseHandler();
-		ArrayList<String> lista = new ArrayList<String>();
-		lista = handler.StringToArrayList(u.getIstorijaPoseta());
-		lista.remove(showId);
-		u.setIstorijaPoseta(handler.ArrayListToString(lista));
-		
-		ArrayList<Show> retVal = new ArrayList<Show>();
-		for(String s : lista) {
-			retVal.add(ShowService.findOne(Long.parseLong(s)));
-		}
-		
-		UserService.save(u);
-		return new ResponseEntity<>(retVal,HttpStatus.OK);
+	@RequestMapping(value = "/removeFromHistory/{username}/{visitId}", method = RequestMethod.GET)
+	public ResponseEntity<User> removeFromHistory(@PathVariable("username") String username,
+			@PathVariable("visitId") String visitId){
+		Visit zaBrisanje = VisitService.findById(Long.parseLong(visitId));
+		VisitService.delete(zaBrisanje);
+		return new ResponseEntity<>(UserService.findByUsername(username),HttpStatus.OK);
 		
 	}
 	@RequestMapping(value = "/getHistory/{username}", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<Show>> getHistory(@PathVariable("username") String username){
-		User u = UserService.findByUsername(username);
-		ArrayList<String> lista = new ArrayList<String>();
-		handler = new ArrayListDatabaseHandler();
-		lista = handler.StringToArrayList(u.getIstorijaPoseta());
+	public ResponseEntity<ArrayList<Visit>> getHistory(@PathVariable("username") String username){
+		ArrayList<Visit> retVal = new ArrayList<Visit>();
+		List<Visit> visits = VisitService.fintAll();
 		
-		ArrayList<Show> retVal = new ArrayList<Show>();
-		
-		for(String st : lista){
-			retVal.add(ShowService.findOne(Long.parseLong(st)));
+		for(Visit v : visits) {
+			if(v.getUsername().equals(username)) {
+				retVal.add(v);
+			}
 		}
 		return new ResponseEntity<>(retVal,HttpStatus.OK);	
 	}
