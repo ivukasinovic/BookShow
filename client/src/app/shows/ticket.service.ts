@@ -10,4 +10,12 @@ export class TicketService {
     return this.http.get("api/ticket/get-discounts/" + showId);
   }
 
+  reserveTicket(ticket, username){
+    return this.http.put("api/ticket/reserve/" + username, ticket);
+  }
+
+  getTicketById(ticketId){
+    return this.http.get("api/ticket/get/"+ticketId);
+  }
+
 }

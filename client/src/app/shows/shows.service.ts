@@ -14,6 +14,9 @@ export class ShowsService {
     return this.http.get('/api/shows/' + id);
   }
 
+  updateShow(show){
+    return this.http.put("api/shows/edit", show);
+  }
 
   addToHistory(id){
     return this.http.get('/api/addToHistory/'+localStorage.getItem('username')+ '/'+ id).subscribe();

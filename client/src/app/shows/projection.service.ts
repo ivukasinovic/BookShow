@@ -24,4 +24,8 @@ export class ProjectionService {
   getByRepertoire(repertoire){
     return this.http.post("api/projection/get-by-repertoire", repertoire);
   }
+
+  removeProjection(projectionId){
+    return this.http.delete("api/projection/delete/" + projectionId);
+  }
 }
