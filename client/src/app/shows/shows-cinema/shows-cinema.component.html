@@ -5,6 +5,7 @@
         <th>Opis</th>
         <th>Prosecna ocena</th>
         <th>Repertoar</th>
+        <th *ngIf = "role == 'ADMINSHOW'">Izmena</th>
     </tr>
   
       <tr *ngFor="let show of shows">
@@ -13,6 +14,7 @@
         <td>{{show.description}}</td>
         <td><ngb-rating [rate]="show.rating"></ngb-rating></td>
         <td><button (click)="showRepertoire(show.id)"> Pregledaj </button></td>
+        <td *ngIf = "role == 'ADMINSHOW'"><button (click)="editShow(show.id)"> Izmeni </button></td>
       </tr>
   
   </table>

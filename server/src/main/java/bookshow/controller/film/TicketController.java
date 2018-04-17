@@ -7,18 +7,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import bookshow.domain.movie.Ticket;
+import bookshow.domain.users.User;
 import bookshow.service.TicketService;
+import bookshow.service.UserService;
 
 @RestController
 @RequestMapping(value = "ticket")
 public class TicketController {
 	@Autowired
-	TicketService ticketService;
+	private TicketService ticketService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(
 			value = "/get", 
@@ -29,11 +35,31 @@ public class TicketController {
 	}
 	
 	@RequestMapping(
+			value = "/get/{ticketId}", 
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Ticket> getTicketById(@PathVariable String ticketId){
+		Long longId = new Long(Integer.parseInt(ticketId));
+		return new ResponseEntity<>(ticketService.findOne(longId), HttpStatus.OK);
+	}
+	
+	@RequestMapping(
 			value = "/get-discounts/{showId}", 
 			method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Ticket>> getTicketsOnDiscount(@PathVariable String showId){
 		Long longId = new Long(Integer.parseInt(showId));
-		return new ResponseEntity<>(ticketService.findBySeatAuditoriumShowIdAndDiscountGreaterThan(longId, 0), HttpStatus.OK);
+		return new ResponseEntity<>(ticketService.findBySeatAuditoriumShowIdAndDiscountGreaterThanAndUserIsNull(longId, 0), HttpStatus.OK);
+	}
+	
+	@RequestMapping(
+			value = "/reserve/{username}", 
+			method = RequestMethod.PUT, 
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Ticket> reserveTicket(@RequestBody Ticket ticket, @PathVariable String username){
+		User user = userService.findByUsername(username);
+		ticket.setUser(user);
+		return new ResponseEntity<>(ticketService.save(ticket), HttpStatus.OK);
 	}
 }

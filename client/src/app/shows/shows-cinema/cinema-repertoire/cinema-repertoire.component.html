@@ -94,6 +94,8 @@
                             <th>Vreme </th>
                             <th>Sala</th>
                             <th>Cena karte</th>
+                            <th *ngIf = "role == 'ADMINSHOW'">Izmena</th>
+                            <th *ngIf = "role == 'ADMINSHOW'">Brisanje</th>
                         </tr>
                      
                          <tr *ngFor="let projection of projections">
@@ -101,6 +103,8 @@
                            <td>{{projection.time}}</td>
                            <td>{{projection.auditorium.number}}</td>
                            <td>{{projection.price}}</td>
+                           <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "editProjection(projection.id)"> Izmeni </button></td>
+                           <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "removeProjection(projection.id, projection)"> Obrisi </button></td>
                          </tr>
                      
                      </table>
@@ -129,7 +133,7 @@
                            <td> {{ticket.discount}}  </td>
                            <td> {{ticket.projection.repertoire.dateShow.date}} </td>
                            <td> {{ticket.projection.time}} </td>
-                           <td><button (click)="reserveTicket(ticket.id)"> Rezervisi </button></td>
+                           <td><button (click)="reserveTicket(ticket)"> Rezervisi </button></td>
                          </tr>
                      
                      </table>

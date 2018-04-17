@@ -15,4 +15,5 @@ public interface ProjectionService {
     void delete(Long id);
     
     List<Projection> findByRepertoire(Repertoire repertoire);
+    
 }

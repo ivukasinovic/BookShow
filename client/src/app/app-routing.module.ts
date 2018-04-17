@@ -1,3 +1,5 @@
+import { EditProjectionComponent } from './shows/shows-cinema/cinema-repertoire/edit-projection/edit-projection.component';
+import { EditShowComponent } from './shows/edit-show/edit-show.component';
 import { BuisnessReportComponent } from './shows/shows-cinema/cinema-repertoire/buisness-report/buisness-report.component';
 import { NewProjectionComponent } from './shows/shows-cinema/cinema-repertoire/new-projection/new-projection.component';
 import { ReservationComponent } from './reservations/reservation/reservation.component';
@@ -109,6 +111,10 @@ const routes: Routes = [
   {path: 'shows/:type/:id/new-projection/:date', component: NewProjectionComponent,
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
   {path: 'shows/:type/:id/buisness-report', component: BuisnessReportComponent,
+  canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
+  {path: 'shows/:type/edit/:id', component: EditShowComponent,
+  canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
+  {path: 'shows/:type/:id/edit/:projectionId', component: EditProjectionComponent,
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}}
 
 ];

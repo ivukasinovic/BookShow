@@ -1,6 +1,6 @@
 
 <div align = "center">
-  <h2>Dodavanje filma na repertoar</h2>
+  <h2>Dodavanje filma</h2>
 
   <form name="form" (ngSubmit)="sendData()">
     <table>
@@ -31,11 +31,7 @@
       <tr>
         <td><label>Url slike: </label> </td>
         <td><input type="text" name="imageUrl" [(ngModel)]="model.imageUrl"/> </td>
-      </tr>
-      <tr>
-        <td><label>Cena: </label> </td>
-        <td><input type="text" name="price" [(ngModel)]="model.price"/> </td>
-     </tr>   
+      </tr>  
 
      <tr> <td colspan = "2"><input type = "submit" value = " Kreiraj novi film "/></td></tr>
 

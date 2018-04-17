@@ -45,7 +45,8 @@ public class User implements Serializable {
     private Date lastPasswordReset;
    
     @Column
-    private boolean firstTimeLogged;
+    private boolean changedPassword;
+    
     @Column(nullable = false)
     private boolean activated;
   
@@ -148,17 +149,15 @@ public class User implements Serializable {
         this.lastPasswordReset = lastPasswordReset;
     }
 
-	public boolean isFirstTimeLogged() {
-		return firstTimeLogged;
+    public boolean isChangedPassword() {
+		return changedPassword;
 	}
 
-	public void setFirstTimeLogged(boolean firstTimeLogged) {
-		this.firstTimeLogged = firstTimeLogged;
+	public void setChangedPassword(boolean changedPassword) {
+		this.changedPassword = changedPassword;
 	}
 
-
-
-    public Long getPoints() {
+	public Long getPoints() {
         return points;
     }
 
