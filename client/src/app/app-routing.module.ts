@@ -7,7 +7,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {FanpageComponent} from './fanpage/fanpage.component';
 import {UsedPropDetailComponent} from './fanpage/used-prop-detail/used-prop-detail.component';
-import {NewPropDetailComponent} from './fanpage/new-prop-detail/new-prop-detail.component';
 import {LoginComponent} from './login/login.component';
 import {RegistracijaComponent}  from './registracija/registracija.component';
 import {AuthGuardService} from './auth-guard.service';
@@ -49,7 +48,6 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'fanpage/used-prop/:id', component: UsedPropDetailComponent},
   {path: 'fanpage/used-prop/:id/bids', component: BidListComponent},
-  {path: 'fanpage/new-prop/:id', component: NewPropDetailComponent},
   {path: 'fanpage/my-reserved-props', component: ReservedPropsListComponent},
   {path: 'fanpage', component: FanpageComponent,
     canActivate: [AuthGuardService], data: {expectedRole: 'ADMINFAN'}},

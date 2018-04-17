@@ -36,7 +36,7 @@ public class BidControllerT {
         bid.setPrice(410);
 
         RestAssured.given()
-                .header("Auth-Token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZWphbiIsImF1ZGllbmNlIjoid2ViIiwicm9sZSI6IlVTRVIiLCJjcmVhdGVkIjoxNTIzODgzNTY3MTE2LCJleHAiOjE1MjQ0ODgzNjd9.0TRDhwEinCnIKAofmgqBfJN2lU71_uiQwF0ZlROvGdR32ySxEIAV8cnVjRCkWp8sflgNU-Fg5wBi2YYKXMBEpA")
+                .header("Auth-Token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmZhbiIsImF1ZGllbmNlIjoid2ViIiwicm9sZSI6IkFETUlORkFOIiwiY3JlYXRlZCI6MTUyNDAwMjU0MTkwOSwiZXhwIjoxNTI0NjA3MzQxfQ.eNfl1znaS5Tqhe1dF0mI6ZujcereIhSb4rUSr0JoBKSsSV7BHCB2zuhhuZa1vE-DZYvi6aWWCs_eRPnPa4l36Q")
                 .body(bid)
                 .contentType(ContentType.JSON)
                 .when()
