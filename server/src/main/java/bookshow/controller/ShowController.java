@@ -42,6 +42,16 @@ public class ShowController {
 		Long longId = new Long(Integer.parseInt(id));
 		return new ResponseEntity<>(showService.findOne(longId), HttpStatus.OK);
 	}
+	
+	@PreAuthorize("hasAnyAuthority('ADMINSHOW')")
+	@RequestMapping(
+			value = "/edit",
+			method = RequestMethod.PUT, 
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Show> updateShow(@RequestBody Show show){
+		return new ResponseEntity<>(showService.save(show), HttpStatus.OK);
+	}
 
 	@PreAuthorize("hasAnyAuthority('ADMINSYS')")
 	@RequestMapping(

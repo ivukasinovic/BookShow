@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import bookshow.domain.Seat;
+import bookshow.domain.users.User;
 
 @Entity
 public class Ticket {
@@ -25,6 +26,9 @@ public class Ticket {
 	 
 	 @OneToOne(optional = false)
 	 private Seat seat;
+	 
+	 @ManyToOne
+	 private User user;
 	 
 	 public Ticket(){
 		 
@@ -60,6 +64,14 @@ public class Ticket {
 
 	public void setSeat(Seat seat) {
 		this.seat = seat;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	 
 	

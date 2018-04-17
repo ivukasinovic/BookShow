@@ -28,6 +28,7 @@ export class CinemaRepertoireComponent implements OnInit {
   private projections;
   private repertoire;
   private tickets;
+  private deletedResponse;
 
   constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, 
               private router: Router, private showsService: ShowsService,config: NgbRatingConfig,
@@ -100,7 +101,28 @@ export class CinemaRepertoireComponent implements OnInit {
     err => null);
   }
 
-  reserveTicket(ticketId){
-    alert(ticketId);
+  reserveTicket(objectForRemoval){
+    if(localStorage.getItem('username') !== null){
+      this.ticketService.reserveTicket(objectForRemoval, localStorage.getItem('username')).subscribe(data =>{
+        var i = this.tickets.indexOf(objectForRemoval);
+        this.tickets.splice(i, 1);
+      })
+    }  
+  }
+
+  editProjection(projectionId){
+    this.router.navigate([this.router.url + '/edit/' + projectionId]);
+  }
+
+  removeProjection(projectionId, objectForRemoval){
+    this.projectionService.removeProjection(projectionId).subscribe(data => {
+      this.deletedResponse = data;
+      if(this.deletedResponse.response === 'deleted'){
+        var i = this.projections.indexOf(objectForRemoval);
+        this.projections.splice(i, 1);
+      }else{
+        alert("Nije moguce brisanje zbog karata koje su u prodaji za datu projekciju");
+      }
+    })
   }
 }

@@ -58,6 +58,8 @@ import { PendingComponent } from './profil/friends/pending/pending.component';
 import { BuisnessReportComponent } from './shows/shows-cinema/cinema-repertoire/buisness-report/buisness-report.component';
 import { ReservedPropsListComponent } from './fanpage/reserved-props-list/reserved-props-list.component';
 import { SetRatingComponent } from './admin-sys/set-rating/set-rating.component';
+import { EditShowComponent } from './shows/edit-show/edit-show.component';
+import { EditProjectionComponent } from './shows/shows-cinema/cinema-repertoire/edit-projection/edit-projection.component';
 
 
 
@@ -102,24 +104,14 @@ import { SetRatingComponent } from './admin-sys/set-rating/set-rating.component'
     HomePageComponent,
     FriendsComponent,
     SearchUsersComponent,
-
     RequestsComponent,
     PendingComponent,
-
-
     NewProjectionComponent,
-
-
     BuisnessReportComponent,
-
-
     ReservedPropsListComponent,
-
-
     SetRatingComponent
-
-
-
+    EditShowComponent,
+    EditProjectionComponent
   ],
   imports: [
     BrowserModule,
