@@ -14,7 +14,6 @@ import java.util.Date;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
-
 /**
  * Created by Ivan V. on 16-Apr-18
  */
@@ -51,7 +50,7 @@ public class UsedPropServiceT {
     public void testAcceptBid() {
         Long usedPropId = 2L;
         Long acceptedBidId = 2L;
-        usedPropService.acceptBid(usedPropId, acceptedBidId);
+        usedPropService.acceptBid("dejan",usedPropId, acceptedBidId);
         UsedProp acceptedUsedProp = usedPropService.findOne(2L);
 
         assertEquals(acceptedUsedProp.getAcceptedBid(), acceptedBidId);

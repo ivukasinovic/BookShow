@@ -3,6 +3,7 @@ package bookshow.service.impl;
 import bookshow.domain.Bid;
 import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
+import bookshow.domain.users.Role;
 import bookshow.domain.users.User;
 import bookshow.repository.UsedPropRepository;
 import bookshow.service.BidService;
@@ -73,7 +74,14 @@ public class UsedPropServiceImpl implements UsedPropService {
 
     @Override
     public UsedProp createUsedProp(String username, UsedProp usedProp){
-        usedProp.setStatus(UsedPropStatus.WAITING);
+        User user = userService.findByUsername(username);
+        if(user.getRole() == Role.ADMINFAN){
+            usedProp.setStatus(UsedPropStatus.APPROVED);
+            usedProp.setFanAdmin(user);
+        }
+        else{
+            usedProp.setStatus(UsedPropStatus.WAITING);
+        }
         usedProp.setUser(userService.findByUsername(username));
         usedProp.setDateCreated(new java.util.Date());
         usedProp.setBids(new ArrayList<Bid>());
@@ -84,6 +92,9 @@ public class UsedPropServiceImpl implements UsedPropService {
     @Override
     public UsedProp approveDecline(Long usedPropId, String type, User adminFan) throws Exception {
         UsedProp usedProp = usedPropRepository.findOne(usedPropId);
+        if((usedProp.getFanAdmin() != null) && usedProp.getFanAdmin() != adminFan){
+            return null;
+        }
         if(type.equals("approve")){
             usedProp.setStatus(UsedPropStatus.APPROVED);
         }else if (type.equals("decline")) {
@@ -96,8 +107,15 @@ public class UsedPropServiceImpl implements UsedPropService {
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     @Override
-    public boolean acceptBid(Long usedPropId, Long acceptedBidId) {
+    public boolean acceptBid(String username, Long usedPropId, Long acceptedBidId) {
+        User user = userService.findByUsername(username);
         UsedProp usedProp = findOne(usedPropId);
+        if(usedProp.getAcceptedBid() != null){
+            return false;
+        }
+        if(usedProp.getUser() != user){
+            return false;
+        }
         Bid bid = bidService.findOne(acceptedBidId);
         usedProp.setAcceptedBid(bid.getId());
         usedProp = save(usedProp);

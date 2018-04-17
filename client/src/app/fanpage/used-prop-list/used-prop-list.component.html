@@ -1,12 +1,10 @@
-<hr>
 <div class="col-md-9">
   <div
     href="#"
     class="list-group-item clearfix"
     *ngFor="let usedProp of usedProps">
     <div class="pull-left">
-      <a href="/used-prop-detail/{{usedProp.id}}"><h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
-      </a>
+      <h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
       <p class="list-group-item-text">{{ usedProp.description }}</p>
       <br><br>
       <i>
@@ -17,10 +15,10 @@
     <span class="pull-right">
          <button *ngIf="usedProp.user != currentUser" type="button" class="btn btn-warning"
                  (click)="getBidColl(usedProp.id)"
-                 [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Ostavi Ponudu</button>
+                 [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Ostavi Ponudu/Izmeni</button>
         <button class="btn btn-default" (click)="getBids(usedProp.id)">Sve Ponude</button>
         <button *ngIf="usedProp.user == currentUser" class="btn btn-danger"
-                (click)="delete(usedProp.id)">Obrisi</button>
+                (click)="delete(usedProp.id)">Obriši</button>
       </span>
     <span class="pull-right">
         <img

@@ -28,14 +28,12 @@ export class NewPropListComponent implements OnInit {
   reservation(id: number) {
     this.propService.reservation(id)
       .subscribe(resp => {
-        if (resp.status) {
           alert('Uspesno ste rezervisali rekvizit!');
           window.location.reload();
-        }
-        else {
-          alert('Nije uspela rezervacija');
-        }
-        console.log('Ivan' + resp.status);
+      },
+        error1 => {
+        alert('Nije uspela rezervacija');
+        window.location.reload();
       });
   }
 

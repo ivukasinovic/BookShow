@@ -46,7 +46,6 @@ export class UsedPropListComponent implements OnInit {
       () => console.log('Uspesno ucitane ponude za rekvizit' + usedPropId)
     );
     this.selectedProp = usedPropId;
-    console.log('selektovana' + this.selectedProp);
   }
 
   getBidColl(usedPropId: number) {

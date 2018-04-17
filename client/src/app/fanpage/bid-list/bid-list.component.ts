@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Bid} from '../models/prop';
 import {PropService} from '../prop.service';
 import {SharedService} from '../shared.service';
@@ -15,6 +15,7 @@ export class BidListComponent implements OnInit {
   creatorUsedProp: boolean;
   usedPropId: number;
   biddingFinished: boolean;
+  username: string;
   constructor(private propService: PropService, private sharedService: SharedService, private aRoute: ActivatedRoute,
               private router: Router) {
   }
@@ -26,6 +27,7 @@ export class BidListComponent implements OnInit {
       this.usedPropId = params['id'];
     });
     this.biddingFinished = this.sharedService.biddingFinished;
+    this.username = localStorage.getItem('username');
   }
 
   acceptBid(bidId: number) {
@@ -44,5 +46,6 @@ export class BidListComponent implements OnInit {
   back() {
     window.history.back();
   }
+
 
 }

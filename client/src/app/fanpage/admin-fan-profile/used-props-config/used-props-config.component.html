@@ -13,8 +13,7 @@
     class="list-group-item clearfix"
     *ngFor="let usedProp of usedProps">
     <div class="pull-left">
-      <a href="/used-prop-detail/{{usedProp.id}}"><h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
-      </a>
+      <h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
       <p class="list-group-item-text">{{ usedProp.description }}</p>
       <br><br>
       <i>
@@ -28,7 +27,7 @@
          <button class="btn btn-warning" (click)="decline(usedProp.id)">Odbij</button>
       </div>
       <div>
-        <button class="btn btn-danger" (click)="delete(usedProp.id)">Obrisi</button>
+        <button class="btn btn-danger" (click)="delete(usedProp.id)">Obriši</button>
       </div>
     </span>
     <span class="pull-right">

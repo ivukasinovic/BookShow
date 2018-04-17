@@ -1,5 +1,4 @@
 -- password == username
-
 INSERT INTO user (role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('ADMINFAN', 'Novi Sad', 'adminfan@adminfan', 'Ivan', '0635569989', '$2a$10$2z.t0mwY4P0/k7cHSQwMzu5Cj9usMkPLEN7ZHXbzNT7U4CEQk5vP2', 'Vukasinovic', 'adminfan',245,'DEFAULT', false ,true);
 INSERT INTO user (role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('ADMINFAN', 'Beograd', 'adminfan2@adminfan2','Jovan', '0641569989', '$2a$10$ujoKDHyPmfaI.fQp1hCUo.hOY69jcjhPKiIRZbBnJhCY59aOohCIm', 'Jovic', 'adminfan2',100,'DEFAULT', false, true);
 INSERT INTO user (role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('ADMINSYS', 'Novi Sad', 'adminsys@adminsys', 'Vladimir', '063429989', '$2a$10$RO7l/vTjVfhh12dl5ax40uni/DuHzB/53kVxov/F6bM6hKzoIAxlC', 'Jovicic', 'adminsys',314,'DEFAULT', false, true);

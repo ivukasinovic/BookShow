@@ -1,13 +1,13 @@
-<div id="container" style="width:100%;">                                   
+<div id="container" style="width:100%;">
     <div id="left" style="float:left; width:30%;">
 
         <agm-map id="maps" [zoom]="zoom" [latitude] = "lat" [longitude] = "lng">
             <agm-marker [latitude] = "lat" [longitude] = "lng">
             </agm-marker>
         </agm-map>
-    </div>  
+    </div>
 
-    <div id="right" style="float:right; width:70%;"> 
+    <div id="right" style="float:right; width:70%;">
       <ngb-tabset>
         <ngb-tab>
             <ng-template ngbTabTitle><b>Osnovne informacije</b></ng-template>
@@ -16,7 +16,7 @@
                     <div>
                         {{show.name}}
                     </div>
-                    
+
                     <div>
                         {{show.address}}
                     </div>
@@ -36,11 +36,11 @@
             <ng-template ngbTabContent>
                 <hr/>
                 <label>Datum: </label>
-                <input type="date" name="date" [(ngModel)]="date" (input)="dateChanged($event)"/> 
+                <input type="date" name="date" [(ngModel)]="date" (input)="dateChanged($event)"/>
                 <hr/>
 
                 <div *ngIf ="!disableNewRepertoire; then newrepertoire else newprojections"></div>
-                <ng-template #newrepertoire> 
+                <ng-template #newrepertoire>
                     <a role="button" (click)="createRepertoire()" *ngIf ="role == 'ADMINSHOW'"> Kreiraj repertoar</a>
                 </ng-template>
                 <ng-template #newprojections>
@@ -67,7 +67,7 @@
                                                <th *ngIf ="role == 'ADMINSHOW'">Izmena</th>
                                                <!--th *ngIf ="role == 'ADMINSHOW'">Brisanje</th-->
                                            </tr>
-                                         
+
                                              <tr *ngFor="let playmovie of showsplaymovies">
                                                <td>{{playmovie.name}}</td>
                                                <td>{{playmovie.actors}}</td>
@@ -79,7 +79,7 @@
                                                <td *ngIf ="role == 'ADMINSHOW'"><button (click)="edit(playmovie.id)"> Izmeni </button></td>
                                                <!--td *ngIf ="role == 'ADMINSHOW'"><button (click)="remove(playmovie.id, playmovie)"> Obrisi </button></td-->
                                              </tr>
-                                         
+
                                          </table>
                                        </div>
                         </ng-template>
@@ -97,7 +97,7 @@
                             <th *ngIf = "role == 'ADMINSHOW'">Izmena</th>
                             <th *ngIf = "role == 'ADMINSHOW'">Brisanje</th>
                         </tr>
-                     
+
                          <tr *ngFor="let projection of projections">
                            <td> {{projection.playfilm.name}} </td>
                            <td>{{projection.time}}</td>
@@ -107,7 +107,6 @@
                            <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "removeProjection(projection.id, projection)"> Obrisi </button></td>
                            <td> <button>Rezervisi</button></td>
                         </tr>
-                     
                      </table>
                    </div>
             </ng-template>
@@ -127,7 +126,7 @@
                             <th>Vreme projekcije</th>
                             <th>Rezervacija</th>
                         </tr>
-                     
+
                          <tr *ngFor="let ticket of tickets">
                            <td> {{ticket.projection.playfilm.name}} </td>
                            <td> {{ticket.projection.price}} </td>
@@ -136,13 +135,13 @@
                            <td> {{ticket.projection.time}} </td>
                            <td><button (click)="reserveTicket(ticket.id, ticket)"> Rezervisi </button></td>
                          </tr>
-                     
+
                      </table>
                    </div>
 
              </ng-template>
         </ngb-tab>
-    </ngb-tabset></div>                   
+    </ngb-tabset></div>
   </div>
 
 

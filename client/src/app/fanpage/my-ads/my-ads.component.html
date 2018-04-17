@@ -8,13 +8,14 @@
       <h4 class="list-group-item-heading"><b>{{ usedProp.title }}</b></h4>
       <p class="list-group-item-text">{{ usedProp.description }}</p>
       <br>
-      <p>Licitacija traje do {{usedProp.activeUntil | date:'d.M.yyyy u H:mm'}}</p>
+      <p *ngIf="!usedProp.acceptedBid">Licitacija traje do {{usedProp.activeUntil | date:'d.M.yyyy u H:mm'}}</p>
+     <p *ngIf="usedProp.acceptedBid" style="color:red;">Završena je licitacija za ovaj rekvizit</p>
     </div>
     <span class="pull-right">
       <button class="btn btn-default" (click)="getBids(usedProp.id, usedProp.acceptedBid)">Sve Ponude</button>
-      <button class="btn btn-danger" (click)="deleteUsedProp(usedProp.id)">Obrisi oglas</button>
+      <button *ngIf="!usedProp.acceptedBid" class="btn btn-danger" (click)="deleteUsedProp(usedProp.id)">Obriši oglas</button>
 
-      </span>
+    </span>
     <span class="pull-right">
         <img
           [src]="usedProp.image"

@@ -53,15 +53,16 @@ public class BidController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get bids of usedprop.", notes = "Fetch all bids of used prop with passed id ", httpMethod = "GET", produces = "application/json")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Bid.class),
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = Bid.class),
             @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 500, message = "Failure") })
+            @ApiResponse(code = 500, message = "Failure")})
     public ResponseEntity<List<Bid>> getBidByUsedProp(@PathVariable("id") Long id) {
         UsedProp usedProp = usedPropService.findOne(id);
         List<Bid> bids = bidService.findByUsedPropOrderByPriceDesc(usedProp);
         return new ResponseEntity<>(bids, HttpStatus.OK);
     }
 
+    //id -> id of used prop
     @RequestMapping(
             value = "/{id}",
             method = RequestMethod.POST,
@@ -70,6 +71,9 @@ public class BidController {
     public ResponseEntity<Bid> createBid(Principal principal, @RequestBody Bid bid, @PathVariable("id") Long id) {
         User registeredUser = userService.findByUsername(principal.getName());
         UsedProp usedProp = usedPropService.findOne(id);
+        if (usedProp.getUser() == registeredUser) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         Bid old = bidService.findByUserAndUsedProp(registeredUser, usedProp);
         if (old != null)
             bid.setId(old.getId());
