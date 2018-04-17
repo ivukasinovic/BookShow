@@ -23,13 +23,14 @@ public class Show implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ShowType type;
     
-    @Column
+    @Column(nullable = false)
     private String address;
     
     @Column

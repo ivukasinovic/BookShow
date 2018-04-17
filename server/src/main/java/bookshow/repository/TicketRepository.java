@@ -8,7 +8,9 @@ import bookshow.domain.movie.Ticket;
 
 public interface TicketRepository extends JpaRepository<Ticket, Long>{
 
-	List<Ticket> findBySeatAuditoriumShowIdAndDiscountGreaterThanAndUserIsNull(Long id, double value);
-
 	List<Ticket> findByProjectionId(Long id);
+
+	List<Ticket> findBySeatAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(Long id, double value);
+
+	Ticket findByPurchasedId(Long id);
 }

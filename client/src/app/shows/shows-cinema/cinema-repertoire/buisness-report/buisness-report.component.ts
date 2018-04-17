@@ -14,6 +14,9 @@ export class BuisnessReportComponent implements OnInit {
   private showId;
   private show;
   private playmovies;
+  private startDate;
+  private endDate;
+  private retval;
 
   constructor(private route: ActivatedRoute, private showService: ShowsService, private playFilmService: PlayMovieService) { }
 
@@ -24,6 +27,14 @@ export class BuisnessReportComponent implements OnInit {
         this.show = this.showService.getShowById(this.showId).subscribe(show => this.show = show);
         this.playFilmService.getShowsPlayMovies(this.showId).subscribe(playmovies => this.playmovies = playmovies);
       });
+  }
+
+  getProfit(){
+    this.playFilmService.getProfit(this.startDate, this.endDate, this.showId).subscribe(data => 
+    {
+      this.retval = data;
+      alert(this.retval.profit);
+    })
   }
 
 }
