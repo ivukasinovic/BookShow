@@ -1,7 +1,9 @@
 package bookshow.controller;
 
+import bookshow.domain.users.Rating;
 import bookshow.domain.users.RatingType;
 import bookshow.domain.users.User;
+import bookshow.service.RatingService;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService UserService;
+    @Autowired
+    private RatingService ratingService;
 
     @PreAuthorize("hasAuthority('ADMINSYS')")
     @RequestMapping(

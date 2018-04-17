@@ -57,3 +57,8 @@ export class User {
   loggednum: number;
   type: string;
 }
+export class Rating {
+  bronze: string;
+  silver: string;
+  gold: string;
+}

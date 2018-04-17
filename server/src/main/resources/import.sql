@@ -8,6 +8,7 @@ INSERT INTO user (role, city, email, name, number, password_hash, surname, usern
 INSERT INTO user (role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('USER','Novi Sad', 'milan@milan', 'Milan', '0645565239', '$2a$10$fbc8Mb9ec0Ig1M5D0R8zT.xMgF0E1r6li04ynzi/CKY3eev/vezH2', 'Stankovic', 'milan',45,'DEFAULT', false, true);
 INSERT INTO user (role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('ADMINSYS','Novi Grad', 'grad@milan', 'Grad', '0644565239', '$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi', 'Stankovic', 'admin',567,'DEFAULT', false, true);
 
+
 INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Arena Cineplex', 'CINEMA', 'Bulevar Mihajla Pupina 3, 21000 Novi Sad', 'opis', 0);
 INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodno pozoriste', 'THEATRE', 'Pozorisni trg 1, 21000 Novi Sad', 'opis', 0);
 INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodni bioskop', 'CINEMA', 'Kralja Petra I, 25000 Sombor', 'opis', 0);
@@ -47,3 +48,5 @@ INSERT INTO used_prop (id, date_created, description, title, active_until, statu
 
 INSERT INTO bid (accepted, date_created, price, used_prop_fk, user_fk) VALUES (0, '2018-01-29 03:25:24', 250, 2, 5);
 INSERT INTO bid (accepted, date_created, price, used_prop_fk, user_fk) VALUES (1, '2018-02-01 17:25:24', 260, 2, 6);
+
+INSERT INTO rating (date, bronze, silver, gold) VALUES ('2018-04-17 09:14:47', 100, 200, 400);
