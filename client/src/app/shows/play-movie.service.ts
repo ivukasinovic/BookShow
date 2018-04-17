@@ -42,4 +42,11 @@ export class PlayMovieService {
     return this.http.post("api/repertoire/save", repertoire);
   }
 
+  getProfit(start, end, showId){
+    var twoDates: any = {};
+    twoDates.startDate = start;
+    twoDates.endDate = end;
+    return this.http.post("api/purchase/get-profit/"+showId, twoDates);
+  }
+
 }

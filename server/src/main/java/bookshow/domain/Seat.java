@@ -1,14 +1,23 @@
 package bookshow.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Seat {
+public class Seat implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +28,10 @@ public class Seat {
 	
 	@ManyToOne(optional = false)
 	private Auditorium auditorium;
+	
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+    private Segment segment;
 	
 	public Seat(){
 		
@@ -38,6 +51,22 @@ public class Seat {
 
 	public void setAuditorium(Auditorium auditorium) {
 		this.auditorium = auditorium;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public Segment getSegment() {
+		return segment;
+	}
+
+	public void setSegment(Segment segment) {
+		this.segment = segment;
 	}
 	
 	

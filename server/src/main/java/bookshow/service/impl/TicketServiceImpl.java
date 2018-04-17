@@ -39,17 +39,22 @@ public class TicketServiceImpl implements TicketService{
 		ticketRepository.delete(id);
 	}
 
-
-	@Override
-	public List<Ticket> findBySeatAuditoriumShowIdAndDiscountGreaterThanAndUserIsNull(Long id, double value) {
-		// TODO Auto-generated method stub
-		return ticketRepository.findBySeatAuditoriumShowIdAndDiscountGreaterThanAndUserIsNull(id, value);
-	}
-
 	@Override
 	public List<Ticket> findByProjectionId(Long id) {
 		// TODO Auto-generated method stub
 		return ticketRepository.findByProjectionId(id);
+	}
+
+	@Override
+	public List<Ticket> findBySeatAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(Long id, double value) {
+		// TODO Auto-generated method stub
+		return ticketRepository.findBySeatAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(id, value);
+	}
+
+	@Override
+	public Ticket findByPurchasedId(Long id) {
+		// TODO Auto-generated method stub
+		return ticketRepository.findByPurchasedId(id);
 	}
 
 }

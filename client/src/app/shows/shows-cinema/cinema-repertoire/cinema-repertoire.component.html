@@ -104,9 +104,9 @@
                            <td>{{projection.auditorium.number}}</td>
                            <td>{{projection.price}}</td>
                            <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "editProjection(projection.id)"> Izmeni </button></td>
-                           <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "removeProjection(projection.id, projection)"> Obriši </button></td>
-                         </tr>
-
+                           <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "removeProjection(projection.id, projection)"> Obrisi </button></td>
+                           <td> <button>Rezervisi</button></td>
+                        </tr>
                      </table>
                    </div>
             </ng-template>
@@ -133,7 +133,7 @@
                            <td> {{ticket.discount}}  </td>
                            <td> {{ticket.projection.repertoire.dateShow.date}} </td>
                            <td> {{ticket.projection.time}} </td>
-                           <td><button (click)="reserveTicket(ticket)"> Rezervisi </button></td>
+                           <td><button (click)="reserveTicket(ticket.id, ticket)"> Rezervisi </button></td>
                          </tr>
 
                      </table>

@@ -29,6 +29,7 @@ export class CinemaRepertoireComponent implements OnInit {
   private repertoire;
   private tickets;
   private deletedResponse;
+  private ticket;
 
   constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, 
               private router: Router, private showsService: ShowsService,config: NgbRatingConfig,
@@ -101,12 +102,18 @@ export class CinemaRepertoireComponent implements OnInit {
     err => null);
   }
 
-  reserveTicket(objectForRemoval){
+  reserveTicket(ticketId, objectForRemoval){
     if(localStorage.getItem('username') !== null){
-      this.ticketService.reserveTicket(objectForRemoval, localStorage.getItem('username')).subscribe(data =>{
-        var i = this.tickets.indexOf(objectForRemoval);
-        this.tickets.splice(i, 1);
+      this.ticketService.getTicketById(ticketId).subscribe(data => 
+      {
+        this.ticket = data;
+        this.ticketService.reserveTicket(this.ticket, localStorage.getItem('username')).subscribe(data =>
+          {
+            var i = this.tickets.indexOf(objectForRemoval);
+            this.tickets.splice(i, 1);
+          })
       })
+      
     }  
   }
 

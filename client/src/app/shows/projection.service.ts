@@ -28,4 +28,12 @@ export class ProjectionService {
   removeProjection(projectionId){
     return this.http.delete("api/projection/delete/" + projectionId);
   }
+
+  getProjection(projectionId){
+    return this.http.get("api/projection/get/"+projectionId);
+  }
+
+  editProjection(projection){
+    return this.http.put("api/projection/update", projection);
+  }
 }

@@ -12,7 +12,7 @@
           <td><label> Sala: </label> </td>
           <td>
               <select [(ngModel)] = "selectedAuditoriumId" name="combobox2">
-                  <option  *ngFor ="let auditorium of auditoriums" value="{{auditorium.number}}">{{auditorium.number}}</option>
+                  <option  *ngFor ="let auditorium of auditoriums" value="{{auditorium.id}}">{{auditorium.number}}</option>
                 </select>
           </td>
         </tr>

@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import bookshow.domain.DTOs.DeletedResponse;
 import bookshow.domain.movie.Projection;
 import bookshow.domain.movie.Repertoire;
 import bookshow.service.ProjectionService;
@@ -26,7 +28,18 @@ public class ProjectionController {
 	
 	@Autowired
 	TicketService ticketService;
+	
+	@PreAuthorize("hasAuthority('ADMINSHOW')")
+	@RequestMapping(
+			value = "/get/{projectionId}", 
+			method = RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Projection> getProjection(@PathVariable String projectionId){
+		Long longId = new Long(Integer.parseInt(projectionId));
+		return new ResponseEntity<>(projectionService.findOne(longId), HttpStatus.OK);
+	}
 
+	@PreAuthorize("hasAuthority('ADMINSHOW')")
 	@RequestMapping(
 			value = "/save", 
 			method = RequestMethod.POST, 
@@ -36,6 +49,7 @@ public class ProjectionController {
 		return new ResponseEntity<>(projectionService.save(projection), HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasAuthority('ADMINSHOW')")
 	@RequestMapping(
 			value = "/update", 
 			method = RequestMethod.PUT, 
@@ -45,6 +59,7 @@ public class ProjectionController {
 		return new ResponseEntity<>(projectionService.save(projection), HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasAuthority('ADMINSHOW')")
 	@RequestMapping(
 			value = "/delete/{id}", 
 			method = RequestMethod.DELETE,

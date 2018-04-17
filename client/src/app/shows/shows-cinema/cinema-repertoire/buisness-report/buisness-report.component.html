@@ -8,7 +8,18 @@
   <h3>
     Prosecna ocena filma {{playmovie.name}}: {{playmovie.averageScore}}
   </h3>
+</div>
 
+<br/>
+<div>
+  <h3> Zarada </h3>
+  <label>Od: </label>
+  <input type="date" name="date" [(ngModel)]="startDate"/> 
+  <label>Do: </label>
+  <input type="date" name="date" [(ngModel)]="endDate"/> 
+</div>
+<div>
+  <button (click) = "getProfit()"> Prikazi zaradu</button>
 </div>
 
 </div>

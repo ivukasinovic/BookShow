@@ -1,7 +1,11 @@
 package bookshow.domain;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
+
+import bookshow.domain.users.User;
 
 /**
  * Created by Ivan V. on 29-Jan-18
@@ -19,13 +23,14 @@ public class Show implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ShowType type;
     
-    @Column
+    @Column(nullable = false)
     private String address;
     
     @Column
@@ -33,12 +38,12 @@ public class Show implements Serializable{
     
     @Column
     private double rating;
-
     /*
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "show")
     private Set<NewProp> props;*/
 
-    public Show() {
+
+	public Show() {
 
     }
 

@@ -29,7 +29,7 @@ public class Projection implements Serializable{
 	@ManyToOne(optional = false)
 	private Repertoire repertoire;
 	
-	@Column
+	@Column(nullable = false)
 	private double price;
 	
 	public Projection(){
