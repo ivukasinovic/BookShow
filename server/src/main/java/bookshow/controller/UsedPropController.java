@@ -147,7 +147,7 @@ public class UsedPropController {
     public ResponseEntity<UsedProp> deletePropUsed(Principal principal, @PathVariable("id") Long id) {
         User user = userService.findByUsername(principal.getName());
         UsedProp usedProp = usedPropService.findOne(id);
-        if ((usedProp.getUser() != user) || (usedProp.getUser().getRole() != Role.ADMINFAN)) {
+        if ((usedProp.getUser() != user) && (user.getRole() != Role.ADMINFAN)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         try {

@@ -101,6 +101,7 @@ public class NewPropController {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         user.setPoints(user.getPoints() + 1L);
+        userService.save(user);
         newProp.setUser(user);
         newPropService.save(newProp);
         return new ResponseEntity<>(newProp, HttpStatus.CREATED);

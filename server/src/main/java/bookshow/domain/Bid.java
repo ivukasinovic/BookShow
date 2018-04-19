@@ -20,7 +20,7 @@ public class Bid implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private Integer price;
 
     @Column(nullable = false)
