@@ -13,4 +13,6 @@ public interface RateShowService {
 	RateShow save(RateShow rateShow);
 
     void delete(UserShow userShow);
+
+	List<RateShow> findByUserShowShowId(Long showIdLong);
 }
