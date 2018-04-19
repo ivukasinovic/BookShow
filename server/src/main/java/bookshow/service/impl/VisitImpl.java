@@ -1,5 +1,6 @@
 package bookshow.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,19 @@ public class VisitImpl implements VisitService{
 	public void delete(Visit visit) {
 		VisitRepository.delete(visit);
 		
+	}
+
+	@Override
+	public List<Visit> findByShowIdAndDate(Long id, Date date) {
+		// TODO Auto-generated method stub
+		return VisitRepository.findByShowIdAndDate(id, date);
+	}
+
+	@Override
+	public List<Visit> findByShowIdAndDateGreaterThanEqualAndDateLessThanEqual(Long showIdLong, Date weekAgo,
+			Date today) {
+		// TODO Auto-generated method stub
+		return VisitRepository.findByShowIdAndDateGreaterThanEqualAndDateLessThanEqual(showIdLong, weekAgo, today);
 	}
 	
 	

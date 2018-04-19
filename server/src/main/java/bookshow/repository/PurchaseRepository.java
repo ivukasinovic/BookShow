@@ -9,6 +9,6 @@ import bookshow.domain.movie.Purchase;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long>{
 
-	List<Purchase> findByDateGreaterThanAndDateLessThan(Date start, Date end);
+	List<Purchase> findByDateGreaterThanEqualAndDateLessThanEqual(Date start, Date end);
 
 }
