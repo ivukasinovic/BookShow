@@ -59,7 +59,8 @@ import { ReservedPropsListComponent } from './fanpage/reserved-props-list/reserv
 import { SetRatingComponent } from './admin-sys/set-rating/set-rating.component';
 import { EditShowComponent } from './shows/edit-show/edit-show.component';
 import { EditProjectionComponent } from './shows/shows-cinema/cinema-repertoire/edit-projection/edit-projection.component';
-
+import { SeatReservationComponent } from './shows/shows-cinema/cinema-repertoire/seat-reservation/seat-reservation.component';
+import { SeatReserService } from './shows/shows-cinema/cinema-repertoire/seat-reservation/seat-reser.service';
 
 
 
@@ -109,7 +110,8 @@ import { EditProjectionComponent } from './shows/shows-cinema/cinema-repertoire/
     ReservedPropsListComponent,
     SetRatingComponent,
     EditShowComponent,
-    EditProjectionComponent
+    EditProjectionComponent,
+    SeatReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -129,6 +131,7 @@ import { EditProjectionComponent } from './shows/shows-cinema/cinema-repertoire/
     },
     AuthGuardService,
     AuthService,
+    SeatReserService,
     RegService,
     FriendsService,
     RoleGuardService,

@@ -41,7 +41,7 @@ import { RequestsComponent } from './profil/friends/requests/requests.component'
 import { PendingComponent } from './profil/friends/pending/pending.component';
 import {ReservedPropsListComponent} from './fanpage/reserved-props-list/reserved-props-list.component';
 import {SetRatingComponent} from './admin-sys/set-rating/set-rating.component';
-
+import { SeatReservationComponent } from './shows/shows-cinema/cinema-repertoire/seat-reservation/seat-reservation.component';
 
 const routes: Routes = [
   // ivan
@@ -76,6 +76,7 @@ const routes: Routes = [
     canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSYS'}},
   // jovas
   {path: 'registracija', component: RegistracijaComponent},
+  {path: 'seat-reservation/:auditoriumId/:projectionId', component: SeatReservationComponent},
   {path: 'search-users', component: SearchUsersComponent},
   {path: 'requests', component: RequestsComponent},
   {path: 'pending', component: PendingComponent},
