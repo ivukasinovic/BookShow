@@ -35,6 +35,14 @@ public class RateShow implements Serializable{
 	public void setUserShow(UserShow userShow) {
 		this.userShow = userShow;
 	}
+
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
 	
 	
 	

@@ -1,6 +1,5 @@
 package bookshow.controller;
 
-import bookshow.domain.users.Rating;
 import bookshow.domain.users.RatingType;
 import bookshow.domain.users.User;
 import bookshow.service.RatingService;
@@ -23,8 +22,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService UserService;
-    @Autowired
-    private RatingService ratingService;
+
 
     @PreAuthorize("hasAuthority('ADMINSYS')")
     @RequestMapping(

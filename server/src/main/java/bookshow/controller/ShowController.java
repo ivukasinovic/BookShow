@@ -2,6 +2,8 @@ package bookshow.controller;
 
 import bookshow.domain.Show;
 import bookshow.domain.ShowType;
+import bookshow.domain.rating.RateShow;
+import bookshow.domain.users.User;
 import bookshow.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,5 +65,7 @@ public class ShowController {
 	    Show savedShow = showService.save(show);
 	    return  new ResponseEntity<>(savedShow, HttpStatus.CREATED);
     }
+	
+	
 
 }

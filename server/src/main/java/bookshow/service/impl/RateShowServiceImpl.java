@@ -40,4 +40,10 @@ public class RateShowServiceImpl implements RateShowService{
 		rateShowRepository.delete(userShow);
 	}
 
+	@Override
+	public List<RateShow> findByUserShowShowId(Long showIdLong) {
+		// TODO Auto-generated method stub
+		return rateShowRepository.findByUserShowShowId(showIdLong);
+	}
+
 }
