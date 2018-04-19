@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeatReserService } from './seat-reser.service';
 import { allResolved } from 'q';
+import {FriendsService} from '../../../../profil/friends/friends.service';
 
 @Component({
   selector: 'app-seat-reservation',
   templateUrl: './seat-reservation.component.html',
   styleUrls: ['./seat-reservation.component.css'],
-  providers: [SeatReserService]
+  providers: [SeatReserService,FriendsService]
 })
 export class SeatReservationComponent implements OnInit {
 
@@ -20,11 +21,24 @@ export class SeatReservationComponent implements OnInit {
   auditoriumId;
   rezervisana : any;
   markiraj : boolean = true;
+  prozoviPrijatlejeProzor : boolean = false;
+  prijatelji : any = {}
+  brojac = 0;
   
-  constructor(private http : HttpClient, private route : ActivatedRoute, private seatReserService : SeatReserService) { }
+  constructor(private http : HttpClient, private route : ActivatedRoute,
+     private seatReserService : SeatReserService, private friendsService: FriendsService) { }
 
   ngOnInit() {
     this.markiraj = true;
+    this.brojac = 0;
+   this.friendsService.getFriends().subscribe(
+     data => {
+      this.prijatelji = data;
+     }
+   )
+
+    
+    this.prozoviPrijatlejeProzor = false;
     this.route.params.subscribe(params =>
       {
         this.id = params['auditoriumId'];
@@ -70,6 +84,16 @@ export class SeatReservationComponent implements OnInit {
   }*/
 
   rezervisi(){
+    this.brojac = 0;
+    this.seats.forEach(element => {
+      if(document.getElementById(element.id).style.backgroundColor == "skyblue") {
+        this.brojac++;
+      }
+    });
+
+    if(this.brojac === 0) {
+      alert("Niste nista selektovali")
+    }else {
     this.seats.forEach(element => {
       if(document.getElementById(element.id).style.backgroundColor == "skyblue") {
        this.seatReserService.rezervisi(element,this.projectionId).subscribe(
@@ -80,6 +104,7 @@ export class SeatReservationComponent implements OnInit {
        )
       } 
     });
+  }
   }
 
 }

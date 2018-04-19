@@ -25,3 +25,20 @@
   </button>
 </div>
 
+
+<div align = "center">
+  <br><br>
+  <span>
+   <input type="checkbox" [checked]="prozoviPrijatlejeProzor" 
+   (change)="prozoviPrijatlejeProzor = !prozoviPrijatlejeProzor" />
+   <label>Pozovi prijatelje</label>
+  </span>
+</div>
+
+<div *ngIf = "prozoviPrijatlejeProzor" align = "center">
+<h2>Ovde mozes da pozoves prijatelje</h2>
+<div *ngIf = "prijatelji.length === 0">
+  <h3>Nemate prijatelja :(</h3>
+</div>
+</div>
+

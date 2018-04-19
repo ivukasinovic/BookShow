@@ -14,6 +14,7 @@ export class HomePageComponent implements OnInit {
   username: string;
   korisnik : any = {}
   istorija : any = {}
+  karte : any = {}
   constructor(private authService: AuthService,
     private homepageService : HomePageService) { }
 
@@ -30,7 +31,11 @@ export class HomePageComponent implements OnInit {
     if(this.logged === true){
       this.homepageService.getHistory().subscribe(
         data => this.istorija = data    
-    ) 
+    )
+    
+    this.homepageService.getTickets().subscribe(
+      data => this.karte = data
+    )
   }
 
 }
