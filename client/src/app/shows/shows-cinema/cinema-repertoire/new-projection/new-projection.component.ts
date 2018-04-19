@@ -1,8 +1,8 @@
-import { ShowsService } from './../../../shows.service';
+import { ShowsService } from './../../../services/shows.service';
+import { PlayMovieService } from './../../../services/play-movie.service';
+import { ProjectionService } from './../../../services/projection.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PlayMovieService } from './../../../play-movie.service';
 import { Component, OnInit } from '@angular/core';
-import { ProjectionService } from '../../../projection.service';
 
 @Component({
   selector: 'app-new-projection',
@@ -49,7 +49,10 @@ export class NewProjectionComponent implements OnInit {
       playMovie = data
       this.showService.getAuditorium(this.selectedAuditoriumId).subscribe(data => {
         auditorium = data;
-        this.projectionService.saveProjection(playMovie, auditorium, this.time, this.date, this.show, this.price).subscribe(data => this.router.navigate(['/shows/'+ this.showType + '/' + this.showId]));
+        this.projectionService.saveProjection(playMovie, auditorium, this.time, this.date, this.show, this.price).subscribe((data:any) =>
+          {
+              this.router.navigate(['/shows/'+ this.showType + '/' + this.showId])
+          });
       })
     });
 

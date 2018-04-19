@@ -2,16 +2,16 @@
 <div align = "center">
     <h2>Izmena projekcija</h2>
   
-    <form name="form" (ngSubmit)="sendData()">
+    <form #form="ngForm" (ngSubmit)="sendData()">
       <table>
         <tr>
-          <td><label> Vreme projekcije: </label> </td>
-          <td><input type="text" name="time" [(ngModel)]="projection.time"/> </td>
+          <td><label> Vreme projekcije (HH:mm): </label> </td>
+          <td><input type="text" name="time" [(ngModel)]="projection.time" required pattern="(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]"/> </td>
         </tr>
         <tr>
           <td><label> Sala: </label> </td>
           <td>
-              <select [(ngModel)] = "auditoriumId" name="combobox2">
+              <select [(ngModel)] = "auditoriumId" name="combobox1" required>
                   <option  *ngFor ="let a of auditoriums" value="{{a.id}}">{{a.number}}</option>
                 </select>
           </td>
@@ -19,16 +19,16 @@
         <tr>
           <td><label> Film: </label> </td>
           <td>
-            <select [(ngModel)] = "playMovieId" name="combobox1">
+            <select [(ngModel)] = "playMovieId" name="combobox2" required>
               <option  *ngFor ="let playMovie of playMovies" value="{{playMovie.id}}">{{playMovie.name}}</option>
             </select>
           </td>
         </tr>
         <tr>
           <td><label> Cena: </label> </td>
-          <td><input type="text" name="price" [(ngModel)]="projection.price"/> </td>
+          <td><input type="text" name="price" [(ngModel)]="projection.price" required pattern = "[0-9]*"/> </td>
         </tr>
-       <tr> <td colspan = "2"><input type = "submit" value = " Izmeni "/></td></tr>
+       <tr>  <td colspan = "2"><button class = "btn btn success" type="submit" [disabled]="form.invalid">Izmeni </button></td></tr>
   
       </table>
     </form>

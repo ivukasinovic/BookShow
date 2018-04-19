@@ -1,6 +1,6 @@
+import { ShowsService } from './../services/shows.service';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
-import { ShowsService } from '../shows.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 

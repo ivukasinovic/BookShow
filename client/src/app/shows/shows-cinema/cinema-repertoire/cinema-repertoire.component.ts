@@ -1,12 +1,12 @@
-import { ProjectionService } from './../../projection.service';
-import { ShowsService } from './../../shows.service';
-import { PlayMovieService } from './../../play-movie.service';
+import { TicketService } from './../../services/ticket.service';
+import { ProjectionService } from './../../services/projection.service';
+import { GoogleService } from './../../services/google.service';
+import { ShowsService } from './../../services/shows.service';
+import { PlayMovieService } from './../../services/play-movie.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GoogleService } from '../../google.service';
 import { MapsAPILoader } from '@agm/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-import { TicketService } from '../../ticket.service';
 
 
 @Component({

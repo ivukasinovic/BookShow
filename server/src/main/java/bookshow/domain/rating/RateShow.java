@@ -3,6 +3,8 @@ package bookshow.domain.rating;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 
 @Entity
@@ -17,7 +19,9 @@ public class RateShow implements Serializable{
 	@EmbeddedId
 	private UserShow userShow;
 	
-	@Column
+	@Column(nullable = false)
+	@Min(1)
+	@Max(5)
 	private double rating;
 	
 	public RateShow(){

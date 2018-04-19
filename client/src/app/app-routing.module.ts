@@ -2,7 +2,6 @@ import { EditProjectionComponent } from './shows/shows-cinema/cinema-repertoire/
 import { EditShowComponent } from './shows/edit-show/edit-show.component';
 import { BuisnessReportComponent } from './shows/shows-cinema/cinema-repertoire/buisness-report/buisness-report.component';
 import { NewProjectionComponent } from './shows/shows-cinema/cinema-repertoire/new-projection/new-projection.component';
-import { ReservationComponent } from './reservations/reservation/reservation.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {FanpageComponent} from './fanpage/fanpage.component';
@@ -96,7 +95,6 @@ const routes: Routes = [
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
   {path: 'shows/:type/:id/edit-movie/:movieId', component: EditMovieComponent,
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
-  {path: 'reservation', component: ReservationComponent},
   {path: 'shows/:type/:id/new-projection/:date', component: NewProjectionComponent,
   canActivate: [RoleGuardService], data: {expectedRole: 'ADMINSHOW'}},
   {path: 'shows/:type/:id/buisness-report', component: BuisnessReportComponent,

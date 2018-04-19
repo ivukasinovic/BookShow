@@ -37,8 +37,7 @@ public class PurchaseController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<MonthlyProfit> getProjection(@RequestBody TwoDates twoDates, @PathVariable String showId){
 		List<Purchase> purchases = purchaseService.findByDateGreaterThanAndDateLessThan(twoDates.getStartDate(),  twoDates.getEndDate());
-		if(purchases.isEmpty())
-			System.out.println("PRAZNO");
+
 		double sum = 0;
 		Long showIdLong = new Long(Integer.parseInt(showId));
 		for(int i = 0; i < purchases.size(); i++){

@@ -1,7 +1,7 @@
-import { PlayMovieService } from './../../../play-movie.service';
+import { ShowsService } from './../../../services/shows.service';
+import { PlayMovieService } from './../../../services/play-movie.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ShowsService } from '../../../shows.service';
 
 @Component({
   selector: 'app-buisness-report',
@@ -16,7 +16,9 @@ export class BuisnessReportComponent implements OnInit {
   private playmovies;
   private startDate;
   private endDate;
-  private retval;
+  private profit;
+  private chart = [];
+
 
   constructor(private route: ActivatedRoute, private showService: ShowsService, private playFilmService: PlayMovieService) { }
 
@@ -30,10 +32,13 @@ export class BuisnessReportComponent implements OnInit {
   }
 
   getProfit(){
-    this.playFilmService.getProfit(this.startDate, this.endDate, this.showId).subscribe(data => 
+    if(!this.startDate || !this.endDate){
+      alert("Odaberite datum");
+      return;
+    }
+    this.playFilmService.getProfit(this.startDate, this.endDate, this.showId).subscribe((data:any) => 
     {
-      this.retval = data;
-      alert(this.retval.profit);
+      this.profit = data.profit;
     })
   }
 

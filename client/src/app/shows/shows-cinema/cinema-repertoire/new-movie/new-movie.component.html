@@ -2,27 +2,27 @@
 <div align = "center">
   <h2>Dodavanje filma</h2>
 
-  <form name="form" (ngSubmit)="sendData()">
+  <form #form="ngForm" (ngSubmit)="sendData()">
     <table>
       <tr>
         <td><label>Naziv filma: </label> </td>
-        <td><input type="text" name="name" [(ngModel)]="model.name"/> </td>
+        <td><input type="text" name="name" [(ngModel)]="model.name" required minlength="3"/> </td>
       </tr>
       <tr>
         <td><label>Zanr: </label> </td>
-        <td><input type="text" name="genre" [(ngModel)]="model.genre"/></td>
+        <td><input type="text" name="genre" [(ngModel)]="model.genre" required/></td>
       </tr>
       <tr>
         <td><label>Glumci: </label> </td>
-        <td><input type="text" name="actors" [(ngModel)]="model.actors"/></td>
+        <td><input type="text" name="actors" [(ngModel)]="model.actors" required/></td>
       </tr>
       <tr>
         <td><label>Reditelj: </label> </td>
         <td><input type="text" name="director" [(ngModel)]="model.director"/> </td>
       </tr>
       <tr>
-        <td><label>Trajanje: </label> </td>
-        <td><input type="text" name="duration" [(ngModel)]="model.duration"/> </td>
+        <td><label>Trajanje (HH:mm): </label> </td>
+        <td><input type="text" name="duration" [(ngModel)]="model.duration" required pattern="(0[0-9]):[0-5][0-9]"/> </td>
       </tr>
       <tr>
         <td><label>Opis: </label> </td>
@@ -33,7 +33,7 @@
         <td><input type="text" name="imageUrl" [(ngModel)]="model.imageUrl"/> </td>
       </tr>  
 
-     <tr> <td colspan = "2"><input type = "submit" value = " Kreiraj novi film "/></td></tr>
+     <tr> <td colspan = "2"><button type="submit" class="btn btn success" [disabled]="form.invalid"> Kreiraj novi film </button></td></tr>
 
     </table>
   </form>

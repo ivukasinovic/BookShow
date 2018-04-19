@@ -64,13 +64,4 @@ public class ShowController {
 	    return  new ResponseEntity<>(savedShow, HttpStatus.CREATED);
     }
 
-	@RequestMapping(value = "/get-show-repertoire/{id}",
-					method = RequestMethod.GET, 
-					produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Show> getShowRepertorie(@PathVariable("id") String id){
-		
-		Show show = showService.findOne(Long.parseLong(id));
-		
-		return null;
-	}
 }
