@@ -128,15 +128,13 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value = "/addToHistory/{username}/{showId}", method = RequestMethod.GET)
-	public ResponseEntity<User> addToHistory(@PathVariable("username") String username,
+	public ResponseEntity<Visit> addToHistory(@PathVariable("username") String username,
 										@PathVariable("showId") String showId){
 		Show show = ShowService.findOne(Long.parseLong(showId));
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		System.out.println(show.getType().toString() + " " + showId);
-		VisitService.save(new Visit(username,showId,show.getType().toString(),
-				show.getName(),dateFormat.format(date)));
-		return new ResponseEntity<>(UserService.findByUsername(username),HttpStatus.OK);
+		User user = UserService.findByUsername(username);
+		Visit visit = new Visit(user, show, new Date());
+
+		return new ResponseEntity<>(VisitService.save(visit),HttpStatus.OK);
 		}
 	
 	@RequestMapping(value = "/removeFromHistory/{username}/{visitId}", method = RequestMethod.GET)
@@ -153,7 +151,7 @@ public class ProfileController {
 		List<Visit> visits = VisitService.fintAll();
 		
 		for(Visit v : visits) {
-			if(v.getUsername().equals(username)) {
+			if(v.getUser().getUsername().equals(username)) {
 				retVal.add(v);
 			}
 		}

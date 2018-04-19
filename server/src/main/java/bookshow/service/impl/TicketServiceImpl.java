@@ -46,9 +46,9 @@ public class TicketServiceImpl implements TicketService{
 	}
 
 	@Override
-	public List<Ticket> findBySeatAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(Long id, double value) {
+	public List<Ticket> findByProjectionAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(Long id, double value) {
 		// TODO Auto-generated method stub
-		return ticketRepository.findBySeatAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(id, value);
+		return ticketRepository.findByProjectionAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(id, value);
 	}
 
 	@Override

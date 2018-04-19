@@ -11,7 +11,7 @@
         <tr>
           <td><label> Sala: </label> </td>
           <td>
-              <select [(ngModel)] = "auditoriumId" name="combobox1" required>
+              <select [(ngModel)] = "auditoriumId" name="combobox1" required disabled>
                   <option  *ngFor ="let a of auditoriums" value="{{a.id}}">{{a.number}}</option>
                 </select>
           </td>
@@ -25,7 +25,7 @@
           </td>
         </tr>
         <tr>
-          <td><label> Cena: </label> </td>
+          <td><label> Cena (din): </label> </td>
           <td><input type="text" name="price" [(ngModel)]="projection.price" required pattern = "[0-9]*"/> </td>
         </tr>
        <tr>  <td colspan = "2"><button class = "btn btn success" type="submit" [disabled]="form.invalid">Izmeni </button></td></tr>

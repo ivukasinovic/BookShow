@@ -132,4 +132,16 @@ export class CinemaRepertoireComponent implements OnInit {
       }
     })
   }
+
+  removeDiscount(ticketId, objectForRemoval){
+    var ticket;
+    this.ticketService.getTicketById(ticketId).subscribe(data =>{
+      ticket = data;
+      this.ticketService.removeDiscount(ticket).subscribe(data =>{
+        var i = this.tickets.indexOf(objectForRemoval);
+        this.tickets.splice(i, 1);
+      });
+    })
+    
+  }
 }

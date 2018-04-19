@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-edit-projection',
   templateUrl: './edit-projection.component.html',
-  styleUrls: ['./edit-projection.component.css'],
+  styleUrls: ['./../../../shows.css'],
   providers: [ProjectionService, PlayMovieService, ShowsService]
 })
 export class EditProjectionComponent implements OnInit {

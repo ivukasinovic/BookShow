@@ -18,4 +18,9 @@ export class TicketService {
     return this.http.get("api/ticket/get/"+ticketId);
   }
 
+  removeDiscount(ticket){
+    return this.http.put("api/ticket/remove-discount", ticket);
+    
+  }
+
 }
