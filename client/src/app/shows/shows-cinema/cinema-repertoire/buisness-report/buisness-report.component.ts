@@ -1,3 +1,4 @@
+import { BuissnessService } from './../../../services/buissness.service';
 import { ShowsService } from './../../../services/shows.service';
 import { PlayMovieService } from './../../../services/play-movie.service';
 import { ActivatedRoute } from '@angular/router';
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-buisness-report',
   templateUrl: './buisness-report.component.html',
   styleUrls: ['./buisness-report.component.css'],
-  providers: [ShowsService, PlayMovieService]
+  providers: [ShowsService, PlayMovieService, BuissnessService]
 })
 export class BuisnessReportComponent implements OnInit {
 
@@ -17,10 +18,13 @@ export class BuisnessReportComponent implements OnInit {
   private startDate;
   private endDate;
   private profit;
-  private chart = [];
+  private todaysVisits;
+  private weeksVisits;
+  private monthsVisits;
 
 
-  constructor(private route: ActivatedRoute, private showService: ShowsService, private playFilmService: PlayMovieService) { }
+  constructor(private route: ActivatedRoute, private showService: ShowsService, 
+    private playFilmService: PlayMovieService, private buissnessService: BuissnessService) { }
 
   ngOnInit() {
     this.route.params.subscribe(data => 
@@ -28,6 +32,10 @@ export class BuisnessReportComponent implements OnInit {
         this.showId = data['id'];
         this.show = this.showService.getShowById(this.showId).subscribe(show => this.show = show);
         this.playFilmService.getShowsPlayMovies(this.showId).subscribe(playmovies => this.playmovies = playmovies);
+        this.buissnessService.getTodaysVisits(this.showId).subscribe((todaysVisits:any) => this.todaysVisits = todaysVisits.value);
+        this.buissnessService.getThisWeeksVisits(this.showId).subscribe((weeksVisits:any) => this.weeksVisits = weeksVisits.value);
+        this.buissnessService.getThisMonthsVisits(this.showId).subscribe((monthsVisits:any) => this.monthsVisits = monthsVisits.value);
+
       });
   }
 
@@ -36,7 +44,7 @@ export class BuisnessReportComponent implements OnInit {
       alert("Odaberite datum");
       return;
     }
-    this.playFilmService.getProfit(this.startDate, this.endDate, this.showId).subscribe((data:any) => 
+    this.buissnessService.getProfit(this.startDate, this.endDate, this.showId).subscribe((data:any) => 
     {
       this.profit = data.profit;
     })

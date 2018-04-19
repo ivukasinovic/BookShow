@@ -40,9 +40,9 @@ public class PurchaseServiceImpl implements PurchaseService{
 	}
 
 	@Override
-	public List<Purchase> findByDateGreaterThanAndDateLessThan(Date start, Date end) {
+	public List<Purchase> findByDateGreaterThanEqualAndDateLessThanEqual(Date start, Date end) {
 		// TODO Auto-generated method stub
-		return purchaseRepository.findByDateGreaterThanAndDateLessThan(start, end);
+		return purchaseRepository.findByDateGreaterThanEqualAndDateLessThanEqual(start, end);
 	}
 
 }

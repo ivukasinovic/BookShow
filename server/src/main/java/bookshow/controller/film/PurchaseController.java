@@ -1,5 +1,7 @@
 package bookshow.controller.film;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import bookshow.domain.DTOs.IntegerDTO;
 import bookshow.domain.DTOs.MonthlyProfit;
 import bookshow.domain.DTOs.TwoDates;
 import bookshow.domain.movie.Purchase;
 import bookshow.domain.movie.Ticket;
+import bookshow.domain.users.Visit;
 import bookshow.service.PurchaseService;
 import bookshow.service.TicketService;
+import bookshow.service.VisitService;
 
 @RestController
 @RequestMapping(value = "/purchase")
@@ -28,6 +33,9 @@ public class PurchaseController {
 	
 	@Autowired 
 	private TicketService ticketService;
+	
+	@Autowired
+	private VisitService visitService;
 
 	@PreAuthorize("hasAuthority('ADMINSHOW')")
 	@RequestMapping(
@@ -36,7 +44,7 @@ public class PurchaseController {
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<MonthlyProfit> getProjection(@RequestBody TwoDates twoDates, @PathVariable String showId){
-		List<Purchase> purchases = purchaseService.findByDateGreaterThanAndDateLessThan(twoDates.getStartDate(),  twoDates.getEndDate());
+		List<Purchase> purchases = purchaseService.findByDateGreaterThanEqualAndDateLessThanEqual(twoDates.getStartDate(),  twoDates.getEndDate());
 
 		double sum = 0;
 		Long showIdLong = new Long(Integer.parseInt(showId));
@@ -52,4 +60,55 @@ public class PurchaseController {
 		}
 		return new ResponseEntity<>(new MonthlyProfit(sum), HttpStatus.OK);
 	}
+	
+	@PreAuthorize("hasAuthority('ADMINSHOW')")
+	@RequestMapping(
+			value = "/get-todays-visits/{showId}", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<IntegerDTO> getTodaysVisits(@PathVariable String showId){
+		Date date = new Date();
+		Long showIdLong = new Long(Integer.parseInt(showId));
+		List<Visit> visitsToShow = visitService.findByShowIdAndDate(showIdLong, date);
+		
+		return new ResponseEntity<>(new IntegerDTO(visitsToShow.size()), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasAuthority('ADMINSHOW')")
+	@RequestMapping(
+			value = "/get-this-weeks-visits/{showId}", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<IntegerDTO> getThisWeeksVisits(@PathVariable String showId){
+		Date today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(today);
+		cal.add(Calendar.DATE, -7);
+		Date weekAgo = cal.getTime();
+		
+		Long showIdLong = new Long(Integer.parseInt(showId));
+		List<Visit> visitsToShow = visitService.findByShowIdAndDateGreaterThanEqualAndDateLessThanEqual(showIdLong, weekAgo, today);
+		
+		return new ResponseEntity<>(new IntegerDTO(visitsToShow.size()), HttpStatus.OK);
+	}
+	
+	@PreAuthorize("hasAuthority('ADMINSHOW')")
+	@RequestMapping(
+			value = "/get-this-months-visits/{showId}", 
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<IntegerDTO> getThisMonthsVisits(@PathVariable String showId){
+		Date today = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(today);
+		cal.add(Calendar.DATE, -30);
+		Date weekAgo = cal.getTime();
+		
+		Long showIdLong = new Long(Integer.parseInt(showId));
+		List<Visit> visitsToShow = visitService.findByShowIdAndDateGreaterThanEqualAndDateLessThanEqual(showIdLong, weekAgo, today);
+		
+		return new ResponseEntity<>(new IntegerDTO(visitsToShow.size()), HttpStatus.OK);
+	}
+	
+	
 }

@@ -14,6 +14,6 @@ public interface PurchaseService {
 
     void delete(Long id);
     
-	List<Purchase> findByDateGreaterThanAndDateLessThan(Date start, Date end);
+	List<Purchase> findByDateGreaterThanEqualAndDateLessThanEqual(Date start, Date end);
 
 }
