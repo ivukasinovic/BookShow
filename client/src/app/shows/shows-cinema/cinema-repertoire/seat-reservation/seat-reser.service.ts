@@ -6,9 +6,11 @@ export class SeatReserService {
 
   constructor(private http: HttpClient) { }
 
-  rezervisi(seat,projectionId) {
-    //alert(seat.id);
-    return this.http.post("api/ticket/reserveSeat/" + localStorage.getItem('username') + "/" +projectionId,seat);
+  rezervisi(username,seat,projectionId) {
+    if(username !== undefined){
+        alert("Rezervisa je " + username);
+       return this.http.post("api/ticket/reserveSeat/" + username + "/" +projectionId,seat);
+    }
   }
 
   getIds(projectionId,auditoriumId) {
