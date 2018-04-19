@@ -13,7 +13,7 @@ public interface TicketService {
 
     void delete(Long id);
     
-    List<Ticket> findBySeatAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(Long id, double value);
+    List<Ticket> findByProjectionAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(Long id, double value);
     
     List<Ticket> findByProjectionId(Long id);
 

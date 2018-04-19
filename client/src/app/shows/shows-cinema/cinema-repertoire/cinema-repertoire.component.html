@@ -55,7 +55,7 @@
                     <ngb-panel title="Fimovi koji se prikazuju u bioskopu">
                         <ng-template ngbPanelContent>
                                 <div>
-                                        <table *ngIf="showsplaymovies.length != 0">
+                                        <table>
                                            <tr>
                                                <th>Ime</th>
                                                <th>Glumci</th>
@@ -102,7 +102,7 @@
                            <td> {{projection.playfilm.name}} </td>
                            <td>{{projection.time}}</td>
                            <td>{{projection.auditorium.number}}</td>
-                           <td>{{projection.price}}</td>
+                           <td>{{projection.price}} din </td>
                            <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "editProjection(projection.id)"> Izmeni </button></td>
                            <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "removeProjection(projection.id, projection)"> Obrisi </button></td>
                         </tr>
@@ -116,7 +116,7 @@
                 <h4>Karte na popustu:</h4>
                 <br/>
                 <div>
-                    <table *ngIf="tickets.length != 0">
+                    <table>
                         <tr>
                             <th>Film</th>
                             <th>Cena</th>
@@ -126,6 +126,7 @@
                             <th>Sala</th>
                             <th>Sediste</th>
                             <th>Rezervacija</th>
+                            <th *ngIf="role == 'ADMINSHOW'">Uklanjanje popusta</th>
                         </tr>
 
                          <tr *ngFor="let ticket of tickets">
@@ -134,9 +135,10 @@
                            <td> {{(100-ticket.discount)/100 * ticket.projection.price}} din  </td>
                            <td> {{ticket.projection.repertoire.dateShow.date}} </td>
                            <td> {{ticket.projection.time}} </td>
-                           <td> {{ticket.seat.auditorium.number}} </td>
+                           <td> {{ticket.projection.auditorium.number}} </td>
                            <td> {{ticket.seat.number}} </td>
                            <td><button (click)="reserveTicket(ticket.id, ticket)"> Rezervisi </button></td>
+                           <td *ngIf="role == 'ADMINSHOW'"><button (click)="removeDiscount(ticket.id, ticket)"> Ukloni </button></td>
                          </tr>
                      </table>
                    </div>

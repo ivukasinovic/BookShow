@@ -44,7 +44,10 @@ public class PurchaseController {
 			Ticket ticket = ticketService.findByPurchasedId(purchases.get(i).getId());
 			if(ticket != null){
 				if(ticket.getSeat().getAuditorium().getShow().getId().equals(showIdLong))
-					sum += ticket.getProjection().getPrice();
+					if(ticket.getDiscount() > 0)
+						sum += ticket.getProjection().getPrice() * (100 - ticket.getDiscount())/100;
+					else
+						sum += ticket.getProjection().getPrice();
 			}
 		}
 		return new ResponseEntity<>(new MonthlyProfit(sum), HttpStatus.OK);

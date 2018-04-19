@@ -20,8 +20,8 @@ public class VisitImpl implements VisitService{
 	}
 
 	@Override
-	public List<Visit> findByUsername(String username) {
-		return VisitRepository.findByUsername(username);
+	public List<Visit> findByUserUsername(String username) {
+		return VisitRepository.findByUserUsername(username);
 	}
 
 	@Override
