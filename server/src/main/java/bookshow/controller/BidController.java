@@ -74,6 +74,9 @@ public class BidController {
         if (usedProp.getUser() == registeredUser) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+        if(usedProp.getAcceptedBid() != null){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         Bid old = bidService.findByUserAndUsedProp(registeredUser, usedProp);
         if (old != null)
             bid.setId(old.getId());

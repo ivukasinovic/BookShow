@@ -10,7 +10,7 @@
       <i>
         <small>Postavio: <b>{{ usedProp.user }}</b></small>
       </i>
-      <p>Licitacija traje do {{usedProp.activeUntil | date:'d.M.yyyy u H:mm'}}</p>
+      <p>Licitacija traje do {{ usedProp.activeUntil | date:'d.M.yyyy u H:mm' }}</p>
     </div>
     <span class="pull-right">
          <button *ngIf="usedProp.user != currentUser" type="button" class="btn btn-warning"

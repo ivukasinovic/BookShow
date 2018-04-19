@@ -33,14 +33,14 @@ export class BidListComponent implements OnInit {
   acceptBid(bidId: number) {
     this.propService.acceptBid(this.usedPropId, bidId)
       .subscribe(resp => {
-        if (resp.status === 204) {
           alert('Uspesno ste izabrali pobednika licitacije');
           this.router.navigate(['fanpage/my-ads']);
           window.location.reload();
-        } else {
-          alert('Greska!');
-        }
-      });
+      },
+        error1 => {
+        alert('Doslo je do greske!');
+        window.location.reload();
+        });
   }
 
   back() {

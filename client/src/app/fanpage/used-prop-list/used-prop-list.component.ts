@@ -54,7 +54,13 @@ export class UsedPropListComponent implements OnInit {
   }
 
   createBid() {
-    this.propService.createBid(this.selectedProp, this.price);
+    this.propService.createBid(this.selectedProp, this.price)
+      .subscribe((data: Bid) => {
+        alert('Uspesno ste ostavili ponudu!');
+      },
+        error1 => {
+        alert('Nije uspelo ostavljanje ponude, pokusajte ponovo');
+        });
     this.isCollapsed = !this.isCollapsed;
     this.getBids(this.selectedProp);
   }

@@ -40,6 +40,8 @@ public abstract class Prop {
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
+    @Version
+    private Long version;
 
 
     public Prop() {
@@ -83,5 +85,13 @@ public abstract class Prop {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }

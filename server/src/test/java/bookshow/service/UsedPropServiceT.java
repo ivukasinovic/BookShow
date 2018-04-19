@@ -3,10 +3,12 @@ package bookshow.service;
 import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
 import bookshow.domain.users.User;
+import org.hibernate.TransactionException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +40,6 @@ public class UsedPropServiceT {
         usedPropService.createUsedProp(username, usedProp);
 
         UsedProp newUsedProp = usedPropService.findOne(5L);
-        assertThat(newUsedProp).isNotNull();
         assertEquals(newUsedProp.getTitle(), usedProp.getTitle());
         assertEquals(newUsedProp.getDescription(), usedProp.getDescription());
         assertEquals(newUsedProp.getImage(), usedProp.getImage());
@@ -56,18 +57,21 @@ public class UsedPropServiceT {
         assertEquals(acceptedUsedProp.getAcceptedBid(), acceptedBidId);
     }
 
-    @Test
-    public void approveDecline() {
+    @Test(expected = TransactionException.class)
+    public void testApproveDecline() {
         Long usedPropId = 1L;
         String type = "approve";
         User adminFan = userService.findOne(1L);
-        try {
-            usedPropService.approveDecline(usedPropId, type, adminFan);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        UsedProp usedProp = usedPropService.findOne(1L);
-        assertEquals(usedProp.getStatus(), UsedPropStatus.APPROVED);
+        User adminFan2 = userService.findOne(2L);
+
+        UsedProp usedProp1 = usedPropService.findOne(1L);
+        UsedProp usedProp2 = usedPropService.findOne(1L);
+
+        assertEquals(0, usedProp1.getVersion().intValue());
+        assertEquals(0, usedProp2.getVersion().intValue());
+
+        usedPropService.approveDecline(usedPropId, type, adminFan);
+        usedPropService.approveDecline(usedPropId, type,adminFan2);
 
     }
 }

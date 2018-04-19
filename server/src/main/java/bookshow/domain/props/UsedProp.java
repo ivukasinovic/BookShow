@@ -46,6 +46,8 @@ public class UsedProp extends Prop implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usedProp", cascade = CascadeType.REMOVE)
     private List<Bid> bids;
 
+
+
     public UsedProp() {
     }
 
