@@ -44,7 +44,9 @@ export class UsedPropsConfigComponent implements OnInit {
           alert('Uspesno odobren oglas');
           window.location.reload();
         },
-        error1 => alert('Nije uspelo odobrenje oglasa'));
+        error1 => {
+        alert('Nije uspelo odobrenje oglasa');
+      window.location.reload(); });
   }
 
   delete(usedPropId: number) {

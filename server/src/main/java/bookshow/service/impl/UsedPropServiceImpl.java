@@ -11,6 +11,7 @@ import bookshow.service.UsedPropService;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ import java.util.List;
  * Created by Ivan V. on 29-Jan-18
  */
 @Service
+@Transactional(readOnly =  true)
 public class UsedPropServiceImpl implements UsedPropService {
     @Autowired
     private UsedPropRepository usedPropRepository;
@@ -57,11 +59,13 @@ public class UsedPropServiceImpl implements UsedPropService {
 
 
     @Override
+    @Transactional(readOnly = false, propagation = Propagation.SUPPORTS)
     public UsedProp save(UsedProp usedProp) {
         return usedPropRepository.save(usedProp);
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void delete(Long id) {
         usedPropRepository.delete(id);
     }
@@ -73,6 +77,7 @@ public class UsedPropServiceImpl implements UsedPropService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public UsedProp createUsedProp(String username, UsedProp usedProp){
         User user = userService.findByUsername(username);
         if(user.getRole() == Role.ADMINFAN){
@@ -90,11 +95,9 @@ public class UsedPropServiceImpl implements UsedPropService {
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     @Override
-    public UsedProp approveDecline(Long usedPropId, String type, User adminFan) throws Exception {
+    public UsedProp approveDecline(Long usedPropId, String type, User adminFan) {
         UsedProp usedProp = usedPropRepository.findOne(usedPropId);
-        if((usedProp.getFanAdmin() != null) && usedProp.getFanAdmin() != adminFan){
-            return null;
-        }
+        checkApprovedUsedProp(usedProp);
         if(type.equals("approve")){
             usedProp.setStatus(UsedPropStatus.APPROVED);
         }else if (type.equals("decline")) {
@@ -110,9 +113,7 @@ public class UsedPropServiceImpl implements UsedPropService {
     public boolean acceptBid(String username, Long usedPropId, Long acceptedBidId) {
         User user = userService.findByUsername(username);
         UsedProp usedProp = findOne(usedPropId);
-        if(usedProp.getAcceptedBid() != null){
-            return false;
-        }
+        checkAcceptedBid(usedProp);
         if(usedProp.getUser() != user){
             return false;
         }
@@ -123,6 +124,18 @@ public class UsedPropServiceImpl implements UsedPropService {
             return false;
         }
         return  true;
+    }
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public void checkAcceptedBid(UsedProp usedProp) throws TransactionException {
+        if(usedProp.getAcceptedBid() != null){
+            throw new org.hibernate.TransactionException("Oglas je vec odobren");
+        }
+    }
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public void checkApprovedUsedProp(UsedProp usedProp) throws TransactionException {
+        if((usedProp.getStatus().equals(UsedPropStatus.APPROVED) || (usedProp.getStatus().equals(UsedPropStatus.DECLINED)))){
+            throw new org.hibernate.TransactionException("Oglas je vec revidiran od strane drugog administratora fan zone");
+        }
     }
 
 }

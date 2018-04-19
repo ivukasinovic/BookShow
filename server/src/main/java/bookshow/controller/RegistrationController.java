@@ -79,7 +79,6 @@ public class RegistrationController {
 			helper.setSubject("Automatski generisana poruka za aktiviranje naloga");
 			 mailSender.send(mimeMessage);
 		} catch (Exception e) {
-
 		}		
 	}
 }

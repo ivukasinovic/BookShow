@@ -62,7 +62,7 @@ export class PropService {
     const bid = {
       price: price
     };
-    return this.http.post('/api/bids/' + usedPropId, bid).subscribe();
+    return this.http.post('/api/bids/' + usedPropId, bid);
   }
 
   createUsedProp(usedProp: UsedProp) {
