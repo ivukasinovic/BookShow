@@ -1,10 +1,12 @@
 package bookshow.service;
 
 import bookshow.domain.props.NewProp;
+import bookshow.domain.users.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static bookshow.constraints.NewPropConstraints.*;
@@ -79,6 +81,21 @@ public class NewPropServiceT {
         newPropService.delete(savedNewProp.getId());
         NewProp loadedNewProp = newPropService.findOne(savedNewProp.getId());
         assertNull(loadedNewProp);
+
+    }
+    @Test(expected = ObjectOptimisticLockingFailureException.class)
+    public void testReservation(){
+        NewProp newProp1 = newPropService.findOne(2L);
+        NewProp newProp2 = newPropService.findOne(2L);
+
+        assertEquals(0,newProp1.getVersion().intValue());
+        assertEquals(0,newProp2.getVersion().intValue());
+
+        User user1 = userService.findOne(5L);
+        User user2 = userService.findOne(6L);
+
+        newPropService.reserve(newProp1, user1.getUsername());
+        newPropService.reserve(newProp2, user2.getUsername());
 
     }
 }
