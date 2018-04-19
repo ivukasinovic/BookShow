@@ -7,6 +7,10 @@ INSERT INTO user (role, city, email, name, number, password_hash, surname, usern
 INSERT INTO user (role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('USER','Novi Sad', 'milan@milan', 'Milan', '0645565239', '$2a$10$fbc8Mb9ec0Ig1M5D0R8zT.xMgF0E1r6li04ynzi/CKY3eev/vezH2', 'Stankovic', 'milan',45,'DEFAULT', false, true);
 INSERT INTO user (role, city, email, name, number, password_hash, surname, username, points,type, changed_password,activated) VALUES ('ADMINSYS','Novi Grad', 'grad@milan', 'Grad', '0644565239', '$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi', 'Stankovic', 'admin',567,'DEFAULT', false, true);
 
+INSERT INTO friendship (prijatelj1,prijatelj2) VALUES('milan' , 'dejan');
+INSERT INTO friendship (prijatelj1,prijatelj2) VALUES('dejan' , 'admin');
+INSERT INTO friendship (prijatelj1,prijatelj2) VALUES('dejan' , 'adminfan');
+
 INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Arena Cineplex', 'CINEMA', 'Bulevar Mihajla Pupina 3, 21000 Novi Sad', 'opis', 0);
 INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodno pozoriste', 'THEATRE', 'Pozorisni trg 1, 21000 Novi Sad', 'opis', 0);
 INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodni bioskop', 'CINEMA', 'Kralja Petra I, 25000 Sombor', 'opis', 0);

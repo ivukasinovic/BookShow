@@ -2,7 +2,7 @@
   <title>Rezervacija sedista</title>
 </head>
 
-<h2 align = "center">Rezervacija sedista </h2>
+<h2 align = "center">Rezervacija sedista {{brojac}} </h2>
 
 <div class = "outerCanvas" align = "center">
   <span  align = "center">
@@ -37,8 +37,28 @@
 
 <div *ngIf = "prozoviPrijatlejeProzor" align = "center">
 <h2>Ovde mozes da pozoves prijatelje</h2>
-<div *ngIf = "prijatelji.length === 0">
-  <h3>Nemate prijatelja :(</h3>
+<div *ngIf = "brojPrijatelja === 0">
+  <h3 style="color: red;">Trenutno nemate prijatelje :(</h3>
+</div>
+
+
+<div *ngIf = "brojPrijatelja > 0" align = "center">
+  <span>
+     <select size = "{{brojPrijatelja}}" align = "left" [(ngModel)]="leviSelektovan">
+       <option *ngFor = "let fr of prijateljiIzListe">{{fr}}</option>
+      </select>
+    </span>
+    <span>
+      <button (click) = "dodaj()" 
+      [disabled] = "prijateljiIzListe.length == 0"><b> >></b> </button>
+      <button (click) = "oduzmi()" [disabled] = "prijateljiZaPoziv.length == 0"><b> &lt;&lt; </b></button>
+   </span>
+   <span>
+      <select size = "{{brojPrijatelja}}"
+      align = "left" [(ngModel)]="desniSelektovan">
+        <option *ngFor = "let pp of prijateljiZaPoziv">{{pp}}</option>
+       </select>
+  </span>
 </div>
 </div>
 
