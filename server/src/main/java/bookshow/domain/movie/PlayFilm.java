@@ -4,6 +4,7 @@ package bookshow.domain.movie;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 import bookshow.domain.Show;
 
@@ -22,18 +23,19 @@ public class PlayFilm implements Serializable{
     private Long id;
 	
 	@Column(nullable = false)
+	@Size(min=3, max=35)
 	private String name;
 	
-	@Column
+	@Column(nullable = false)
 	private String actors;
 	
-	@Column
+	@Column(nullable = false)
 	private String genre;
 	
 	@Column
 	private String director;
 	
-	@Column
+	@Column(nullable = false)
 	private String duration;
 	
 	@Column

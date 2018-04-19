@@ -8,7 +8,7 @@ import bookshow.domain.users.Visit;
 
 public interface VisitRepository extends JpaRepository<Visit, Long>{
 	Visit findById(Long Id);
-	List<Visit> findByUsername(String username);
+	List<Visit> findByUserUsername(String username);
 	List<Visit> findByShowName(String showName);
 	
 }

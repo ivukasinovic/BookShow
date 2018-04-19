@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,7 +68,7 @@ public class TicketController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Ticket>> getTicketsOnDiscount(@PathVariable String showId){
 		Long longId = new Long(Integer.parseInt(showId));
-		return new ResponseEntity<>(ticketService.findBySeatAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(longId, 0), HttpStatus.OK);
+		return new ResponseEntity<>(ticketService.findByProjectionAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(longId, 0), HttpStatus.OK);
 	}
 	
 	@RequestMapping(
@@ -83,6 +84,7 @@ public class TicketController {
 		return new ResponseEntity<>(ticketService.save(ticket), HttpStatus.OK);
 	}
 	
+
 	@RequestMapping(value = "/reserveSeat/{username}/{projectionId}", 
 			method = RequestMethod.POST, consumes = "application/json")		
 	public ResponseEntity<Ticket> reserveSeat(@RequestBody Seat seat,
@@ -100,4 +102,16 @@ public class TicketController {
 	}
 	
 	
+
+	@PreAuthorize("hasAuthority('ADMINSHOW')")
+	@RequestMapping(
+			value = "/remove-discount", 
+			method = RequestMethod.PUT, 
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Ticket> removeDiscount(@RequestBody Ticket ticket){
+		ticket.setDiscount(0);
+		return new ResponseEntity<>(ticketService.save(ticket), HttpStatus.OK);
+	}
+
 }

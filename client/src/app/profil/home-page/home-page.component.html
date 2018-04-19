@@ -21,7 +21,7 @@
    </tr>
    <tr *ngFor = "let poseta of istorija" align = "center">
      <td>
-      <a routerLink="/shows/{{poseta.showType}}/{{poseta.showId}}">{{poseta.showName}}</a>
+      <a routerLink="/shows/{{poseta.show.type}}/{{poseta.show.id}}">{{poseta.show.name}}</a>
      </td>
      <td>{{poseta.date}}</td>
      <td>

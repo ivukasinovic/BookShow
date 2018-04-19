@@ -37,15 +37,17 @@ public class PurchaseController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<MonthlyProfit> getProjection(@RequestBody TwoDates twoDates, @PathVariable String showId){
 		List<Purchase> purchases = purchaseService.findByDateGreaterThanAndDateLessThan(twoDates.getStartDate(),  twoDates.getEndDate());
-		if(purchases.isEmpty())
-			System.out.println("PRAZNO");
+
 		double sum = 0;
 		Long showIdLong = new Long(Integer.parseInt(showId));
 		for(int i = 0; i < purchases.size(); i++){
 			Ticket ticket = ticketService.findByPurchasedId(purchases.get(i).getId());
 			if(ticket != null){
 				if(ticket.getSeat().getAuditorium().getShow().getId().equals(showIdLong))
-					sum += ticket.getProjection().getPrice();
+					if(ticket.getDiscount() > 0)
+						sum += ticket.getProjection().getPrice() * (100 - ticket.getDiscount())/100;
+					else
+						sum += ticket.getProjection().getPrice();
 			}
 		}
 		return new ResponseEntity<>(new MonthlyProfit(sum), HttpStatus.OK);

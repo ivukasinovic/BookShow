@@ -1,13 +1,13 @@
-import { ShowsService } from './../../../shows.service';
-import { PlayMovieService } from './../../../play-movie.service';
-import { ProjectionService } from './../../../projection.service';
+import { ShowsService } from './../../../services/shows.service';
+import { ProjectionService } from './../../../services/projection.service';
+import { PlayMovieService } from './../../../services/play-movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-edit-projection',
   templateUrl: './edit-projection.component.html',
-  styleUrls: ['./edit-projection.component.css'],
+  styleUrls: ['./../../../shows.css'],
   providers: [ProjectionService, PlayMovieService, ShowsService]
 })
 export class EditProjectionComponent implements OnInit {

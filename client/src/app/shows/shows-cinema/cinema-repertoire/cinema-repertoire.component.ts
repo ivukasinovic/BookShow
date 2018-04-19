@@ -1,12 +1,12 @@
-import { ProjectionService } from './../../projection.service';
-import { ShowsService } from './../../shows.service';
-import { PlayMovieService } from './../../play-movie.service';
+import { TicketService } from './../../services/ticket.service';
+import { ProjectionService } from './../../services/projection.service';
+import { GoogleService } from './../../services/google.service';
+import { ShowsService } from './../../services/shows.service';
+import { PlayMovieService } from './../../services/play-movie.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GoogleService } from '../../google.service';
 import { MapsAPILoader } from '@agm/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
-import { TicketService } from '../../ticket.service';
 
 
 @Component({
@@ -131,5 +131,17 @@ export class CinemaRepertoireComponent implements OnInit {
         alert("Nije moguce brisanje zbog karata koje su u prodaji za datu projekciju");
       }
     })
+  }
+
+  removeDiscount(ticketId, objectForRemoval){
+    var ticket;
+    this.ticketService.getTicketById(ticketId).subscribe(data =>{
+      ticket = data;
+      this.ticketService.removeDiscount(ticket).subscribe(data =>{
+        var i = this.tickets.indexOf(objectForRemoval);
+        this.tickets.splice(i, 1);
+      });
+    })
+    
   }
 }
