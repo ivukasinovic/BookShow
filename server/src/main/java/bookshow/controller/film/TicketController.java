@@ -1,5 +1,6 @@
 package bookshow.controller.film;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -101,7 +102,6 @@ public class TicketController {
 		return new ResponseEntity<>(ticketService.save(ticket), HttpStatus.OK);
 	}
 	
-	
 
 	@PreAuthorize("hasAuthority('ADMINSHOW')")
 	@RequestMapping(
@@ -113,5 +113,32 @@ public class TicketController {
 		ticket.setDiscount(0);
 		return new ResponseEntity<>(ticketService.save(ticket), HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/getReservedTickets/{username}",method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<Ticket>> getReservedTickets(@PathVariable ("username") String username) {
+		ArrayList<Ticket> retVal = new ArrayList<Ticket>();
+		
+		List<Ticket> tickets = ticketService.findAll();
+		
+		for(Ticket t : tickets) {
+			if(t.getPurchased() != null) {
+				if(t.getPurchased().getUser().getUsername().equals(username)) {
+					retVal.add(t);
+				}				
+			}
+		}
+		
+		return new ResponseEntity<>(retVal, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

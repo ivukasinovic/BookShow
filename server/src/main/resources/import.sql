@@ -24,9 +24,15 @@ INSERT INTO auditorium (number, show_id) VALUES (2, 1);
 INSERT INTO seat (number, auditorium_id, segment) VALUES (1, 1, 'NORMAL');
 INSERT INTO seat (number, auditorium_id, segment) VALUES (2, 1, 'NORMAL');
 INSERT INTO seat (number, auditorium_id, segment) VALUES (3, 1, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (4, 1, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (5, 1, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (6, 1, 'NORMAL');
 INSERT INTO seat (number, auditorium_id, segment) VALUES (1, 2, 'NORMAL');
 INSERT INTO seat (number, auditorium_id, segment) VALUES (2, 2, 'NORMAL');
 INSERT INTO seat (number, auditorium_id, segment) VALUES (3, 2, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (4, 2, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (5, 2, 'NORMAL');
+INSERT INTO seat (number, auditorium_id, segment) VALUES (6, 2, 'NORMAL');
 
 
 INSERT INTO repertoire (date, show_id) VALUES ('2018-04-01', 1);
@@ -35,10 +41,10 @@ INSERT INTO projection (price, time, auditorium_id, playfilm_id, repertoire_date
 INSERT INTO projection (price, time, auditorium_id, playfilm_id, repertoire_date, repertoire_show_id) VALUES (260, '15:30', 2, 1, '2018-04-01', 1);
 
 INSERT INTO ticket (discount, projection_id, seat_id) VALUES (15, 1, 1);
-INSERT INTO ticket (discount, projection_id, seat_id) VALUES (15, 1, 2);
-INSERT INTO ticket (discount, projection_id, seat_id) VALUES (0, 2, 3);
-INSERT INTO ticket (discount, projection_id, seat_id) VALUES (25, 2, 4);
-INSERT INTO ticket (discount, projection_id, seat_id) VALUES (25, 2, 5);
+INSERT INTO ticket (discount, projection_id, seat_id) VALUES (15, 1, 3);
+INSERT INTO ticket (discount, projection_id, seat_id) VALUES (0, 2, 5);
+INSERT INTO ticket (discount, projection_id, seat_id) VALUES (25, 2, 10);
+INSERT INTO ticket (discount, projection_id, seat_id) VALUES (25, 2, 12);
 
 
 INSERT INTO new_prop (id, date_created, description, title, price, fan_admin_fk,show_fk,image) VALUES (4, '2018-01-29 00:55:56', 'Veoma glasna sirena', 'Sirena', 500, 1, 1,'https://www.hartsport.com.au/images/ProductImages/500/9-740.jpg');

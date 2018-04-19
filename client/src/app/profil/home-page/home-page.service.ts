@@ -16,6 +16,10 @@ export class HomePageService {
     return this.http.get('api/removeFromHistory/'+localStorage.getItem('username')+'/'+poseta); 
   }
 
+  getTickets() {
+    return this.http.get('api/ticket/getReservedTickets/'+localStorage.getItem('username')); 
+  }
+
 
 
 }
