@@ -1,0 +1,27 @@
+<head>
+  <title>Rezervacija sedista</title>
+</head>
+
+<h2 align = "center">Rezervacija sedista </h2>
+
+<div class = "outerCanvas" align = "center">
+  <span  align = "center">
+      <div class = "outerSeats" align = "center">
+           <button *ngFor="let sediste of seats; let i = index" class="seat" 
+           [ngStyle]="{'background-color' : backgroundColor}"
+            id="{{sediste.id}}"
+            (click) = "tolgeButton(sediste.id)">{{i+1}}</button>
+             <br><br> 
+             {{markReserved()}}     
+             <div><b>Platno</b></div>
+            
+      </div>    
+  </span>
+</div>
+
+<div align = "center">
+  <button (click) = "rezervisi()">
+    Rezervisi
+  </button>
+</div>
+

@@ -57,4 +57,9 @@ public class TicketServiceImpl implements TicketService{
 		return ticketRepository.findByPurchasedId(id);
 	}
 
+	@Override
+	public List<Ticket> findByProjectionIdAndPurchasedIsNotNull(Long id) {
+		return ticketRepository.findByProjectionIdAndPurchasedIsNotNull(id);
+	}
+
 }

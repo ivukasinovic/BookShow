@@ -12,5 +12,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Long>{
 
 	List<Ticket> findByProjectionAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(Long id, double value);
 
+	List<Ticket> findByProjectionIdAndPurchasedIsNotNull(Long id);
+	
 	Ticket findByPurchasedId(Long id);
 }

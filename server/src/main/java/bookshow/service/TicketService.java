@@ -16,6 +16,8 @@ public interface TicketService {
     List<Ticket> findByProjectionAuditoriumShowIdAndDiscountGreaterThanAndPurchasedIsNull(Long id, double value);
     
     List<Ticket> findByProjectionId(Long id);
+    
+    List<Ticket> findByProjectionIdAndPurchasedIsNotNull(Long id);
 
     Ticket findByPurchasedId(Long id);
 }

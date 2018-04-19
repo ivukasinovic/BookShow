@@ -105,6 +105,9 @@
                            <td>{{projection.price}} din </td>
                            <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "editProjection(projection.id)"> Izmeni </button></td>
                            <td *ngIf = "role == 'ADMINSHOW'"><button (click) = "removeProjection(projection.id, projection)"> Obrisi </button></td>
+                           <a routerLink="/seat-reservation/{{projection.auditorium.id}}/{{projection.id}}">
+                            <button class="btn btn-success pull-right" >Rezervisi</button></a>
+
                         </tr>
                      </table>
                    </div>
