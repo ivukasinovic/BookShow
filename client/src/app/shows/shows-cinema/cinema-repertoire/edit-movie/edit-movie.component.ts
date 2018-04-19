@@ -1,4 +1,4 @@
-import { PlayMovieService } from './../../../play-movie.service';
+import { PlayMovieService } from './../../../services/play-movie.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 

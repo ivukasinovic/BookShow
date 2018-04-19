@@ -2,32 +2,32 @@
 <div align = "center">
   <h2>Izmena pozorista/bioskopa</h2>
 
-  <form name="form" (ngSubmit)="sendData()">
+  <form #form="ngForm" (ngSubmit)="sendData()">
     <table>
       <tr>
         <td><label>Naziv: </label> </td>
-        <td><input type="text" name="name" [(ngModel)]="show.name"/> </td>
+        <td><input type="text" name="name" [(ngModel)]="show.name" required minlength="3"/> </td>
       </tr>
 
       <tr>
         <td><label>Tip: </label> </td>
         <td>
-          <select name="typeSelect" [(ngModel)]="show.type">
-          <option value="CINEMA">Bioskop</option>
-          <option value="THEATRE">Pozorište</option>
+          <select name="typeSelect" [(ngModel)]="show.type" required>
+            <option value="CINEMA">Bioskop</option>
+            <option value="THEATRE">Pozorište</option>
           </select>
         </td>
       </tr>
       <tr>
         <td><label>Adresa: </label> </td>
-        <td><textarea type="text" name="address" [(ngModel)]="show.address"></textarea></td>
+        <td><textarea type="text" name="address" [(ngModel)]="show.address" required></textarea></td>
       </tr>
       <tr>
           <td><label>Opis: </label> </td>
           <td><textarea type="text" name="description" [(ngModel)]="show.description"></textarea></td>
         </tr>
 
-     <tr> <td colspan = "2"><input type = "submit" value = "Izmeni "/></td></tr>
+     <tr> <td colspan="2"><button class="btn btn success" type="submit" [disabled]="form.invalid"> Izmeni </button></td></tr>
 
     </table>
   </form>

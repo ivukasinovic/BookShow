@@ -1,6 +1,6 @@
-import { ShowsService } from './../../../shows.service';
-import { PlayMovieService } from './../../../play-movie.service';
-import { ProjectionService } from './../../../projection.service';
+import { ShowsService } from './../../../services/shows.service';
+import { ProjectionService } from './../../../services/projection.service';
+import { PlayMovieService } from './../../../services/play-movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 

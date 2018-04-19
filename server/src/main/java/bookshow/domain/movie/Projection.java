@@ -2,6 +2,7 @@ package bookshow.domain.movie;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 import bookshow.domain.Auditorium;
 
@@ -30,6 +31,7 @@ public class Projection implements Serializable{
 	private Repertoire repertoire;
 	
 	@Column(nullable = false)
+	@Min(0)
 	private double price;
 	
 	public Projection(){

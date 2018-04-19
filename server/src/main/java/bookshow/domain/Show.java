@@ -1,11 +1,9 @@
 package bookshow.domain;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
-import bookshow.domain.users.User;
 
 /**
  * Created by Ivan V. on 29-Jan-18
@@ -24,6 +22,7 @@ public class Show implements Serializable{
     private Long id;
 
     @Column(nullable = false)
+    @Size(min=3, max=35)
     private String name;
 
     @Column(nullable = false)
