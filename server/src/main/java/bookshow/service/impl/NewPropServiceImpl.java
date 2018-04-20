@@ -59,6 +59,7 @@ public class NewPropServiceImpl implements NewPropService {
         newPropRepository.delete(id);
     }
 
+    //Thread.sleep omogucava simulaciju izvrsavanja transakcije
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public NewProp reserve(NewProp newProp, String username) {

@@ -95,12 +95,9 @@ public class UsedPropController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UsedProp> approveDecline(@PathVariable Long id, @RequestParam("type") String type, Principal principal) {
         User adminFan = userService.findByUsername(principal.getName());
-        UsedProp usedProp;
-        try {
-            usedProp = usedPropService.approveDecline(id, type, adminFan);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
+        UsedProp usedProp = usedPropService.findOne(id);
+        usedProp = usedPropService.approveDecline(usedProp, type, adminFan);
+
         if (usedProp == null) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
@@ -112,11 +109,12 @@ public class UsedPropController {
             value = "/{usedPropId}/accept-bid/{acceptedBidId}",
             method = RequestMethod.GET)
     public ResponseEntity<Bid> acceptBid(Principal principal, @PathVariable Long usedPropId, @PathVariable Long acceptedBidId) {
-        boolean success = usedPropService.acceptBid(principal.getName(), usedPropId, acceptedBidId);
-        if (success) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        UsedProp usedProp = usedPropService.findOne(usedPropId);
+        UsedProp savedUsedProp = usedPropService.acceptBid(principal.getName(),usedProp , acceptedBidId);
+        if (savedUsedProp == null) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 

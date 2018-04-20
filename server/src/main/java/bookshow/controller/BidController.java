@@ -71,19 +71,10 @@ public class BidController {
     public ResponseEntity<Bid> createBid(Principal principal, @RequestBody Bid bid, @PathVariable("id") Long id) {
         User registeredUser = userService.findByUsername(principal.getName());
         UsedProp usedProp = usedPropService.findOne(id);
-        if (usedProp.getUser() == registeredUser) {
+        Bid savedBid = bidService.createEditBid(usedProp,bid,registeredUser);
+        if(savedBid == null){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        if(usedProp.getAcceptedBid() != null){
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
-        Bid old = bidService.findByUserAndUsedProp(registeredUser, usedProp);
-        if (old != null)
-            bid.setId(old.getId());
-        bid.setDateCreated(new java.util.Date());
-        bid.setUser(registeredUser);
-        bid.setUsedProp(usedProp);
-        Bid savedBid = bidService.save(bid);
         return new ResponseEntity<>(savedBid, HttpStatus.CREATED);
     }
 

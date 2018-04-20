@@ -1,5 +1,6 @@
 package bookshow.service;
 
+import bookshow.domain.Bid;
 import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
 import bookshow.domain.users.User;
@@ -12,6 +13,7 @@ import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.Date;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
@@ -27,6 +29,8 @@ public class UsedPropServiceT {
     UsedPropService usedPropService;
     @Autowired
     UserService userService;
+    @Autowired
+    BidService bidService;
 
     @Test
     public void testCreateUsedProp() {
@@ -46,22 +50,12 @@ public class UsedPropServiceT {
 
     }
 
-    @Test
-    @Transactional
-    public void testAcceptBid() {
-        Long usedPropId = 2L;
-        Long acceptedBidId = 2L;
-        usedPropService.acceptBid("dejan",usedPropId, acceptedBidId);
-        UsedProp acceptedUsedProp = usedPropService.findOne(2L);
 
-        assertEquals(acceptedUsedProp.getAcceptedBid(), acceptedBidId);
-    }
-
-    @Test(expected = TransactionException.class)
+    @Test(expected = ObjectOptimisticLockingFailureException.class)
     public void testApproveDecline() {
         Long usedPropId = 1L;
         String type = "approve";
-        User adminFan = userService.findOne(1L);
+        User adminFan1 = userService.findOne(1L);
         User adminFan2 = userService.findOne(2L);
 
         UsedProp usedProp1 = usedPropService.findOne(1L);
@@ -70,8 +64,36 @@ public class UsedPropServiceT {
         assertEquals(0, usedProp1.getVersion().intValue());
         assertEquals(0, usedProp2.getVersion().intValue());
 
-        usedPropService.approveDecline(usedPropId, type, adminFan);
-        usedPropService.approveDecline(usedPropId, type,adminFan2);
+        usedPropService.approveDecline(usedProp1, type, adminFan1);
+        usedPropService.approveDecline(usedProp2, type,adminFan2);
 
     }
+    @Test(expected = ObjectOptimisticLockingFailureException.class)
+    public void testCreateBid(){
+        Bid bid1 = bidService.findOne(1L);
+        Bid bid2 = bidService.findOne(2L);
+        bid2.setPrice(440);
+        User author = userService.findByUsername("dejan");
+        User user = userService.findOne(6L);
+        UsedProp usedProp1 = usedPropService.findOne(2L);
+        UsedProp usedProp2 = usedPropService.findOne(2L);
+
+        assertEquals(0, usedProp1.getVersion().intValue());
+        assertEquals(0, usedProp2.getVersion().intValue());
+
+        usedPropService.acceptBid(author.getUsername(),usedProp1,bid1.getId());
+        bidService.createEditBid(usedProp1,bid2,user);
+
+    }
+
+//    @Test
+//    public void testAcceptBid() {
+//        Long usedPropId = 2L;
+//        Long acceptedBidId = 2L;
+//        UsedProp usedProp = usedPropService.findOne(usedPropId);
+//        usedPropService.acceptBid("dejan",usedProp, acceptedBidId);
+//        UsedProp acceptedUsedProp = usedPropService.findOne(2L);
+//
+//        assertEquals(acceptedUsedProp.getAcceptedBid(), acceptedBidId);
+//    }
 }

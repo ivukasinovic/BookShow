@@ -46,6 +46,7 @@ public class UsedProp extends Prop implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usedProp", cascade = CascadeType.REMOVE)
     private List<Bid> bids;
 
+    private int accesstime;
 
 
     public UsedProp() {
@@ -98,5 +99,13 @@ public class UsedProp extends Prop implements Serializable {
 
     public void setFanAdmin(User fanAdmin) {
         this.fanAdmin = fanAdmin;
+    }
+
+    public int getAccesstime() {
+        return accesstime;
+    }
+
+    public void setAccesstime(int accesstime) {
+        this.accesstime = accesstime;
     }
 }
