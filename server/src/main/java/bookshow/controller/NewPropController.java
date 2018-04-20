@@ -93,17 +93,13 @@ public class NewPropController {
     @RequestMapping(
             value = "/reserve/{id}",
             method = RequestMethod.GET)
-    public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id, Principal principal) {
+    public ResponseEntity<NewProp> reservationNewProp(@PathVariable("id") Long id, Principal principal) throws InterruptedException {
         NewProp newProp = newPropService.findOne(id);
-        if (newProp.getUser() != null) {
+       NewProp savedProp = newPropService.reserve(newProp,principal.getName());
+        if(savedProp == null){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        String username = principal.getName();
-        User user = userService.findByUsername(username);
-        user.setPoints(user.getPoints() + 1L);
-        newProp.setUser(user);
-        newPropService.save(newProp);
-        return new ResponseEntity<>(newProp, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedProp, HttpStatus.CREATED);
     }
 
     @RequestMapping(

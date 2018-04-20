@@ -27,4 +27,6 @@ public interface BidService {
     Bid findByUser(User user);
 
     void delete(Long id);
+
+    Bid createEditBid(UsedProp usedProp,Bid bid, User registeredUser);
 }

@@ -1,6 +1,7 @@
 package bookshow.domain;
 
 import bookshow.domain.props.UsedProp;
+import bookshow.domain.props.UsedPropStatus;
 import bookshow.domain.users.User;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
@@ -20,7 +21,7 @@ public class Bid implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private Integer price;
 
     @Column(nullable = false)
@@ -41,6 +42,10 @@ public class Bid implements Serializable {
     @ManyToOne(optional = false)
     @JoinColumn(name = "used_prop_fk")
     private UsedProp usedProp;
+
+
+    @Version
+    private Long version;
 
     public Bid() {
     }
@@ -91,6 +96,14 @@ public class Bid implements Serializable {
 
     public void setUsedProp(UsedProp usedProp) {
         this.usedProp = usedProp;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
 }

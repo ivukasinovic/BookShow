@@ -1,6 +1,7 @@
 package bookshow.service;
 
 import bookshow.domain.props.NewProp;
+import bookshow.domain.props.UsedProp;
 import bookshow.domain.users.User;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +24,6 @@ public interface NewPropService {
     NewProp save(NewProp newProp);
 
     void delete(Long id);
+
+    NewProp reserve(NewProp newProp, String username);
 }
