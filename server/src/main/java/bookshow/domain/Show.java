@@ -34,9 +34,7 @@ public class Show implements Serializable{
     
     @Column
     private String description;
-    
-    @Column
-    private double rating;
+
     /*
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "show")
     private Set<NewProp> props;*/
@@ -94,15 +92,6 @@ public class Show implements Serializable{
 		this.description = description;
 	}
 
-	public double getRating() {
-		return rating;
-	}
-
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
-	
-	
     
     
 }

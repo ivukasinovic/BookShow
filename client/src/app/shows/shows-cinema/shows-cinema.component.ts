@@ -15,6 +15,7 @@ export class ShowsCinemaComponent implements OnInit {
   private shows;
   private type;
   private role;
+  private ocene = [];
 
   constructor(private showsService: ShowsService, private router: Router, config: NgbRatingConfig, 
               private route: ActivatedRoute) {
@@ -25,7 +26,14 @@ export class ShowsCinemaComponent implements OnInit {
   ngOnInit() {
     this.role = localStorage.getItem('role');
     this.route.params.subscribe(params => this.type = params['type']);
-    this.showsService.getAllShowsByType(this.type).subscribe(data => this.shows = data); 
+    this.showsService.getAllShowsByType(this.type).subscribe(data =>{
+      this.shows = data
+      for(var i = 0; i < this.shows.length; i++){
+        this.showsService.getShowsRating(this.shows[i].id).subscribe((rateShow:any) =>{
+          this.ocene.push(rateShow.value);
+        })
+      }
+    });
   }
 
   showRepertoire(id){
@@ -35,5 +43,4 @@ export class ShowsCinemaComponent implements OnInit {
   editShow(id){
     this.router.navigate([this.router.url + '/edit/' + id]);
   }
-
 }

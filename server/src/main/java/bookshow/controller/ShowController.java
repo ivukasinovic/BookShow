@@ -23,7 +23,7 @@ public class ShowController {
 	ShowService showService;
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Show>> getShowTheatre(@RequestParam(value = "type") String pathvar) {
+	public ResponseEntity<List<Show>> getShowTheatre(@RequestParam(value = "type") String pathvar) {;
 		List<Show> retval = null;
 		if (pathvar.equals("theatre"))
 			retval = showService.findByType(ShowType.THEATRE);
@@ -61,7 +61,6 @@ public class ShowController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Show> createShow(@RequestBody Show show, Principal principal){
-	    show.setRating(0.0);
 	    Show savedShow = showService.save(show);
 	    return  new ResponseEntity<>(savedShow, HttpStatus.CREATED);
     }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import bookshow.domain.Show;
 import bookshow.domain.DTOs.DoubleDTO;
 import bookshow.domain.rating.RateShow;
+import bookshow.domain.rating.UserShow;
 import bookshow.domain.users.User;
 import bookshow.service.RateShowService;
 import bookshow.service.ShowService;
@@ -34,16 +35,32 @@ public class RateShowController {
 	private RateShowService rateShowService;
 	
 	@RequestMapping(
+            value = "/get/{username}/{showId}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<DoubleDTO> getUsersRating(@PathVariable String username, @PathVariable String showId){
+		User user = userService.findByUsername(username);
+		Long longId = new Long(Integer.parseInt(showId));
+		Show show = showService.findOne(longId);
+		UserShow userShow = new UserShow(user, show);
+		RateShow rateShow = rateShowService.findOne(userShow);
+		if(rateShow == null)
+	        return new ResponseEntity<>(new DoubleDTO(0), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(new DoubleDTO(rateShow.getRating()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(
             value = "/save/{username}/{showId}",
             method = RequestMethod.PUT,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RateShow> createAdminFan(@RequestBody RateShow rateShow, @PathVariable String username, @PathVariable String showId) {
+    public ResponseEntity<RateShow> rateAShow(@RequestBody RateShow rateShow, @PathVariable String username, @PathVariable String showId) {
 		Long showIdLong = new Long(Integer.parseInt(showId));
 		User user = userService.findByUsername(username);
 		Show show = showService.findOne(showIdLong);
-		rateShow.getUserShow().setShow(show);
-		rateShow.getUserShow().setUser(user);
+		UserShow userShow = new UserShow(user, show);
+		rateShow.setUserShow(userShow);
         return new ResponseEntity<>(rateShowService.save(rateShow), HttpStatus.OK);
     }
 	
@@ -51,7 +68,7 @@ public class RateShowController {
             value = "/calculate-show-rating/{showId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DoubleDTO> createAdminFan(@PathVariable String showId) {
+    public ResponseEntity<DoubleDTO> calculateShowRating(@PathVariable String showId) {
 		Long showIdLong = new Long(Integer.parseInt(showId));
 		List<RateShow> showsRatings = rateShowService.findByUserShowShowId(showIdLong);
 		double sum = 0;

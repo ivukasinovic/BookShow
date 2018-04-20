@@ -6,6 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import bookshow.domain.Show;
+import bookshow.domain.users.User;
+
 
 @Entity
 public class RateShow implements Serializable{
