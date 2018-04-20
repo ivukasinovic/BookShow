@@ -7,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MapsAPILoader } from '@agm/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import {AuthService} from '../../../auth.service'
 
 
 @Component({
   selector: 'app-cinema-repertoire',
   templateUrl: './cinema-repertoire.component.html',
   styleUrls: ['./../../shows.css'],
-  providers: [PlayMovieService, ShowsService, GoogleService, ProjectionService, TicketService]
+  providers: [PlayMovieService, ShowsService, GoogleService, ProjectionService, TicketService, AuthService]
 })
 export class CinemaRepertoireComponent implements OnInit {
   private id;
@@ -30,16 +31,27 @@ export class CinemaRepertoireComponent implements OnInit {
   private tickets;
   private deletedResponse;
   private ticket;
+  username: string;
+  private logged : boolean;
 
   constructor(private route: ActivatedRoute, private playMovieService: PlayMovieService, 
               private router: Router, private showsService: ShowsService,config: NgbRatingConfig,
               private googleService: GoogleService, private mapsAPILoader: MapsAPILoader,
-              private projectionService: ProjectionService, private ticketService: TicketService) {
+              private projectionService: ProjectionService, private ticketService: TicketService,
+              private authService : AuthService) {
     config.max = 5;
     config.readonly = true;
    }
 
   ngOnInit() {
+    this.role = localStorage.getItem('role');
+    this.username = localStorage.getItem('username');
+    if (this.authService.isAuthenticated()) {
+      this.logged = true;
+    } else {
+      this.logged = false;
+    }
+
     this.role = localStorage.getItem('role');
     this.route.params.subscribe(params =>
       {
