@@ -24,6 +24,8 @@ import bookshow.service.ProjectionService;
 import bookshow.service.PurchaseService;
 import bookshow.service.TicketService;
 import bookshow.service.UserService;
+import bookshow.service.SeatService;
+import bookshow.service.MailService;
 
 @RestController
 @RequestMapping(value = "ticket")
@@ -41,6 +43,9 @@ public class TicketController {
 	
 	@Autowired
 	private ProjectionService ProjectionService;
+	
+	@Autowired
+	private MailService MailService;
 	
 	@RequestMapping(
 			value = "/get", 
@@ -97,6 +102,27 @@ public class TicketController {
 		ticket.setDiscount(0);
 		Projection projection = ProjectionService.findOne(projectionId);
 		ticket.setProjection(projection);
+		System.out.println(user.getEmail());
+		MailService.sendSeatConfirmingMail(username, user.getEmail(), ticket);
+		return new ResponseEntity<>(ticketService.save(ticket), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/reserveSeatForFriend/{logged}/{username}/{projectionId}", 
+			method = RequestMethod.POST, consumes = "application/json")		
+	public ResponseEntity<Ticket> reserveSeatForFriend(@RequestBody Seat seat,
+			@PathVariable("username")String username, @PathVariable("projectionId")Long projectionId,
+			@PathVariable("logged")String logged) {
+		User user = userService.findByUsername(username);
+		Purchase p = new Purchase(user, new Date());
+		purchaseService.save(p);
+		Ticket ticket = new Ticket();
+		ticket.setPurchased(p);
+		ticket.setSeat(seat);
+		ticket.setDiscount(0);
+		Projection projection = ProjectionService.findOne(projectionId);
+		ticket.setProjection(projection);
+		System.out.println(user.getEmail());
+		MailService.sendInvite(logged, username, user.getEmail(), ticket);
 		return new ResponseEntity<>(ticketService.save(ticket), HttpStatus.OK);
 	}
 	

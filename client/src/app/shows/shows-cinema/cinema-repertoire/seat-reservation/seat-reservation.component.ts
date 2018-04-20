@@ -110,8 +110,6 @@ export class SeatReservationComponent implements OnInit {
       alert("Maksimalno smes da pozoves " + this.brojac + " prijatelja");
       this.brojac++;
     }else {
-  
-
     this.seats.forEach(element => {
       if(document.getElementById(element.id).style.backgroundColor == "skyblue") {
         if(this.brojac > this.prijateljiZaPoziv.length){
@@ -123,10 +121,8 @@ export class SeatReservationComponent implements OnInit {
        )
        this.brojac--;
       }
-
-      /*if(this.brojac <= this.prijateljiZaPoziv.length && this.brojac >= 1)*/
       else {
-        this.seatReserService.rezervisi(this.prijateljiZaPoziv[this.brojac - 1],element,this.projectionId).subscribe(
+        this.seatReserService.rezervisiZaPrijatelja(this.prijateljiZaPoziv[this.brojac - 1],element,this.projectionId).subscribe(
           data =>{
            //alert("Uspesna rezervacija doleeee");
            document.getElementById(element.id).style.backgroundColor = "lightcoral";
