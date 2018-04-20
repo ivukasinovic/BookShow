@@ -22,6 +22,14 @@ export class HomePageService {
     return this.http.get('api/ticket/getReservedTickets/'+localStorage.getItem('username')); 
   }
 
+  getUsersRatingForShow(showId, username){
+    return this.http.get("api/rateshow/get/" + username + '/' + showId);
+  }
 
+  rateShow(showId, rating){
+    var rateShow: any = {};
+    rateShow.rating = rating;
+    return this.http.put("api/rateshow/save/"+localStorage.getItem('username') +'/'+showId, rateShow);
+  }
 
 }

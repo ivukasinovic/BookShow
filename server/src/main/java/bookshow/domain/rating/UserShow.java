@@ -26,6 +26,12 @@ public class UserShow implements Serializable{
 		
 	}
 
+	public UserShow(User user, Show show) {
+		// TODO Auto-generated constructor stub
+		this.user = user;
+		this.show = show;
+	}
+
 	public User getUser() {
 		return user;
 	}

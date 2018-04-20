@@ -11,13 +11,13 @@ INSERT INTO friendship (prijatelj1,prijatelj2) VALUES('milan' , 'dejan');
 INSERT INTO friendship (prijatelj1,prijatelj2) VALUES('dejan' , 'admin');
 INSERT INTO friendship (prijatelj1,prijatelj2) VALUES('dejan' , 'adminfan');
 
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Arena Cineplex', 'CINEMA', 'Bulevar Mihajla Pupina 3, 21000 Novi Sad', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodno pozoriste', 'THEATRE', 'Pozorisni trg 1, 21000 Novi Sad', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodni bioskop', 'CINEMA', 'Kralja Petra I, 25000 Sombor', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Sinestar', 'CINEMA', 'Sentandrejski put 11, 21000 Novi Sad', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Fontana', 'CINEMA', 'Pariske komune 13, 11000 Beograd', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Krstarica', 'THEATRE', 'Trg Republike 1, 11000 Beograd', 'opis', 0);
-INSERT INTO show_ct (name, type, address, description, rating) VALUES ('Narodno pozoriste', 'THEATRE', 'Francuska 3, 11000 Beograd', 'opis', 0);
+INSERT INTO show_ct (name, type, address, description) VALUES ('Arena Cineplex', 'CINEMA', 'Bulevar Mihajla Pupina 3, 21000 Novi Sad', 'opis');
+INSERT INTO show_ct (name, type, address, description) VALUES ('Narodno pozoriste', 'THEATRE', 'Pozorisni trg 1, 21000 Novi Sad', 'opis');
+INSERT INTO show_ct (name, type, address, description) VALUES ('Narodni bioskop', 'CINEMA', 'Kralja Petra I, 25000 Sombor', 'opis');
+INSERT INTO show_ct (name, type, address, description) VALUES ('Sinestar', 'CINEMA', 'Sentandrejski put 11, 21000 Novi Sad', 'opis');
+INSERT INTO show_ct (name, type, address, description) VALUES ('Fontana', 'CINEMA', 'Pariske komune 13, 11000 Beograd', 'opis');
+INSERT INTO show_ct (name, type, address, description) VALUES ('Krstarica', 'THEATRE', 'Trg Republike 1, 11000 Beograd', 'opis');
+INSERT INTO show_ct (name, type, address, description) VALUES ('Narodno pozoriste', 'THEATRE', 'Francuska 3, 11000 Beograd', 'opis');
 
 INSERT INTO playfilm_ct (name, actors, genre, director, duration, image_url, description, average_score, show_id) VALUES('The Departed', 'Leonadrdo DiCaprio, Matt Damon, Jack Nicholson', 'Crime, Drama', 'Martin Scorsese', '02:31', 'https://images-na.ssl-images-amazon.com/images/I/91yxj4w7jFL._RI_SX200_.jpg', 'An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.', 0, 1);
 INSERT INTO playfilm_ct (name, actors, genre, director, duration, image_url, description, average_score, show_id) VALUES('Fight Club', 'Bradd Pitt, Edward Norton', 'Drama', 'David Fincher', '02:19', 'https://i.ytimg.com/vi/amiyHvl0I4s/movieposter.jpg', 'An insomniac office worker, looking for a way to change his life, crosses paths with a devil-may-care soapmaker, forming an underground fight club that evolves into something much, much more.', 0, 1);

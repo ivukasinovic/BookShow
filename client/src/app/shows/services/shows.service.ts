@@ -28,4 +28,8 @@ export class ShowsService {
   getAuditorium(id){
     return this.http.get('api/auditorium/' + id);
   }
+
+  getShowsRating(showId){
+    return this.http.get("api/rateshow/calculate-show-rating/" + showId);
+  }
 }

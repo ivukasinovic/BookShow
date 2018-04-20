@@ -36,17 +36,20 @@
  </div>
 <br><br>
  <div *ngIf = "karte.length > 0" align = "center">
-   <h2>Posete</h2>
+   <h2>Rejtujte</h2>
     <table border="1">
       <tr>
-        <th>Naziv ustanove</th>
-        <th>Naziv predstave</th>
+        <th>Naziv bioskopa/pozorista</th>
+        <th>Vasa ocena bioskopa</th>
+        <th>Oceni</th>
       </tr>
      
 
-      <tr *ngFor = "let karta of karte">
+      <tr *ngFor = "let karta of karte; let i = index">
         <td>{{karta.projection.auditorium.show.name}} </td>
-        <td>{{karta.projection.playfilm.name}} </td>
+        <td> <ngb-rating [(rate)]="ocene[i]"></ngb-rating> </td>
+        <td> <button (click) = "rejtujBioskop(i, karta.projection.auditorium.show.id)"> Rejtuj</button> </td>
       </tr>
     </table>
-   </div>
+
+  </div>
