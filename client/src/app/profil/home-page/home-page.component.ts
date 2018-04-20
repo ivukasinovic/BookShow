@@ -48,9 +48,6 @@ export class HomePageComponent implements OnInit {
         }
         
       })
-
-      
-
     }
 
 }
@@ -71,4 +68,5 @@ rejtujBioskop(i, showId){
     null;
   })
 }
+
 }

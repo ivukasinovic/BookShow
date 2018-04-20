@@ -130,7 +130,7 @@
                             <th>Vreme projekcije</th>
                             <th>Sala</th>
                             <th>Sediste</th>
-                            <th>Rezervacija</th>
+                            <th *ngIf="role == 'ADMINSHOW' || role == 'ADMINSYS' || role == 'ADMINFAN' || role == 'USER'">Rezervacija</th>
                             <th *ngIf="role == 'ADMINSHOW'">Uklanjanje popusta</th>
                         </tr>
 
@@ -142,7 +142,7 @@
                            <td> {{ticket.projection.time}} </td>
                            <td> {{ticket.projection.auditorium.number}} </td>
                            <td> {{ticket.seat.number}} </td>
-                           <td><button (click)="reserveTicket(ticket.id, ticket)"> Rezervisi </button></td>
+                           <td *ngIf="role == 'ADMINSHOW' || role == 'ADMINSYS' || role == 'ADMINFAN' || role == 'USER'"><button (click)="reserveTicket(ticket.id, ticket)"> Rezervisi </button></td>
                            <td *ngIf="role == 'ADMINSHOW'"><button (click)="removeDiscount(ticket.id, ticket)"> Ukloni </button></td>
                          </tr>
                      </table>

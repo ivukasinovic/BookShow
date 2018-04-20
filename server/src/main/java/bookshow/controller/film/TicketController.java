@@ -27,7 +27,6 @@ import bookshow.service.UserService;
 import bookshow.service.SeatService;
 import bookshow.service.MailService;
 
-
 @RestController
 @RequestMapping(value = "ticket")
 public class TicketController {
@@ -41,8 +40,6 @@ public class TicketController {
 	@Autowired 
 	private PurchaseService purchaseService;
 	
-	@Autowired
-	private SeatService SeatService;
 	
 	@Autowired
 	private ProjectionService ProjectionService;
@@ -57,6 +54,8 @@ public class TicketController {
 	public ResponseEntity<List<Ticket>> getTickets(){
 		return new ResponseEntity<>(ticketService.findAll(), HttpStatus.OK);
 	}
+	
+	
 	
 	@RequestMapping(
 			value = "/get/{ticketId}", 

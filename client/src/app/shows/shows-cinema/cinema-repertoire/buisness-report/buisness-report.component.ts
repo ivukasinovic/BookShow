@@ -21,6 +21,7 @@ export class BuisnessReportComponent implements OnInit {
   private todaysVisits;
   private weeksVisits;
   private monthsVisits;
+  private showRating;
 
 
   constructor(private route: ActivatedRoute, private showService: ShowsService, 
@@ -35,6 +36,9 @@ export class BuisnessReportComponent implements OnInit {
         this.buissnessService.getTodaysVisits(this.showId).subscribe((todaysVisits:any) => this.todaysVisits = todaysVisits.value);
         this.buissnessService.getThisWeeksVisits(this.showId).subscribe((weeksVisits:any) => this.weeksVisits = weeksVisits.value);
         this.buissnessService.getThisMonthsVisits(this.showId).subscribe((monthsVisits:any) => this.monthsVisits = monthsVisits.value);
+        this.showService.getShowsRating(this.showId).subscribe((rating:any) => {
+          this.showRating = rating.value;
+        })
 
       });
   }
