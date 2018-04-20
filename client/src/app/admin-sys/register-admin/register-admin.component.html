@@ -27,6 +27,9 @@
       <label>Broj telefona</label>
       <input [(ngModel)]="user.number" type="text" class="form-control" name="number"
              placeholder="Unesite broj telefona">
+      <label>Lozinka</label>
+      <input [(ngModel)]="user.passwordHash" type="password" class="form-control" name="passwordHash"
+             placeholder="Unesite inicijalnu lozinku">
       <br>
       <label>Tip</label>
       <select name="typeSelect" class="custom-select" [(ngModel)]="user.role">

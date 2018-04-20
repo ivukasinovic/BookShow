@@ -1,12 +1,15 @@
 package bookshow.controller;
 
+import bookshow.domain.users.User;
 import bookshow.model.json.request.AuthenticationRequest;
 import bookshow.model.json.response.AuthenticationResponse;
 import bookshow.model.security.CustomUser;
 import bookshow.security.TokenUtils;
+import bookshow.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,6 +44,9 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> authenticationRequest(@RequestBody AuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
 
@@ -56,7 +62,7 @@ public class AuthenticationController {
         // Reload password post-authentication so we can generate token
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         String token = this.tokenUtils.generateToken(userDetails, device);
-
+        User user = userService.findByUsername(userDetails.getUsername());
         // Return the token
         return ResponseEntity.ok(new AuthenticationResponse(token));
     }

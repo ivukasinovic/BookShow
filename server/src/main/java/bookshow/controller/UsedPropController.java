@@ -5,6 +5,8 @@ import bookshow.domain.props.UsedProp;
 import bookshow.domain.props.UsedPropStatus;
 import bookshow.domain.users.Role;
 import bookshow.domain.users.User;
+import bookshow.service.BidService;
+import bookshow.service.MailService;
 import bookshow.service.UsedPropService;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,10 @@ public class UsedPropController {
     private UsedPropService usedPropService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private MailService mailService;
+    @Autowired
+    private BidService bidService;
 
     @PreAuthorize("hasAuthority('ADMINFAN')")
     @RequestMapping(
@@ -114,6 +120,10 @@ public class UsedPropController {
         if (savedUsedProp == null) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+        Bid bid = bidService.findOne(usedProp.getAcceptedBid());
+        User winner = bid.getUser();
+        String message = "Cestitamo, pobedili ste na licitaciji predmeta " + usedProp.getTitle();
+        mailService.sendNotification(winner.getUsername(), winner.getEmail(), message);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }

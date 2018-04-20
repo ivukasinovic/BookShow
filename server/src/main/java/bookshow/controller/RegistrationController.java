@@ -2,14 +2,10 @@ package bookshow.controller;
 
 
 
-import java.util.ArrayList;
-
-import javax.mail.internet.MimeMessage;
+import bookshow.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import bookshow.domain.users.RatingType;
 import bookshow.domain.users.Role;
 import bookshow.domain.users.User;
 import bookshow.service.UserService;
@@ -27,9 +22,9 @@ public class RegistrationController {
 
 	@Autowired
     private UserService UserService;
-	
+
 	@Autowired
-	private JavaMailSender mailSender;
+	private MailService mailService;
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<User> registerUser(@RequestBody User user){
@@ -49,8 +44,8 @@ public class RegistrationController {
 		//newUser.setIstorijaPoseta("");
 		newUser.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPasswordHash()));	
 		newUser.setPoints((long) 0);
-		newUser.setType(RatingType.DEFAULT);
-		sendMail(newUser.getUsername(),newUser.getEmail());
+		newUser.setChangedPassword(false);
+		mailService.sendActivationMail(newUser.getUsername(),newUser.getEmail());
 		UserService.save(newUser);
 
 		return new ResponseEntity<>(newUser,HttpStatus.OK);
@@ -65,20 +60,5 @@ public class RegistrationController {
 		
 	}
 	
-	public void sendMail(String usernameToSend, String emailAdress){
-		MimeMessage mimeMessage = mailSender.createMimeMessage();
-		try {
-			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "utf-8");
-			String htmlMsg = "<h3>Aktiviranje naloga!</h3><br>"
-					+ "<div>Dobrodosli "+usernameToSend+" na nas sajt <b>ISA projekta </b></div>"
-					+ "<div>Kliknite <a href ="
-					+ " \"http://localhost:4200/api/accountActivation/"+usernameToSend+"\">"
-					+ "<u>ovde</u></a> kako biste aktivirali vas nalog.</div>";
-			mimeMessage.setContent(htmlMsg, "text/html");
-			helper.setTo(emailAdress);
-			helper.setSubject("Automatski generisana poruka za aktiviranje naloga");
-			 mailSender.send(mimeMessage);
-		} catch (Exception e) {
-		}		
-	}
+
 }

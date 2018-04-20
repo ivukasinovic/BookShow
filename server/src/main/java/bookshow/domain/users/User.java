@@ -58,10 +58,6 @@ public class User implements Serializable {
     @Column(nullable = false)
     private Long points;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private RatingType type;
-
 
 	public boolean isActivated() {
 		  return activated;
@@ -167,12 +163,6 @@ public class User implements Serializable {
         this.points = points;
     }
 
-    public RatingType getType() {
-        return type;
-    }
 
-    public void setType(RatingType type) {
-        this.type = type;
-    }
 
 }

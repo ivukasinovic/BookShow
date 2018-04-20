@@ -56,6 +56,7 @@ export class User {
   role: string;
   loggednum: number;
   type: string;
+  passwordHash: string;
 }
 export class Rating {
   bronze: string;

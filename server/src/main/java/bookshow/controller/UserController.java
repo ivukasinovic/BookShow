@@ -1,8 +1,6 @@
 package bookshow.controller;
 
-import bookshow.domain.users.RatingType;
 import bookshow.domain.users.User;
-import bookshow.service.RatingService;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,7 +57,7 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createAdminFan(@RequestBody User user) {
         user.setPoints(0L);
-        user.setType(RatingType.DEFAULT);
+        user.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPasswordHash()));
         User savedUser = UserService.save(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
