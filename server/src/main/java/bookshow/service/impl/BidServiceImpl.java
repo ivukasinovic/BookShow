@@ -85,11 +85,14 @@ public class BidServiceImpl implements BidService {
             return null;
         }
         Bid old = findByUserAndUsedProp(registeredUser, usedProp);
-        if (old != null)
-            bid.setId(old.getId());
-        bid.setDateCreated(new java.util.Date());
-        bid.setUser(registeredUser);
-        bid.setUsedProp(usedProp);
+        if (old != null) {
+            old.setPrice(bid.getPrice());
+            bid = old;
+        }else{
+            bid.setDateCreated(new java.util.Date());
+            bid.setUser(registeredUser);
+            bid.setUsedProp(usedProp);
+        }
        // usedPropService.save(usedProp);
         try {
             Thread.sleep(4000);

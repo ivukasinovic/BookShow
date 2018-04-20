@@ -63,10 +63,7 @@ public class AuthenticationController {
         // Reload password post-authentication so we can generate token
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         String token = this.tokenUtils.generateToken(userDetails, device);
-        User user = userService.findByUsername(userDetails.getUsername());
-        /*if((user.getRole().equals(Role.ADMINSHOW) || user.getRole().equals(Role.ADMINFAN)) && !user.isChangedPassword())
-        	return new ResponseEntity<>(new AuthenticationResponse(token), HttpStatus.TEMPORARY_REDIRECT);
-        else*/
+
         return ResponseEntity.ok(new AuthenticationResponse(token));
     }
 

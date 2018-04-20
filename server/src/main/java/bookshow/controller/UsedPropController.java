@@ -116,6 +116,9 @@ public class UsedPropController {
             method = RequestMethod.GET)
     public ResponseEntity<Bid> acceptBid(Principal principal, @PathVariable Long usedPropId, @PathVariable Long acceptedBidId) {
         UsedProp usedProp = usedPropService.findOne(usedPropId);
+        if(usedProp.getActiveUntil().before(new java.util.Date())){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         UsedProp savedUsedProp = usedPropService.acceptBid(principal.getName(),usedProp , acceptedBidId);
         if (savedUsedProp == null) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -124,6 +127,14 @@ public class UsedPropController {
         User winner = bid.getUser();
         String message = "Cestitamo, pobedili ste na licitaciji predmeta " + usedProp.getTitle();
         mailService.sendNotification(winner.getUsername(), winner.getEmail(), message);
+//        //Slanje obavestenja svim ostalima da nisu prihvaceni, zakomentarisano zbog resursa
+//        String message2 = "Na zalost niste pobeditli na licitaciji predmeta " + usedProp.getTitle();
+//        for(Bid b: usedProp.getBids()){
+//            User user = bid.getUser();
+//            if(!user.equals(bid.getUser())){
+//                mailService.sendNotification(user.getUsername(), user.getEmail(), message);
+//            }
+//        }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UsedProp} from '../models/prop';
 import {PropService} from '../prop.service';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-create-ad',
@@ -9,6 +10,11 @@ import {PropService} from '../prop.service';
 })
 export class CreateAdComponent implements OnInit {
   usedProp: UsedProp;
+  mesec: string;
+  dan: string;
+  model: NgbDateStruct;
+  date: { year: number, month: number }
+  time = {hour: 13, minute: 30};
 
   constructor(private propService: PropService) {
     this.usedProp = new UsedProp();
@@ -19,6 +25,11 @@ export class CreateAdComponent implements OnInit {
   }
 
   create() {
+    this.mesec = (this.model.month < 10) ? '0' + this.model.month.toString() : this.model.month.toString();
+    this.time.hour -= 2;
+    this.dan = (this.model.day < 10) ? '0' + this.model.day.toString() : this.model.day.toString();
+    this.usedProp.activeUntil = this.model.year.toString() + '-' + this.mesec + '-' + this.dan.toString() + 'T' +
+      this.time.hour.toString() + ':' + this.time.minute.toString() + ':' + '00Z';   // 'T03:03:30Z'; // 'T03:03:30Z';
     this.propService.createUsedProp(this.usedProp)
       .subscribe(
         resp => {
@@ -31,5 +42,6 @@ export class CreateAdComponent implements OnInit {
           alert('Greska prilikom kreiranja oglasa, pokusajte ponovo. ');
         });
   }
+
 
 }

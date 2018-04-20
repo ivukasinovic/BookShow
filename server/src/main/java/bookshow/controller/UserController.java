@@ -1,6 +1,7 @@
 package bookshow.controller;
 
 import bookshow.domain.users.User;
+import bookshow.service.MailService;
 import bookshow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService UserService;
+    @Autowired
+    private MailService mailService;
 
 
     @PreAuthorize("hasAuthority('ADMINSYS')")
@@ -59,6 +62,7 @@ public class UserController {
         user.setPoints(0L);
         user.setPasswordHash(new BCryptPasswordEncoder().encode(user.getPasswordHash()));
         User savedUser = UserService.save(user);
+        mailService.sendActivationMail(user.getUsername(),user.getEmail());
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
     @RequestMapping(

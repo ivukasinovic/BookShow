@@ -22,6 +22,7 @@ export class ChangePasswordComponent implements OnInit {
   changePassword() {
     if (this.newPw1 !== this.newPw2) {
       alert('Nove lozinka mora biti ista u oba polja');
+      return;
     }
     this.propService.changePassword(this.oldPw, this.newPw1)
       .subscribe(response => {

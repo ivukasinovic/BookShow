@@ -10,15 +10,17 @@
   <label>Slika</label>
   <input [(ngModel)]="usedProp.image" type="text" class="form-control" name="image"
          placeholder="Unesite adresu slike (opciono)">
-  <label>Datum i vreme </label><br>
-  <input [(ngModel)]="usedProp.activeUntil" type="text" class="form-control" name="datetime" value="20180129023240"
-         placeholder="Unesite datum kraja licitacije u formatu ggggmmddssmmss">
-
+  <label>Datum i vreme do kada je oglas aktivan: {{date.year}}-{{date.month}}-{{date.day}} {{time.hour}}:{{time.minute}}</label><br>
+  <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+  <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+  <hr>
 </div>
 
 <div class="form-check">
   <button class="btn btn-warning" (click)="create()">Kreiraj oglas</button>
 </div>
+
+
 
 
 
