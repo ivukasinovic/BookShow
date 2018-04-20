@@ -60,6 +60,7 @@ import { EditShowComponent } from './shows/edit-show/edit-show.component';
 import { EditProjectionComponent } from './shows/shows-cinema/cinema-repertoire/edit-projection/edit-projection.component';
 import { SeatReservationComponent } from './shows/shows-cinema/cinema-repertoire/seat-reservation/seat-reservation.component';
 import { SeatReserService } from './shows/shows-cinema/cinema-repertoire/seat-reservation/seat-reser.service';
+import { RezervacijeComponent } from './rezervacije/rezervacije.component';
 
 
 
@@ -109,7 +110,8 @@ import { SeatReserService } from './shows/shows-cinema/cinema-repertoire/seat-re
     SetRatingComponent,
     EditShowComponent,
     EditProjectionComponent,
-    SeatReservationComponent
+    SeatReservationComponent,
+    RezervacijeComponent
   ],
   imports: [
     BrowserModule,

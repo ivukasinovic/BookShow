@@ -1,0 +1,31 @@
+<div align = "center">
+<h2>Rezervacije</h2>
+</div>
+<div *ngIf = "karte.length === 0" align = "center">
+    <h2 style="color:red">Trenutno nemate nikakvih rezervacija</h2>
+   </div>
+  <br><br>
+   <div *ngIf = "karte.length > 0" align = "center">
+     <h2>Posete</h2>
+      <table border="1">
+          <tr>
+              <th>ID karte</th>
+              <th>Naziv ustanove</th>
+              <th>Naziv predstave</th>
+              <th>Sala</th>
+              <th>Sediste</th>
+            </tr>
+           
+      
+            <tr *ngFor = "let karta of karte">
+              <td>{{karta.id}}</td>
+              <td>{{karta.projection.auditorium.show.name}} </td>
+              <td>{{karta.projection.playfilm.name}} </td>
+              <td>{{karta.projection.auditorium.number}} </td>
+              <td>{{karta.seat.number}} </td>
+              <td>
+              <a [routerLink]="" (click)="cancelReservation(karta.id)">[x] </a>
+            </td>
+            </tr>
+      </table>
+     </div>

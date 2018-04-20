@@ -117,7 +117,7 @@ export class SeatReservationComponent implements OnInit {
         if(this.brojac > this.prijateljiZaPoziv.length){
        this.seatReserService.rezervisi(localStorage.getItem('username'),element,this.projectionId).subscribe(
          data =>{
-          alert("Uspesna rezervacija goreee");
+          //alert("Uspesna rezervacija goreee");
           document.getElementById(element.id).style.backgroundColor = "lightcoral";
          }
        )
@@ -128,7 +128,7 @@ export class SeatReservationComponent implements OnInit {
       else {
         this.seatReserService.rezervisi(this.prijateljiZaPoziv[this.brojac - 1],element,this.projectionId).subscribe(
           data =>{
-           alert("Uspesna rezervacija doleeee");
+           //alert("Uspesna rezervacija doleeee");
            document.getElementById(element.id).style.backgroundColor = "lightcoral";
           }
         )  

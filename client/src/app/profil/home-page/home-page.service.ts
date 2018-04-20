@@ -6,7 +6,9 @@ import {HttpClient} from '@angular/common/http';
 export class HomePageService {
   constructor(private http: HttpClient) { }
 
-
+  cancelReservation(id) {
+    return this.http.delete('api/ticket/cancelReservation/'+id);
+  }
 
   getHistory(){
     return this.http.get('api/getHistory/'+localStorage.getItem('username'));

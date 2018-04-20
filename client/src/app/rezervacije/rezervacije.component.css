@@ -1,0 +1,13 @@
+tr:nth-child(even) {
+    background: #CCC;
+    font-size: 25px;
+    
+}
+tr:nth-child(odd) {
+    background: #FFF;
+    font-size: 25px;
+}
+
+table{
+    padding-top: 20px;
+}

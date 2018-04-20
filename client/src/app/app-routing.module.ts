@@ -41,6 +41,7 @@ import { PendingComponent } from './profil/friends/pending/pending.component';
 import {ReservedPropsListComponent} from './fanpage/reserved-props-list/reserved-props-list.component';
 import {SetRatingComponent} from './admin-sys/set-rating/set-rating.component';
 import { SeatReservationComponent } from './shows/shows-cinema/cinema-repertoire/seat-reservation/seat-reservation.component';
+import { RezervacijeComponent} from './rezervacije/rezervacije.component';
 
 const routes: Routes = [
   // ivan
@@ -76,6 +77,7 @@ const routes: Routes = [
   // jovas
   {path: 'registracija', component: RegistracijaComponent},
   {path: 'seat-reservation/:auditoriumId/:projectionId', component: SeatReservationComponent},
+  {path: 'rezervacije', component: RezervacijeComponent},
   {path: 'search-users', component: SearchUsersComponent},
   {path: 'requests', component: RequestsComponent},
   {path: 'pending', component: PendingComponent},
