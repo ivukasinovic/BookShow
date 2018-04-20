@@ -132,7 +132,10 @@ public class TicketController {
 	}
 	
 	
-	
+	@RequestMapping(value = "/cancelReservation/{id}",method = RequestMethod.DELETE)
+	public void cancelReservation(@PathVariable ("id") Long id) {
+		ticketService.delete(id);
+	}
 	
 	
 	
