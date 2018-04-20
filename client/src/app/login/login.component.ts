@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('username', tokenPayload.sub);
             window.location.reload();
             this.router.navigate(['/']);
-
           }
         },
         error => {

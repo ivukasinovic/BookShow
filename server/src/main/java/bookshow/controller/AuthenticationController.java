@@ -1,5 +1,6 @@
 package bookshow.controller;
 
+import bookshow.domain.users.Role;
 import bookshow.domain.users.User;
 import bookshow.model.json.request.AuthenticationRequest;
 import bookshow.model.json.response.AuthenticationResponse;
@@ -63,7 +64,9 @@ public class AuthenticationController {
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         String token = this.tokenUtils.generateToken(userDetails, device);
         User user = userService.findByUsername(userDetails.getUsername());
-        // Return the token
+        /*if((user.getRole().equals(Role.ADMINSHOW) || user.getRole().equals(Role.ADMINFAN)) && !user.isChangedPassword())
+        	return new ResponseEntity<>(new AuthenticationResponse(token), HttpStatus.TEMPORARY_REDIRECT);
+        else*/
         return ResponseEntity.ok(new AuthenticationResponse(token));
     }
 

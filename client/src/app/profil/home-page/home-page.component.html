@@ -48,7 +48,7 @@
       <tr *ngFor = "let karta of karte; let i = index">
         <td>{{karta.projection.auditorium.show.name}} </td>
         <td> <ngb-rating [(rate)]="ocene[i]"></ngb-rating> </td>
-        <td> <button (click) = "rejtujBioskop(i, karta.projection.auditorium.show.id)"> Rejtuj</button> </td>
+        <td> <button (click) = "rejtujBioskop(i, karta.projection.auditorium.show.id)"> Rejtuj </button> </td>
       </tr>
     </table>
 
